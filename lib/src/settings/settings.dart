@@ -1,51 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-// singleton
-class SettingsManager {
-  // member
-  late SharedPreferences _prefs;
-  late Settings _settings;
-
-  // constructor
-  static final SettingsManager _instance = SettingsManager._constructor();
-  SettingsManager._constructor() {
-    initSettings();
-  }
-
-  Future<void> initSettings() async {
-    _prefs = await SharedPreferences.getInstance();
-    _settings = Settings(_prefs);
-  }
-
-  // returns _instance when it is called
-  //, which is already initialized in pivate constructor.
-  factory SettingsManager() {
-    return _instance;
-  }
-
-  // fields methods
-  CalculationMode mode() =>
-      CalculationMode.values[Settings.currentCalculationModeIndex];
-
-  NumOfProblems numOfProblems() =>
-      NumOfProblems.values[Settings.currentNumOfProblems];
-
-  Speed speed() => Speed.values[Settings.currentSpeedIndex];
-
-  int digit() => Settings.currentDigit;
-
-  bool mixedMode() => Settings.isMixedMode;
-
-  // save methods
-  void saveSetting() => _settings.saveSettings(_prefs);
-}
-
 class Settings {
   // constructor
   Settings(SharedPreferences prefs) {
     currentCalculationModeIndex = prefs.getInt(calculationModeKey) ?? 0;
     currentNumOfProblems = prefs.getInt(numOfProblemsKey) ?? 0;
-    currentSpeedIndex = prefs.getInt(speedKey) ?? 0;
+    currentSpeedIndex = prefs.getInt(speedKey) ?? 3;
 
     currentDigit = prefs.getInt(digitKey) ?? 2;
     isMixedMode = prefs.getBool(mixedModeKey) ?? false;
@@ -85,8 +45,14 @@ enum NumOfProblems {
   n_20,
 }
 
+// very slow : 1 sec
+// slow : 0.7 sec
+// normal : 0.5 sec
+// fast : 0.3 sec
 enum Speed {
-  slow,
-  normal,
-  fast,
+  verySlow_10,
+  slow_07,
+  normal_05,
+  fast_03,
+  veryFast_02,
 }

@@ -14,7 +14,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final Flicker _flicker = const Flicker();
-
   late StateProvider _stateProvider;
 
   @override
@@ -66,12 +65,12 @@ class _HomePageState extends State<HomePage> {
                                     style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateColor.resolveWith(
-                                              getButtonColorProp),
+                                              _getButtonColorProp),
                                     ),
-                                    onPressed: onPressed,
+                                    onPressed: _onPressed,
                                     child: Text(
                                       value.buttonText,
-                                      style: getMainButtonTextStyle(),
+                                      style: _getMainButtonTextStyle(),
                                     )));
                           })))),
             ),
@@ -81,14 +80,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   // event triggered
-  void onPressed() {
-    setState(() {
-      _stateProvider.changeState();
-    });
+  void _onPressed() {
+    _stateProvider.changeState();
   }
 
   // styles
-  Color getButtonColorProp(Set<MaterialState> states) {
+  Color _getButtonColorProp(Set<MaterialState> states) {
     if (states.contains(MaterialState.pressed)) {
       return Colors.greenAccent;
     } else {
@@ -96,7 +93,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  TextStyle getMainButtonTextStyle() {
+  TextStyle _getMainButtonTextStyle() {
     return const TextStyle(
       fontSize: 24,
       fontWeight: FontWeight.w900,
