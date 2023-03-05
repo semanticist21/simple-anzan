@@ -33,10 +33,16 @@ List<int> getAddMinusNums(int digit, int numOfNums) {
     int randomNum = min + Random().nextInt(max - min);
     list[i] = randomNum;
     sum += randomNum;
+
+    // considering abacus, the number can't be under 0.
+    // if the answer is low than 0, than give large number to compensate.
+    if (sum < 0) {
+      randomNum = -randomNum;
+      list[i] = randomNum;
+      sum += randomNum * 2;
+    }
   }
 
-  // considering abacus, the number can't be under 0.
-  // if the answer is low than 0, than give large number to compensate.
   var lastNum = 0;
 
   if (sum < 0) {
