@@ -1,7 +1,7 @@
 // routers
 const String mainPageAddress = '/';
-const String settingsPageAddress = 'settings';
-const String errorPageAddress = 'error';
+const String settingsPageAddress = '/settings';
+const String errorPageAddress = '/error';
 
 // labels
 const String homeLabel = 'Home';

@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
           },
           child: const Home()),
       themeMode: ThemeMode.dark,
-      initialRoute: '/',
     );
   }
 }
@@ -33,7 +32,7 @@ class Home extends StatefulWidget {
 
 class _Home extends State<Home> {
   final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
-  int _currentIndex = 0;
+  int _currentIndex = 1;
 
   void _onTap(int index) {
     onTapNavi(navigationKey, index);
@@ -49,6 +48,7 @@ class _Home extends State<Home> {
         key: navigationKey,
         onGenerateRoute: generateRoutes,
         onUnknownRoute: generateErrorPages,
+        initialRoute: settingsPageAddress,
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
