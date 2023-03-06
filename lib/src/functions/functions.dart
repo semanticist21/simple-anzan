@@ -1,6 +1,6 @@
 import 'dart:math';
 
-List<int> getAddNums(int digit, int numOfNums) {
+List<int> getPlusNums(int digit, int numOfNums) {
   var list = List.filled(numOfNums + 1, 0);
 
   int min = (pow(10, digit - 1)).toInt();
@@ -20,10 +20,10 @@ List<int> getAddNums(int digit, int numOfNums) {
   return list;
 }
 
-List<int> getAddMinusNums(int digit, int numOfNums) {
+List<int> getPlusMinusNums(int digit, int numOfNums) {
   var list = List.filled(numOfNums + 1, 0);
 
-  int min = (pow(10, digit) + 1).toInt();
+  int min = (-pow(10, digit) + 1).toInt();
   int max = (pow(10, digit) - 1).toInt();
 
   int len = list.length;
@@ -31,6 +31,12 @@ List<int> getAddMinusNums(int digit, int numOfNums) {
 
   for (int i = 0; i < len - 2; i++) {
     int randomNum = min + Random().nextInt(max - min);
+
+    // num should not be zero.
+    while (randomNum == 0) {
+      randomNum = min + Random().nextInt(max - min);
+    }
+
     list[i] = randomNum;
     sum += randomNum;
 

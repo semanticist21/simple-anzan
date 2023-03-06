@@ -9,17 +9,29 @@ class StateProvider extends ChangeNotifier {
   bool isButtonVisible = true;
   String buttonText = start;
 
-  void changeState() {
-    switch (state) {
-      case ButtonState.iterationNotStarted:
-        state = ButtonState.iterationStarted;
+  void changeState({ButtonState desiredState = ButtonState.autoState}) {
+    switch (desiredState) {
+      case ButtonState.autoState:
         break;
-      case ButtonState.iterationStarted:
-        state = ButtonState.iterationCompleted;
+      default:
+        state = desiredState;
         break;
-      case ButtonState.iterationCompleted:
-        state = ButtonState.iterationNotStarted;
-        break;
+    }
+
+    if (desiredState == ButtonState.autoState) {
+      switch (state) {
+        case ButtonState.iterationNotStarted:
+          state = ButtonState.iterationStarted;
+          break;
+        case ButtonState.iterationStarted:
+          state = ButtonState.iterationCompleted;
+          break;
+        case ButtonState.iterationCompleted:
+          state = ButtonState.iterationNotStarted;
+          break;
+        default:
+          return;
+      }
     }
 
     buttonText = getButtonStr(state);
@@ -32,6 +44,7 @@ enum ButtonState {
   iterationNotStarted,
   iterationStarted,
   iterationCompleted,
+  autoState,
 }
 
 String getButtonStr(ButtonState state) {
@@ -42,6 +55,8 @@ String getButtonStr(ButtonState state) {
       return hidden;
     case ButtonState.iterationCompleted:
       return check;
+    default:
+      return start;
   }
 }
 
@@ -52,6 +67,8 @@ bool getButtonVisibility(ButtonState state) {
     case ButtonState.iterationStarted:
       return false;
     case ButtonState.iterationCompleted:
+      return true;
+    default:
       return true;
   }
 }

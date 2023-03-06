@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:simple_anzan/src/const/const.dart';
-import 'package:simple_anzan/src/pages/settting.dart';
+import 'package:abacus_simple_anzan/src/const/const.dart';
+import 'package:abacus_simple_anzan/src/pages/settting_page.dart';
 
-import 'src/pages/error.dart';
-import 'src/pages/home.dart';
+import 'src/pages/error_page.dart';
+import 'src/pages/home_page.dart';
 
 Route<dynamic> generateRoutes(RouteSettings settings) {
   switch (settings.name) {

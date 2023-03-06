@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/simple_anzan.iml" filepath="$PROJECT_DIR$/simple_anzan.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/simple_anzan_android.iml" filepath="$PROJECT_DIR$/android/simple_anzan_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/abacus_simple_anzan.iml" filepath="$PROJECT_DIR$/abacus_simple_anzan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/abacus_simple_anzan_android.iml" filepath="$PROJECT_DIR$/android/abacus_simple_anzan_android.iml" />
     </modules>
   </component>
 </project>

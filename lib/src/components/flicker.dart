@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_anzan/src/provider/state_provider.dart';
+import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 
 import '../const/const.dart';
 import '../functions/functions.dart';
@@ -17,7 +17,6 @@ class Flicker extends StatefulWidget {
 class _FlickerState extends State<Flicker> {
   late StateProvider _stateProvider;
   final SettingsManager manager = SettingsManager();
-  bool isIterationGoing = false;
 
   String _number = '';
   String _answer = '';
@@ -28,20 +27,24 @@ class _FlickerState extends State<Flicker> {
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.addListener(_callbackOnButtonClick);
 
-    return Text(
-      _number,
-      style: _getMainNumberTextStyle(),
-    );
+    return FittedBox(
+        fit: BoxFit.contain,
+        child: Text(
+          _number,
+          style: _getMainNumberTextStyle(),
+        ));
   }
 
   // start iteration.
-  void _callbackOnButtonClick() async {
+  Future<void> _callbackOnButtonClick() async {
     switch (_stateProvider.state) {
       case ButtonState.iterationNotStarted:
         showAnswer();
         break;
       case ButtonState.iterationStarted:
-        _initiateIteration(manager);
+        await _initiateIteration(manager);
+        break;
+      case ButtonState.iterationCompleted:
         break;
       default:
         return;
@@ -49,6 +52,8 @@ class _FlickerState extends State<Flicker> {
   }
 
   Future<void> _initiateIteration(SettingsManager manager) async {
+    _answer = '';
+
     switch (manager.mode()) {
       case CalculationMode.onlyPlus:
         _runAdd(manager);
@@ -56,35 +61,26 @@ class _FlickerState extends State<Flicker> {
       case CalculationMode.plusMinus:
         _runAddMinus(manager);
         break;
-      case CalculationMode.multiply:
-        _runMultiply(manager);
-        break;
-      case CalculationMode.divide:
-        _runDivide(manager);
-        break;
     }
   }
 
   Future<void> _runAdd(SettingsManager manager) async =>
-      await doProcess(getAddNums, manager);
+      await doProcess(getPlusNums, manager);
 
   Future<void> _runAddMinus(SettingsManager manager) async =>
-      await doProcess(getAddMinusNums, manager);
+      await doProcess(getPlusMinusNums, manager);
 
   Future<void> doProcess(
       Function(int, int) func, SettingsManager manager) async {
-    var nums = func(manager.digit(), manager.numOfProblemsInt());
+    var nums = func(manager.digitInt(), manager.numOfProblemsInt());
     var len = nums.length;
 
     var questions = nums.sublist(0, len - 1);
     _answer = nums.last.toString();
 
     await iterNums(manager, questions);
-    _stateProvider.changeState();
+    _stateProvider.changeState(desiredState: ButtonState.iterationCompleted);
   }
-
-  void _runMultiply(SettingsManager manager) {}
-  void _runDivide(SettingsManager manager) {}
 
   Future<void> iterNums(SettingsManager manager, List<int> questions) async {
     var duration = manager.speedDuration();
@@ -125,7 +121,6 @@ class _FlickerState extends State<Flicker> {
 // styles.
 TextStyle _getMainNumberTextStyle() {
   return const TextStyle(
-    fontSize: 150,
     fontWeight: FontWeight.w900,
     fontFamily: defaultFontFamily,
     letterSpacing: 3,

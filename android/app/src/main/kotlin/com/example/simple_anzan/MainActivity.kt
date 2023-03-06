@@ -1,4 +1,4 @@
-package com.example.simple_anzan
+package com.kobbokkom.abacus_simple_anzan
 
 import io.flutter.embedding.android.FlutterActivity
 

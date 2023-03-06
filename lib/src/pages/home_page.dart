@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_anzan/src/provider/state_provider.dart';
 
 import '../components/flicker.dart';
 import '../const/const.dart';
+import '../provider/state_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,15 +35,20 @@ class _HomePageState extends State<HomePage> {
                   width: double.infinity,
                   child: Center(
                       child: FractionallySizedBox(
-                    widthFactor: 0.7,
-                    heightFactor: 0.7,
+                    widthFactor: 0.8,
+                    heightFactor: 0.3,
                     child: Container(
                       decoration: BoxDecoration(
                           color: const Color.fromRGBO(158, 158, 158, 0.1),
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(
                               color: const Color.fromRGBO(96, 125, 139, 0.1))),
-                      child: Center(child: _flicker),
+                      child: Center(
+                          child: FractionallySizedBox(
+                        widthFactor: 0.8,
+                        heightFactor: 0.8,
+                        child: _flicker,
+                      )),
                     ),
                   )),
                 )),

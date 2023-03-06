@@ -6,7 +6,6 @@ import 'settings.dart';
 class SettingsManager {
   // member
   late SharedPreferences _prefs;
-  late Settings _settings;
 
   // constructor
   static final SettingsManager _instance = SettingsManager._constructor();
@@ -16,67 +15,154 @@ class SettingsManager {
 
   Future<void> _initSettings() async {
     _prefs = await SharedPreferences.getInstance();
-    _settings = Settings(_prefs);
+    Settings(_prefs);
   }
 
   // returns _instance when it is called
   //, which is already initialized in pivate constructor.
-  factory SettingsManager() {
-    return _instance;
-  }
+  factory SettingsManager() => _instance;
 
   // fields methods
   CalculationMode mode() =>
       CalculationMode.values[Settings.currentCalculationModeIndex];
 
+  CalculationMode boolToCalculationMode(bool flag) {
+    if (flag) {
+      return CalculationMode.onlyPlus;
+    } else {
+      return CalculationMode.plusMinus;
+    }
+  }
+
+  bool calculationModeToBool(CalculationMode mode) {
+    switch (mode) {
+      case CalculationMode.onlyPlus:
+        return true;
+      case CalculationMode.plusMinus:
+        return false;
+    }
+  }
+
+  // num of problems.
   NumOfProblems numOfProblems() =>
       NumOfProblems.values[Settings.currentNumOfProblems];
 
-  int numOfProblemsInt() {
-    switch (numOfProblems()) {
-      case NumOfProblems.n_5:
-        return sliceNumOfProblems(NumOfProblems.n_5.name);
-      case NumOfProblems.n_10:
-        return sliceNumOfProblems(NumOfProblems.n_10.name);
-      case NumOfProblems.n_15:
-        return sliceNumOfProblems(NumOfProblems.n_15.name);
-      case NumOfProblems.n_20:
-        return sliceNumOfProblems(NumOfProblems.n_20.name);
+  int numOfProblemsInt() => sliceNumOfProblems(numOfProblems().name);
+  int sliceNumOfProblems(String str) => int.parse(str.split('_')[1]);
+
+  NumOfProblems strToNumOfProblems(String str) {
+    for (var value in NumOfProblems.values) {
+      if (getNumOfProblemsStr(value.name) == str) {
+        return value;
+      }
     }
+
+    throw Error();
   }
 
-  int sliceNumOfProblems(String str) {
-    return int.parse(str.split('_')[1]);
-  }
-
+  // speed
   Speed speed() => Speed.values[Settings.currentSpeedIndex];
+  Duration speedDuration() => sliceSpeed(speed().name);
 
-  Duration speedDuration() {
-    switch (speed()) {
-      case Speed.verySlow_10:
-        return sliceSpeed(Speed.verySlow_10.name);
-      case Speed.slow_07:
-        return sliceSpeed(Speed.slow_07.name);
-      case Speed.normal_05:
-        return sliceSpeed(Speed.normal_05.name);
-      case Speed.fast_03:
-        return sliceSpeed(Speed.fast_03.name);
-      case Speed.veryFast_02:
-        return sliceSpeed(Speed.veryFast_02.name);
+  Speed strToSpeed(String str) {
+    for (var value in Speed.values) {
+      if (getSpeedStr(value.name) == str) {
+        return value;
+      }
     }
+
+    throw Error();
   }
 
   Duration sliceSpeed(String str) {
-    var durationNum = str.split('_')[1];
-    var parsedDurationNum = int.parse(durationNum) * 100;
+    var milisecDuration = getDurationInt(str) * 100;
 
-    return Duration(milliseconds: parsedDurationNum);
+    return Duration(milliseconds: milisecDuration);
   }
 
-  int digit() => Settings.currentDigit;
+  int getDurationInt(String str) => int.parse(str.split('_')[1]);
 
-  bool mixedMode() => Settings.isMixedMode;
+  // digit
+  Digit digit() => Digit.values[Settings.currentDigit];
+  int digitInt() => int.parse(getDigitStr(digit().name));
+
+  Digit strToDigit(String str) {
+    for (var value in Digit.values) {
+      if (getDigitStr(value.name) == str) {
+        return value;
+      }
+    }
+
+    throw Error();
+  }
 
   // save methods
-  void saveSetting() => _settings.saveSettings(_prefs);
+  void saveSetting(dynamic value) {
+    switch (value.runtimeType) {
+      case CalculationMode:
+        _prefs.setInt(
+            Settings.calculationModeKey, (value as CalculationMode).index);
+        break;
+
+      case Speed:
+        _prefs.setInt(Settings.speedKey, (value as Speed).index);
+        break;
+
+      case Digit:
+        _prefs.setInt(Settings.digitKey, (value as Digit).index);
+        break;
+
+      case NumOfProblems:
+        _prefs.setInt(
+            Settings.numOfProblemsKey, (value as NumOfProblems).index);
+        break;
+
+      default:
+        throw Error();
+    }
+
+    Settings(_prefs);
+  }
+
+  // enum to list of items
+  List<String> getItemsListOfEnum<T>() {
+    List<String> result = List.empty(growable: true);
+
+    switch (T) {
+      case NumOfProblems:
+        for (var element in NumOfProblems.values) {
+          var str = getNumOfProblemsStr(element.name);
+          result.add(str);
+        }
+        break;
+
+      case Speed:
+        for (var element in Speed.values) {
+          var str = getSpeedStr(element.name);
+          result.add(str);
+        }
+        break;
+
+      case Digit:
+        for (var element in Digit.values) {
+          var str = getDigitStr(element.name);
+          result.add(str);
+        }
+        break;
+    }
+
+    return result;
+  }
+
+  String getNumOfProblemsStr(String name) {
+    return name.split('_')[1];
+  }
+
+  String getSpeedStr(String name) {
+    return name.split('_')[0];
+  }
+
+  String getDigitStr(String name) {
+    return name.split('_')[1];
+  }
 }
