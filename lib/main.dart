@@ -42,7 +42,7 @@ class _Home extends State<Home> {
     super.initState();
   }
 
-  void _onTap(int newIndex) {
+  Future<void> _onTap(int newIndex) async {
     if (_currentIndex == newIndex) {
       return;
     }
@@ -51,14 +51,16 @@ class _Home extends State<Home> {
       return;
     }
 
-    if (_stateProvider.state == ButtonState.iterationCompleted) {
-      _stateProvider.changeState();
-    }
-
     onTapNavi(navigationKey, newIndex);
     setState(() {
       _currentIndex = newIndex;
     });
+
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    if (_stateProvider.state == ButtonState.iterationCompleted) {
+      _stateProvider.changeState();
+    }
   }
 
   @override

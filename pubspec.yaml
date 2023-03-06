@@ -67,7 +67,7 @@ flutter_icons:
     generate: true
     image_path: "assets/icon.png"
 
-  # "https://www.flaticon.com/free-icons/abacus" abacus icons">Abacus icons created by Freepik - Flaticon
+  # "https://www.flaticon.com/free-icons/abacus" abacus icons" Abacus icons created by Freepik - Flaticon
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
