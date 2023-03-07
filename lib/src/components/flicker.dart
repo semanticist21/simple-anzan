@@ -1,10 +1,13 @@
+import 'package:abacus_simple_anzan/src/settings/prefs/num_of_problems_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/prefs/speed.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 
 import '../const/const.dart';
 import '../functions/functions.dart';
-import '../settings/settings.dart';
+import '../settings/prefs/calculation_mode_pref.dart';
+import '../settings/prefs/digit_pref.dart';
 import '../settings/settings_manager.dart';
 
 class Flicker extends StatefulWidget {
@@ -54,7 +57,7 @@ class _FlickerState extends State<Flicker> {
   Future<void> _initiateIteration(SettingsManager manager) async {
     _answer = '';
 
-    switch (manager.mode()) {
+    switch (manager.getCurrentEnum<CalculationMode>()) {
       case CalculationMode.onlyPlus:
         _runAdd(manager);
         break;
@@ -72,7 +75,8 @@ class _FlickerState extends State<Flicker> {
 
   Future<void> doProcess(
       Function(int, int) func, SettingsManager manager) async {
-    var nums = func(manager.digitInt(), manager.numOfProblemsInt());
+    var nums = func(manager.getCurrentValue<Digit, int>(),
+        manager.getCurrentValue<NumOfProblems, int>());
     var len = nums.length;
 
     var questions = nums.sublist(0, len - 1);
@@ -83,7 +87,7 @@ class _FlickerState extends State<Flicker> {
   }
 
   Future<void> iterNums(SettingsManager manager, List<int> questions) async {
-    var duration = manager.speedDuration();
+    var duration = manager.getCurrentValue<Speed, Duration>();
     var len = questions.length;
 
     for (int i = 0; i < len; i++) {

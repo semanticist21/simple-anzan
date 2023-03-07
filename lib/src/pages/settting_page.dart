@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:abacus_simple_anzan/src/settings/settings_manager.dart';
 
-import '../settings/settings.dart';
+import '../settings/prefs/calculation_mode_pref.dart';
+import '../settings/prefs/digit_pref.dart';
+import '../settings/prefs/num_of_problems_pref.dart';
+import '../settings/prefs/speed.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -88,7 +91,8 @@ class _SettingsPageState extends State<SettingsPage> {
                               children: [
                                 buildToggleOption(
                                     onlyPluses,
-                                    _manager.calculationModeToBool(_isOnlyPlus),
+                                    _manager.enumToValue<CalculationMode, bool>(
+                                        _isOnlyPlus),
                                     togglePlusModeCallback),
 
                                 // speed.
@@ -98,7 +102,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                       Icons.speed,
                                       color: Colors.grey,
                                     ),
-                                    _manager.getSpeedStr(_speed.name),
+                                    _manager.getItemStr<Speed>(_speed.name),
                                     getDropdownMenuItemList<Speed>(_manager),
                                     changeOptionCallback<Speed>),
                                 // digit.
@@ -108,7 +112,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                       Icons.onetwothree,
                                       color: Colors.grey,
                                     ),
-                                    _manager.getDigitStr(_digit.name),
+                                    _manager.getItemStr<Digit>(_digit.name),
                                     getDropdownMenuItemList<Digit>(_manager),
                                     changeOptionCallback<Digit>),
                                 // num of problems.
@@ -118,7 +122,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                       Icons.check,
                                       color: Colors.grey,
                                     ),
-                                    _manager.getNumOfProblemsStr(
+                                    _manager.getItemStr<NumOfProblems>(
                                         _numOfProblems.name),
                                     getDropdownMenuItemList<NumOfProblems>(
                                         _manager),
@@ -159,7 +163,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   togglePlusModeCallback(bool newValue) {
     setState(() {
-      _isOnlyPlus = _manager.boolToCalculationMode(newValue);
+      _isOnlyPlus = _manager.valueToEnum<bool, CalculationMode>(newValue);
     });
 
     _manager.saveSetting(_isOnlyPlus);
@@ -220,15 +224,15 @@ class _SettingsPageState extends State<SettingsPage> {
   void changeOptionCallback<T>(dynamic value) {
     switch (T) {
       case Speed:
-        _speed = _manager.strToSpeed(value);
+        _speed = _manager.itemStrToEnum<Speed>(value);
         _manager.saveSetting(_speed);
         break;
       case Digit:
-        _digit = _manager.strToDigit(value);
+        _digit = _manager.itemStrToEnum<Digit>(value);
         _manager.saveSetting(_digit);
         break;
       case NumOfProblems:
-        _numOfProblems = _manager.strToNumOfProblems(value);
+        _numOfProblems = _manager.itemStrToEnum<NumOfProblems>(value);
         _manager.saveSetting(_numOfProblems);
         break;
     }
@@ -273,10 +277,10 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void initializeValues(SettingsManager manager) {
     setState(() {
-      _isOnlyPlus = manager.mode();
-      _speed = manager.speed();
-      _digit = manager.digit();
-      _numOfProblems = manager.numOfProblems();
+      _isOnlyPlus = manager.getCurrentEnum<CalculationMode>();
+      _speed = manager.getCurrentEnum<Speed>();
+      _digit = manager.getCurrentEnum<Digit>();
+      _numOfProblems = manager.getCurrentEnum<NumOfProblems>();
     });
   }
 }

@@ -1,11 +1,17 @@
 // singleton
+import 'package:abacus_simple_anzan/src/settings/prefs/calculation_mode_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/prefs/digit_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/prefs/num_of_problems_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/prefs/speed.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'settings.dart';
 
 class SettingsManager {
   // member
   late SharedPreferences _prefs;
+  late CalculationModePref _calculationModePref;
+  late SpeedPref _speedPref;
+  late DigitPref _digitPref;
+  late NumOfProblemsPref _numOfProblemsPref;
 
   // constructor
   static final SettingsManager _instance = SettingsManager._constructor();
@@ -15,145 +21,145 @@ class SettingsManager {
 
   Future<void> _initSettings() async {
     _prefs = await SharedPreferences.getInstance();
-    Settings(_prefs);
+    refreshPrefValues(_prefs);
   }
 
-  // returns _instance when it is called
+  void refreshPrefValues(SharedPreferences prefs) {
+    _calculationModePref = CalculationModePref(prefs);
+    _speedPref = SpeedPref(prefs);
+    _digitPref = DigitPref(prefs);
+    _numOfProblemsPref = NumOfProblemsPref(prefs);
+  }
+
+  // returns _instance when it is called.
   //, which is already initialized in pivate constructor.
   factory SettingsManager() => _instance;
 
-  // fields methods
-  CalculationMode mode() =>
-      CalculationMode.values[Settings.currentCalculationModeIndex];
-
-  CalculationMode boolToCalculationMode(bool flag) {
-    if (flag) {
-      return CalculationMode.onlyPlus;
-    } else {
-      return CalculationMode.plusMinus;
+  // fields methods.
+  // calculation mode.
+  T getCurrentEnum<T>() {
+    switch (T) {
+      case CalculationMode:
+        return _calculationModePref.getValue() as T;
+      case Speed:
+        return _speedPref.getValue() as T;
+      case Digit:
+        return _digitPref.getValue() as T;
+      case NumOfProblems:
+        return _numOfProblemsPref.getValue() as T;
+      default:
+        throw Error();
     }
   }
 
-  bool calculationModeToBool(CalculationMode mode) {
-    switch (mode) {
-      case CalculationMode.onlyPlus:
-        return true;
-      case CalculationMode.plusMinus:
-        return false;
+  T valueToEnum<V, T>(V value) {
+    switch (T) {
+      case CalculationMode:
+        return _calculationModePref.valueToEnum(value as bool) as T;
+      case Speed:
+        return _speedPref.valueToEnum(value as Duration) as T;
+      case Digit:
+        return _digitPref.valueToEnum(value as int) as T;
+      case NumOfProblems:
+        return _numOfProblemsPref.valueToEnum(value as int) as T;
+      default:
+        throw Error();
     }
   }
 
-  // num of problems.
-  NumOfProblems numOfProblems() =>
-      NumOfProblems.values[Settings.currentNumOfProblems];
-
-  int numOfProblemsInt() => sliceNumOfProblems(numOfProblems().name);
-  int sliceNumOfProblems(String str) => int.parse(str.split('_')[1]);
-
-  NumOfProblems strToNumOfProblems(String str) {
-    for (var value in NumOfProblems.values) {
-      if (getNumOfProblemsStr(value.name) == str) {
-        return value;
-      }
+  V enumToValue<T, V>(T enumValue) {
+    switch (T) {
+      case CalculationMode:
+        return _calculationModePref.enumToValue(enumValue as CalculationMode)
+            as V;
+      case Speed:
+        return _speedPref.enumToValue(enumValue as Speed) as V;
+      case Digit:
+        return _digitPref.enumToValue(enumValue as Digit) as V;
+      case NumOfProblems:
+        return _numOfProblemsPref.enumToValue(enumValue as NumOfProblems) as V;
+      default:
+        throw Error();
     }
-
-    throw Error();
   }
 
-  // speed
-  Speed speed() => Speed.values[Settings.currentSpeedIndex];
-  Duration speedDuration() => sliceSpeed(speed().name);
-
-  Speed strToSpeed(String str) {
-    for (var value in Speed.values) {
-      if (getSpeedStr(value.name) == str) {
-        return value;
-      }
+  V getCurrentValue<T, V>() {
+    switch (T) {
+      case Speed:
+        return _speedPref.enumToValue(getCurrentEnum<Speed>()) as V;
+      case Digit:
+        return _digitPref.enumToValue(getCurrentEnum<Digit>()) as V;
+      case NumOfProblems:
+        return _numOfProblemsPref.enumToValue(getCurrentEnum<NumOfProblems>())
+            as V;
+      default:
+        throw Error();
     }
-
-    throw Error();
   }
 
-  Duration sliceSpeed(String str) {
-    var milisecDuration = getDurationInt(str) * 100;
-
-    return Duration(milliseconds: milisecDuration);
-  }
-
-  int getDurationInt(String str) => int.parse(str.split('_')[1]);
-
-  // digit
-  Digit digit() => Digit.values[Settings.currentDigit];
-  int digitInt() => int.parse(getDigitStr(digit().name));
-
-  Digit strToDigit(String str) {
-    for (var value in Digit.values) {
-      if (getDigitStr(value.name) == str) {
-        return value;
-      }
+  T itemStrToEnum<T>(String str) {
+    switch (T) {
+      case Speed:
+        return _speedPref.itemStrToValue(str) as T;
+      case Digit:
+        return _digitPref.itemStrToValue(str) as T;
+      case NumOfProblems:
+        return _numOfProblemsPref.itemStrToValue(str) as T;
+      default:
+        throw Error();
     }
-
-    throw Error();
   }
 
   // save methods
   void saveSetting(dynamic value) {
     switch (value.runtimeType) {
       case CalculationMode:
-        _prefs.setInt(
-            Settings.calculationModeKey, (value as CalculationMode).index);
+        _calculationModePref.saveSetting(_prefs, value);
         break;
-
       case Speed:
-        _prefs.setInt(Settings.speedKey, (value as Speed).index);
+        _speedPref.saveSetting(_prefs, value);
         break;
-
       case Digit:
-        _prefs.setInt(Settings.digitKey, (value as Digit).index);
+        _digitPref.saveSetting(_prefs, value);
         break;
-
       case NumOfProblems:
-        _prefs.setInt(
-            Settings.numOfProblemsKey, (value as NumOfProblems).index);
+        _numOfProblemsPref.saveSetting(_prefs, value);
         break;
-
       default:
         throw Error();
     }
 
-    Settings(_prefs);
+    refreshPrefValues(_prefs);
   }
 
   // enum to list of items
   List<String> getItemsListOfEnum<T>() {
-    List<String> result = List.empty(growable: true);
-
     switch (T) {
       case NumOfProblems:
-        for (var element in NumOfProblems.values) {
-          var str = getNumOfProblemsStr(element.name);
-          result.add(str);
-        }
-        break;
-
+        return _numOfProblemsPref.getItemsListofEnum();
       case Speed:
-        for (var element in Speed.values) {
-          var str = getSpeedStr(element.name);
-          result.add(str);
-        }
-        break;
-
+        return _speedPref.getItemsListofEnum();
       case Digit:
-        for (var element in Digit.values) {
-          var str = getDigitStr(element.name);
-          result.add(str);
-        }
-        break;
+        return _digitPref.getItemsListofEnum();
+      default:
+        throw Error();
     }
-
-    return result;
   }
 
+  String getItemStr<T>(String enumName) {
+    switch (T) {
+      case NumOfProblems:
+        return _numOfProblemsPref.enumNameToItemString(enumName);
+      case Speed:
+        return _speedPref.enumNameToItemString(enumName);
+      case Digit:
+        return _digitPref.enumNameToItemString(enumName);
+      default:
+        throw Error();
+    }
+  }
+
+  //enum name to stirng
   String getNumOfProblemsStr(String name) {
     return name.split('_')[1];
   }
