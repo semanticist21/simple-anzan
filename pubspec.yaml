@@ -16,7 +16,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.2+3
+version: 1.0.3+5
 
 environment:
   sdk: ">=3.0.0-245.0.dev <4.0.0"
@@ -65,7 +65,7 @@ flutter_icons:
     icon_size: 48 # min:48, max:256, default: 48
   macos:
     generate: true
-    image_path: "assets/icon.png"
+    image_path: "assets/icon.png"                                      
 
   # "https://www.flaticon.com/free-icons/abacus" abacus icons" Abacus icons created by Freepik - Flaticon
 

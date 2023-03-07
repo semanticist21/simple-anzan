@@ -190,10 +190,11 @@ class _SettingsPageState extends State<SettingsPage> {
       Flexible(
           flex: 10,
           child: FractionallySizedBox(
-              widthFactor: 1,
+              widthFactor: 0.8,
               child: Transform.scale(
-                scaleX: 0.8,
-                scaleY: 0.8,
+                filterQuality: FilterQuality.high,
+                scaleX: 1.1,
+                scaleY: 1.1,
                 alignment: Alignment.centerRight,
                 child: DropdownButtonFormField(
                   isDense: true,
