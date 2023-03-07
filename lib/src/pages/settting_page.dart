@@ -66,7 +66,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           ),
                           const SizedBox(width: 10),
                           Text(
-                            localizationChecker.settings,
+                            LocalizationChecker.settings,
                             style: const TextStyle(
                               fontSize: 15,
                               fontFamily: defaultFontFamily,
@@ -91,14 +91,14 @@ class _SettingsPageState extends State<SettingsPage> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 buildToggleOption(
-                                    localizationChecker.onlyPluses,
+                                    LocalizationChecker.onlyPluses,
                                     _manager.enumToValue<CalculationMode, bool>(
                                         _isOnlyPlus),
                                     togglePlusModeCallback),
 
                                 // speed.
                                 buildDropdownButton(
-                                    localizationChecker.speed,
+                                    LocalizationChecker.speed,
                                     const Icon(
                                       Icons.speed,
                                       color: Colors.grey,
@@ -108,7 +108,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                     changeOptionCallback<Speed>),
                                 // digit.
                                 buildDropdownButton(
-                                    localizationChecker.digit,
+                                    LocalizationChecker.digit,
                                     const Icon(
                                       Icons.onetwothree,
                                       color: Colors.grey,
@@ -118,7 +118,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                     changeOptionCallback<Digit>),
                                 // num of problems.
                                 buildDropdownButton(
-                                    localizationChecker.numOfProblems,
+                                    LocalizationChecker.numOfProblems,
                                     const Icon(
                                       Icons.check,
                                       color: Colors.grey,

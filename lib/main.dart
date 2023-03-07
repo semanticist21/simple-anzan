@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    localizationChecker();
+    LocalizationChecker();
     return MaterialApp(
       title: 'Simple Anzan',
       home: ChangeNotifierProvider(

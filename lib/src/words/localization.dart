@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:abacus_simple_anzan/src/words/const.dart';
-import 'package:flutter/rendering.dart';
 
-class localizationChecker {
+class LocalizationChecker {
   final String defaultLocale = Platform.localeName;
   // options(settings)
   static String settings = settingsEn;
@@ -12,7 +10,7 @@ class localizationChecker {
   static String digit = digitEn;
   static String numOfProblems = numOfProblemsEn;
 
-  localizationChecker() {
+  LocalizationChecker() {
     if (defaultLocale == 'ko_KR') {
       settings = settingsKr;
       onlyPluses = onlyPlusesKr;
