@@ -1,7 +1,7 @@
 # abacus_simple_anzan
 
 Simple flash anzan app.
-version 1.0.5.
+version 1.0.6.
 
 Icon credited to : "https://www.flaticon.com/free-icons/abacus" abacus icons" Abacus icons created by Freepik - Flaticon
 
