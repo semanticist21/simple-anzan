@@ -1,7 +1,8 @@
 import 'package:abacus_simple_anzan/src/settings/settings_manager.dart';
+import 'package:abacus_simple_anzan/src/words/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:abacus_simple_anzan/src/const/const.dart';
+import 'package:abacus_simple_anzan/src/words/const.dart';
 import 'package:abacus_simple_anzan/router.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    localizationChecker();
     return MaterialApp(
       title: 'Simple Anzan',
       home: ChangeNotifierProvider(

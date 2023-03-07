@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/flicker.dart';
-import '../const/const.dart';
+import '../words/const.dart';
 import '../provider/state_provider.dart';
 
 class HomePage extends StatefulWidget {

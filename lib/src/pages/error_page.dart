@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../const/const.dart';
+import '../words/const.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});

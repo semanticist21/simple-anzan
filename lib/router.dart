@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:abacus_simple_anzan/src/const/const.dart';
+import 'package:abacus_simple_anzan/src/words/const.dart';
 import 'package:abacus_simple_anzan/src/pages/settting_page.dart';
 
 import 'src/pages/error_page.dart';

@@ -16,11 +16,17 @@ const String check = 'Check Answer';
 const String error = 'The page you requested does not exist.';
 
 // options(settings)
-const String settings = '설정';
-const String onlyPluses = '덧셈(+)만 하기';
-const String speed = "문제 속도";
-const String digit = "자리 수";
-const String numOfProblems = "문제 수";
+const String settingsKr = '설정';
+const String onlyPlusesKr = '덧셈(+)만 하기';
+const String speedKr = "문제 속도";
+const String digitKr = "자리 수";
+const String numOfProblemsKr = "문제 수";
+
+const String settingsEn = 'Settings';
+const String onlyPlusesEn = 'Only pluses';
+const String speedEn = "Speed";
+const String digitEn = "Digit";
+const String numOfProblemsEn = "Questions";
 
 // other
 const String empty = '';

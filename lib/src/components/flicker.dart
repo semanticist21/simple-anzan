@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 
-import '../const/const.dart';
+import '../words/const.dart';
 import '../functions/functions.dart';
 import '../settings/prefs/calculation_mode_pref.dart';
 import '../settings/prefs/digit_pref.dart';

@@ -1,6 +1,7 @@
+import 'package:abacus_simple_anzan/src/words/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:abacus_simple_anzan/src/const/const.dart';
+import 'package:abacus_simple_anzan/src/words/const.dart';
 import 'package:abacus_simple_anzan/src/settings/settings_manager.dart';
 
 import '../settings/prefs/calculation_mode_pref.dart';
@@ -56,17 +57,17 @@ class _SettingsPageState extends State<SettingsPage> {
 
                     return ListView(children: [
                       const SizedBox(height: 5),
-                      const Row(
+                      Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.settings,
                             color: Colors.grey,
                             size: 30,
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Text(
-                            settings,
-                            style: TextStyle(
+                            localizationChecker.settings,
+                            style: const TextStyle(
                               fontSize: 15,
                               fontFamily: defaultFontFamily,
                               color: Colors.grey,
@@ -90,14 +91,14 @@ class _SettingsPageState extends State<SettingsPage> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 buildToggleOption(
-                                    onlyPluses,
+                                    localizationChecker.onlyPluses,
                                     _manager.enumToValue<CalculationMode, bool>(
                                         _isOnlyPlus),
                                     togglePlusModeCallback),
 
                                 // speed.
                                 buildDropdownButton(
-                                    speed,
+                                    localizationChecker.speed,
                                     const Icon(
                                       Icons.speed,
                                       color: Colors.grey,
@@ -107,7 +108,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                     changeOptionCallback<Speed>),
                                 // digit.
                                 buildDropdownButton(
-                                    digit,
+                                    localizationChecker.digit,
                                     const Icon(
                                       Icons.onetwothree,
                                       color: Colors.grey,
@@ -117,7 +118,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                     changeOptionCallback<Digit>),
                                 // num of problems.
                                 buildDropdownButton(
-                                    numOfProblems,
+                                    localizationChecker.numOfProblems,
                                     const Icon(
                                       Icons.check,
                                       color: Colors.grey,

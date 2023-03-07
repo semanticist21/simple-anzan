@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../const/const.dart';
+import '../words/const.dart';
 
 class StateProvider extends ChangeNotifier {
   ButtonState state = ButtonState.iterationNotStarted;
