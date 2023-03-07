@@ -23,9 +23,7 @@ class DigitPref implements PreferenceInterfaceItems<Digit, int> {
 
   void setIndex(int index) {
     _currentIndex = index;
-    print(index);
     _currentValue = Digit.values[_currentIndex];
-    print(index);
   }
 
   Digit getValue() => _currentValue;

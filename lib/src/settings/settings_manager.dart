@@ -158,17 +158,4 @@ class SettingsManager {
         throw Error();
     }
   }
-
-  //enum name to stirng
-  String getNumOfProblemsStr(String name) {
-    return name.split('_')[1];
-  }
-
-  String getSpeedStr(String name) {
-    return name.split('_')[0];
-  }
-
-  String getDigitStr(String name) {
-    return name.split('_')[1];
-  }
 }
