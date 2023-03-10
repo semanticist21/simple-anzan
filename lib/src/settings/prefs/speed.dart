@@ -5,7 +5,7 @@ import 'Interface/preference_interface_items.dart';
 
 class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
   final String _saveKey = 'interval';
-  final int _defaultIndex = 1;
+  final int _defaultIndex = 2;
 
   late int _currentIndex;
   late Speed _currentValue;
