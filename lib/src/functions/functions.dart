@@ -29,7 +29,7 @@ List<int> getPlusMinusNums(int digit, int numOfNums) {
   int len = list.length;
   int sum = 0;
 
-  for (int i = 0; i < len - 2; i++) {
+  for (int i = 0; i < len - 1; i++) {
     int randomNum = min + Random().nextInt(max - min);
 
     // num should not be zero.
@@ -47,18 +47,6 @@ List<int> getPlusMinusNums(int digit, int numOfNums) {
       list[i] = randomNum;
       sum += randomNum * 2;
     }
-  }
-
-  var lastNum = 0;
-
-  if (sum < 0) {
-    int min = sum;
-    int max = (pow(10, digit) - 1).toInt();
-    lastNum = min + Random().nextInt(max - min);
-    list[len - 2] = lastNum;
-  } else {
-    lastNum = min + Random().nextInt(max - min);
-    list[len - 2] = lastNum;
   }
 
   list.last = sum;
