@@ -1,18 +1,27 @@
 // ignore_for_file: annotate_overrides
 
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Interface/preference_interface_items.dart';
 
 class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
   final String _saveKey = 'interval';
+  final String _saveCustomKey = 'intervalCustom';
+
   final int _defaultIndex = 2;
+  final int _defaultCustomValue = 100;
 
   late int _currentIndex;
   late Speed _currentValue;
 
+  late int _currentCustomValue;
+
   SpeedPref(SharedPreferences prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
+
+    var customVal = prefs.getInt(_saveCustomKey) ?? _defaultCustomValue;
+    setCustomValue(customVal);
   }
 
   // when implemented, it should be synchronized for each other.
@@ -24,6 +33,10 @@ class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
   void setIndex(int index) {
     _currentIndex = index;
     _currentValue = Speed.values[index];
+  }
+
+  void setCustomValue(int value) {
+    _currentCustomValue = value;
   }
 
   Speed getValue() => _currentValue;
@@ -51,7 +64,8 @@ class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
         return value;
       }
     }
-    throw Error();
+
+    return Speed.custom;
   }
 
   List<String> getItemsListofEnum() {
@@ -68,8 +82,32 @@ class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
   void saveSetting(SharedPreferences prefs, value) =>
       prefs.setInt(_saveKey, (value as Speed).index);
 
-  int _getDurationInt(String str) => int.parse(str.split('_')[1]);
-  String enumNameToItemString(String name) => name.split('_')[0];
+  void saveCustomValue(SharedPreferences prefs, int value) =>
+      prefs.setInt(_saveCustomKey, value);
+
+  int _getDurationInt(String str) {
+    if (str.split('_').length != 2) {
+      return _currentCustomValue ~/ 100;
+    }
+
+    return int.parse(str.split('_')[1]);
+  }
+
+  String enumNameToItemString(String name) {
+    var split = name.split('_');
+    if (split.length != 2) {
+      return 'custom';
+    }
+
+    var first = split[0];
+    var second = split[1].characters;
+
+    var firstChar = second.first;
+    var secondChar = second.last;
+    var newStr = '$firstChar.$secondChar sec';
+
+    return '$first \n($newStr)';
+  }
 }
 
 enum Speed {
@@ -78,4 +116,5 @@ enum Speed {
   normal_05,
   fast_03,
   veryFast_02,
+  custom,
 }

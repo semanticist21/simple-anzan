@@ -76,6 +76,7 @@ class _HomePageState extends State<HomePage> {
                                     child: Text(
                                       value.buttonText,
                                       style: _getMainButtonTextStyle(),
+                                      textAlign: TextAlign.center,
                                     )));
                           })))),
             ),
@@ -99,8 +100,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   TextStyle _getMainButtonTextStyle() {
-    return const TextStyle(
-      fontSize: 24,
+    return TextStyle(
+      fontSize: MediaQuery.of(context).size.height * 0.04,
       fontWeight: FontWeight.w900,
       fontFamily: defaultFontFamily,
       letterSpacing: 2.5,

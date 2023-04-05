@@ -75,4 +75,10 @@ enum NumOfProblems {
   n_10,
   n_15,
   n_20,
+  n_25,
+  n_30,
+  n_35,
+  n_40,
+  n_45,
+  n_50,
 }

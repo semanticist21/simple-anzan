@@ -2,13 +2,20 @@ import 'dart:io';
 import 'package:abacus_simple_anzan/src/words/const.dart';
 
 class LocalizationChecker {
-  final String defaultLocale = Platform.localeName;
+  static String defaultLocale = Platform.localeName;
+
   // options(settings)
   static String settings = settingsEn;
   static String onlyPluses = onlyPlusesEn;
   static String speed = speedEn;
   static String digit = digitEn;
   static String numOfProblems = numOfProblemsEn;
+
+  static String setSpeedTitle = setSpeedTitleEn;
+  static String rangeWord = rangeWordEn;
+  static String pleaseInsertValue = pleaseInsertValueEn;
+  static String pleaseTooBigValue = pleaseTooBigValueEn;
+  static String pleaseTooSmallValue = pleaseTooSmallValueEn;
 
   LocalizationChecker() {
     if (defaultLocale == 'ko_KR') {
@@ -17,6 +24,12 @@ class LocalizationChecker {
       speed = speedKr;
       digit = digitKr;
       numOfProblems = numOfProblemsKr;
+
+      setSpeedTitle = setSpeedTitleKr;
+      rangeWord = rangeWordKr;
+      pleaseInsertValue = pleaseInsertValueKr;
+      pleaseTooBigValue = pleaseTooBigValueKr;
+      pleaseTooSmallValue = pleaseTooSmallValueKr;
     }
   }
 }

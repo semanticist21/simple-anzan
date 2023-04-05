@@ -8,7 +8,7 @@ const String homeLabel = 'Home';
 const String settingLabel = 'Settings';
 
 // button strings
-const String start = 'Start !';
+const String start = 'Start !!';
 const String hidden = ' ';
 const String check = 'Check Answer';
 
@@ -28,6 +28,20 @@ const String speedEn = "Speed";
 const String digitEn = "Digit";
 const String numOfProblemsEn = "Questions";
 
+// custom option related
+
+const String setSpeedTitleKr = '속도를 설정합니다. (1000 = 1초)';
+const String rangeWordKr = '100~3000 사이의 값을 입력하세요.';
+const String pleaseInsertValueKr = '값을 입력하세요.';
+const String pleaseTooBigValueKr = '값이 너무 큽니다.';
+const String pleaseTooSmallValueKr = '값이 너무 작습니다.';
+
+const String setSpeedTitleEn = 'Set custom speed. (1000 = 1sec)';
+const String rangeWordEn = 'put value between 100~3000.';
+const String pleaseInsertValueEn = 'the value is empty.';
+const String pleaseTooBigValueEn = 'too big value.';
+const String pleaseTooSmallValueEn = 'too small value.';
+
 // other
 const String empty = '';
-const String defaultFontFamily = 'Consolas';
+const String defaultFontFamily = 'Roboto';

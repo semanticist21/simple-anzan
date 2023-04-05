@@ -22,6 +22,10 @@ class DigitPref implements PreferenceInterfaceItems<Digit, int> {
   }
 
   void setIndex(int index) {
+    if (index > Digit.values.length - 1) {
+      index = Digit.values.length - 1;
+    }
+
     _currentIndex = index;
     _currentValue = Digit.values[_currentIndex];
   }
@@ -76,4 +80,6 @@ enum Digit {
   three_3,
   four_4,
   five_5,
+  six_6,
+  seven_7,
 }

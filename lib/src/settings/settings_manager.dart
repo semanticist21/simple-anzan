@@ -132,6 +132,11 @@ class SettingsManager {
     refreshPrefValues(_prefs);
   }
 
+  void saveCustomSpeedSetting(int value) {
+    _speedPref.saveCustomValue(_prefs, value);
+    refreshPrefValues(_prefs);
+  }
+
   // enum to list of items
   List<String> getItemsListOfEnum<T>() {
     switch (T) {
