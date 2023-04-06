@@ -104,9 +104,15 @@ class _FlickerState extends State<Flicker> {
       await doProcess(getPlusMinusShuffleNums, manager);
 
   Future<void> doProcess(
-      Function(int, int) func, SettingsManager manager) async {
+      List<int> Function(int, int) func, SettingsManager manager) async {
     var nums = func(manager.getCurrentValue<Digit, int>(),
         manager.getCurrentValue<NumOfProblems, int>());
+
+    _stateProvider.nums.clear();
+    for (var element in nums) {
+      _stateProvider.nums.add(element);
+    }
+
     var len = nums.length;
 
     var questions = nums.sublist(0, len - 1);

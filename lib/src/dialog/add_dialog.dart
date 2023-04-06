@@ -81,7 +81,7 @@ class _AddDialogState extends State<AddDialog> {
           },
           child: Text(
             LocalizationChecker.ok,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
         )
       ],

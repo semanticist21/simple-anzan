@@ -5,11 +5,12 @@ import 'package:flutter/widgets.dart';
 import '../words/const.dart';
 
 class StateProvider extends ChangeNotifier {
-  ButtonState state = ButtonState.iterationNotStarted;
+  var state = ButtonState.iterationNotStarted;
 
-  bool isButtonVisible = true;
-  bool isQuestionListButtonVisible = false;
-  String buttonText = LocalizationChecker.start;
+  var isButtonVisible = true;
+  var isQuestionListButtonVisible = false;
+  var buttonText = LocalizationChecker.start;
+  var nums = List<int>.empty(growable: true);
 
   void changeState({ButtonState desiredState = ButtonState.autoState}) {
     switch (desiredState) {
