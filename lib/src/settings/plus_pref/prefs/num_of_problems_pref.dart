@@ -1,7 +1,7 @@
 // ignore_for_file: annotate_overrides
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Interface/preference_interface_items.dart';
+import '../../Interface/preference_interface_items.dart';
 
 class NumOfProblemsPref
     implements PreferenceInterfaceItems<NumOfProblems, int> {

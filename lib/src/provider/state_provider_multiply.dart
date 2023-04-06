@@ -1,35 +1,35 @@
 import 'package:flutter/cupertino.dart';
 
+import '../functions/tuple.dart';
 import '../words/const.dart';
 import '../words/localization.dart';
 
 class StateMultiplyProvider extends ChangeNotifier {
-  var state = ButtonState.iterationNotStarted;
+  var state = ButtonMultiplyState.iterationNotStarted;
 
   var isButtonVisible = true;
   var isQuestionListButtonVisible = false;
-  var buttonText = LocalizationChecker.start;
-  var nums = List<int>.empty(growable: true);
 
-  void changeState({ButtonState desiredState = ButtonState.autoState}) {
+  var buttonText = LocalizationChecker.start;
+  var nums = List<Tuple<int, int>>.empty(growable: true);
+
+  void changeState(
+      {ButtonMultiplyState desiredState = ButtonMultiplyState.autoState}) {
     switch (desiredState) {
-      case ButtonState.autoState:
+      case ButtonMultiplyState.autoState:
         break;
       default:
         state = desiredState;
         break;
     }
 
-    if (desiredState == ButtonState.autoState) {
+    if (desiredState == ButtonMultiplyState.autoState) {
       switch (state) {
-        case ButtonState.iterationNotStarted:
-          state = ButtonState.iterationStarted;
+        case ButtonMultiplyState.iterationNotStarted:
+          state = ButtonMultiplyState.iterationStarted;
           break;
-        case ButtonState.iterationStarted:
-          state = ButtonState.iterationCompleted;
-          break;
-        case ButtonState.iterationCompleted:
-          state = ButtonState.iterationNotStarted;
+        case ButtonMultiplyState.iterationStarted:
+          state = ButtonMultiplyState.iterationStarted;
           break;
         default:
           return;
@@ -43,47 +43,40 @@ class StateMultiplyProvider extends ChangeNotifier {
   }
 }
 
-enum ButtonState {
+enum ButtonMultiplyState {
   iterationNotStarted,
   iterationStarted,
-  iterationCompleted,
   autoState,
 }
 
-String getButtonStr(ButtonState state) {
+String getButtonStr(ButtonMultiplyState state) {
   switch (state) {
-    case ButtonState.iterationNotStarted:
+    case ButtonMultiplyState.iterationNotStarted:
       return LocalizationChecker.start;
-    case ButtonState.iterationStarted:
+    case ButtonMultiplyState.iterationStarted:
       return hidden;
-    case ButtonState.iterationCompleted:
-      return LocalizationChecker.check;
     default:
       return LocalizationChecker.start;
   }
 }
 
-bool getButtonVisibility(ButtonState state) {
+bool getButtonVisibility(ButtonMultiplyState state) {
   switch (state) {
-    case ButtonState.iterationNotStarted:
+    case ButtonMultiplyState.iterationNotStarted:
       return true;
-    case ButtonState.iterationStarted:
+    case ButtonMultiplyState.iterationStarted:
       return false;
-    case ButtonState.iterationCompleted:
-      return true;
     default:
       return true;
   }
 }
 
-bool getQuestionListButtonVisibility(ButtonState state) {
+bool getQuestionListButtonVisibility(ButtonMultiplyState state) {
   switch (state) {
-    case ButtonState.iterationNotStarted:
-      return false;
-    case ButtonState.iterationStarted:
-      return false;
-    case ButtonState.iterationCompleted:
+    case ButtonMultiplyState.iterationNotStarted:
       return true;
+    case ButtonMultiplyState.iterationStarted:
+      return false;
     default:
       return false;
   }

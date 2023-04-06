@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:abacus_simple_anzan/src/functions/tuple.dart';
+
 List<int> getPlusShuffleNums(int digit, int numOfNums) {
   var list = List.filled(numOfNums + 1, 0);
 
@@ -11,7 +13,7 @@ List<int> getPlusShuffleNums(int digit, int numOfNums) {
 
   for (int i = 0; i < len - 1; i++) {
     int randomNum = min + Random().nextInt(max - min);
-    while (randomNum % 10 == 0) {
+    while (randomNum % 100 == 0) {
       randomNum = min + Random().nextInt(max - min);
     }
 
@@ -51,7 +53,7 @@ List<int> getPlusMinusShuffleNums(int digit, int numOfNums) {
 
     // num should not be zero.
     // randomNum % 10 == 0 not to make easy.
-    while (randomNum == 0 || randomNum % 10 == 0) {
+    while (randomNum == 0 || randomNum % 100 == 0) {
       randomNum = min + Random().nextInt(max - min);
     }
 
@@ -98,7 +100,7 @@ List<int> getPlusNums(int digit, int numOfNums) {
   for (int i = 0; i < len - 1; i++) {
     int randomNum = min + Random().nextInt(max - min);
 
-    while (randomNum % 10 == 0) {
+    while (randomNum == 0 || randomNum % 100 == 0) {
       randomNum = min + Random().nextInt(max - min);
     }
 
@@ -130,7 +132,7 @@ List<int> getPlusMinusNums(int digit, int numOfNums) {
 
     // num should not be zero.
     // randomNum % 10 == 0 not to make easy.
-    while (randomNum == 0 || randomNum % 10 == 0) {
+    while (randomNum == 0 || randomNum % 100 == 0) {
       randomNum = min + Random().nextInt(max - min);
       bool randomFlag = Random().nextBool();
       if (!randomFlag) {
@@ -155,13 +157,37 @@ List<int> getPlusMinusNums(int digit, int numOfNums) {
   return list;
 }
 
+// multiply zone
 // always divideDigit is smaller than startDigit.
-List<Map<int, int>> getDivdieNums(
-    int startDigit, int divideDigit, int numOfNums) {
-  return List.empty();
+// secondDigit is big one.
+List<Tuple<int, int>> getMultiplyNums(
+    int startDigit, int secondDigit, int numOfNums) {
+  var list = List<Tuple<int, int>>.empty(growable: true);
+
+  var min = (pow(10, startDigit - 1)).toInt();
+  var max = (pow(10, startDigit) - 1).toInt();
+
+  var minSecond = (pow(10, secondDigit - 1)).toInt();
+  var maxSecond = (pow(10, secondDigit) - 1).toInt();
+
+  for (var i = 0; i < numOfNums; i++) {
+    var firstGen = min + Random().nextInt(max - min);
+    while (firstGen == 0 || firstGen % 10 == 0 || firstGen == 1) {
+      firstGen = min + Random().nextInt(max - min);
+    }
+
+    var secondGen = minSecond + Random().nextInt(maxSecond - minSecond);
+    while (secondGen == 0 || secondGen % 10 == 0 || secondGen == 1) {
+      secondGen = minSecond + Random().nextInt(maxSecond - minSecond);
+    }
+
+    list.add(Tuple(secondGen, firstGen));
+  }
+
+  return list;
 }
 
-List<Map<int, int>> getMultiplyNums(
+List<Tuple<int, int>> getDivdieNums(
     int startDigit, int divideDigit, int numOfNums) {
   return List.empty();
 }

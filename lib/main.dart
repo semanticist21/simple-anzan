@@ -1,4 +1,6 @@
-import 'package:abacus_simple_anzan/src/settings/settings_manager.dart';
+import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 import 'package:abacus_simple_anzan/src/theme/theme.dart';
 import 'package:abacus_simple_anzan/src/words/localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     LocalizationChecker();
     SettingsManager();
+    SettingsMultiplyManager();
 
     return StreamBuilder<bool>(
         initialData: true,
@@ -28,7 +31,9 @@ class MyApp extends StatelessWidget {
               title: 'Simple Anzan',
               home: MultiProvider(providers: [
                 ChangeNotifierProvider<StateProvider>(
-                    create: (_) => StateProvider())
+                    create: (_) => StateProvider()),
+                ChangeNotifierProvider<StateMultiplyProvider>(
+                    create: (_) => StateMultiplyProvider())
               ], child: const Home()),
             ));
   }
@@ -45,6 +50,7 @@ class _Home extends State<Home> {
   final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
   int _currentIndex = 0;
   late StateProvider _stateProvider;
+  late StateMultiplyProvider _stateMultiplyProvider;
 
   Future<void> _onTap(int newIndex) async {
     if (_currentIndex == newIndex) {
@@ -52,6 +58,10 @@ class _Home extends State<Home> {
     }
 
     if (_stateProvider.state == ButtonState.iterationStarted) {
+      return;
+    }
+
+    if (_stateMultiplyProvider.state == ButtonMultiplyState.iterationStarted) {
       return;
     }
 
@@ -69,7 +79,8 @@ class _Home extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    _stateProvider = Provider.of(context);
+    _stateProvider = Provider.of<StateProvider>(context);
+    _stateMultiplyProvider = Provider.of<StateMultiplyProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -110,37 +121,37 @@ class _Home extends State<Home> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            activeIcon: Icon(FontAwesomeIcons.plus,
+            activeIcon: Icon(Icons.add_to_photos_outlined,
                 color: Theme.of(context).colorScheme.background,
                 size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(FontAwesomeIcons.plus,
+            icon: Icon(Icons.add_to_photos,
                 color: Theme.of(context).colorScheme.onInverseSurface,
                 size: MediaQuery.of(context).size.height * 0.023),
             label: LocalizationChecker.homePlusLabel,
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(FontAwesomeIcons.gear,
+            activeIcon: Icon(Icons.settings_outlined,
                 color: Theme.of(context).colorScheme.background,
                 size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(FontAwesomeIcons.gear,
+            icon: Icon(Icons.settings,
                 color: Theme.of(context).colorScheme.onInverseSurface,
                 size: MediaQuery.of(context).size.height * 0.023),
             label: LocalizationChecker.settingPlusLabel,
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(FontAwesomeIcons.xmark,
+            activeIcon: Icon(CupertinoIcons.xmark_circle,
                 color: Theme.of(context).colorScheme.background,
                 size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(FontAwesomeIcons.xmark,
+            icon: Icon(CupertinoIcons.xmark_circle_fill,
                 color: Theme.of(context).colorScheme.onInverseSurface,
                 size: MediaQuery.of(context).size.height * 0.023),
             label: LocalizationChecker.homeMultiplyLabel,
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(FontAwesomeIcons.toolbox,
+            activeIcon: Icon(CupertinoIcons.gear,
                 color: Theme.of(context).colorScheme.background,
                 size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(FontAwesomeIcons.toolbox,
+            icon: Icon(CupertinoIcons.gear_alt_fill,
                 color: Theme.of(context).colorScheme.onInverseSurface,
                 size: MediaQuery.of(context).size.height * 0.023),
             label: LocalizationChecker.settingMultiplyLabel,

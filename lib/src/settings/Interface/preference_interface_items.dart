@@ -1,4 +1,4 @@
-import 'package:abacus_simple_anzan/src/settings/prefs/Interface/preference_interface.dart';
+import 'package:abacus_simple_anzan/src/settings/Interface/preference_interface.dart';
 
 abstract class PreferenceInterfaceItems<T, V>
     extends PreferenceInterface<T, V> {

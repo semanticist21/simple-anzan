@@ -1,15 +1,15 @@
 import 'package:abacus_simple_anzan/src/words/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:abacus_simple_anzan/src/settings/settings_manager.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 import 'package:universal_io/io.dart';
 
 import '../dialog/add_dialog.dart';
-import '../settings/prefs/calculation_mode_pref.dart';
-import '../settings/prefs/digit_pref.dart';
-import '../settings/prefs/num_of_problems_pref.dart';
-import '../settings/prefs/shuffle.dart';
-import '../settings/prefs/speed.dart';
+import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
+import '../settings/plus_pref/prefs/digit_pref.dart';
+import '../settings/plus_pref/prefs/num_of_problems_pref.dart';
+import '../settings/plus_pref/prefs/shuffle.dart';
+import '../settings/plus_pref/prefs/speed.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});

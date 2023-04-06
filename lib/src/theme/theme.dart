@@ -86,6 +86,7 @@ class ThemeSelector {
         ));
   }
 
+  // name tangled strangely...
   static ThemeData getWhiteTheme() {
     return ThemeData.from(
         // toggle active color
@@ -114,6 +115,7 @@ class ThemeSelector {
 
               // option title color
               secondaryContainer: Colors.black,
+              secondary: Colors.white,
 
               // option primary text color
               primaryContainer: Colors.black,

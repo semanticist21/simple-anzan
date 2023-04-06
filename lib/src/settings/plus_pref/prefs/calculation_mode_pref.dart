@@ -1,6 +1,6 @@
 // ignore_for_file: annotate_overrides
 
-import 'Interface/preference_interface.dart';
+import '../../Interface/preference_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CalculationModePref

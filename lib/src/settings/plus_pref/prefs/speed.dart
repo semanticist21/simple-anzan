@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Interface/preference_interface_items.dart';
+import '../../Interface/preference_interface_items.dart';
 
 class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
   final String _saveKey = 'interval';
   final String _saveCustomKey = 'intervalCustom';
 
   final int _defaultIndex = 2;
-  final int _defaultCustomValue = 100;
+  final int _defaultCustomValue = 1500;
 
   late int _currentIndex;
   late Speed _currentValue;

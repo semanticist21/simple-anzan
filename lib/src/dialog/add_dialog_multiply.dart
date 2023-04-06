@@ -2,15 +2,15 @@ import 'package:abacus_simple_anzan/src/words/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class AddDialog extends StatefulWidget {
-  const AddDialog({super.key, required this.defaultValue});
+class AddDialogMultiply extends StatefulWidget {
+  const AddDialogMultiply({super.key, required this.defaultValue});
   final String defaultValue;
 
   @override
-  State<AddDialog> createState() => _AddDialogState();
+  State<AddDialogMultiply> createState() => _AddDialogMultiplyState();
 }
 
-class _AddDialogState extends State<AddDialog> {
+class _AddDialogMultiplyState extends State<AddDialogMultiply> {
   final _textController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -45,7 +45,7 @@ class _AddDialogState extends State<AddDialog> {
             style: TextStyle(
                 color: Theme.of(context).colorScheme.primaryContainer),
             decoration: InputDecoration(
-              hintText: LocalizationChecker.rangeWord,
+              hintText: LocalizationChecker.rangeMultiplyWord,
               hintStyle: TextStyle(
                   color: Theme.of(context).colorScheme.primaryContainer),
               focusedBorder: UnderlineInputBorder(
@@ -68,11 +68,11 @@ class _AddDialogState extends State<AddDialog> {
                 return null;
               }
 
-              if (valueInt > 3000) {
+              if (valueInt > 10000) {
                 return LocalizationChecker.pleaseTooBigValue;
               }
 
-              if (valueInt < 80) {
+              if (valueInt < 100) {
                 return LocalizationChecker.pleaseTooSmallValue;
               }
 

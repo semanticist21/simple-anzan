@@ -33,6 +33,15 @@ class LocalizationChecker {
   static String pleaseTooBigValue = pleaseTooBigValueEn;
   static String pleaseTooSmallValue = pleaseTooSmallValueEn;
 
+  // option(multiply)
+  static String settingsMultiply = settingsMultiplyEn;
+  static String isMultiply = isMultiplyEn;
+  static String speedMultiply = speedMultiplyEn;
+  static String startDigitMultiply = startDigitMultiplyEn;
+  static String endDigitMultiply = endDigitMultiplyEn;
+  static String numOfProblemsMultiply = numOfProblemsMultiplyEn;
+
+  static String rangeMultiplyWord = rangeMultiplyWordEn;
   static String shulffleDesc = shuffleDescEn;
 
   LocalizationChecker() {
@@ -61,7 +70,15 @@ class LocalizationChecker {
       pleaseTooBigValue = pleaseTooBigValueKr;
       pleaseTooSmallValue = pleaseTooSmallValueKr;
 
+      settingsMultiply = settingsMultiplyKr;
+      isMultiply = isMultiplyKr;
+      speedMultiply = speedMultiplyKr;
+      startDigitMultiply = startDigitMultiplyKr;
+      endDigitMultiply = endDigitMultiplyKr;
+      numOfProblemsMultiply = numOfProblemsMultiplyKr;
+
       shulffleDesc = shuffleDescKr;
+      rangeMultiplyWord = rangeMultiplyWordKr;
     }
   }
 }

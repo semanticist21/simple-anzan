@@ -6,19 +6,19 @@ const String modeEn = 'Change theme';
 const String mainPageAddress = '/';
 const String settingsPageAddress = '/settings';
 const String multiplyPageAddress = '/multiply';
-const String settingsmultiplyPageAddress = '/settings';
+const String settingsmultiplyPageAddress = '/settings/multiply';
 const String errorPageAddress = '/error';
 
 // bottom navigation labels
-const String homePlusLabelEn = 'plus';
-const String settingPlusLabelEn = '+/- settings';
-const String homeMultiplyLabelEn = 'multiply';
-const String settingMultiplyLabelEn = ' ×/÷ settings';
+const String homePlusLabelEn = 'addition';
+const String settingPlusLabelEn = '+/-';
+const String homeMultiplyLabelEn = 'multiplication';
+const String settingMultiplyLabelEn = ' ×/÷';
 
 const String homePlusLabelKr = '덧셈';
-const String settingPlusLabelKr = '+/- 설정';
+const String settingPlusLabelKr = '+/-';
 const String homeMultiplyLabelKr = '곱셈';
-const String settingMultiplyLabelKr = ' ×/÷ 설정';
+const String settingMultiplyLabelKr = ' ×/÷';
 
 // button strings
 const String okKr = '확인';
@@ -50,6 +50,21 @@ const String speedEn = "Speed";
 const String digitEn = "Digit";
 const String numOfProblemsEn = "Questions";
 
+// option(multiply)
+const String settingsMultiplyKr = '설정 (곱셈)';
+const String isMultiplyKr = '나눗셈 하기';
+const String speedMultiplyKr = "문제 속도";
+const String startDigitMultiplyKr = "큰 자리 수";
+const String endDigitMultiplyKr = "작은 자리 수";
+const String numOfProblemsMultiplyKr = "문제 수(연속)";
+
+const String settingsMultiplyEn = 'Settings (multiplication)';
+const String isMultiplyEn = 'Change to do division';
+const String speedMultiplyEn = "Speed";
+const String startDigitMultiplyEn = "Big Digit";
+const String endDigitMultiplyEn = "Small Digit";
+const String numOfProblemsMultiplyEn = "Questions";
+
 // custom option related
 
 const String setSpeedTitleKr = '속도를 설정합니다. (1000 = 1초)';
@@ -66,6 +81,9 @@ const String pleaseTooSmallValueEn = 'too small value.';
 
 const String shuffleDescKr = '다른 자릿수와 섞어 계산합니다.';
 const String shuffleDescEn = 'shuffle numbers with different digits';
+
+const String rangeMultiplyWordKr = 'put value between 80~10000.';
+const String rangeMultiplyWordEn = 'put value between 80~10000.';
 
 // other
 const String empty = '';

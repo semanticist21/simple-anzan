@@ -1,6 +1,6 @@
-import 'package:abacus_simple_anzan/src/settings/prefs/num_of_problems_pref.dart';
-import 'package:abacus_simple_anzan/src/settings/prefs/shuffle.dart';
-import 'package:abacus_simple_anzan/src/settings/prefs/speed.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
@@ -8,9 +8,9 @@ import 'package:universal_io/io.dart';
 
 import '../words/const.dart';
 import '../functions/functions.dart';
-import '../settings/prefs/calculation_mode_pref.dart';
-import '../settings/prefs/digit_pref.dart';
-import '../settings/settings_manager.dart';
+import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
+import '../settings/plus_pref/prefs/digit_pref.dart';
+import '../settings/plus_pref/settings_manager.dart';
 
 class Flicker extends StatefulWidget {
   const Flicker({super.key});
@@ -36,14 +36,18 @@ class _FlickerState extends State<Flicker> {
         ? FittedBox(
             fit: BoxFit.contain,
             child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                padding: Platform.isWindows
+                    ? const EdgeInsets.fromLTRB(0, 0, 25, 0)
+                    : const EdgeInsets.fromLTRB(0, 0, 15, 0),
                 child: Text(
                   _number,
                   style: _getMainNumberTextStyle(),
                   textAlign: TextAlign.left,
                 )))
         : Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+            padding: Platform.isWindows
+                ? const EdgeInsets.fromLTRB(0, 0, 35, 0)
+                : const EdgeInsets.fromLTRB(0, 0, 20, 0),
             child: Text(
               _number,
               style: _getMainNumberTextStyle(),
@@ -55,7 +59,7 @@ class _FlickerState extends State<Flicker> {
   Future<void> _callbackOnButtonClick() async {
     switch (_stateProvider.state) {
       case ButtonState.iterationNotStarted:
-        showAnswer();
+        _showAnswer();
         break;
       case ButtonState.iterationStarted:
         await _initiateIteration(_manager);
@@ -153,7 +157,7 @@ class _FlickerState extends State<Flicker> {
     }
   }
 
-  void showAnswer() {
+  void _showAnswer() {
     setState(() {
       _number = '\t$_answer';
     });

@@ -2,7 +2,7 @@
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'Interface/preference_interface.dart';
+import '../../Interface/preference_interface.dart';
 
 class ShuffleModePref implements PreferenceInterface<ShuffleMode, bool> {
   final String _saveKey = 'isShuffle';

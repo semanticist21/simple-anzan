@@ -1,9 +1,11 @@
+import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../components/flicker.dart';
-import '../dialog/prob_list.dart';
-import '../provider/state_provider.dart';
+import '../components/flicker_multiply.dart';
+import '../dialog/prob_list_multiply.dart';
 
 class HomeMultiplyPage extends StatefulWidget {
   const HomeMultiplyPage({super.key});
@@ -13,12 +15,12 @@ class HomeMultiplyPage extends StatefulWidget {
 }
 
 class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
-  final Flicker _flicker = const Flicker();
-  late StateProvider _stateProvider;
+  final FlickerMultiply _flicker = const FlickerMultiply();
+  late StateMultiplyProvider _stateProvider;
 
   @override
   Widget build(BuildContext context) {
-    _stateProvider = Provider.of<StateProvider>(context, listen: true);
+    _stateProvider = Provider.of<StateMultiplyProvider>(context, listen: true);
 
     return SizedBox(
         width: double.infinity,
@@ -35,7 +37,7 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('문제 리스트 확인',
+                          Text('문제 & 정답 확인',
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
@@ -49,14 +51,18 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                           IconButton(
                               onPressed: () {
                                 if (_stateProvider.state ==
-                                    ButtonState.iterationStarted) {
+                                    ButtonMultiplyState.iterationStarted) {
                                   return;
                                 }
-
+//TODO
                                 showDialog(
                                     context: context,
-                                    builder: (context) =>
-                                        ProbList(numList: _stateProvider.nums));
+                                    builder: (context) => ProbMultiplyList(
+                                          numList: _stateProvider.nums,
+                                          mode: SettingsMultiplyManager()
+                                              .getCurrentEnum<
+                                                  CalCulationMultiplyMode>(),
+                                        ));
                               },
                               icon: Icon(
                                 Icons.search,
@@ -73,13 +79,13 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                               splashRadius: 10),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.16,
-                            height: MediaQuery.of(context).size.height * 0.23,
+                            height: MediaQuery.of(context).size.height * 0.195,
                           )
                         ])),
                 Center(
                     child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.7,
-                  height: MediaQuery.of(context).size.height * 0.35,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   child: Container(
                     decoration: BoxDecoration(
                         color:
@@ -102,7 +108,7 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
               child: Center(
                   child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 800),
-                      child: Consumer<StateProvider>(
+                      child: Consumer<StateMultiplyProvider>(
                           builder: (context, value, child) {
                         return Visibility(
                           visible: value.isButtonVisible,

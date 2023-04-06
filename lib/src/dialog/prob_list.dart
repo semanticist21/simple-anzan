@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:universal_io/io.dart';
 
 class ProbList extends StatefulWidget {
   const ProbList({super.key, required this.numList});
@@ -9,65 +11,101 @@ class ProbList extends StatefulWidget {
 }
 
 class _ProbListState extends State<ProbList> {
+  final formattter = NumberFormat('#,##0');
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        child: FractionallySizedBox(
-            heightFactor: 0.7,
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(
-                  parent: BouncingScrollPhysics()),
-              slivers: [
-                SliverAppBar(
-                  pinned: true,
-                  backgroundColor: Theme.of(context).colorScheme.onBackground,
-                  leading: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      size: MediaQuery.of(context).size.height * 0.025,
+        child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1000),
+            child: FractionallySizedBox(
+                heightFactor: 0.7,
+                child: CustomScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(
+                      parent: BouncingScrollPhysics()),
+                  slivers: [
+                    SliverAppBar(
+                      pinned: true,
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onBackground,
+                      leading: IconButton(
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          size: MediaQuery.of(context).size.height * 0.025,
+                        ),
+                        onPressed: () => Navigator.of(context).pop(),
+                        splashRadius: 10,
+                      ),
+                      title: Text('문제 & 정답 확인',
+                          style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.018,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer)),
                     ),
-                    onPressed: () => Navigator.of(context).pop(),
-                    splashRadius: 10,
-                  ),
-                  title: Text('문제 확인',
-                      style: TextStyle(
-                          fontSize:
-                              MediaQuery.of(context).size.height * 0.018)),
-                ),
-                widget.numList.isNotEmpty
-                    ? SliverList.builder(
-                        itemCount: widget.numList.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 1),
-                              child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.06,
-                                  width: double.infinity,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onTertiaryContainer,
-                                  child: Center(
-                                    child: Text(
-                                      index != widget.numList.length - 1
-                                          ? widget.numList[index].toString()
-                                          : '정답 : ${widget.numList[index]}',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.03,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onBackground),
-                                    ),
-                                  )));
-                        })
-                    : getWhenItemEmpty()
-              ],
-            )));
+                    widget.numList.isNotEmpty
+                        ? SliverList.builder(
+                            itemCount: widget.numList.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 1),
+                                  child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.06,
+                                      width: double.infinity,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiaryContainer,
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Visibility(
+                                                visible: index ==
+                                                    widget.numList.length - 1,
+                                                child: Row(children: [
+                                                  Icon(
+                                                    Icons.check,
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .onPrimaryContainer,
+                                                    size: MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.025,
+                                                  ),
+                                                  const SizedBox(width: 10),
+                                                ])),
+                                            Text(
+                                              index != widget.numList.length - 1
+                                                  ? formattter
+                                                      .format(
+                                                          widget.numList[index])
+                                                      .toString()
+                                                  : formattter.format(
+                                                      widget.numList[index]),
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          0.03,
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .onBackground),
+                                            ),
+                                            const SizedBox(width: 20),
+                                          ])));
+                            })
+                        : getWhenItemEmpty()
+                  ],
+                ))));
   }
 
   Widget getWhenItemEmpty() {
