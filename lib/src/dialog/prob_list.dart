@@ -13,7 +13,7 @@ class _ProbListState extends State<ProbList> {
   Widget build(BuildContext context) {
     return Dialog(
         child: FractionallySizedBox(
-            heightFactor: 0.5,
+            heightFactor: 0.7,
             child: CustomScrollView(
               physics: const AlwaysScrollableScrollPhysics(
                   parent: BouncingScrollPhysics()),
@@ -43,7 +43,7 @@ class _ProbListState extends State<ProbList> {
                               padding: const EdgeInsets.symmetric(vertical: 1),
                               child: Container(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.05,
+                                      MediaQuery.of(context).size.height * 0.06,
                                   width: double.infinity,
                                   color: Theme.of(context)
                                       .colorScheme

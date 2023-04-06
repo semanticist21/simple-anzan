@@ -6,6 +6,10 @@ class ErrorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text(error));
+    return Center(
+        child: Text(
+      error,
+      style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+    ));
   }
 }

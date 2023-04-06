@@ -26,11 +26,10 @@ class MyApp extends StatelessWidget {
                   ? ThemeSelector.getBlackTheme()
                   : ThemeSelector.getWhiteTheme(),
               title: 'Simple Anzan',
-              home: ChangeNotifierProvider(
-                  create: (context) {
-                    return StateProvider();
-                  },
-                  child: const Home()),
+              home: MultiProvider(providers: [
+                ChangeNotifierProvider<StateProvider>(
+                    create: (_) => StateProvider())
+              ], child: const Home()),
             ));
   }
 }
@@ -108,11 +107,12 @@ class _Home extends State<Home> {
         backgroundColor: Theme.of(context).colorScheme.onBackground,
         selectedItemColor: Theme.of(context).colorScheme.background,
         unselectedItemColor: Theme.of(context).colorScheme.onInverseSurface,
+        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
             activeIcon: Icon(FontAwesomeIcons.plus,
                 color: Theme.of(context).colorScheme.background,
-                size: MediaQuery.of(context).size.height * 0.020),
+                size: MediaQuery.of(context).size.height * 0.023),
             icon: Icon(FontAwesomeIcons.plus,
                 color: Theme.of(context).colorScheme.onInverseSurface,
                 size: MediaQuery.of(context).size.height * 0.023),
@@ -126,6 +126,24 @@ class _Home extends State<Home> {
                 color: Theme.of(context).colorScheme.onInverseSurface,
                 size: MediaQuery.of(context).size.height * 0.023),
             label: LocalizationChecker.settingPlusLabel,
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(FontAwesomeIcons.xmark,
+                color: Theme.of(context).colorScheme.background,
+                size: MediaQuery.of(context).size.height * 0.023),
+            icon: Icon(FontAwesomeIcons.xmark,
+                color: Theme.of(context).colorScheme.onInverseSurface,
+                size: MediaQuery.of(context).size.height * 0.023),
+            label: LocalizationChecker.homeMultiplyLabel,
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(FontAwesomeIcons.toolbox,
+                color: Theme.of(context).colorScheme.background,
+                size: MediaQuery.of(context).size.height * 0.023),
+            icon: Icon(FontAwesomeIcons.toolbox,
+                color: Theme.of(context).colorScheme.onInverseSurface,
+                size: MediaQuery.of(context).size.height * 0.023),
+            label: LocalizationChecker.settingMultiplyLabel,
           )
         ],
         onTap: _onTap,

@@ -1,10 +1,9 @@
-import 'package:abacus_simple_anzan/src/words/localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../words/const.dart';
+import '../words/localization.dart';
 
-class StateProvider extends ChangeNotifier {
+class StateMultiplyProvider extends ChangeNotifier {
   var state = ButtonState.iterationNotStarted;
 
   var isButtonVisible = true;

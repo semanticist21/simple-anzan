@@ -5,17 +5,19 @@ const String modeEn = 'Change theme';
 // routers
 const String mainPageAddress = '/';
 const String settingsPageAddress = '/settings';
+const String multiplyPageAddress = '/multiply';
+const String settingsmultiplyPageAddress = '/settings';
 const String errorPageAddress = '/error';
 
 // bottom navigation labels
-const String homePlusLabelEn = 'start';
+const String homePlusLabelEn = 'plus';
 const String settingPlusLabelEn = '+/- settings';
-const String homeMultiplyLabelEn = 'start';
+const String homeMultiplyLabelEn = 'multiply';
 const String settingMultiplyLabelEn = ' ×/÷ settings';
 
-const String homePlusLabelKr = 'start !';
+const String homePlusLabelKr = '덧셈';
 const String settingPlusLabelKr = '+/- 설정';
-const String homeMultiplyLabelKr = '';
+const String homeMultiplyLabelKr = '곱셈';
 const String settingMultiplyLabelKr = ' ×/÷ 설정';
 
 // button strings

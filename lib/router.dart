@@ -1,3 +1,5 @@
+import 'package:abacus_simple_anzan/src/pages/home_page_multiply.dart';
+import 'package:abacus_simple_anzan/src/pages/settting_page_multiply.dart';
 import 'package:flutter/material.dart';
 import 'package:abacus_simple_anzan/src/words/const.dart';
 import 'package:abacus_simple_anzan/src/pages/settting_page.dart';
@@ -19,6 +21,12 @@ Route<dynamic> generateRoutes(RouteSettings settings) {
     case errorPageAddress:
       return CustomRoute(builder: (_) => const ErrorPage());
 
+    case multiplyPageAddress:
+      return CustomRoute(builder: (_) => const HomeMultiplyPage());
+
+    case settingsmultiplyPageAddress:
+      return CustomRoute(builder: (_) => const SettingsMultiplyPage());
+
     default:
       return CustomRoute(builder: (_) => const ErrorPage());
   }
@@ -35,6 +43,13 @@ void onTapNavi(GlobalKey<NavigatorState> navigationKey, int index) {
       break;
     case 1:
       navigationKey.currentState?.pushReplacementNamed(settingsPageAddress);
+      break;
+    case 2:
+      navigationKey.currentState?.pushReplacementNamed(multiplyPageAddress);
+      break;
+    case 3:
+      navigationKey.currentState
+          ?.pushReplacementNamed(settingsmultiplyPageAddress);
       break;
     default:
       navigationKey.currentState?.pushReplacementNamed(errorPageAddress);

@@ -5,14 +5,14 @@ import '../components/flicker.dart';
 import '../dialog/prob_list.dart';
 import '../provider/state_provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeMultiplyPage extends StatefulWidget {
+  const HomeMultiplyPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeMultiplyPage> createState() => _HomeMultiplyPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
   final Flicker _flicker = const Flicker();
   late StateProvider _stateProvider;
 

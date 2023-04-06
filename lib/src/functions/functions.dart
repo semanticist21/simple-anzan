@@ -15,6 +15,19 @@ List<int> getPlusShuffleNums(int digit, int numOfNums) {
       randomNum = min + Random().nextInt(max - min);
     }
 
+    int digitNormalization = Random().nextInt(6);
+    if (digitNormalization == 0 && randomNum ~/ 10 != 0) {
+      randomNum = randomNum ~/ 10;
+    }
+
+    if (digitNormalization == 1 && randomNum ~/ 100 != 0) {
+      randomNum = randomNum ~/ 100;
+    }
+
+    if (digitNormalization == 2 && randomNum ~/ 1000 != 0) {
+      randomNum = randomNum ~/ 1000;
+    }
+
     list[i] = randomNum;
     sum += randomNum;
   }
@@ -40,6 +53,20 @@ List<int> getPlusMinusShuffleNums(int digit, int numOfNums) {
     // randomNum % 10 == 0 not to make easy.
     while (randomNum == 0 || randomNum % 10 == 0) {
       randomNum = min + Random().nextInt(max - min);
+    }
+
+    //
+    int digitNormalization = Random().nextInt(6);
+    if (digitNormalization == 0 && randomNum ~/ 10 != 0) {
+      randomNum = randomNum ~/ 10;
+    }
+
+    if (digitNormalization == 1 && randomNum ~/ 100 != 0) {
+      randomNum = randomNum ~/ 100;
+    }
+
+    if (digitNormalization == 2 && randomNum ~/ 1000 != 0) {
+      randomNum = randomNum ~/ 1000;
     }
 
     list[i] = randomNum;
@@ -126,4 +153,15 @@ List<int> getPlusMinusNums(int digit, int numOfNums) {
   list.last = sum;
 
   return list;
+}
+
+// always divideDigit is smaller than startDigit.
+List<Map<int, int>> getDivdieNums(
+    int startDigit, int divideDigit, int numOfNums) {
+  return List.empty();
+}
+
+List<Map<int, int>> getMultiplyNums(
+    int startDigit, int divideDigit, int numOfNums) {
+  return List.empty();
 }
