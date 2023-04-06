@@ -35,6 +35,7 @@ class _FlickerState extends State<Flicker> {
         child: Text(
           _number,
           style: _getMainNumberTextStyle(),
+          textAlign: TextAlign.right,
         ));
   }
 
@@ -92,7 +93,15 @@ class _FlickerState extends State<Flicker> {
 
     for (int i = 0; i < len; i++) {
       setState(() {
-        _number = questions[i].toString();
+        var str = '';
+
+        if (questions[i] > 0) {
+          var parsedStr = questions[i].toString();
+          str = ' $parsedStr';
+        } else {
+          str = questions[i].toString();
+        }
+        _number = str;
       });
       await Future.delayed(duration);
 

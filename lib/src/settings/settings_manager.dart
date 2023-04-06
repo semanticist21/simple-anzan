@@ -2,6 +2,7 @@
 import 'package:abacus_simple_anzan/src/settings/prefs/calculation_mode_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/prefs/digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/prefs/num_of_problems_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/prefs/speed.dart';
 import 'package:abacus_simple_anzan/src/theme/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +10,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SettingsManager {
   // member
   late SharedPreferences _prefs;
+
   late CalculationModePref _calculationModePref;
+  late ShuffleModePref _shuffleModePref;
   late SpeedPref _speedPref;
   late DigitPref _digitPref;
   late NumOfProblemsPref _numOfProblemsPref;
@@ -28,6 +31,7 @@ class SettingsManager {
 
   void refreshPrefValues(SharedPreferences prefs) {
     _calculationModePref = CalculationModePref(prefs);
+    _shuffleModePref = ShuffleModePref(prefs);
     _speedPref = SpeedPref(prefs);
     _digitPref = DigitPref(prefs);
     _numOfProblemsPref = NumOfProblemsPref(prefs);
@@ -43,6 +47,8 @@ class SettingsManager {
     switch (T) {
       case CalculationMode:
         return _calculationModePref.getValue() as T;
+      case ShuffleMode:
+        return _shuffleModePref.getValue() as T;
       case Speed:
         return _speedPref.getValue() as T;
       case Digit:
@@ -58,6 +64,8 @@ class SettingsManager {
     switch (T) {
       case CalculationMode:
         return _calculationModePref.valueToEnum(value as bool) as T;
+      case ShuffleMode:
+        return _shuffleModePref.valueToEnum(value as bool) as T;
       case Speed:
         return _speedPref.valueToEnum(value as Duration) as T;
       case Digit:
@@ -74,6 +82,8 @@ class SettingsManager {
       case CalculationMode:
         return _calculationModePref.enumToValue(enumValue as CalculationMode)
             as V;
+      case ShuffleMode:
+        return _shuffleModePref.enumToValue(enumValue as ShuffleMode) as V;
       case Speed:
         return _speedPref.enumToValue(enumValue as Speed) as V;
       case Digit:
@@ -117,6 +127,9 @@ class SettingsManager {
     switch (value.runtimeType) {
       case CalculationMode:
         _calculationModePref.saveSetting(_prefs, value);
+        break;
+      case ShuffleModePref:
+        _shuffleModePref.saveSetting(_prefs, value);
         break;
       case Speed:
         _speedPref.saveSetting(_prefs, value);

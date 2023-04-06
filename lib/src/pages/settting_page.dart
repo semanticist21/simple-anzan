@@ -8,6 +8,7 @@ import '../dialog/add_dialog.dart';
 import '../settings/prefs/calculation_mode_pref.dart';
 import '../settings/prefs/digit_pref.dart';
 import '../settings/prefs/num_of_problems_pref.dart';
+import '../settings/prefs/shuffle.dart';
 import '../settings/prefs/speed.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -21,6 +22,7 @@ class _SettingsPageState extends State<SettingsPage> {
   final _manager = SettingsManager();
 
   late CalculationMode _isOnlyPlus;
+  late ShuffleMode _isShuffle;
   late Speed _speed;
   late Digit _digit;
   late NumOfProblems _numOfProblems;
@@ -41,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
       constraints: const BoxConstraints(maxWidth: 1000),
       child: FractionallySizedBox(
         widthFactor: 0.8,
-        heightFactor: 0.6,
+        heightFactor: 0.8,
         child: Container(
           decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.onTertiaryContainer,
@@ -100,7 +102,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             height: MediaQuery.of(context).size.height * 0.005),
                         // plus & minus mode.
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.45,
+                          height: MediaQuery.of(context).size.height * 0.55,
                           child: SingleChildScrollView(
                               physics: const AlwaysScrollableScrollPhysics(
                                   parent: BouncingScrollPhysics()),
@@ -113,9 +115,18 @@ class _SettingsPageState extends State<SettingsPage> {
                                   children: [
                                     buildToggleOption(
                                         LocalizationChecker.onlyPluses,
+                                        Icons.calculate,
                                         _manager.enumToValue<CalculationMode,
                                             bool>(_isOnlyPlus),
                                         togglePlusModeCallback),
+                                    Tooltip(
+                                        message: '다른 자릿수와 섞어 계산합니다.',
+                                        child: buildToggleOption(
+                                            '셔플 모드',
+                                            Icons.shuffle,
+                                            _manager.enumToValue<ShuffleMode,
+                                                bool>(_isShuffle),
+                                            toggleShuffleModeCallback)),
                                     // speed.
                                     buildDropdownButton(
                                         LocalizationChecker.speed,
@@ -164,13 +175,12 @@ class _SettingsPageState extends State<SettingsPage> {
     )));
   }
 
-  Padding buildToggleOption(
-      String title, bool value, Function(bool) onChangeMethod) {
+  Padding buildToggleOption(String title, IconData iconData, bool value,
+      Function(bool) onChangeMethod) {
     return getPadding(
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Row(children: [
-        Icon(Icons.calculate,
-            color: Theme.of(context).colorScheme.primaryContainer),
+        Icon(iconData, color: Theme.of(context).colorScheme.primaryContainer),
         const SizedBox(width: 10),
         Text(title,
             style: TextStyle(
@@ -195,6 +205,16 @@ class _SettingsPageState extends State<SettingsPage> {
     });
 
     _manager.saveSetting(_isOnlyPlus);
+    initializeValues(_manager);
+  }
+
+  toggleShuffleModeCallback(bool newValue) {
+    setState(() {
+      var valueToEnum = _manager.valueToEnum<bool, ShuffleMode>(newValue);
+      _isShuffle = valueToEnum;
+    });
+
+    _manager.saveSetting(_isShuffle);
     initializeValues(_manager);
   }
 
@@ -320,6 +340,7 @@ class _SettingsPageState extends State<SettingsPage> {
   void initializeValues(SettingsManager manager) {
     setState(() {
       _isOnlyPlus = manager.getCurrentEnum<CalculationMode>();
+      _isShuffle = manager.getCurrentEnum<ShuffleMode>();
       _speed = manager.getCurrentEnum<Speed>();
       _digit = manager.getCurrentEnum<Digit>();
       _numOfProblems = manager.getCurrentEnum<NumOfProblems>();
