@@ -3,38 +3,38 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../Interface/preference_interface_items.dart';
 
-class StartDigitPref implements PreferenceInterfaceItems<StartDigit, int> {
+class BigDigitPref implements PreferenceInterfaceItems<BigDigit, int> {
   final String _saveKey = 'startDigit';
   final int _defaultIndex = 0;
 
   late int _currentIndex;
-  late StartDigit _currentValue;
+  late BigDigit _currentValue;
 
-  StartDigitPref(SharedPreferences prefs) {
+  BigDigitPref(SharedPreferences prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
 
   // when implemented, it should be synchronized for each other.
-  void setValue(StartDigit enumValue) {
+  void setValue(BigDigit enumValue) {
     _currentValue = enumValue;
     _currentIndex = enumValue.index;
   }
 
   void setIndex(int index) {
-    if (index > StartDigit.values.length - 1) {
-      index = StartDigit.values.length - 1;
+    if (index > BigDigit.values.length - 1) {
+      index = BigDigit.values.length - 1;
     }
 
     _currentIndex = index;
-    _currentValue = StartDigit.values[_currentIndex];
+    _currentValue = BigDigit.values[_currentIndex];
   }
 
-  StartDigit getValue() => _currentValue;
+  BigDigit getValue() => _currentValue;
   int getIndex() => _currentIndex;
 
-  StartDigit valueToEnum(int num) {
-    for (var value in StartDigit.values) {
+  BigDigit valueToEnum(int num) {
+    for (var value in BigDigit.values) {
       if (enumToValue(value) == num) {
         return value;
       }
@@ -43,15 +43,14 @@ class StartDigitPref implements PreferenceInterfaceItems<StartDigit, int> {
     throw Error();
   }
 
-  int enumToValue(StartDigit enumType) =>
-      int.parse(_getDigitStr(enumType.name));
+  int enumToValue(BigDigit enumType) => int.parse(_getDigitStr(enumType.name));
 
   String enumNameToItemString(String name) => name.split('_')[1];
 
   List<String> getItemsListofEnum() {
     List<String> result = List.empty(growable: true);
 
-    for (var element in StartDigit.values) {
+    for (var element in BigDigit.values) {
       var str = enumNameToItemString(element.name);
       result.add(str);
     }
@@ -60,10 +59,10 @@ class StartDigitPref implements PreferenceInterfaceItems<StartDigit, int> {
   }
 
   void saveSetting(SharedPreferences prefs, value) =>
-      prefs.setInt(_saveKey, (value as StartDigit).index);
+      prefs.setInt(_saveKey, (value as BigDigit).index);
 
-  StartDigit itemStrToValue(String str) {
-    for (var value in StartDigit.values) {
+  BigDigit itemStrToValue(String str) {
+    for (var value in BigDigit.values) {
       if (_getDigitStr(value.name) == str) {
         return value;
       }
@@ -75,7 +74,7 @@ class StartDigitPref implements PreferenceInterfaceItems<StartDigit, int> {
   String _getDigitStr(String name) => name.split('_')[1];
 }
 
-enum StartDigit {
+enum BigDigit {
   one_1,
   two_2,
   three_3,
@@ -83,4 +82,5 @@ enum StartDigit {
   five_5,
   six_6,
   seven_7,
+  eight_8,
 }

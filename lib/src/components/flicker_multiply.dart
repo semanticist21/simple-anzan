@@ -1,6 +1,6 @@
 import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_end_digit_pref.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_start_digit_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_big_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/num_of_problems_pref_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
@@ -83,8 +83,8 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   Future<void> doProcess(List<Tuple<int, int>> Function(int, int, int) func,
       SettingsMultiplyManager manager) async {
     var questions = func(
-        manager.getCurrentValue<StartDigit, int>(),
-        manager.getCurrentValue<EndDigit, int>(),
+        manager.getCurrentValue<SmallDigit, int>(),
+        manager.getCurrentValue<BigDigit, int>(),
         manager.getCurrentValue<NumOfMultiplyProblems, int>());
 
     _stateProvider.nums.clear();
@@ -105,10 +105,10 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
     var isMultiply = manager.getCurrentEnum<CalCulationMultiplyMode>();
     var length = questions.length;
 
-    for (var i = 0; i < length; i++) {
-      var item = questions[i];
+    if (isMultiply == CalCulationMultiplyMode.multiply) {
+      for (var i = 0; i < length; i++) {
+        var item = questions[i];
 
-      if (isMultiply == CalCulationMultiplyMode.multiply) {
         setState(() {
           _number = '${item.item1} × ${item.item2}';
         });
@@ -128,6 +128,52 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         //show answer
         setState(() {
           _number = '${item.item1 * item.item2}';
+        });
+        if (i == length - 1) {
+          break;
+        }
+
+        // make not to wait too long
+        if (duration >= const Duration(milliseconds: 2500)) {
+          await Future.delayed(const Duration(milliseconds: 2500));
+        } else {
+          await Future.delayed(duration);
+        }
+
+        setState(() {
+          _number = '';
+        });
+
+        // make not to wait too long
+        if (duration >= const Duration(milliseconds: 1500)) {
+          await Future.delayed(const Duration(milliseconds: 1500));
+        } else {
+          await Future.delayed(duration);
+        }
+      }
+    } else {
+      for (var i = 0; i < length; i++) {
+        var item = questions[i];
+
+        setState(() {
+          _number = '${item.item1} ÷ ${item.item2}';
+        });
+        await Future.delayed(duration);
+
+        setState(() {
+          _number = '';
+        });
+
+        // make not to wait too long
+        if (duration >= const Duration(milliseconds: 2000)) {
+          await Future.delayed(const Duration(seconds: 2));
+        } else {
+          await Future.delayed(duration);
+        }
+
+        //show answer
+        setState(() {
+          _number = '${item.item1 / item.item2}';
         });
         if (i == length - 1) {
           break;

@@ -1,13 +1,12 @@
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_end_digit_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/words/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
 
-import '../dialog/add_dialog.dart';
 import '../dialog/add_dialog_multiply.dart';
 import '../settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
-import '../settings/multiply_prefs/prefs/d_start_digit_pref.dart';
+import '../settings/multiply_prefs/prefs/d_big_digit_pref.dart';
 import '../settings/multiply_prefs/prefs/num_of_problems_pref_multiply.dart';
 import '../settings/multiply_prefs/settings_manager_multiply.dart';
 import '../settings/multiply_prefs/prefs/speed_multiply.dart';
@@ -24,8 +23,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
 
   late CalCulationMultiplyMode _isMultiply;
   late SpeedMultiply _speed;
-  late StartDigit _startDigit;
-  late EndDigit _endDigit;
+  late BigDigit _startDigit;
+  late SmallDigit _endDigit;
   late NumOfMultiplyProblems _numOfProblems;
 
   final _controller = ScrollController();
@@ -137,31 +136,31 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         changeOptionCallback<SpeedMultiply>),
                                     // digit.
                                     buildDropdownButton(
-                                        LocalizationChecker.endDigitMultiply,
+                                        LocalizationChecker.smallDigitMultiply,
                                         Icon(
                                           Icons.onetwothree,
                                           color: Theme.of(context)
                                               .colorScheme
                                               .primaryContainer,
                                         ),
-                                        _manager.getItemStr<EndDigit>(
+                                        _manager.getItemStr<SmallDigit>(
                                             _endDigit.name),
-                                        getDropdownMenuItemList<EndDigit>(
+                                        getDropdownMenuItemList<SmallDigit>(
                                             _manager),
-                                        changeOptionCallback<EndDigit>),
+                                        changeOptionCallback<SmallDigit>),
                                     buildDropdownButton(
-                                        LocalizationChecker.startDigitMultiply,
+                                        LocalizationChecker.bigDigitMultiply,
                                         Icon(
                                           Icons.onetwothree,
                                           color: Theme.of(context)
                                               .colorScheme
                                               .primaryContainer,
                                         ),
-                                        _manager.getItemStr<StartDigit>(
+                                        _manager.getItemStr<BigDigit>(
                                             _startDigit.name),
-                                        getDropdownMenuItemList<StartDigit>(
+                                        getDropdownMenuItemList<BigDigit>(
                                             _manager),
-                                        changeOptionCallback<StartDigit>),
+                                        changeOptionCallback<BigDigit>),
                                     // num of problems.
                                     buildDropdownButton(
                                         LocalizationChecker
@@ -291,12 +290,12 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
         _speed = _manager.itemStrToEnum<SpeedMultiply>(value);
         _manager.saveSetting(_speed);
         break;
-      case StartDigit:
-        _startDigit = _manager.itemStrToEnum<StartDigit>(value);
+      case BigDigit:
+        _startDigit = _manager.itemStrToEnum<BigDigit>(value);
         _manager.saveSetting(_startDigit);
         break;
-      case EndDigit:
-        if (int.parse(value) > _manager.getCurrentValue<StartDigit, int>()) {
+      case SmallDigit:
+        if (int.parse(value) > _manager.getCurrentValue<BigDigit, int>()) {
           showDialog(
               context: context,
               builder: (context) {
@@ -332,7 +331,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           return;
         }
 
-        _endDigit = _manager.itemStrToEnum<EndDigit>(value);
+        _endDigit = _manager.itemStrToEnum<SmallDigit>(value);
         _manager.saveSetting(_endDigit);
         break;
       case NumOfMultiplyProblems:
@@ -384,8 +383,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
     setState(() {
       _isMultiply = manager.getCurrentEnum<CalCulationMultiplyMode>();
       _speed = manager.getCurrentEnum<SpeedMultiply>();
-      _startDigit = manager.getCurrentEnum<StartDigit>();
-      _endDigit = manager.getCurrentEnum<EndDigit>();
+      _startDigit = manager.getCurrentEnum<BigDigit>();
+      _endDigit = manager.getCurrentEnum<SmallDigit>();
       _numOfProblems = manager.getCurrentEnum<NumOfMultiplyProblems>();
     });
   }

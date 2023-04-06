@@ -54,7 +54,6 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                                     ButtonMultiplyState.iterationStarted) {
                                   return;
                                 }
-//TODO
                                 showDialog(
                                     context: context,
                                     builder: (context) => ProbMultiplyList(

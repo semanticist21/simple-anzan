@@ -37,8 +37,8 @@ class LocalizationChecker {
   static String settingsMultiply = settingsMultiplyEn;
   static String isMultiply = isMultiplyEn;
   static String speedMultiply = speedMultiplyEn;
-  static String startDigitMultiply = startDigitMultiplyEn;
-  static String endDigitMultiply = endDigitMultiplyEn;
+  static String bigDigitMultiply = bigDigitMultiplyEn;
+  static String smallDigitMultiply = smallDigitMultiplyEn;
   static String numOfProblemsMultiply = numOfProblemsMultiplyEn;
 
   static String rangeMultiplyWord = rangeMultiplyWordEn;
@@ -73,8 +73,8 @@ class LocalizationChecker {
       settingsMultiply = settingsMultiplyKr;
       isMultiply = isMultiplyKr;
       speedMultiply = speedMultiplyKr;
-      startDigitMultiply = startDigitMultiplyKr;
-      endDigitMultiply = endDigitMultiplyKr;
+      bigDigitMultiply = bigDigitMultiplyKr;
+      smallDigitMultiply = smallDigitMultiplyKr;
       numOfProblemsMultiply = numOfProblemsMultiplyKr;
 
       shulffleDesc = shuffleDescKr;

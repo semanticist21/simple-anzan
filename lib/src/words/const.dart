@@ -54,27 +54,27 @@ const String numOfProblemsEn = "Questions";
 const String settingsMultiplyKr = '설정 (곱셈)';
 const String isMultiplyKr = '나눗셈 하기';
 const String speedMultiplyKr = "문제 속도";
-const String startDigitMultiplyKr = "큰 자리 수";
-const String endDigitMultiplyKr = "작은 자리 수";
+const String bigDigitMultiplyKr = "큰 자리 수";
+const String smallDigitMultiplyKr = "작은 자리 수";
 const String numOfProblemsMultiplyKr = "문제 수(연속)";
 
 const String settingsMultiplyEn = 'Settings (multiplication)';
-const String isMultiplyEn = 'Change to do division';
+const String isMultiplyEn = 'Change to division';
 const String speedMultiplyEn = "Speed";
-const String startDigitMultiplyEn = "Big Digit";
-const String endDigitMultiplyEn = "Small Digit";
+const String bigDigitMultiplyEn = "Big Digit";
+const String smallDigitMultiplyEn = "Small Digit";
 const String numOfProblemsMultiplyEn = "Questions";
 
 // custom option related
 
 const String setSpeedTitleKr = '속도를 설정합니다. (1000 = 1초)';
-const String rangeWordKr = '80~3000 사이의 값을 입력하세요.';
+const String rangeWordKr = '80~5000 사이의 값을 입력하세요.';
 const String pleaseInsertValueKr = '값을 입력하세요.';
 const String pleaseTooBigValueKr = '값이 너무 큽니다.';
 const String pleaseTooSmallValueKr = '값이 너무 작습니다.';
 
 const String setSpeedTitleEn = 'Set custom speed. (1000 = 1sec)';
-const String rangeWordEn = 'put value between 80~3000.';
+const String rangeWordEn = 'put value between 80~5000.';
 const String pleaseInsertValueEn = 'the value is empty.';
 const String pleaseTooBigValueEn = 'too big value.';
 const String pleaseTooSmallValueEn = 'too small value.';

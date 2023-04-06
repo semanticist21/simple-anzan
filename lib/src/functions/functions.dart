@@ -159,16 +159,15 @@ List<int> getPlusMinusNums(int digit, int numOfNums) {
 
 // multiply zone
 // always divideDigit is smaller than startDigit.
-// secondDigit is big one.
 List<Tuple<int, int>> getMultiplyNums(
-    int startDigit, int secondDigit, int numOfNums) {
+    int smallDigit, int bigDigit, int numOfNums) {
   var list = List<Tuple<int, int>>.empty(growable: true);
 
-  var min = (pow(10, startDigit - 1)).toInt();
-  var max = (pow(10, startDigit) - 1).toInt();
+  var min = (pow(10, bigDigit - 1)).toInt();
+  var max = (pow(10, bigDigit) - 1).toInt();
 
-  var minSecond = (pow(10, secondDigit - 1)).toInt();
-  var maxSecond = (pow(10, secondDigit) - 1).toInt();
+  var minSecond = (pow(10, smallDigit - 1)).toInt();
+  var maxSecond = (pow(10, smallDigit) - 1).toInt();
 
   for (var i = 0; i < numOfNums; i++) {
     var firstGen = min + Random().nextInt(max - min);
@@ -188,6 +187,54 @@ List<Tuple<int, int>> getMultiplyNums(
 }
 
 List<Tuple<int, int>> getDivdieNums(
-    int startDigit, int divideDigit, int numOfNums) {
-  return List.empty();
+    int divideDigit, int bigDigit, int numOfNums) {
+  var list = List<Tuple<int, int>>.empty(growable: true);
+  var max = pow(10, bigDigit) - 1;
+
+  if (bigDigit == divideDigit) {
+    for (var i = 0; i < numOfNums; i++) {
+      var minSame = pow(10, bigDigit - 1).toInt();
+      var maxSame = ((pow(10, bigDigit) ~/ 2) - 1).toInt();
+
+      var divideNum = minSame + Random().nextInt(maxSame - minSame);
+      var multiplier = Random().nextInt(10) + 1;
+
+      while (multiplier * divideNum > max ||
+          multiplier == 1 ||
+          divideNum == 1 ||
+          divideNum % 10 == 0 ||
+          multiplier % 10 == 0) {
+        divideNum = minSame + Random().nextInt(maxSame - minSame);
+        multiplier = Random().nextInt(10) + 1;
+      }
+
+      list.add(Tuple(multiplier * divideNum, divideNum));
+    }
+  } else {
+    for (var i = 0; i < numOfNums; i++) {
+      var minDiff = pow(10, divideDigit - 1).toInt();
+      var maxDiff = (pow(10, divideDigit) - 1).toInt();
+
+      var multiplierDigit = bigDigit - divideDigit;
+      var minMultiplier = pow(10, multiplierDigit - 1).toInt();
+      var maxMultiplier = (pow(10, multiplierDigit) - 1).toInt();
+
+      var divideNum = minDiff + Random().nextInt(maxDiff - minDiff);
+      var multiplier =
+          minMultiplier + Random().nextInt(maxMultiplier - minMultiplier);
+
+      while (multiplier * divideNum > max ||
+          multiplier == 1 ||
+          divideNum == 1 ||
+          divideNum % 10 == 0 ||
+          multiplier % 10 == 0) {
+        divideNum = minDiff + Random().nextInt(maxDiff - minDiff);
+        multiplier =
+            minMultiplier + Random().nextInt(maxMultiplier - minMultiplier);
+      }
+
+      list.add(Tuple(multiplier * divideNum, divideNum));
+    }
+  }
+  return list;
 }

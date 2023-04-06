@@ -82,4 +82,5 @@ enum Digit {
   five_5,
   six_6,
   seven_7,
+  eight_8,
 }

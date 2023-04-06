@@ -1,7 +1,7 @@
 // singleton
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_end_digit_pref.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_start_digit_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_big_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/num_of_problems_pref_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,8 +12,8 @@ class SettingsMultiplyManager {
 
   late CalculationModeMultiplyPref _calculationModePref;
   late SpeedMultiplyPref _speedPref;
-  late StartDigitPref _startDigitPref;
-  late EndDigitPref _endDigitPref;
+  late BigDigitPref _startDigitPref;
+  late SmallDigitPref _endDigitPref;
   late NumOfProblemsMultiplyPref _numOfProblemsPref;
 
   // constructor
@@ -31,8 +31,8 @@ class SettingsMultiplyManager {
   void refreshPrefValues(SharedPreferences prefs) {
     _calculationModePref = CalculationModeMultiplyPref(prefs);
     _speedPref = SpeedMultiplyPref(prefs);
-    _startDigitPref = StartDigitPref(prefs);
-    _endDigitPref = EndDigitPref(prefs);
+    _startDigitPref = BigDigitPref(prefs);
+    _endDigitPref = SmallDigitPref(prefs);
     _numOfProblemsPref = NumOfProblemsMultiplyPref(prefs);
   }
 
@@ -48,9 +48,9 @@ class SettingsMultiplyManager {
         return _calculationModePref.getValue() as T;
       case SpeedMultiply:
         return _speedPref.getValue() as T;
-      case StartDigit:
+      case BigDigit:
         return _startDigitPref.getValue() as T;
-      case EndDigit:
+      case SmallDigit:
         return _endDigitPref.getValue() as T;
       case NumOfMultiplyProblems:
         return _numOfProblemsPref.getValue() as T;
@@ -65,9 +65,9 @@ class SettingsMultiplyManager {
         return _calculationModePref.valueToEnum(value as bool) as T;
       case SpeedMultiply:
         return _speedPref.valueToEnum(value as Duration) as T;
-      case StartDigit:
+      case BigDigit:
         return _startDigitPref.valueToEnum(value as int) as T;
-      case EndDigit:
+      case SmallDigit:
         return _endDigitPref.valueToEnum(value as int) as T;
       case NumOfMultiplyProblems:
         return _numOfProblemsPref.valueToEnum(value as int) as T;
@@ -83,10 +83,10 @@ class SettingsMultiplyManager {
             .enumToValue(enumValue as CalCulationMultiplyMode) as V;
       case SpeedMultiply:
         return _speedPref.enumToValue(enumValue as SpeedMultiply) as V;
-      case StartDigit:
-        return _startDigitPref.enumToValue(enumValue as StartDigit) as V;
-      case EndDigit:
-        return _endDigitPref.enumToValue(enumValue as EndDigit) as V;
+      case BigDigit:
+        return _startDigitPref.enumToValue(enumValue as BigDigit) as V;
+      case SmallDigit:
+        return _endDigitPref.enumToValue(enumValue as SmallDigit) as V;
       case NumOfMultiplyProblems:
         return _numOfProblemsPref
             .enumToValue(enumValue as NumOfMultiplyProblems) as V;
@@ -99,10 +99,10 @@ class SettingsMultiplyManager {
     switch (T) {
       case SpeedMultiply:
         return _speedPref.enumToValue(getCurrentEnum<SpeedMultiply>()) as V;
-      case StartDigit:
-        return _startDigitPref.enumToValue(getCurrentEnum<StartDigit>()) as V;
-      case EndDigit:
-        return _endDigitPref.enumToValue(getCurrentEnum<EndDigit>()) as V;
+      case BigDigit:
+        return _startDigitPref.enumToValue(getCurrentEnum<BigDigit>()) as V;
+      case SmallDigit:
+        return _endDigitPref.enumToValue(getCurrentEnum<SmallDigit>()) as V;
       case NumOfMultiplyProblems:
         return _numOfProblemsPref
             .enumToValue(getCurrentEnum<NumOfMultiplyProblems>()) as V;
@@ -115,9 +115,9 @@ class SettingsMultiplyManager {
     switch (T) {
       case SpeedMultiply:
         return _speedPref.itemStrToValue(str) as T;
-      case StartDigit:
+      case BigDigit:
         return _startDigitPref.itemStrToValue(str) as T;
-      case EndDigit:
+      case SmallDigit:
         return _endDigitPref.itemStrToValue(str) as T;
       case NumOfMultiplyProblems:
         return _numOfProblemsPref.itemStrToValue(str) as T;
@@ -135,9 +135,9 @@ class SettingsMultiplyManager {
       case SpeedMultiply:
         _speedPref.saveSetting(_prefs, value);
         break;
-      case StartDigit:
+      case BigDigit:
         _startDigitPref.saveSetting(_prefs, value);
-      case EndDigit:
+      case SmallDigit:
         _endDigitPref.saveSetting(_prefs, value);
         break;
       case NumOfMultiplyProblems:
@@ -162,9 +162,9 @@ class SettingsMultiplyManager {
         return _numOfProblemsPref.getItemsListofEnum();
       case SpeedMultiply:
         return _speedPref.getItemsListofEnum();
-      case StartDigit:
+      case BigDigit:
         return _startDigitPref.getItemsListofEnum();
-      case EndDigit:
+      case SmallDigit:
         return _endDigitPref.getItemsListofEnum();
       default:
         throw Error();
@@ -177,9 +177,9 @@ class SettingsMultiplyManager {
         return _numOfProblemsPref.enumNameToItemString(enumName);
       case SpeedMultiply:
         return _speedPref.enumNameToItemString(enumName);
-      case StartDigit:
+      case BigDigit:
         return _startDigitPref.enumNameToItemString(enumName);
-      case EndDigit:
+      case SmallDigit:
         return _endDigitPref.enumNameToItemString(enumName);
       default:
         throw Error();
