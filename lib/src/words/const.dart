@@ -8,9 +8,13 @@ const String homeLabel = 'Home';
 const String settingLabel = 'Settings';
 
 // button strings
-const String start = 'Start !!';
+const String startKr = '시작 !!';
+const String startEn = 'Start !!';
+
 const String hidden = ' ';
-const String check = 'Check Answer';
+
+const String checkKr = '정답 확인';
+const String checkEn = 'Check Answer';
 
 // error page strings
 const String error = 'The page you requested does not exist.';

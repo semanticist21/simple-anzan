@@ -2,6 +2,7 @@ import 'package:abacus_simple_anzan/src/words/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:abacus_simple_anzan/src/settings/settings_manager.dart';
+import 'package:universal_io/io.dart';
 
 import '../dialog/add_dialog.dart';
 import '../settings/prefs/calculation_mode_pref.dart';
@@ -36,113 +37,109 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Container(
       color: const ColorScheme.dark().background,
       child: Center(
-        child: FractionallySizedBox(
-          widthFactor: 0.8,
-          heightFactor: 0.6,
-          child: Container(
-            decoration: BoxDecoration(
-                color: const Color.fromRGBO(158, 158, 158, 0.1),
-                borderRadius: BorderRadius.circular(10),
-                border:
-                    Border.all(color: const Color.fromRGBO(96, 125, 139, 0.1))),
-            child: FractionallySizedBox(
-                widthFactor: 0.9,
-                heightFactor: 1,
-                child: LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                    var isBiggerSize = false;
-                    if (constraints.maxHeight > 420) {
-                      isBiggerSize = true;
-                    }
-
-                    return ListView(children: [
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.015),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1000),
+          child: FractionallySizedBox(
+            widthFactor: 0.8,
+            heightFactor: 0.6,
+            child: Container(
+                decoration: BoxDecoration(
+                    color: const Color.fromRGBO(158, 158, 158, 0.1),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        color: const Color.fromRGBO(96, 125, 139, 0.1))),
+                child: FractionallySizedBox(
+                    widthFactor: 0.9,
+                    heightFactor: 0.9,
+                    child: ListView(
+                        physics: const AlwaysScrollableScrollPhysics(
+                            parent: BouncingScrollPhysics()),
+                        scrollDirection: Axis.vertical,
                         children: [
-                          Icon(
-                            Icons.settings,
-                            color: Colors.grey,
-                            size: MediaQuery.of(context).size.height * 0.03,
+                          SizedBox(
+                              height: Platform.isIOS || Platform.isAndroid
+                                  ? 0
+                                  : MediaQuery.of(context).size.height * 0.015),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.settings,
+                                color: Colors.grey,
+                                size: MediaQuery.of(context).size.height * 0.03,
+                              ),
+                              SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.02),
+                              Text(
+                                LocalizationChecker.settings,
+                                style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.023,
+                                  color: Colors.grey,
+                                ),
+                              )
+                            ],
                           ),
                           SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.02),
-                          Text(
-                            LocalizationChecker.settings,
-                            style: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.023,
-                              color: Colors.grey,
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.01),
-                      const Divider(
-                        height: 20,
-                        thickness: 1,
-                        color: Color.fromARGB(255, 60, 60, 60),
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.005),
-                      // plus & minus mode.
-                      SizedBox(
-                        height:
-                            isBiggerSize ? constraints.maxHeight * 0.8 : null,
-                        child: SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(
-                                parent: AlwaysScrollableScrollPhysics()),
-                            child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  buildToggleOption(
-                                      LocalizationChecker.onlyPluses,
-                                      _manager.enumToValue<CalculationMode,
-                                          bool>(_isOnlyPlus),
-                                      togglePlusModeCallback),
-
-                                  // speed.
-                                  buildDropdownButton(
-                                      LocalizationChecker.speed,
-                                      const Icon(
-                                        Icons.speed,
-                                        color: Colors.grey,
-                                      ),
-                                      _manager.getItemStr<Speed>(_speed.name),
-                                      getDropdownMenuItemList<Speed>(_manager),
-                                      changeOptionCallback<Speed>),
-                                  // digit.
-                                  buildDropdownButton(
-                                      LocalizationChecker.digit,
-                                      const Icon(
-                                        Icons.onetwothree,
-                                        color: Colors.grey,
-                                      ),
-                                      _manager.getItemStr<Digit>(_digit.name),
-                                      getDropdownMenuItemList<Digit>(_manager),
-                                      changeOptionCallback<Digit>),
-                                  // num of problems.
-                                  buildDropdownButton(
-                                      LocalizationChecker.numOfProblems,
-                                      const Icon(
-                                        Icons.check,
-                                        color: Colors.grey,
-                                      ),
-                                      _manager.getItemStr<NumOfProblems>(
-                                          _numOfProblems.name),
-                                      getDropdownMenuItemList<NumOfProblems>(
-                                          _manager),
-                                      changeOptionCallback<NumOfProblems>)
-                                ])),
-                      )
-                    ]);
-                  },
-                )),
+                              height:
+                                  MediaQuery.of(context).size.height * 0.01),
+                          const Divider(
+                            height: 20,
+                            thickness: 1,
+                            color: Color.fromARGB(255, 60, 60, 60),
+                          ),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.005),
+                          // plus & minus mode.
+                          Expanded(
+                              child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                buildToggleOption(
+                                    LocalizationChecker.onlyPluses,
+                                    _manager.enumToValue<CalculationMode, bool>(
+                                        _isOnlyPlus),
+                                    togglePlusModeCallback),
+                                // speed.
+                                buildDropdownButton(
+                                    LocalizationChecker.speed,
+                                    const Icon(
+                                      Icons.speed,
+                                      color: Colors.grey,
+                                    ),
+                                    _manager.getItemStr<Speed>(_speed.name),
+                                    getDropdownMenuItemList<Speed>(_manager),
+                                    changeOptionCallback<Speed>),
+                                // digit.
+                                buildDropdownButton(
+                                    LocalizationChecker.digit,
+                                    const Icon(
+                                      Icons.onetwothree,
+                                      color: Colors.grey,
+                                    ),
+                                    _manager.getItemStr<Digit>(_digit.name),
+                                    getDropdownMenuItemList<Digit>(_manager),
+                                    changeOptionCallback<Digit>),
+                                // num of problems.
+                                buildDropdownButton(
+                                    LocalizationChecker.numOfProblems,
+                                    const Icon(
+                                      Icons.check,
+                                      color: Colors.grey,
+                                    ),
+                                    _manager.getItemStr<NumOfProblems>(
+                                        _numOfProblems.name),
+                                    getDropdownMenuItemList<NumOfProblems>(
+                                        _manager),
+                                    changeOptionCallback<NumOfProblems>)
+                              ])),
+                        ]))),
           ),
         ),
       ),
@@ -196,24 +193,19 @@ class _SettingsPageState extends State<SettingsPage> {
             children: [
               icon,
               const SizedBox(width: 10),
-              SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.20,
-                  child: Text(title,
-                      style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.height * 0.020,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey[600])))
+              Text(title,
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.height * 0.020,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[600]))
             ],
           )),
       Flexible(
           flex: 10,
-          child: FractionallySizedBox(
-              widthFactor: 0.8,
-              child: Transform.scale(
-                filterQuality: FilterQuality.high,
-                scaleX: 1.0,
-                scaleY: 1.0,
-                alignment: Alignment.centerRight,
+          child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 350),
+              child: FractionallySizedBox(
+                widthFactor: 0.8,
                 child: DropdownButtonFormField(
                   elevation: 0,
                   isDense: true,
@@ -282,7 +274,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Text(
             element,
             style: TextStyle(
-                height: 1.4,
+                height: 1.45,
                 color: Colors.grey[600],
                 fontSize: MediaQuery.of(context).size.height * 0.0185,
                 fontWeight: FontWeight.w500),

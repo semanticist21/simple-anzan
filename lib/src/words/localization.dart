@@ -5,6 +5,10 @@ class LocalizationChecker {
   static String defaultLocale = Platform.localeName;
   static bool isKr = false;
 
+  // button str
+  static String start = startEn;
+  static String check = checkEn;
+
   // options(settings)
   static String settings = settingsEn;
   static String onlyPluses = onlyPlusesEn;
@@ -21,6 +25,9 @@ class LocalizationChecker {
   LocalizationChecker() {
     if (defaultLocale == 'ko_KR') {
       isKr = true;
+
+      start = startKr;
+      check = checkKr;
 
       settings = settingsKr;
       onlyPluses = onlyPlusesKr;

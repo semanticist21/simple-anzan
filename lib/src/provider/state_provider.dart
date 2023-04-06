@@ -1,3 +1,4 @@
+import 'package:abacus_simple_anzan/src/words/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -7,7 +8,7 @@ class StateProvider extends ChangeNotifier {
   ButtonState state = ButtonState.iterationNotStarted;
 
   bool isButtonVisible = true;
-  String buttonText = start;
+  String buttonText = LocalizationChecker.start;
 
   void changeState({ButtonState desiredState = ButtonState.autoState}) {
     switch (desiredState) {
@@ -50,13 +51,13 @@ enum ButtonState {
 String getButtonStr(ButtonState state) {
   switch (state) {
     case ButtonState.iterationNotStarted:
-      return start;
+      return startEn;
     case ButtonState.iterationStarted:
       return hidden;
     case ButtonState.iterationCompleted:
-      return check;
+      return checkEn;
     default:
-      return start;
+      return startEn;
   }
 }
 
