@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/flicker.dart';
-import '../words/const.dart';
 import '../provider/state_provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,7 +23,6 @@ class _HomePageState extends State<HomePage> {
         width: double.infinity,
         height: double.infinity,
         child: Container(
-          color: const ColorScheme.dark().background,
           alignment: Alignment.topCenter,
           child: Column(children: [
             Expanded(
@@ -35,10 +33,10 @@ class _HomePageState extends State<HomePage> {
                 heightFactor: 0.6,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: const Color.fromRGBO(158, 158, 158, 0.1),
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                          color: const Color.fromRGBO(96, 125, 139, 0.1))),
+                          color: Theme.of(context).colorScheme.shadow)),
                   child: Center(
                       child: FractionallySizedBox(
                     widthFactor: 0.8,
@@ -87,18 +85,16 @@ class _HomePageState extends State<HomePage> {
   // styles
   Color _getButtonColorProp(Set<MaterialState> states) {
     if (states.contains(MaterialState.pressed)) {
-      return Colors.greenAccent;
+      return Theme.of(context).colorScheme.onSurfaceVariant;
     } else {
-      return Colors.green;
+      return Theme.of(context).colorScheme.onSurface;
     }
   }
 
   TextStyle _getMainButtonTextStyle() {
-    return TextStyle(
-      fontSize: MediaQuery.of(context).size.height * 0.04,
-      fontWeight: FontWeight.w900,
-      fontFamily: defaultFontFamily,
-      letterSpacing: 2.5,
-    );
+    return Theme.of(context)
+        .textTheme
+        .bodyLarge!
+        .copyWith(fontSize: MediaQuery.of(context).size.height * 0.04);
   }
 }

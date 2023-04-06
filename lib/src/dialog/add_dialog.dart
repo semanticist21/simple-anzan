@@ -24,15 +24,19 @@ class _AddDialogState extends State<AddDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Row(children: [
-        const Icon(Icons.dashboard_customize, size: 15),
+        Icon(Icons.dashboard_customize,
+            size: 15, color: Theme.of(context).colorScheme.primaryContainer),
         SizedBox(width: MediaQuery.of(context).size.width * 0.02),
         Text(LocalizationChecker.setSpeedTitle,
-            style:
-                TextStyle(fontSize: MediaQuery.of(context).size.height * 0.02))
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.height * 0.02,
+                color: Theme.of(context).colorScheme.primaryContainer))
       ]),
       content: Form(
           key: _formKey,
           child: TextFormField(
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.primaryContainer),
             decoration:
                 InputDecoration(hintText: LocalizationChecker.rangeWord),
             inputFormatters: [
@@ -52,7 +56,7 @@ class _AddDialogState extends State<AddDialog> {
                 return LocalizationChecker.pleaseTooBigValue;
               }
 
-              if (valueInt < 100) {
+              if (valueInt < 80) {
                 return LocalizationChecker.pleaseTooSmallValue;
               }
 

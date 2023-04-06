@@ -53,7 +53,13 @@ class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
   }
 
   Duration enumToValue(Speed enumType) {
-    var milisecDuration = _getDurationInt(enumType.name) * 100;
+    var milisecDuration = 0;
+
+    if (enumType != Speed.custom) {
+      milisecDuration = _getDurationInt(enumType.name) * 100;
+    } else {
+      milisecDuration = _getDurationInt(enumType.name);
+    }
 
     return Duration(milliseconds: milisecDuration);
   }
@@ -87,7 +93,7 @@ class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
 
   int _getDurationInt(String str) {
     if (str.split('_').length != 2) {
-      return _currentCustomValue ~/ 100;
+      return _currentCustomValue;
     }
 
     return int.parse(str.split('_')[1]);

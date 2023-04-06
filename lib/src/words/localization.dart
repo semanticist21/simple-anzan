@@ -5,6 +5,15 @@ class LocalizationChecker {
   static String defaultLocale = Platform.localeName;
   static bool isKr = false;
 
+  // bottom navigation
+  static String homePlusLabel = homePlusLabelEn;
+  static String settingPlusLabel = settingPlusLabelEn;
+  static String homeMultiplyLabel = homeMultiplyLabelEn;
+  static String settingMultiplyLabel = settingMultiplyLabelEn;
+
+  // theme str
+  static String mode = modeEn;
+
   // button str
   static String start = startEn;
   static String check = checkEn;
@@ -24,7 +33,13 @@ class LocalizationChecker {
 
   LocalizationChecker() {
     if (defaultLocale == 'ko_KR') {
+      mode = modeKr;
       isKr = true;
+
+      homePlusLabel = homePlusLabelKr;
+      settingPlusLabel = settingPlusLabelKr;
+      homeMultiplyLabel = homeMultiplyLabelKr;
+      settingMultiplyLabel = settingMultiplyLabelKr;
 
       start = startKr;
       check = checkKr;

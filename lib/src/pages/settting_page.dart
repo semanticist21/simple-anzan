@@ -25,6 +25,8 @@ class _SettingsPageState extends State<SettingsPage> {
   late Digit _digit;
   late NumOfProblems _numOfProblems;
 
+  final _controller = ScrollController();
+
   @override
   void initState() {
     super.initState();
@@ -34,66 +36,74 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+        child: Center(
+            child: ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 1000),
+      child: FractionallySizedBox(
+        widthFactor: 0.8,
+        heightFactor: 0.6,
         child: Container(
-      color: const ColorScheme.dark().background,
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1000),
+          decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.onTertiaryContainer,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                  color: Theme.of(context).colorScheme.outlineVariant)),
           child: FractionallySizedBox(
-            widthFactor: 0.8,
-            heightFactor: 0.6,
-            child: Container(
-                decoration: BoxDecoration(
-                    color: const Color.fromRGBO(158, 158, 158, 0.1),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                        color: const Color.fromRGBO(96, 125, 139, 0.1))),
-                child: FractionallySizedBox(
-                    widthFactor: 0.9,
-                    heightFactor: 0.9,
-                    child: ListView(
-                        physics: const AlwaysScrollableScrollPhysics(
-                            parent: BouncingScrollPhysics()),
-                        scrollDirection: Axis.vertical,
-                        children: [
-                          SizedBox(
-                              height: Platform.isIOS || Platform.isAndroid
-                                  ? 0
-                                  : MediaQuery.of(context).size.height * 0.015),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.settings,
-                                color: Colors.grey,
-                                size: MediaQuery.of(context).size.height * 0.03,
+              widthFactor: 0.9,
+              heightFactor: 0.9,
+              child: RawScrollbar(
+                  thumbColor: Colors.transparent,
+                  scrollbarOrientation: ScrollbarOrientation.right,
+                  controller: _controller,
+                  child: ListView(
+                      controller: _controller,
+                      physics: const NeverScrollableScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        SizedBox(
+                            height: Platform.isIOS || Platform.isAndroid
+                                ? 0
+                                : MediaQuery.of(context).size.height * 0.015),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.settings,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .secondaryContainer,
+                              size: MediaQuery.of(context).size.height * 0.03,
+                            ),
+                            SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.width * 0.015),
+                            Text(
+                              LocalizationChecker.settings,
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.023,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondaryContainer,
                               ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.02),
-                              Text(
-                                LocalizationChecker.settings,
-                                style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.023,
-                                  color: Colors.grey,
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.01),
-                          const Divider(
-                            height: 20,
-                            thickness: 1,
-                            color: Color.fromARGB(255, 60, 60, 60),
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.005),
-                          // plus & minus mode.
-                          Expanded(
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01),
+                        Divider(
+                          height: 20,
+                          thickness: 1,
+                          color: Theme.of(context).colorScheme.outline,
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.005),
+                        // plus & minus mode.
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.45,
+                          child: SingleChildScrollView(
+                              physics: const AlwaysScrollableScrollPhysics(
+                                  parent: BouncingScrollPhysics()),
                               child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -101,49 +111,57 @@ class _SettingsPageState extends State<SettingsPage> {
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: [
-                                buildToggleOption(
-                                    LocalizationChecker.onlyPluses,
-                                    _manager.enumToValue<CalculationMode, bool>(
-                                        _isOnlyPlus),
-                                    togglePlusModeCallback),
-                                // speed.
-                                buildDropdownButton(
-                                    LocalizationChecker.speed,
-                                    const Icon(
-                                      Icons.speed,
-                                      color: Colors.grey,
-                                    ),
-                                    _manager.getItemStr<Speed>(_speed.name),
-                                    getDropdownMenuItemList<Speed>(_manager),
-                                    changeOptionCallback<Speed>),
-                                // digit.
-                                buildDropdownButton(
-                                    LocalizationChecker.digit,
-                                    const Icon(
-                                      Icons.onetwothree,
-                                      color: Colors.grey,
-                                    ),
-                                    _manager.getItemStr<Digit>(_digit.name),
-                                    getDropdownMenuItemList<Digit>(_manager),
-                                    changeOptionCallback<Digit>),
-                                // num of problems.
-                                buildDropdownButton(
-                                    LocalizationChecker.numOfProblems,
-                                    const Icon(
-                                      Icons.check,
-                                      color: Colors.grey,
-                                    ),
-                                    _manager.getItemStr<NumOfProblems>(
-                                        _numOfProblems.name),
-                                    getDropdownMenuItemList<NumOfProblems>(
-                                        _manager),
-                                    changeOptionCallback<NumOfProblems>)
-                              ])),
-                        ]))),
-          ),
+                                    buildToggleOption(
+                                        LocalizationChecker.onlyPluses,
+                                        _manager.enumToValue<CalculationMode,
+                                            bool>(_isOnlyPlus),
+                                        togglePlusModeCallback),
+                                    // speed.
+                                    buildDropdownButton(
+                                        LocalizationChecker.speed,
+                                        Icon(
+                                          Icons.speed,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primaryContainer,
+                                        ),
+                                        _manager.getItemStr<Speed>(_speed.name),
+                                        getDropdownMenuItemList<Speed>(
+                                            _manager),
+                                        changeOptionCallback<Speed>),
+                                    // digit.
+                                    buildDropdownButton(
+                                        LocalizationChecker.digit,
+                                        Icon(
+                                          Icons.onetwothree,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primaryContainer,
+                                        ),
+                                        _manager.getItemStr<Digit>(_digit.name),
+                                        getDropdownMenuItemList<Digit>(
+                                            _manager),
+                                        changeOptionCallback<Digit>),
+                                    // num of problems.
+                                    buildDropdownButton(
+                                        LocalizationChecker.numOfProblems,
+                                        Icon(
+                                          Icons.check,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primaryContainer,
+                                        ),
+                                        _manager.getItemStr<NumOfProblems>(
+                                            _numOfProblems.name),
+                                        getDropdownMenuItemList<NumOfProblems>(
+                                            _manager),
+                                        changeOptionCallback<NumOfProblems>)
+                                  ])),
+                        )
+                      ]))),
         ),
       ),
-    ));
+    )));
   }
 
   Padding buildToggleOption(
@@ -151,20 +169,21 @@ class _SettingsPageState extends State<SettingsPage> {
     return getPadding(
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Row(children: [
-        const Icon(Icons.calculate, color: Colors.grey),
+        Icon(Icons.calculate,
+            color: Theme.of(context).colorScheme.primaryContainer),
         const SizedBox(width: 10),
         Text(title,
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height * 0.0185,
                 fontWeight: FontWeight.w500,
-                color: Colors.grey[600]))
+                color: Theme.of(context).colorScheme.primaryContainer))
       ]),
       Transform.scale(
           scale: 0.9,
           filterQuality: FilterQuality.high,
           child: CupertinoSwitch(
-              activeColor: Colors.blueGrey,
-              trackColor: Colors.grey,
+              activeColor: Theme.of(context).colorScheme.onSecondary,
+              trackColor: Theme.of(context).colorScheme.onPrimary,
               value: value,
               onChanged: (bool newValue) => onChangeMethod(newValue))),
     ]));
@@ -197,7 +216,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: TextStyle(
                       fontSize: MediaQuery.of(context).size.height * 0.020,
                       fontWeight: FontWeight.w500,
-                      color: Colors.grey[600]))
+                      color: Theme.of(context).colorScheme.primaryContainer))
             ],
           )),
       Flexible(
@@ -207,20 +226,23 @@ class _SettingsPageState extends State<SettingsPage> {
               child: FractionallySizedBox(
                 widthFactor: 0.8,
                 child: DropdownButtonFormField(
+                  dropdownColor:
+                      Theme.of(context).colorScheme.tertiaryContainer,
                   elevation: 0,
                   isDense: true,
                   itemHeight: 50,
                   value: initialValue,
                   iconSize: 25,
                   isExpanded: true,
-                  decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                      border: OutlineInputBorder(
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
+                      border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         borderSide: BorderSide(),
                       ),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor:
+                          Theme.of(context).colorScheme.tertiaryContainer,
                       floatingLabelAlignment: FloatingLabelAlignment.center),
                   items: dropdownMenuItemList,
                   onChanged: onChangeMethod,
@@ -275,7 +297,7 @@ class _SettingsPageState extends State<SettingsPage> {
             element,
             style: TextStyle(
                 height: 1.45,
-                color: Colors.grey[600],
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
                 fontSize: MediaQuery.of(context).size.height * 0.0185,
                 fontWeight: FontWeight.w500),
           ));

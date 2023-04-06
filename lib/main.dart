@@ -1,6 +1,9 @@
 import 'package:abacus_simple_anzan/src/settings/settings_manager.dart';
+import 'package:abacus_simple_anzan/src/theme/theme.dart';
 import 'package:abacus_simple_anzan/src/words/localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/words/const.dart';
 import 'package:abacus_simple_anzan/router.dart';
@@ -10,19 +13,25 @@ void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     LocalizationChecker();
-    return MaterialApp(
-      title: 'Simple Anzan',
-      home: ChangeNotifierProvider(
-          create: (context) {
-            return StateProvider();
-          },
-          child: const Home()),
-      themeMode: ThemeMode.dark,
-    );
+    SettingsManager();
+
+    return StreamBuilder<bool>(
+        initialData: true,
+        stream: ThemeSelector.isDarkStream.stream,
+        builder: (context, snapshot) => MaterialApp(
+              theme: ThemeSelector.isDark
+                  ? ThemeSelector.getBlackTheme()
+                  : ThemeSelector.getWhiteTheme(),
+              title: 'Simple Anzan',
+              home: ChangeNotifierProvider(
+                  create: (context) {
+                    return StateProvider();
+                  },
+                  child: const Home()),
+            ));
   }
 }
 
@@ -37,12 +46,6 @@ class _Home extends State<Home> {
   final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
   int _currentIndex = 0;
   late StateProvider _stateProvider;
-
-  @override
-  void initState() {
-    SettingsManager();
-    super.initState();
-  }
 
   Future<void> _onTap(int newIndex) async {
     if (_currentIndex == newIndex) {
@@ -70,6 +73,31 @@ class _Home extends State<Home> {
     _stateProvider = Provider.of(context);
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        actions: [
+          Tooltip(
+              message: LocalizationChecker.mode,
+              child: Icon(
+                ThemeSelector.isDark ? Icons.nightlight : Icons.sunny,
+                color: Theme.of(context).colorScheme.onBackground,
+              )),
+          Transform.scale(
+              scale: 0.8,
+              child: CupertinoSwitch(
+                activeColor: Theme.of(context).colorScheme.onSecondary,
+                trackColor: Theme.of(context).colorScheme.onPrimary,
+                onChanged: (value) {
+                  SettingsManager().setThemeBool(!ThemeSelector.isDark);
+                  setState(() {});
+                },
+                value: ThemeSelector.isDark,
+              )),
+          const SizedBox(width: 10),
+        ],
+      ),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Navigator(
         key: navigationKey,
         onGenerateRoute: generateRoutes,
@@ -77,13 +105,28 @@ class _Home extends State<Home> {
         initialRoute: mainPageAddress,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
+        backgroundColor: Theme.of(context).colorScheme.onBackground,
+        selectedItemColor: Theme.of(context).colorScheme.background,
+        unselectedItemColor: Theme.of(context).colorScheme.onInverseSurface,
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: homeLabel,
+            activeIcon: Icon(FontAwesomeIcons.plus,
+                color: Theme.of(context).colorScheme.background,
+                size: MediaQuery.of(context).size.height * 0.020),
+            icon: Icon(FontAwesomeIcons.plus,
+                color: Theme.of(context).colorScheme.onInverseSurface,
+                size: MediaQuery.of(context).size.height * 0.023),
+            label: LocalizationChecker.homePlusLabel,
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: settingLabel)
+            activeIcon: Icon(FontAwesomeIcons.gear,
+                color: Theme.of(context).colorScheme.background,
+                size: MediaQuery.of(context).size.height * 0.023),
+            icon: Icon(FontAwesomeIcons.gear,
+                color: Theme.of(context).colorScheme.onInverseSurface,
+                size: MediaQuery.of(context).size.height * 0.023),
+            label: LocalizationChecker.settingPlusLabel,
+          )
         ],
         onTap: _onTap,
         currentIndex: _currentIndex,

@@ -120,14 +120,9 @@ class _FlickerState extends State<Flicker> {
     _stateProvider.removeListener(_callbackOnButtonClick);
     super.dispose();
   }
-}
 
 // styles.
-TextStyle _getMainNumberTextStyle() {
-  return const TextStyle(
-    fontWeight: FontWeight.w900,
-    fontFamily: defaultFontFamily,
-    letterSpacing: 3,
-    color: Color.fromARGB(255, 113, 150, 67),
-  );
+  TextStyle _getMainNumberTextStyle() {
+    return Theme.of(context).textTheme.titleLarge!;
+  }
 }

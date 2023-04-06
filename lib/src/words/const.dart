@@ -1,11 +1,22 @@
+// mode
+const String modeKr = '색상 모드 바꾸기';
+const String modeEn = 'Change theme';
+
 // routers
 const String mainPageAddress = '/';
 const String settingsPageAddress = '/settings';
 const String errorPageAddress = '/error';
 
-// labels
-const String homeLabel = 'Home';
-const String settingLabel = 'Settings';
+// bottom navigation labels
+const String homePlusLabelEn = 'start';
+const String settingPlusLabelEn = '+/- settings';
+const String homeMultiplyLabelEn = 'start';
+const String settingMultiplyLabelEn = ' ×/÷ settings';
+
+const String homePlusLabelKr = 'start !';
+const String settingPlusLabelKr = '+/- 설정';
+const String homeMultiplyLabelKr = '';
+const String settingMultiplyLabelKr = ' ×/÷ 설정';
 
 // button strings
 const String startKr = '시작 !!';
@@ -35,13 +46,13 @@ const String numOfProblemsEn = "Questions";
 // custom option related
 
 const String setSpeedTitleKr = '속도를 설정합니다. (1000 = 1초)';
-const String rangeWordKr = '100~3000 사이의 값을 입력하세요.';
+const String rangeWordKr = '80~3000 사이의 값을 입력하세요.';
 const String pleaseInsertValueKr = '값을 입력하세요.';
 const String pleaseTooBigValueKr = '값이 너무 큽니다.';
 const String pleaseTooSmallValueKr = '값이 너무 작습니다.';
 
 const String setSpeedTitleEn = 'Set custom speed. (1000 = 1sec)';
-const String rangeWordEn = 'put value between 100~3000.';
+const String rangeWordEn = 'put value between 80~3000.';
 const String pleaseInsertValueEn = 'the value is empty.';
 const String pleaseTooBigValueEn = 'too big value.';
 const String pleaseTooSmallValueEn = 'too small value.';
