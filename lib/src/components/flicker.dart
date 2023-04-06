@@ -175,6 +175,6 @@ class _FlickerState extends State<Flicker> {
         : Theme.of(context).textTheme.titleLarge!.copyWith(
             fontSize: (MediaQuery.of(context).size.height * 0.7 +
                     MediaQuery.of(context).size.width * 0.6) *
-                0.13);
+                0.11);
   }
 }

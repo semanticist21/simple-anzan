@@ -34,12 +34,12 @@ List<int> getPlusMinusShuffleNums(int digit, int numOfNums) {
   int sum = 0;
 
   for (int i = 0; i < len - 1; i++) {
-    int randomNum = Random().nextInt(max - min) - min;
+    int randomNum = min + Random().nextInt(max - min);
 
     // num should not be zero.
     // randomNum % 10 == 0 not to make easy.
     while (randomNum == 0 || randomNum % 10 == 0) {
-      randomNum = Random().nextInt(max - min) - min;
+      randomNum = min + Random().nextInt(max - min);
     }
 
     list[i] = randomNum;

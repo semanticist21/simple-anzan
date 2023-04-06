@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/flicker.dart';
+import '../dialog/prob_list.dart';
 import '../provider/state_provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,7 +45,10 @@ class _HomePageState extends State<HomePage> {
                                               0.58) *
                                       0.015)),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () => showDialog(
+                              context: context,
+                              builder: (context) =>
+                                  ProbList(numList: _stateProvider.nums)),
                           icon: Icon(
                             Icons.search,
                             color: Theme.of(context)
@@ -62,9 +66,9 @@ class _HomePageState extends State<HomePage> {
                       )
                     ]),
                 Center(
-                    child: FractionallySizedBox(
-                  widthFactor: 0.75,
-                  heightFactor: 0.58,
+                    child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  height: MediaQuery.of(context).size.height * 0.35,
                   child: Container(
                     decoration: BoxDecoration(
                         color:
@@ -91,8 +95,7 @@ class _HomePageState extends State<HomePage> {
                           builder: (context, value, child) {
                         return Visibility(
                           visible: value.isButtonVisible,
-                          child: Expanded(
-                              child: FractionallySizedBox(
+                          child: FractionallySizedBox(
                             widthFactor: 0.6,
                             heightFactor: 0.65,
                             child: ElevatedButton(
@@ -107,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                                   style: _getMainButtonTextStyle(),
                                   textAlign: TextAlign.center,
                                 )),
-                          )),
+                          ),
                         );
                       }))),
             ),
