@@ -27,10 +27,16 @@ class _AddDialogState extends State<AddDialog> {
         Icon(Icons.dashboard_customize,
             size: 15, color: Theme.of(context).colorScheme.primaryContainer),
         SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-        Text(LocalizationChecker.setSpeedTitle,
-            style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.02,
-                color: Theme.of(context).colorScheme.primaryContainer))
+        Container(
+            constraints: const BoxConstraints(maxWidth: 300),
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text(LocalizationChecker.setSpeedTitle,
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.height * 0.02,
+                        color:
+                            Theme.of(context).colorScheme.primaryContainer))))
       ]),
       content: Form(
           key: _formKey,
@@ -73,7 +79,10 @@ class _AddDialogState extends State<AddDialog> {
               Navigator.of(context).pop(_textController.text);
             }
           },
-          child: const Text('확인'),
+          child: Text(
+            LocalizationChecker.ok,
+            style: TextStyle(color: Colors.white),
+          ),
         )
       ],
     );

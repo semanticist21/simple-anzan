@@ -97,6 +97,8 @@ class SettingsManager {
 
   V getCurrentValue<T, V>() {
     switch (T) {
+      case ShuffleMode:
+        return _shuffleModePref.enumToValue(getCurrentEnum<ShuffleMode>()) as V;
       case Speed:
         return _speedPref.enumToValue(getCurrentEnum<Speed>()) as V;
       case Digit:
@@ -128,7 +130,7 @@ class SettingsManager {
       case CalculationMode:
         _calculationModePref.saveSetting(_prefs, value);
         break;
-      case ShuffleModePref:
+      case ShuffleMode:
         _shuffleModePref.saveSetting(_prefs, value);
         break;
       case Speed:

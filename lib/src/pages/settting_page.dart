@@ -120,9 +120,10 @@ class _SettingsPageState extends State<SettingsPage> {
                                             bool>(_isOnlyPlus),
                                         togglePlusModeCallback),
                                     Tooltip(
-                                        message: '다른 자릿수와 섞어 계산합니다.',
+                                        message:
+                                            LocalizationChecker.shulffleDesc,
                                         child: buildToggleOption(
-                                            '셔플 모드',
+                                            LocalizationChecker.shuffle,
                                             Icons.shuffle,
                                             _manager.enumToValue<ShuffleMode,
                                                 bool>(_isShuffle),
@@ -316,7 +317,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Text(
             element,
             style: TextStyle(
-                height: 1.45,
+                height: 1.6,
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 fontSize: MediaQuery.of(context).size.height * 0.0185,
                 fontWeight: FontWeight.w500),

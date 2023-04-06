@@ -8,6 +8,7 @@ class StateProvider extends ChangeNotifier {
   ButtonState state = ButtonState.iterationNotStarted;
 
   bool isButtonVisible = true;
+  bool isQuestionListButtonVisible = false;
   String buttonText = LocalizationChecker.start;
 
   void changeState({ButtonState desiredState = ButtonState.autoState}) {
@@ -37,6 +38,7 @@ class StateProvider extends ChangeNotifier {
 
     buttonText = getButtonStr(state);
     isButtonVisible = getButtonVisibility(state);
+    isQuestionListButtonVisible = getQuestionListButtonVisibility(state);
     notifyListeners();
   }
 }
@@ -71,5 +73,18 @@ bool getButtonVisibility(ButtonState state) {
       return true;
     default:
       return true;
+  }
+}
+
+bool getQuestionListButtonVisibility(ButtonState state) {
+  switch (state) {
+    case ButtonState.iterationNotStarted:
+      return false;
+    case ButtonState.iterationStarted:
+      return false;
+    case ButtonState.iterationCompleted:
+      return true;
+    default:
+      return false;
   }
 }

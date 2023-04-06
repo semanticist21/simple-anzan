@@ -1,8 +1,10 @@
 import 'package:abacus_simple_anzan/src/settings/prefs/num_of_problems_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/prefs/speed.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
+import 'package:universal_io/io.dart';
 
 import '../words/const.dart';
 import '../functions/functions.dart';
@@ -19,7 +21,7 @@ class Flicker extends StatefulWidget {
 
 class _FlickerState extends State<Flicker> {
   late StateProvider _stateProvider;
-  final SettingsManager manager = SettingsManager();
+  final SettingsManager _manager = SettingsManager();
 
   String _number = '';
   String _answer = '';
@@ -30,13 +32,23 @@ class _FlickerState extends State<Flicker> {
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.addListener(_callbackOnButtonClick);
 
-    return FittedBox(
-        fit: BoxFit.contain,
-        child: Text(
-          _number,
-          style: _getMainNumberTextStyle(),
-          textAlign: TextAlign.right,
-        ));
+    return _number.length > 4
+        ? FittedBox(
+            fit: BoxFit.contain,
+            child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                child: Text(
+                  _number,
+                  style: _getMainNumberTextStyle(),
+                  textAlign: TextAlign.left,
+                )))
+        : Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+            child: Text(
+              _number,
+              style: _getMainNumberTextStyle(),
+              textAlign: TextAlign.left,
+            ));
   }
 
   // start iteration.
@@ -46,7 +58,7 @@ class _FlickerState extends State<Flicker> {
         showAnswer();
         break;
       case ButtonState.iterationStarted:
-        await _initiateIteration(manager);
+        await _initiateIteration(_manager);
         break;
       case ButtonState.iterationCompleted:
         break;
@@ -60,10 +72,21 @@ class _FlickerState extends State<Flicker> {
 
     switch (manager.getCurrentEnum<CalculationMode>()) {
       case CalculationMode.onlyPlus:
-        _runAdd(manager);
+        var isShuffle = manager.getCurrentValue<ShuffleMode, bool>();
+        if (isShuffle) {
+          _runShuffleAdd(manager);
+        } else {
+          _runAdd(manager);
+        }
+
         break;
       case CalculationMode.plusMinus:
-        _runAddMinus(manager);
+        var isShuffle = manager.getCurrentValue<ShuffleMode, bool>();
+        if (isShuffle) {
+          _runShuffleAddMinus(manager);
+        } else {
+          _runAddMinus(manager);
+        }
         break;
     }
   }
@@ -73,6 +96,12 @@ class _FlickerState extends State<Flicker> {
 
   Future<void> _runAddMinus(SettingsManager manager) async =>
       await doProcess(getPlusMinusNums, manager);
+
+  Future<void> _runShuffleAdd(SettingsManager manager) async =>
+      await doProcess(getPlusShuffleNums, manager);
+
+  Future<void> _runShuffleAddMinus(SettingsManager manager) async =>
+      await doProcess(getPlusMinusShuffleNums, manager);
 
   Future<void> doProcess(
       Function(int, int) func, SettingsManager manager) async {
@@ -97,7 +126,7 @@ class _FlickerState extends State<Flicker> {
 
         if (questions[i] > 0) {
           var parsedStr = questions[i].toString();
-          str = ' $parsedStr';
+          str = '\t$parsedStr';
         } else {
           str = questions[i].toString();
         }
@@ -120,7 +149,7 @@ class _FlickerState extends State<Flicker> {
 
   void showAnswer() {
     setState(() {
-      _number = _answer;
+      _number = '\t$_answer';
     });
   }
 
@@ -132,6 +161,14 @@ class _FlickerState extends State<Flicker> {
 
 // styles.
   TextStyle _getMainNumberTextStyle() {
-    return Theme.of(context).textTheme.titleLarge!;
+    return Platform.isWindows
+        ? Theme.of(context).textTheme.titleLarge!.copyWith(
+            fontSize: (MediaQuery.of(context).size.height * 0.7 +
+                    MediaQuery.of(context).size.width * 0.6) *
+                0.17)
+        : Theme.of(context).textTheme.titleLarge!.copyWith(
+            fontSize: (MediaQuery.of(context).size.height * 0.7 +
+                    MediaQuery.of(context).size.width * 0.6) *
+                0.13);
   }
 }

@@ -19,6 +19,9 @@ const String homeMultiplyLabelKr = '';
 const String settingMultiplyLabelKr = ' ×/÷ 설정';
 
 // button strings
+const String okKr = '확인';
+const String okEn = 'Ok';
+
 const String startKr = '시작 !!';
 const String startEn = 'Start !!';
 
@@ -32,12 +35,14 @@ const String error = 'The page you requested does not exist.';
 
 // options(settings)
 const String settingsKr = '설정';
+const String shuffleKr = '셔플하기';
 const String onlyPlusesKr = '덧셈(+)만 하기';
 const String speedKr = "문제 속도";
 const String digitKr = "자리 수";
 const String numOfProblemsKr = "문제 수";
 
 const String settingsEn = 'Settings';
+const String shuffleEn = 'Shuffle';
 const String onlyPlusesEn = 'Only pluses';
 const String speedEn = "Speed";
 const String digitEn = "Digit";
@@ -56,6 +61,9 @@ const String rangeWordEn = 'put value between 80~3000.';
 const String pleaseInsertValueEn = 'the value is empty.';
 const String pleaseTooBigValueEn = 'too big value.';
 const String pleaseTooSmallValueEn = 'too small value.';
+
+const String shuffleDescKr = '다른 자릿수와 섞어 계산합니다.';
+const String shuffleDescEn = 'shuffle numbers with different digits';
 
 // other
 const String empty = '';

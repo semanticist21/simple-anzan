@@ -15,11 +15,13 @@ class LocalizationChecker {
   static String mode = modeEn;
 
   // button str
+  static String ok = okEn;
   static String start = startEn;
   static String check = checkEn;
 
   // options(settings)
   static String settings = settingsEn;
+  static String shuffle = shuffleEn;
   static String onlyPluses = onlyPlusesEn;
   static String speed = speedEn;
   static String digit = digitEn;
@@ -31,6 +33,8 @@ class LocalizationChecker {
   static String pleaseTooBigValue = pleaseTooBigValueEn;
   static String pleaseTooSmallValue = pleaseTooSmallValueEn;
 
+  static String shulffleDesc = shuffleDescEn;
+
   LocalizationChecker() {
     if (defaultLocale == 'ko_KR') {
       mode = modeKr;
@@ -41,6 +45,7 @@ class LocalizationChecker {
       homeMultiplyLabel = homeMultiplyLabelKr;
       settingMultiplyLabel = settingMultiplyLabelKr;
 
+      ok = okKr;
       start = startKr;
       check = checkKr;
 
@@ -55,6 +60,8 @@ class LocalizationChecker {
       pleaseInsertValue = pleaseInsertValueKr;
       pleaseTooBigValue = pleaseTooBigValueKr;
       pleaseTooSmallValue = pleaseTooSmallValueKr;
+
+      shulffleDesc = shuffleDescKr;
     }
   }
 }

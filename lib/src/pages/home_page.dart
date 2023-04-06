@@ -38,11 +38,11 @@ class _HomePageState extends State<HomePage> {
                       border: Border.all(
                           color: Theme.of(context).colorScheme.shadow)),
                   child: Center(
-                      child: FractionallySizedBox(
-                    widthFactor: 0.8,
-                    heightFactor: 0.8,
-                    child: _flicker,
-                  )),
+                    child: FractionallySizedBox(
+                        widthFactor: 0.9,
+                        heightFactor: 0.9,
+                        child: Center(child: _flicker)),
+                  ),
                 ),
               )),
             ),
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                                     child: Text(
                                       value.buttonText,
                                       style: _getMainButtonTextStyle(),
-                                      textAlign: TextAlign.center,
+                                      textAlign: TextAlign.left,
                                     )));
                           })))),
             ),
