@@ -68,7 +68,7 @@ class _AddDialogMultiplyState extends State<AddDialogMultiply> {
                 return null;
               }
 
-              if (valueInt > 10000) {
+              if (valueInt > 30000) {
                 return LocalizationChecker.pleaseTooBigValue;
               }
 

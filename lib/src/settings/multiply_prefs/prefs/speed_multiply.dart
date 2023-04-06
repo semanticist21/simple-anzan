@@ -10,7 +10,7 @@ class SpeedMultiplyPref
   final String _saveCustomKey = 'multiplyIntervalCustom';
 
   final int _defaultIndex = 2;
-  final int _defaultCustomValue = 100;
+  final int _defaultCustomValue = 1000;
 
   late int _currentIndex;
   late SpeedMultiply _currentValue;

@@ -82,8 +82,8 @@ const String pleaseTooSmallValueEn = 'too small value.';
 const String shuffleDescKr = '다른 자릿수와 섞어 계산합니다.';
 const String shuffleDescEn = 'shuffle numbers with different digits';
 
-const String rangeMultiplyWordKr = 'put value between 80~10000.';
-const String rangeMultiplyWordEn = 'put value between 80~10000.';
+const String rangeMultiplyWordKr = '80~30000 사이의 값을 입력하세요.';
+const String rangeMultiplyWordEn = 'put value between 80~30000.';
 
 // other
 const String empty = '';
