@@ -1,8 +1,9 @@
-import 'dart:io';
 import 'package:abacus_simple_anzan/src/words/const.dart';
+import 'package:universal_io/io.dart';
 
 class LocalizationChecker {
   static String defaultLocale = Platform.localeName;
+  static bool isKr = false;
 
   // options(settings)
   static String settings = settingsEn;
@@ -19,6 +20,8 @@ class LocalizationChecker {
 
   LocalizationChecker() {
     if (defaultLocale == 'ko_KR') {
+      isKr = true;
+
       settings = settingsKr;
       onlyPluses = onlyPlusesKr;
       speed = speedKr;

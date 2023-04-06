@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                   child: Center(
                       child: FractionallySizedBox(
                     widthFactor: 0.8,
-                    heightFactor: 0.3,
+                    heightFactor: 0.45,
                     child: Container(
                       decoration: BoxDecoration(
                           color: const Color.fromRGBO(158, 158, 158, 0.1),
@@ -59,26 +59,28 @@ class _HomePageState extends State<HomePage> {
                   height: 100,
                   width: double.infinity,
                   child: Center(
-                      child: FractionallySizedBox(
-                          widthFactor: 0.7,
-                          heightFactor: 0.5,
-                          child: Consumer<StateProvider>(
-                              builder: (context, value, child) {
-                            return Visibility(
-                                visible: value.isButtonVisible,
-                                child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateColor.resolveWith(
-                                              _getButtonColorProp),
-                                    ),
-                                    onPressed: _onPressed,
-                                    child: Text(
-                                      value.buttonText,
-                                      style: _getMainButtonTextStyle(),
-                                      textAlign: TextAlign.center,
-                                    )));
-                          })))),
+                      child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 700),
+                          child: FractionallySizedBox(
+                              widthFactor: 0.7,
+                              heightFactor: 0.5,
+                              child: Consumer<StateProvider>(
+                                  builder: (context, value, child) {
+                                return Visibility(
+                                    visible: value.isButtonVisible,
+                                    child: ElevatedButton(
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateColor.resolveWith(
+                                                  _getButtonColorProp),
+                                        ),
+                                        onPressed: _onPressed,
+                                        child: Text(
+                                          value.buttonText,
+                                          style: _getMainButtonTextStyle(),
+                                          textAlign: TextAlign.center,
+                                        )));
+                              }))))),
             ),
           ] // children ends
               ),
