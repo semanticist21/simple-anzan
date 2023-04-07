@@ -38,13 +38,16 @@ class _ProbListState extends State<ProbList> {
                         onPressed: () => Navigator.of(context).pop(),
                         splashRadius: 10,
                       ),
-                      title: Text(LocalizationChecker.checkProb,
-                          style: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.018,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onPrimaryContainer)),
+                      title: FittedBox(
+                          child: Text(
+                        LocalizationChecker.checkProb,
+                        style: TextStyle(
+                            fontSize:
+                                MediaQuery.of(context).size.height * 0.018,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer),
+                      )),
                     ),
                     widget.numList.isNotEmpty
                         ? SliverList.builder(

@@ -43,13 +43,14 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                         onPressed: () => Navigator.of(context).pop(),
                         splashRadius: 10,
                       ),
-                      title: Text(LocalizationChecker.checkProb,
-                          style: TextStyle(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onPrimaryContainer,
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.018)),
+                      title: FittedBox(
+                          child: Text(LocalizationChecker.checkProb,
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer,
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.018))),
                     ),
                     widget.numList.isNotEmpty
                         ? SliverList.builder(

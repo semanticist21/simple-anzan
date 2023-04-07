@@ -96,7 +96,7 @@ const String noProbExecutedKr = '실행된 문제가 없습니다.';
 const String noProbExecutedEn = 'Run calculation first.';
 
 const String checkProbKr = '문제 & 정답 확인';
-const String checkProbEn = 'Check Questions & answers';
+const String checkProbEn = 'Check Questions & Answers';
 
 const String checkProbQKr = '문제 리스트 확인';
 const String checkProbQEn = 'Check Questions';
