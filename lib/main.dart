@@ -90,30 +90,33 @@ class _Home extends State<Home> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          StreamBuilder(builder: (context, snapshot) {
-            return Row(children: [
-              Tooltip(
-                  message: LocalizationChecker.soundOn,
-                  child: Icon(
-                    SoundOptionHandler.isSoundOn
-                        ? CupertinoIcons.speaker_2
-                        : CupertinoIcons.speaker_slash,
-                    color: Theme.of(context).colorScheme.onBackground,
-                  )),
-              Transform.scale(
-                  scale: 0.8,
-                  child: CupertinoSwitch(
-                    activeColor: Theme.of(context).colorScheme.onSecondary,
-                    trackColor: Theme.of(context).colorScheme.onPrimary,
-                    onChanged: (value) {
-                      OptionManager()
-                          .setSoundBool(!SoundOptionHandler.isSoundOn);
-                      setState(() {});
-                    },
-                    value: SoundOptionHandler.isSoundOn,
-                  )),
-            ]);
-          }),
+          StreamBuilder(
+              initialData: true,
+              stream: SoundOptionHandler.isSoundOnStream.stream,
+              builder: (context, snapshot) {
+                return Row(children: [
+                  Tooltip(
+                      message: LocalizationChecker.soundOn,
+                      child: Icon(
+                        SoundOptionHandler.isSoundOn
+                            ? CupertinoIcons.speaker_2
+                            : CupertinoIcons.speaker_slash,
+                        color: Theme.of(context).colorScheme.onBackground,
+                      )),
+                  Transform.scale(
+                      scale: 0.8,
+                      child: CupertinoSwitch(
+                        activeColor: Theme.of(context).colorScheme.onSecondary,
+                        trackColor: Theme.of(context).colorScheme.onPrimary,
+                        onChanged: (value) {
+                          OptionManager()
+                              .setSoundBool(!SoundOptionHandler.isSoundOn);
+                          setState(() {});
+                        },
+                        value: SoundOptionHandler.isSoundOn,
+                      )),
+                ]);
+              }),
           const SizedBox(width: 10),
           Row(children: [
             Tooltip(
