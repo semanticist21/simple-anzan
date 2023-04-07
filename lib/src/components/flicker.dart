@@ -3,6 +3,7 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 import 'package:universal_io/io.dart';
@@ -23,6 +24,7 @@ class Flicker extends StatefulWidget {
 class _FlickerState extends State<Flicker> {
   late StateProvider _stateProvider;
   final SettingsManager _manager = SettingsManager();
+  var formattter = NumberFormat('#,##0');
 
   String _number = '';
   String _answer = '';
@@ -131,18 +133,22 @@ class _FlickerState extends State<Flicker> {
     var duration = manager.getCurrentValue<Speed, Duration>();
     var len = questions.length;
 
+    setState(() {
+      _number = '';
+    });
+    await Future.delayed(const Duration(milliseconds: 300));
     for (int i = 0; i < len; i++) {
+      var str = '';
+
+      if (questions[i] > 0) {
+        var parsedStr = questions[i].toString();
+        str = '\t$parsedStr';
+      } else {
+        str = questions[i].toString();
+      }
+
+      OptionManager().soundOption.playSound();
       setState(() {
-        var str = '';
-
-        if (questions[i] > 0) {
-          var parsedStr = questions[i].toString();
-          str = '\t$parsedStr';
-        } else {
-          str = questions[i].toString();
-        }
-
-        OptionManager().soundOption.playSound();
         _number = str;
       });
       await Future.delayed(duration);
@@ -162,7 +168,7 @@ class _FlickerState extends State<Flicker> {
 
   void _showAnswer() {
     setState(() {
-      _number = '\t$_answer';
+      _number = '\t${formattter.format(int.parse(_answer))}';
     });
   }
 

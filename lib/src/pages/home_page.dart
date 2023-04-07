@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_io/io.dart';
 
 import '../components/flicker.dart';
 import '../const/localization.dart';
@@ -41,8 +42,11 @@ class _HomePageState extends State<HomePage> {
                                       .colorScheme
                                       .onBackground
                                       .withOpacity(0.7),
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.03)),
+                                  fontSize: Platform.isWindows
+                                      ? MediaQuery.of(context).size.height *
+                                          0.03
+                                      : MediaQuery.of(context).size.height *
+                                          0.015)),
                           IconButton(
                               onPressed: () {
                                 if (_stateProvider.state ==
@@ -60,8 +64,11 @@ class _HomePageState extends State<HomePage> {
                                       .colorScheme
                                       .onBackground
                                       .withOpacity(0.7),
-                                  size: MediaQuery.of(context).size.height *
-                                      0.03),
+                                  size: Platform.isWindows
+                                      ? MediaQuery.of(context).size.height *
+                                          0.03
+                                      : MediaQuery.of(context).size.height *
+                                          0.015),
                               splashRadius: 10),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.16,

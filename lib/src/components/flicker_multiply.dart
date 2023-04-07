@@ -5,6 +5,7 @@ import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/num_of_pro
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 
@@ -23,6 +24,7 @@ class FlickerMultiply extends StatefulWidget {
 class _FlickerMultiplyState extends State<FlickerMultiply> {
   late StateMultiplyProvider _stateProvider;
   final SettingsMultiplyManager _manager = SettingsMultiplyManager();
+  var formattter = NumberFormat('#,##0');
 
   String _number = '';
 
@@ -107,11 +109,15 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
     var length = questions.length;
 
     if (isMultiply == CalCulationMultiplyMode.multiply) {
+      setState(() {
+        _number = '';
+      });
+      await Future.delayed(const Duration(milliseconds: 300));
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
+        OptionManager().soundOption.playSound();
         setState(() {
-          OptionManager().soundOption.playSound();
           _number = '${item.item1} × ${item.item2}';
         });
         await Future.delayed(duration);
@@ -129,7 +135,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
 
         //show answer
         setState(() {
-          _number = '${item.item1 * item.item2}';
+          _number = formattter.format(item.item1 * item.item2);
         });
         if (i == length - 1) {
           break;
@@ -154,11 +160,15 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         }
       }
     } else {
+      setState(() {
+        _number = '';
+      });
+      await Future.delayed(const Duration(milliseconds: 300));
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
+        OptionManager().soundOption.playSound();
         setState(() {
-          OptionManager().soundOption.playSound();
           _number = '${item.item1} ÷ ${item.item2}';
         });
         await Future.delayed(duration);
@@ -176,7 +186,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
 
         //show answer
         setState(() {
-          _number = '${(item.item1 ~/ item.item2)}';
+          _number = formattter.format(item.item1 ~/ item.item2);
         });
         if (i == length - 1) {
           break;

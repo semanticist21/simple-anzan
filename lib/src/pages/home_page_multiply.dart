@@ -4,6 +4,7 @@ import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/calculatio
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_io/io.dart';
 
 import '../components/flicker_multiply.dart';
 import '../dialog/prob_list_multiply.dart';
@@ -43,8 +44,11 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                                       .colorScheme
                                       .onBackground
                                       .withOpacity(0.7),
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.03)),
+                                  fontSize: Platform.isWindows
+                                      ? MediaQuery.of(context).size.height *
+                                          0.03
+                                      : MediaQuery.of(context).size.height *
+                                          0.015)),
                           IconButton(
                               onPressed: () {
                                 if (_stateProvider.state ==
@@ -65,8 +69,11 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                                       .colorScheme
                                       .onBackground
                                       .withOpacity(0.7),
-                                  size: MediaQuery.of(context).size.height *
-                                      0.03),
+                                  size: Platform.isWindows
+                                      ? MediaQuery.of(context).size.height *
+                                          0.03
+                                      : MediaQuery.of(context).size.height *
+                                          0.015),
                               splashRadius: 10),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.16,
