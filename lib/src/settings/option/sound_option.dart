@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SoundOptionHandler {
@@ -8,11 +8,9 @@ class SoundOptionHandler {
   static var isSoundOn = true;
   static StreamController<bool> isSoundOnStream = StreamController();
 
-  final audioPlayer = AudioPlayer();
-  final audioAsset = AssetSource('beep_short.mp3');
+  final audioAsset = AudioSource.file('assets/beep_short.mp3');
 
   SoundOptionHandler(SharedPreferences pref) {
-    audioPlayer.setVolume(1);
     _initSettings(pref);
   }
 
@@ -23,13 +21,10 @@ class SoundOptionHandler {
 
   Future<void> playSound() async {
     if (isSoundOn) {
-      audioPlayer.play(audioAsset);
-    }
-  }
-
-  void stopSound() {
-    if (isSoundOn) {
-      audioPlayer.stop();
+      AudioPlayer()
+        ..setAudioSource(audioAsset)
+        ..setVolume(1)
+        ..play();
     }
   }
 }

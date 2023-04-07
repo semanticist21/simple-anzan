@@ -39,24 +39,20 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
   Widget build(BuildContext context) {
     return SizedBox(
         child: Center(
-            child: ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 1000),
-      child: FractionallySizedBox(
-        widthFactor: 0.8,
-        heightFactor: 0.8,
-        child: Container(
-          decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onTertiaryContainer,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                  color: Theme.of(context).colorScheme.outlineVariant)),
-          child: FractionallySizedBox(
-              widthFactor: 0.9,
-              heightFactor: 0.9,
-              child: RawScrollbar(
-                  thumbColor: Colors.transparent,
-                  scrollbarOrientation: ScrollbarOrientation.right,
-                  controller: _controller,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1000),
+        child: FractionallySizedBox(
+          widthFactor: 0.8,
+          heightFactor: 0.8,
+          child: Container(
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.onTertiaryContainer,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                      color: Theme.of(context).colorScheme.outlineVariant)),
+              child: FractionallySizedBox(
+                  widthFactor: 0.9,
+                  heightFactor: 0.9,
                   child: ListView(
                       controller: _controller,
                       physics: const NeverScrollableScrollPhysics(),
@@ -177,13 +173,14 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         getDropdownMenuItemList<
                                             NumOfMultiplyProblems>(_manager),
                                         changeOptionCallback<
-                                            NumOfMultiplyProblems>)
+                                            NumOfMultiplyProblems>),
+                                    const SizedBox(height: 50),
                                   ])),
                         )
                       ]))),
         ),
       ),
-    )));
+    ));
   }
 
   Padding buildToggleOption(String title, IconData iconData, bool value,

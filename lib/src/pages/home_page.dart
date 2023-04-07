@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                               splashRadius: 10),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.16,
-                            height: MediaQuery.of(context).size.height * 0.195,
+                            height: MediaQuery.of(context).size.height * 0.175,
                           )
                         ])),
                 Center(
