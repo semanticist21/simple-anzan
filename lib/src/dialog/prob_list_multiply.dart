@@ -38,7 +38,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                           Icons.arrow_back_ios,
                           color:
                               Theme.of(context).colorScheme.onPrimaryContainer,
-                          size: MediaQuery.of(context).size.height * 0.025,
+                          size: MediaQuery.of(context).size.height * 0.03,
                         ),
                         onPressed: () => Navigator.of(context).pop(),
                         splashRadius: 10,
@@ -50,7 +50,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                       .colorScheme
                                       .onPrimaryContainer,
                                   fontSize: MediaQuery.of(context).size.height *
-                                      0.018))),
+                                      0.026))),
                     ),
                     widget.numList.isNotEmpty
                         ? SliverList.builder(
@@ -62,7 +62,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                 child: Container(
                                   padding: const EdgeInsets.all(10),
                                   height:
-                                      MediaQuery.of(context).size.height * 0.10,
+                                      MediaQuery.of(context).size.height * 0.14,
                                   width: double.infinity,
                                   color: Theme.of(context)
                                       .colorScheme
@@ -81,7 +81,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                               size: MediaQuery.of(context)
                                                       .size
                                                       .height *
-                                                  0.023,
+                                                  0.026,
                                             ),
                                             const SizedBox(width: 5),
                                             Text(
@@ -104,7 +104,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                                     size: MediaQuery.of(context)
                                                             .size
                                                             .height *
-                                                        0.023,
+                                                        0.026,
                                                     color: Theme.of(context)
                                                         .colorScheme
                                                         .onBackground),
@@ -133,7 +133,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
   TextStyle getTextStyle() {
     return TextStyle(
         color: Theme.of(context).colorScheme.onBackground,
-        fontSize: MediaQuery.of(context).size.height * 0.019);
+        fontSize: MediaQuery.of(context).size.height * 0.025);
   }
 
   Widget getWhenItemEmpty() {
@@ -145,11 +145,11 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
       child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Icon(Icons.no_sim_sharp,
-            size: MediaQuery.of(context).size.height * 0.13),
+            size: MediaQuery.of(context).size.height * 0.15),
         const SizedBox(height: 10),
         Text(LocalizationChecker.noProbExecuted,
             style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.03,
+                fontSize: MediaQuery.of(context).size.height * 0.034,
                 fontWeight: FontWeight.w600,
                 color: Theme.of(context).colorScheme.onBackground))
       ])),
