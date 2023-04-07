@@ -43,7 +43,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
         constraints: const BoxConstraints(maxWidth: 1000),
         child: FractionallySizedBox(
           widthFactor: 0.8,
-          heightFactor: 0.8,
+          heightFactor: 0.9,
           child: Container(
               decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.onTertiaryContainer,

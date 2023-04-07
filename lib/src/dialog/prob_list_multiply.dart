@@ -22,7 +22,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
   Widget build(BuildContext context) {
     return Dialog(
         child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1000),
+            constraints: const BoxConstraints(maxWidth: 800),
             child: FractionallySizedBox(
                 heightFactor: 0.7,
                 child: CustomScrollView(

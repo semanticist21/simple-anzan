@@ -30,9 +30,8 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
           alignment: Alignment.topCenter,
           child: Column(children: [
             Expanded(
-              flex: 3,
-              child: Stack(children: [
-                Visibility(
+                flex: 1,
+                child: Visibility(
                     visible: _stateProvider.isQuestionListButtonVisible,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -44,11 +43,8 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                                       .colorScheme
                                       .onBackground
                                       .withOpacity(0.7),
-                                  fontSize: (MediaQuery.of(context).size.width *
-                                              0.75 +
-                                          MediaQuery.of(context).size.height *
-                                              0.58) *
-                                      0.015)),
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.03)),
                           IconButton(
                               onPressed: () {
                                 if (_stateProvider.state ==
@@ -64,57 +60,52 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                                                   CalCulationMultiplyMode>(),
                                         ));
                               },
-                              icon: Icon(
-                                Icons.search,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onBackground
-                                    .withOpacity(0.7),
-                                size:
-                                    (MediaQuery.of(context).size.width * 0.75 +
-                                            MediaQuery.of(context).size.height *
-                                                0.58) *
-                                        0.02,
-                              ),
+                              icon: Icon(Icons.search,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground
+                                      .withOpacity(0.7),
+                                  size: MediaQuery.of(context).size.height *
+                                      0.03),
                               splashRadius: 10),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.16,
-                            height: MediaQuery.of(context).size.height * 0.195,
-                          )
-                        ])),
-                Center(
-                    child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  height: MediaQuery.of(context).size.height * 0.4,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color:
-                            Theme.of(context).colorScheme.onSecondaryContainer,
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: Theme.of(context).colorScheme.shadow)),
-                    child: Center(
-                      child: FractionallySizedBox(
-                          widthFactor: 0.9,
-                          heightFactor: 0.9,
-                          child: Center(child: _flicker)),
-                    ),
+                            // height: MediaQuery.of(context).size.height * 0.175,
+                          ),
+                        ]))),
+            Expanded(
+              flex: 8,
+              child: Center(
+                  child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.7,
+                height: MediaQuery.of(context).size.height * 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: Theme.of(context).colorScheme.shadow)),
+                  child: Center(
+                    child: FractionallySizedBox(
+                        widthFactor: 0.9,
+                        heightFactor: 0.9,
+                        child: Center(child: _flicker)),
                   ),
-                )),
-              ]),
+                ),
+              )),
             ),
             Expanded(
-              flex: 1,
+              flex: 6,
               child: Center(
                   child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 800),
+                      constraints: const BoxConstraints(maxWidth: 600),
                       child: Consumer<StateMultiplyProvider>(
                           builder: (context, value, child) {
                         return Visibility(
                           visible: value.isButtonVisible,
                           child: FractionallySizedBox(
                             widthFactor: 0.6,
-                            heightFactor: 0.65,
+                            heightFactor: 0.35,
                             child: ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor:

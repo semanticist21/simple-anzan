@@ -176,7 +176,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
 
         //show answer
         setState(() {
-          _number = '${item.item1 / item.item2}';
+          _number = '${(item.item1 ~/ item.item2)}';
         });
         if (i == length - 1) {
           break;
