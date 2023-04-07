@@ -12,7 +12,7 @@ class SoundOptionHandler {
   final audioAsset = AssetSource('beep_short.mp3');
 
   SoundOptionHandler(SharedPreferences pref) {
-    audioPlayer.setPlayerMode(PlayerMode.lowLatency);
+    audioPlayer.setVolume(1);
     _initSettings(pref);
   }
 
@@ -21,7 +21,7 @@ class SoundOptionHandler {
     isSoundOn = prefs.getBool(soundKey) ?? true;
   }
 
-  void playSound() {
+  Future<void> playSound() async {
     if (isSoundOn) {
       audioPlayer.play(audioAsset);
     }
