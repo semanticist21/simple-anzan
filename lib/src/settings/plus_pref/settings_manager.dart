@@ -4,7 +4,6 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/digit_pref.dart
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
-import 'package:abacus_simple_anzan/src/theme/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsManager {
@@ -26,7 +25,6 @@ class SettingsManager {
   Future<void> _initSettings() async {
     _prefs = await SharedPreferences.getInstance();
     refreshPrefValues(_prefs);
-    setThemeSelector(_prefs);
   }
 
   void refreshPrefValues(SharedPreferences prefs) {
@@ -180,19 +178,4 @@ class SettingsManager {
         throw Error();
     }
   }
-
-  void setThemeSelector(SharedPreferences prefs) {
-    ThemeSelector(prefs);
-    ThemeSelector.isDarkStream.add(ThemeSelector.isDark);
-  }
-
-  setThemeBool(bool value) {
-    ThemeSelector.isDark = value;
-    _saveTheme(value);
-    ThemeSelector.isDarkStream.add(value);
-  }
-
-  void _saveTheme(bool value) => _prefs.setBool(ThemeSelector.themeKey, value);
-
-  bool getCurrentDarkThemeFlag() => ThemeSelector.isDark;
 }

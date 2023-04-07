@@ -80,7 +80,7 @@ bool getButtonVisibility(ButtonState state) {
 bool getQuestionListButtonVisibility(ButtonState state) {
   switch (state) {
     case ButtonState.iterationNotStarted:
-      return false;
+      return true;
     case ButtonState.iterationStarted:
       return false;
     case ButtonState.iterationCompleted:

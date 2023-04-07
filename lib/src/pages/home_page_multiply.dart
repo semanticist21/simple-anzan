@@ -143,9 +143,9 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
   // styles
   Color _getButtonColorProp(Set<MaterialState> states) {
     if (states.contains(MaterialState.pressed)) {
-      return Theme.of(context).colorScheme.onSurfaceVariant;
+      return Theme.of(context).colorScheme.surfaceVariant;
     } else {
-      return Theme.of(context).colorScheme.onSurface;
+      return Theme.of(context).colorScheme.surfaceTint;
     }
   }
 

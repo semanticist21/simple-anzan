@@ -138,7 +138,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                     buildDropdownButton(
                                         LocalizationChecker.smallDigitMultiply,
                                         Icon(
-                                          Icons.onetwothree,
+                                          CupertinoIcons.number_square,
                                           color: Theme.of(context)
                                               .colorScheme
                                               .primaryContainer,
@@ -151,7 +151,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                     buildDropdownButton(
                                         LocalizationChecker.bigDigitMultiply,
                                         Icon(
-                                          Icons.onetwothree,
+                                          CupertinoIcons.number_square_fill,
                                           color: Theme.of(context)
                                               .colorScheme
                                               .primaryContainer,

@@ -1,7 +1,8 @@
 import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/option/option_manager.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
-import 'package:abacus_simple_anzan/src/theme/theme.dart';
+import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:abacus_simple_anzan/src/words/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     LocalizationChecker();
     SettingsManager();
+    OptionManager();
     SettingsMultiplyManager();
 
     return StreamBuilder<bool>(
@@ -98,7 +100,7 @@ class _Home extends State<Home> {
                 activeColor: Theme.of(context).colorScheme.onSecondary,
                 trackColor: Theme.of(context).colorScheme.onPrimary,
                 onChanged: (value) {
-                  SettingsManager().setThemeBool(!ThemeSelector.isDark);
+                  OptionManager().setThemeBool(!ThemeSelector.isDark);
                   setState(() {});
                 },
                 value: ThemeSelector.isDark,

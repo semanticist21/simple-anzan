@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../words/const.dart';
+import '../../words/const.dart';
 
 class ThemeSelector {
   static var themeKey = 'isDark';
@@ -64,6 +64,9 @@ class ThemeSelector {
               // button color
               onSurface: Colors.green,
               onSurfaceVariant: Colors.greenAccent,
+
+              surfaceTint: const Color.fromRGBO(112, 128, 250, 1),
+              surfaceVariant: const Color.fromRGBO(99, 116, 244, 1),
             ),
         textTheme: const TextTheme(
           // option style
@@ -133,6 +136,9 @@ class ThemeSelector {
               // button color
               onSurface: Colors.blue,
               onSurfaceVariant: Colors.blueAccent,
+
+              surfaceTint: Colors.orange,
+              surfaceVariant: Colors.orangeAccent,
             ),
         textTheme: const TextTheme(
           // option style
