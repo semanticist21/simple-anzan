@@ -355,7 +355,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           child: Text(
             element,
             style: TextStyle(
-                height: 1.6,
+                height: MediaQuery.of(context).size.height * 0.0035,
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 fontSize: MediaQuery.of(context).size.height * 0.0185,
                 fontWeight: FontWeight.w500),
