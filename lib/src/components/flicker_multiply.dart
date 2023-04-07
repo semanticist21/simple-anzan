@@ -11,6 +11,7 @@ import 'package:universal_io/io.dart';
 import '../functions/tuple.dart';
 import '../settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import '../functions/functions.dart';
+import '../settings/option/option_manager.dart';
 
 class FlickerMultiply extends StatefulWidget {
   const FlickerMultiply({super.key});
@@ -109,10 +110,12 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
+        OptionManager().soundOption.playSound();
         setState(() {
           _number = '${item.item1} × ${item.item2}';
         });
         await Future.delayed(duration);
+        OptionManager().soundOption.stopSound();
 
         setState(() {
           _number = '';
@@ -155,10 +158,12 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
+        OptionManager().soundOption.playSound();
         setState(() {
           _number = '${item.item1} ÷ ${item.item2}';
         });
         await Future.delayed(duration);
+        OptionManager().soundOption.stopSound();
 
         setState(() {
           _number = '';

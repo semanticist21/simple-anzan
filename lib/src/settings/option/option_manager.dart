@@ -5,6 +5,7 @@ import 'theme_selector.dart';
 
 class OptionManager {
   late SharedPreferences _prefs;
+  late SoundOptionHandler soundOption;
 
   // constructor
   static final OptionManager _instance = OptionManager._constructor();
@@ -22,8 +23,8 @@ class OptionManager {
   }
 
   void setSoundOption(SharedPreferences prefs) {
-    SoundOption(prefs);
-    SoundOption.isSoundOnStream.add(SoundOption.isSoundOn);
+    soundOption = SoundOptionHandler(prefs);
+    SoundOptionHandler.isSoundOnStream.add(SoundOptionHandler.isSoundOn);
   }
 
   void setThemeSelector(SharedPreferences prefs) {
@@ -32,9 +33,9 @@ class OptionManager {
   }
 
   setSoundBool(bool value) {
-    SoundOption.isSoundOn = value;
+    SoundOptionHandler.isSoundOn = value;
     _saveSound(value);
-    SoundOption.isSoundOnStream.add(value);
+    SoundOptionHandler.isSoundOnStream.add(value);
   }
 
   setThemeBool(bool value) {
@@ -43,9 +44,10 @@ class OptionManager {
     ThemeSelector.isDarkStream.add(value);
   }
 
-  void _saveSound(bool value) => _prefs.setBool(SoundOption.soundKey, value);
+  void _saveSound(bool value) =>
+      _prefs.setBool(SoundOptionHandler.soundKey, value);
   void _saveTheme(bool value) => _prefs.setBool(ThemeSelector.themeKey, value);
 
-  bool getCurrentSoundFlag() => SoundOption.isSoundOn;
+  bool getCurrentSoundFlag() => SoundOptionHandler.isSoundOn;
   bool getCurrentDarkThemeFlag() => ThemeSelector.isDark;
 }

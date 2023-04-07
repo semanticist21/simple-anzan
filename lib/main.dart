@@ -95,7 +95,7 @@ class _Home extends State<Home> {
               Tooltip(
                   message: LocalizationChecker.soundOn,
                   child: Icon(
-                    SoundOption.isSoundOn
+                    SoundOptionHandler.isSoundOn
                         ? CupertinoIcons.speaker_2
                         : CupertinoIcons.speaker_slash,
                     color: Theme.of(context).colorScheme.onBackground,
@@ -106,10 +106,11 @@ class _Home extends State<Home> {
                     activeColor: Theme.of(context).colorScheme.onSecondary,
                     trackColor: Theme.of(context).colorScheme.onPrimary,
                     onChanged: (value) {
-                      OptionManager().setSoundBool(!SoundOption.isSoundOn);
+                      OptionManager()
+                          .setSoundBool(!SoundOptionHandler.isSoundOn);
                       setState(() {});
                     },
-                    value: SoundOption.isSoundOn,
+                    value: SoundOptionHandler.isSoundOn,
                   )),
             ]);
           }),

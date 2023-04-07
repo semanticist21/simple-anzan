@@ -39,6 +39,7 @@ dependencies:
   universal_io: ^2.2.0
   font_awesome_flutter: ^10.4.0
   intl: ^0.18.0
+  audioplayers: ^3.0.1
 
 dev_dependencies:
   flutter_test:

@@ -191,7 +191,26 @@ List<Tuple<int, int>> getDivdieNums(
   var list = List<Tuple<int, int>>.empty(growable: true);
   var max = pow(10, bigDigit) - 1;
 
-  if (bigDigit == divideDigit) {
+  if (bigDigit == 1 && divideDigit == 1) {
+    for (var i = 0; i < numOfNums; i++) {
+      var minSame = pow(10, bigDigit - 1).toInt();
+      var maxSame = ((pow(10, bigDigit) ~/ 2)).toInt();
+
+      var divideNum = minSame + Random().nextInt(maxSame - minSame);
+      var multiplier = Random().nextInt(10) + 1;
+
+      while (multiplier * divideNum > max ||
+          multiplier == 1 ||
+          divideNum == 1 ||
+          divideNum % 10 == 0 ||
+          multiplier % 10 == 0) {
+        divideNum = minSame + Random().nextInt(maxSame - minSame);
+        multiplier = Random().nextInt(10) + 1;
+      }
+
+      list.add(Tuple(multiplier * divideNum, divideNum));
+    }
+  } else if (bigDigit == divideDigit) {
     for (var i = 0; i < numOfNums; i++) {
       var minSame = pow(10, bigDigit - 1).toInt();
       var maxSame = ((pow(10, bigDigit) ~/ 2) - 1).toInt();

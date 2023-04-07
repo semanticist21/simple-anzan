@@ -1,3 +1,5 @@
+import 'package:abacus_simple_anzan/src/settings/option/option_manager.dart';
+import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
@@ -140,9 +142,12 @@ class _FlickerState extends State<Flicker> {
         } else {
           str = questions[i].toString();
         }
+
+        OptionManager().soundOption.playSound();
         _number = str;
       });
       await Future.delayed(duration);
+      OptionManager().soundOption.stopSound();
 
       setState(() {
         _number = empty;
