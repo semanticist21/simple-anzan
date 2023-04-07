@@ -1,3 +1,4 @@
+import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
@@ -37,7 +38,7 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('문제 & 정답 확인',
+                          Text(LocalizationChecker.checkProb,
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme

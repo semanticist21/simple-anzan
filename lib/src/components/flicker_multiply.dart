@@ -110,12 +110,11 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
-        OptionManager().soundOption.playSound();
         setState(() {
+          OptionManager().soundOption.playSound();
           _number = '${item.item1} × ${item.item2}';
         });
         await Future.delayed(duration);
-        OptionManager().soundOption.stopSound();
 
         setState(() {
           _number = '';
@@ -158,12 +157,11 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
-        OptionManager().soundOption.playSound();
         setState(() {
+          OptionManager().soundOption.playSound();
           _number = '${item.item1} ÷ ${item.item2}';
         });
         await Future.delayed(duration);
-        OptionManager().soundOption.stopSound();
 
         setState(() {
           _number = '';

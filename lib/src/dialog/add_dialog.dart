@@ -72,7 +72,7 @@ class _AddDialogState extends State<AddDialog> {
                 return LocalizationChecker.pleaseTooBigValue;
               }
 
-              if (valueInt < 80) {
+              if (valueInt < 100) {
                 return LocalizationChecker.pleaseTooSmallValue;
               }
 

@@ -147,7 +147,6 @@ class _FlickerState extends State<Flicker> {
         _number = str;
       });
       await Future.delayed(duration);
-      OptionManager().soundOption.stopSound();
 
       setState(() {
         _number = empty;

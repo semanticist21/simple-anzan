@@ -9,9 +9,10 @@ class SoundOptionHandler {
   static StreamController<bool> isSoundOnStream = StreamController();
 
   final audioPlayer = AudioPlayer();
-  final audioAsset = AssetSource('beep_short.wav');
+  final audioAsset = AssetSource('beep_short.mp3');
 
   SoundOptionHandler(SharedPreferences pref) {
+    audioPlayer.setPlayerMode(PlayerMode.lowLatency);
     _initSettings(pref);
   }
 

@@ -1,3 +1,4 @@
+import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -42,7 +43,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                         onPressed: () => Navigator.of(context).pop(),
                         splashRadius: 10,
                       ),
-                      title: Text('문제 & 정답 확인',
+                      title: Text(LocalizationChecker.checkProb,
                           style: TextStyle(
                               color: Theme.of(context)
                                   .colorScheme
@@ -86,8 +87,8 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                               widget.mode ==
                                                       CalCulationMultiplyMode
                                                           .multiply
-                                                  ? '문제 : ${formattter.format(widget.numList[index].item1)} × ${formattter.format(widget.numList[index].item2)}'
-                                                  : '문제 : ${formattter.format(widget.numList[index].item1)} ÷ ${formattter.format(widget.numList[index].item2)}',
+                                                  ? '${LocalizationChecker.problem} : ${formattter.format(widget.numList[index].item1)} × ${formattter.format(widget.numList[index].item2)}'
+                                                  : '${LocalizationChecker.problem} : ${formattter.format(widget.numList[index].item1)} ÷ ${formattter.format(widget.numList[index].item2)}',
                                               style: getTextStyle(),
                                             )
                                           ],
@@ -111,8 +112,8 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                                   widget.mode ==
                                                           CalCulationMultiplyMode
                                                               .multiply
-                                                      ? '정답 : ${formattter.format(widget.numList[index].item1 * widget.numList[index].item2)}'
-                                                      : '정답 : ${formattter.format(widget.numList[index].item1 / widget.numList[index].item2)}',
+                                                      ? '${LocalizationChecker.answer} : ${formattter.format(widget.numList[index].item1 * widget.numList[index].item2)}'
+                                                      : '${LocalizationChecker.answer} : ${formattter.format(widget.numList[index].item1 / widget.numList[index].item2)}',
                                                   style: getTextStyle(),
                                                 )
                                               ],
@@ -145,7 +146,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
         Icon(Icons.no_sim_sharp,
             size: MediaQuery.of(context).size.height * 0.13),
         const SizedBox(height: 10),
-        Text('실행된 문제가 없습니다.',
+        Text(LocalizationChecker.noProbExecuted,
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height * 0.03,
                 fontWeight: FontWeight.w600,

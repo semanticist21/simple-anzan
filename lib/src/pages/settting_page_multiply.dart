@@ -301,12 +301,12 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
               builder: (context) {
                 return AlertDialog(
                   title: Text(
-                    '경고',
+                    LocalizationChecker.warning,
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.height * 0.025,
                         color: Theme.of(context).colorScheme.onBackground),
                   ),
-                  content: Text('앞자리 수보다 작은 값을 입력해주세요.',
+                  content: Text(LocalizationChecker.insertBigger,
                       style: TextStyle(
                           fontSize: MediaQuery.of(context).size.height * 0.02,
                           color: Theme.of(context).colorScheme.onBackground)),
@@ -316,7 +316,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                         child: TextButton(
                             onPressed: () => Navigator.of(context).pop(),
                             child: Text(
-                              '확인',
+                              LocalizationChecker.ok,
                               style: TextStyle(
                                   fontSize:
                                       MediaQuery.of(context).size.height * 0.02,

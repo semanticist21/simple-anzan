@@ -45,6 +45,19 @@ class LocalizationChecker {
   static String rangeMultiplyWord = rangeMultiplyWordEn;
   static String shulffleDesc = shuffleDescEn;
 
+  static String insertBigger = insertBiggerEn;
+
+  // prob list
+  static String noProbExecuted = noProbExecutedEn;
+  static String checkProb = checkProbEn;
+  static String checkProbQ = checkProbQEn;
+
+  static String problem = problemEn;
+  static String answer = answerEn;
+
+  // other
+  static String warning = warningEn;
+
   LocalizationChecker() {
     if (defaultLocale == 'ko_KR') {
       mode = modeKr;
@@ -79,8 +92,19 @@ class LocalizationChecker {
       smallDigitMultiply = smallDigitMultiplyKr;
       numOfProblemsMultiply = numOfProblemsMultiplyKr;
 
+      insertBigger = insertBiggerKr;
+
       shulffleDesc = shuffleDescKr;
       rangeMultiplyWord = rangeMultiplyWordKr;
+
+      noProbExecuted = noProbExecutedKr;
+      checkProb = checkProbKr;
+      checkProbQ = checkProbKr;
+
+      problem = problemKr;
+      answer = answerKr;
+
+      warning = warningKr;
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -37,7 +38,7 @@ class _ProbListState extends State<ProbList> {
                         onPressed: () => Navigator.of(context).pop(),
                         splashRadius: 10,
                       ),
-                      title: Text('문제 & 정답 확인',
+                      title: Text(LocalizationChecker.checkProb,
                           style: TextStyle(
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.018,
@@ -118,7 +119,7 @@ class _ProbListState extends State<ProbList> {
         Icon(Icons.no_sim_sharp,
             size: MediaQuery.of(context).size.height * 0.13),
         const SizedBox(height: 10),
-        Text('실행된 문제가 없습니다.',
+        Text(LocalizationChecker.noProbExecuted,
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height * 0.03,
                 fontWeight: FontWeight.w600,
