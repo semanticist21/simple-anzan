@@ -36,6 +36,7 @@ class SoundOptionHandler {
 
     var prefs = await SharedPreferences.getInstance();
     isSoundOn = prefs.getBool(soundKey) ?? true;
+    SoundOptionHandler.isSoundOnStream.add(SoundOptionHandler.isSoundOn);
   }
 
   Future<void> playSound() async {

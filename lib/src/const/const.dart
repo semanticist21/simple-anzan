@@ -1,3 +1,7 @@
+// app name
+const String appNameEn = 'Abacus Simple Anzan';
+const String appNameKr = '주산심플암산';
+
 // mode
 const String modeKr = '색상 모드 바꾸기';
 const String modeEn = 'Change theme';
@@ -11,6 +15,7 @@ const String settingsPageAddress = '/settings';
 const String multiplyPageAddress = '/multiply';
 const String settingsmultiplyPageAddress = '/settings/multiply';
 const String errorPageAddress = '/error';
+const String loadingPageAddress = '/loading';
 
 // bottom navigation labels
 const String homePlusLabelEn = 'addition';

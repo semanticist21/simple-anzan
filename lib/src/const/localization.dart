@@ -2,6 +2,8 @@ import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:universal_io/io.dart';
 
 class LocalizationChecker {
+  static String appName = appNameEn;
+
   static String defaultLocale = Platform.localeName;
   static bool isKr = false;
 
@@ -60,6 +62,8 @@ class LocalizationChecker {
 
   LocalizationChecker() {
     if (defaultLocale == 'ko_KR') {
+      appName = appNameKr;
+
       mode = modeKr;
       soundOn = soundKr;
       isKr = true;

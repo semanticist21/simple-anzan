@@ -20,16 +20,15 @@ class OptionManager {
   Future<void> _initSettings() async {
     _prefs = await SharedPreferences.getInstance();
     setSoundOption(_prefs);
+    setThemeSelector(_prefs);
   }
 
   void setSoundOption(SharedPreferences prefs) {
     soundOption = SoundOptionHandler(prefs);
-    SoundOptionHandler.isSoundOnStream.add(SoundOptionHandler.isSoundOn);
   }
 
   void setThemeSelector(SharedPreferences prefs) {
     ThemeSelector(prefs);
-    ThemeSelector.isDarkStream.add(ThemeSelector.isDark);
   }
 
   setSoundBool(bool value) {
