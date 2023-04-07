@@ -1,7 +1,7 @@
 import 'package:abacus_simple_anzan/src/pages/home_page_multiply.dart';
 import 'package:abacus_simple_anzan/src/pages/settting_page_multiply.dart';
 import 'package:flutter/material.dart';
-import 'package:abacus_simple_anzan/src/words/const.dart';
+import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:abacus_simple_anzan/src/pages/settting_page.dart';
 
 import 'custom_route.dart';

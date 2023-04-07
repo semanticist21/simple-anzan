@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../words/const.dart';
+import '../../const/const.dart';
 
 class ThemeSelector {
   static var themeKey = 'isDark';

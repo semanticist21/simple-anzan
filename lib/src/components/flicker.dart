@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 import 'package:universal_io/io.dart';
 
-import '../words/const.dart';
+import '../const/const.dart';
 import '../functions/functions.dart';
 import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
 import '../settings/plus_pref/prefs/digit_pref.dart';

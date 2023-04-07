@@ -1,4 +1,4 @@
-import 'package:abacus_simple_anzan/src/words/localization.dart';
+import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';

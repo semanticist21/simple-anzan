@@ -2,6 +2,9 @@
 const String modeKr = '색상 모드 바꾸기';
 const String modeEn = 'Change theme';
 
+const String soundKr = '소리 실행/끄기';
+const String soundEn = 'Sound On/Off';
+
 // routers
 const String mainPageAddress = '/';
 const String settingsPageAddress = '/settings';

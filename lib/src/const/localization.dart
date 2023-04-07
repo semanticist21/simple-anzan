@@ -1,4 +1,4 @@
-import 'package:abacus_simple_anzan/src/words/const.dart';
+import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:universal_io/io.dart';
 
 class LocalizationChecker {
@@ -13,6 +13,7 @@ class LocalizationChecker {
 
   // theme str
   static String mode = modeEn;
+  static String soundOn = soundEn;
 
   // button str
   static String ok = okEn;
@@ -47,6 +48,7 @@ class LocalizationChecker {
   LocalizationChecker() {
     if (defaultLocale == 'ko_KR') {
       mode = modeKr;
+      soundOn = soundKr;
       isKr = true;
 
       homePlusLabel = homePlusLabelKr;

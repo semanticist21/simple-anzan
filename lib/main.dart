@@ -1,15 +1,17 @@
 import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/option/option_manager.dart';
+import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
-import 'package:abacus_simple_anzan/src/words/localization.dart';
+import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:abacus_simple_anzan/src/words/const.dart';
+import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:abacus_simple_anzan/router.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
+import 'dart:async';
 
 void main() => runApp(const MyApp());
 
@@ -88,23 +90,49 @@ class _Home extends State<Home> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          Tooltip(
-              message: LocalizationChecker.mode,
-              child: Icon(
-                ThemeSelector.isDark ? Icons.nightlight : Icons.sunny,
-                color: Theme.of(context).colorScheme.onBackground,
-              )),
-          Transform.scale(
-              scale: 0.8,
-              child: CupertinoSwitch(
-                activeColor: Theme.of(context).colorScheme.onSecondary,
-                trackColor: Theme.of(context).colorScheme.onPrimary,
-                onChanged: (value) {
-                  OptionManager().setThemeBool(!ThemeSelector.isDark);
-                  setState(() {});
-                },
-                value: ThemeSelector.isDark,
-              )),
+          StreamBuilder(builder: (context, snapshot) {
+            return Row(children: [
+              Tooltip(
+                  message: LocalizationChecker.soundOn,
+                  child: Icon(
+                    SoundOption.isSoundOn
+                        ? CupertinoIcons.speaker_2
+                        : CupertinoIcons.speaker_slash,
+                    color: Theme.of(context).colorScheme.onBackground,
+                  )),
+              Transform.scale(
+                  scale: 0.8,
+                  child: CupertinoSwitch(
+                    activeColor: Theme.of(context).colorScheme.onSecondary,
+                    trackColor: Theme.of(context).colorScheme.onPrimary,
+                    onChanged: (value) {
+                      OptionManager().setSoundBool(!SoundOption.isSoundOn);
+                      setState(() {});
+                    },
+                    value: SoundOption.isSoundOn,
+                  )),
+            ]);
+          }),
+          const SizedBox(width: 10),
+          Row(children: [
+            Tooltip(
+                message: LocalizationChecker.mode,
+                child: Icon(
+                  ThemeSelector.isDark ? Icons.nightlight : Icons.sunny,
+                  color: Theme.of(context).colorScheme.onBackground,
+                )),
+            Transform.scale(
+                scale: 0.8,
+                child: CupertinoSwitch(
+                  activeColor: Theme.of(context).colorScheme.onSecondary,
+                  trackColor: Theme.of(context).colorScheme.onPrimary,
+                  onChanged: (value) {
+                    OptionManager().setThemeBool(!ThemeSelector.isDark);
+                    setState(() {});
+                  },
+                  value: ThemeSelector.isDark,
+                )),
+          ]),
           const SizedBox(width: 10),
         ],
       ),

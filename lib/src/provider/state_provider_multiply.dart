@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 import '../functions/tuple.dart';
-import '../words/const.dart';
-import '../words/localization.dart';
+import '../const/const.dart';
+import '../const/localization.dart';
 
 class StateMultiplyProvider extends ChangeNotifier {
   var state = ButtonMultiplyState.iterationNotStarted;
