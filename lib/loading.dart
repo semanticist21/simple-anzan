@@ -44,8 +44,10 @@ class _LoadingState extends State<Loading> {
 
   Future<void> loadImage() async {
     await precacheImage(asset.image, context);
-    setState(() {
-      _visible = true;
-    });
+    if (context.mounted) {
+      setState(() {
+        _visible = true;
+      });
+    }
   }
 }
