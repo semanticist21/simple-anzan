@@ -27,7 +27,7 @@ class _ProbListState extends State<ProbList> {
                     SliverAppBar(
                       pinned: true,
                       backgroundColor:
-                          Theme.of(context).colorScheme.onBackground,
+                          Theme.of(context).colorScheme.tertiaryContainer,
                       leading: IconButton(
                         icon: Icon(
                           Icons.arrow_back_ios,
@@ -42,6 +42,7 @@ class _ProbListState extends State<ProbList> {
                           child: Text(
                         LocalizationChecker.checkProb,
                         style: TextStyle(
+                            fontWeight: FontWeight.normal,
                             fontSize:
                                 MediaQuery.of(context).size.height * 0.018,
                             color: Theme.of(context)

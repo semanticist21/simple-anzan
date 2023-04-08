@@ -226,7 +226,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
     return getPadding(
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Flexible(
-          flex: 10,
+          flex: 19,
           child: Row(
             children: [
               icon,
@@ -239,7 +239,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
             ],
           )),
       Flexible(
-          flex: 10,
+          flex: 20,
           child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 350),
               child: FractionallySizedBox(
@@ -357,9 +357,11 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
             style: TextStyle(
                 height: Platform.isWindows
                     ? MediaQuery.of(context).size.height * 0.0035
-                    : MediaQuery.of(context).size.height * 0.0017,
+                    : MediaQuery.of(context).size.height * 0.00185,
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
-                fontSize: MediaQuery.of(context).size.height * 0.0185,
+                fontSize: Platform.isWindows
+                    ? MediaQuery.of(context).size.height * 0.0185
+                    : MediaQuery.of(context).size.height * 0.0160,
                 fontWeight: FontWeight.w500),
           ));
       itemList.add(item);

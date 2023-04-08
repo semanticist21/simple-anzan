@@ -46,6 +46,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                       title: FittedBox(
                           child: Text(LocalizationChecker.checkProb,
                               style: TextStyle(
+                                  fontWeight: FontWeight.normal,
                                   color: Theme.of(context)
                                       .colorScheme
                                       .onPrimaryContainer,
