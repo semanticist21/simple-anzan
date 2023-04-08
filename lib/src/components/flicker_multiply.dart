@@ -231,6 +231,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   void dispose() {
     _stateProvider.removeListener(_callbackOnButtonClick);
     super.dispose();
+    _optManager.soundOption.stopAudio();
   }
 
 // styles.

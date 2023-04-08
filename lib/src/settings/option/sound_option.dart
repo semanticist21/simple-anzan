@@ -13,14 +13,27 @@ class SoundOptionHandler {
   final _audioplayer2 = AudioPlayer();
 
   final audioAsset = AudioSource.asset('assets/beep_short_out.wav');
+  final emptyAsset = AudioSource.asset('assets/empty.wav');
 
   SoundOptionHandler(SharedPreferences pref) {
     _initSettings(pref);
   }
 
   Future<void> _initSettings(SharedPreferences pref) async {
-    await _audioplayer.setAudioSource(audioAsset);
-    await _audioplayer2.setAudioSource(audioAsset);
+    await _audioplayer.setAudioSource(emptyAsset);
+    await _audioplayer2.setAudioSource(emptyAsset);
+
+    await _audioplayer.load();
+    await _audioplayer2.load();
+
+    await _audioplayer.play();
+    await _audioplayer2.play();
+
+    _audioplayer.stop();
+    _audioplayer2.stop();
+
+    await _audioplayer.setVolume(0.5);
+    await _audioplayer2.setVolume(0.5);
 
     var prefs = await SharedPreferences.getInstance();
     isSoundOn = prefs.getBool(soundKey) ?? true;
@@ -28,17 +41,11 @@ class SoundOptionHandler {
   }
 
   Future<void> initPlaySound() async {
-    _audioplayer.load();
-    _audioplayer2.load();
+    await _audioplayer.setAudioSource(audioAsset);
+    await _audioplayer2.setAudioSource(audioAsset);
 
-    await _audioplayer.setVolume(0);
-    await _audioplayer2.setVolume(0);
-
-    await _audioplayer.play();
-    await _audioplayer2.play();
-
-    await _audioplayer.setVolume(0.5);
-    await _audioplayer2.setVolume(0.5);
+    await _audioplayer.load();
+    await _audioplayer2.load();
   }
 
   Future<void> playSound() async {
@@ -55,5 +62,10 @@ class SoundOptionHandler {
         await _audioplayer2.play();
       }
     }
+  }
+
+  Future<void> stopAudio() async {
+    await _audioplayer.stop();
+    await _audioplayer2.stop();
   }
 }

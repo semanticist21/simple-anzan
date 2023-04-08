@@ -189,6 +189,7 @@ class _FlickerState extends State<Flicker> {
   void dispose() {
     _stateProvider.removeListener(_callbackOnButtonClick);
     super.dispose();
+    _optManager.soundOption.stopAudio();
   }
 
 // styles.
