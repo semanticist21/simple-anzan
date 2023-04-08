@@ -64,7 +64,7 @@ const String isMultiplyKr = '나눗셈 하기';
 const String speedMultiplyKr = "문제 속도";
 const String bigDigitMultiplyKr = "큰 자리 수";
 const String smallDigitMultiplyKr = "작은 자리 수";
-const String numOfProblemsMultiplyKr = "문제 수(연속)";
+const String numOfProblemsMultiplyKr = "문제 수";
 
 const String settingsMultiplyEn = 'Settings (multiplication)';
 const String isMultiplyEn = 'Change to division';

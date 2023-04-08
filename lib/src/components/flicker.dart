@@ -85,7 +85,7 @@ class _FlickerState extends State<Flicker> {
 
   Future<void> _initiateIteration(SettingsManager manager) async {
     if (_isInit) {
-      _optManager.soundOption.initPlaySound();
+      await _optManager.soundOption.initPlaySound();
       _isInit = false;
     }
     _answer = '';

@@ -77,7 +77,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
 
   Future<void> _initiateIteration(SettingsMultiplyManager manager) async {
     if (_isInit) {
-      _optManager.soundOption.initPlaySound();
+      await _optManager.soundOption.initPlaySound();
       _isInit = false;
     }
 

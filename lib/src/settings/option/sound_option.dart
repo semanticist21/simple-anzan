@@ -19,7 +19,7 @@ class SoundOptionHandler {
   }
 
   Future<void> _initSettings(SharedPreferences pref) async {
-    var dur = await _audioplayer.setAudioSource(audioAsset);
+    await _audioplayer.setAudioSource(audioAsset);
     await _audioplayer2.setAudioSource(audioAsset);
 
     var prefs = await SharedPreferences.getInstance();
