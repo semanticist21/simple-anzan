@@ -13,6 +13,8 @@ import 'package:abacus_simple_anzan/router.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 import 'dart:async';
 
+import 'loading.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -85,115 +87,138 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     _stateProvider = Provider.of<StateProvider>(context);
     _stateMultiplyProvider = Provider.of<StateMultiplyProvider>(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          StreamBuilder(
-              initialData: true,
-              stream: SoundOptionHandler.isSoundOnStream.stream,
-              builder: (context, snapshot) {
-                return Row(children: [
-                  Tooltip(
-                      message: LocalizationChecker.soundOn,
-                      child: Icon(
-                        SoundOptionHandler.isSoundOn
-                            ? CupertinoIcons.speaker_2
-                            : CupertinoIcons.speaker_slash,
-                        color: Theme.of(context).colorScheme.onBackground,
-                      )),
-                  Transform.scale(
-                      scale: 0.8,
-                      child: CupertinoSwitch(
-                        activeColor: Theme.of(context).colorScheme.onSecondary,
-                        trackColor: Theme.of(context).colorScheme.onPrimary,
-                        onChanged: (value) {
-                          OptionManager()
-                              .setSoundBool(!SoundOptionHandler.isSoundOn);
-                          setState(() {});
-                        },
-                        value: SoundOptionHandler.isSoundOn,
-                      )),
-                ]);
-              }),
-          const SizedBox(width: 10),
-          Row(children: [
-            Tooltip(
-                message: LocalizationChecker.mode,
-                child: Icon(
-                  ThemeSelector.isDark ? Icons.nightlight : Icons.sunny,
-                  color: Theme.of(context).colorScheme.onBackground,
-                )),
-            Transform.scale(
-                scale: 0.8,
-                child: CupertinoSwitch(
-                  activeColor: Theme.of(context).colorScheme.onSecondary,
-                  trackColor: Theme.of(context).colorScheme.onPrimary,
-                  onChanged: (value) {
-                    OptionManager().setThemeBool(!ThemeSelector.isDark);
-                    setState(() {});
-                  },
-                  value: ThemeSelector.isDark,
-                )),
-          ]),
-          const SizedBox(width: 10),
-        ],
-      ),
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Navigator(
-        key: navigationKey,
-        onGenerateRoute: generateRoutes,
-        onUnknownRoute: generateErrorPages,
-        initialRoute: mainPageAddress,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.onBackground,
-        selectedItemColor: Theme.of(context).colorScheme.background,
-        unselectedItemColor: Theme.of(context).colorScheme.onInverseSurface,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            activeIcon: Icon(Icons.add_to_photos_outlined,
-                color: Theme.of(context).colorScheme.background,
-                size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(Icons.add_to_photos,
-                color: Theme.of(context).colorScheme.onInverseSurface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            label: LocalizationChecker.homePlusLabel,
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(Icons.settings_outlined,
-                color: Theme.of(context).colorScheme.background,
-                size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(Icons.settings,
-                color: Theme.of(context).colorScheme.onInverseSurface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            label: LocalizationChecker.settingPlusLabel,
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(CupertinoIcons.xmark_circle,
-                color: Theme.of(context).colorScheme.background,
-                size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(CupertinoIcons.xmark_circle_fill,
-                color: Theme.of(context).colorScheme.onInverseSurface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            label: LocalizationChecker.homeMultiplyLabel,
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(CupertinoIcons.gear,
-                color: Theme.of(context).colorScheme.background,
-                size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(CupertinoIcons.gear_alt_fill,
-                color: Theme.of(context).colorScheme.onInverseSurface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            label: LocalizationChecker.settingMultiplyLabel,
-          )
-        ],
-        onTap: _onTap,
-        currentIndex: _currentIndex,
-      ),
-    );
+    // theme is first set true,
+    // but shows loading page until saved data loads.
+    return StreamBuilder(
+        initialData: true,
+        stream: ThemeSelector.isLoadingStream.stream,
+        builder: (context, snapshot) {
+          return snapshot.requireData
+              ? const Loading()
+              : Scaffold(
+                  appBar: AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    actions: [
+                      StreamBuilder(
+                          initialData: true,
+                          stream: SoundOptionHandler.isSoundOnStream.stream,
+                          builder: (context, snapshot) {
+                            return Row(children: [
+                              Tooltip(
+                                  message: LocalizationChecker.soundOn,
+                                  child: Icon(
+                                    SoundOptionHandler.isSoundOn
+                                        ? CupertinoIcons.speaker_2
+                                        : CupertinoIcons.speaker_slash,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
+                                  )),
+                              Transform.scale(
+                                  scale: 0.8,
+                                  child: CupertinoSwitch(
+                                    activeColor: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondary,
+                                    trackColor:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                    onChanged: (value) {
+                                      OptionManager().setSoundBool(
+                                          !SoundOptionHandler.isSoundOn);
+                                      setState(() {});
+                                    },
+                                    value: SoundOptionHandler.isSoundOn,
+                                  )),
+                            ]);
+                          }),
+                      const SizedBox(width: 10),
+                      Row(children: [
+                        Tooltip(
+                            message: LocalizationChecker.mode,
+                            child: Icon(
+                              ThemeSelector.isDark
+                                  ? Icons.nightlight
+                                  : Icons.sunny,
+                              color: Theme.of(context).colorScheme.onBackground,
+                            )),
+                        Transform.scale(
+                            scale: 0.8,
+                            child: CupertinoSwitch(
+                              activeColor:
+                                  Theme.of(context).colorScheme.onSecondary,
+                              trackColor:
+                                  Theme.of(context).colorScheme.onPrimary,
+                              onChanged: (value) {
+                                OptionManager()
+                                    .setThemeBool(!ThemeSelector.isDark);
+                                setState(() {});
+                              },
+                              value: ThemeSelector.isDark,
+                            )),
+                      ]),
+                      const SizedBox(width: 10),
+                    ],
+                  ),
+                  backgroundColor: Theme.of(context).colorScheme.background,
+                  body: Navigator(
+                    key: navigationKey,
+                    onGenerateRoute: generateRoutes,
+                    onUnknownRoute: generateErrorPages,
+                    initialRoute: mainPageAddress,
+                  ),
+                  bottomNavigationBar: BottomNavigationBar(
+                    backgroundColor: Theme.of(context).colorScheme.onBackground,
+                    selectedItemColor: Theme.of(context).colorScheme.background,
+                    unselectedItemColor:
+                        Theme.of(context).colorScheme.onInverseSurface,
+                    type: BottomNavigationBarType.fixed,
+                    items: [
+                      BottomNavigationBarItem(
+                        activeIcon: Icon(Icons.add_to_photos_outlined,
+                            color: Theme.of(context).colorScheme.background,
+                            size: MediaQuery.of(context).size.height * 0.023),
+                        icon: Icon(Icons.add_to_photos,
+                            color:
+                                Theme.of(context).colorScheme.onInverseSurface,
+                            size: MediaQuery.of(context).size.height * 0.023),
+                        label: LocalizationChecker.homePlusLabel,
+                      ),
+                      BottomNavigationBarItem(
+                        activeIcon: Icon(Icons.settings_outlined,
+                            color: Theme.of(context).colorScheme.background,
+                            size: MediaQuery.of(context).size.height * 0.023),
+                        icon: Icon(Icons.settings,
+                            color:
+                                Theme.of(context).colorScheme.onInverseSurface,
+                            size: MediaQuery.of(context).size.height * 0.023),
+                        label: LocalizationChecker.settingPlusLabel,
+                      ),
+                      BottomNavigationBarItem(
+                        activeIcon: Icon(CupertinoIcons.xmark_circle,
+                            color: Theme.of(context).colorScheme.background,
+                            size: MediaQuery.of(context).size.height * 0.023),
+                        icon: Icon(CupertinoIcons.xmark_circle_fill,
+                            color:
+                                Theme.of(context).colorScheme.onInverseSurface,
+                            size: MediaQuery.of(context).size.height * 0.023),
+                        label: LocalizationChecker.homeMultiplyLabel,
+                      ),
+                      BottomNavigationBarItem(
+                        activeIcon: Icon(CupertinoIcons.gear,
+                            color: Theme.of(context).colorScheme.background,
+                            size: MediaQuery.of(context).size.height * 0.023),
+                        icon: Icon(CupertinoIcons.gear_alt_fill,
+                            color:
+                                Theme.of(context).colorScheme.onInverseSurface,
+                            size: MediaQuery.of(context).size.height * 0.023),
+                        label: LocalizationChecker.settingMultiplyLabel,
+                      )
+                    ],
+                    onTap: _onTap,
+                    currentIndex: _currentIndex,
+                  ),
+                );
+        });
   }
 }

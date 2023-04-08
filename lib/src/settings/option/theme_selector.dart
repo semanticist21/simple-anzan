@@ -10,6 +10,8 @@ class ThemeSelector {
   static var isDark = true;
   static StreamController<bool> isDarkStream = StreamController();
 
+  static StreamController<bool> isLoadingStream = StreamController();
+
   ThemeSelector(SharedPreferences pref) {
     _initSettings(pref);
   }
@@ -18,6 +20,9 @@ class ThemeSelector {
     var prefs = await SharedPreferences.getInstance();
     isDark = prefs.getBool(themeKey) ?? true;
     ThemeSelector.isDarkStream.add(ThemeSelector.isDark);
+
+    isLoadingStream.add(false);
+    await isLoadingStream.close();
   }
 
   static ThemeData getBlackTheme() {
