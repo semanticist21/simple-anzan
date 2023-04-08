@@ -181,7 +181,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
-        OptionManager().soundOption.playSound();
+        _optManager.soundOption.playSound();
         setState(() {
           _number = '${item.item1} ÷ ${item.item2}';
         });
