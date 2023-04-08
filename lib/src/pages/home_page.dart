@@ -1,3 +1,4 @@
+import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
@@ -6,6 +7,7 @@ import '../components/flicker.dart';
 import '../const/localization.dart';
 import '../dialog/prob_list.dart';
 import '../provider/state_provider.dart';
+import '../settings/option/option_manager.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

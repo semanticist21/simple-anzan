@@ -61,7 +61,7 @@ class LocalizationChecker {
   static String warning = warningEn;
 
   LocalizationChecker() {
-    if (defaultLocale == 'ko_KR') {
+    if (defaultLocale.toLowerCase().contains('ko')) {
       appName = appNameKr;
 
       mode = modeKr;

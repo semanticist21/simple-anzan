@@ -24,9 +24,18 @@ class FlickerMultiply extends StatefulWidget {
 class _FlickerMultiplyState extends State<FlickerMultiply> {
   late StateMultiplyProvider _stateProvider;
   final SettingsMultiplyManager _manager = SettingsMultiplyManager();
+  final _optManager = OptionManager();
+
   var formattter = NumberFormat('#,##0');
 
-  String _number = '';
+  var _number = '';
+
+  var _isInit = true;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +76,11 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   }
 
   Future<void> _initiateIteration(SettingsMultiplyManager manager) async {
+    if (_isInit) {
+      _optManager.soundOption.initPlaySound();
+      _isInit = false;
+    }
+
     switch (manager.getCurrentEnum<CalCulationMultiplyMode>()) {
       case CalCulationMultiplyMode.multiply:
         _runMultiply(_manager);
@@ -116,7 +130,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
-        OptionManager().soundOption.playSound();
+        _optManager.soundOption.playSound();
         setState(() {
           _number = '${item.item1} × ${item.item2}';
         });

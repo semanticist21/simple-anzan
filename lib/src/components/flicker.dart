@@ -23,11 +23,20 @@ class Flicker extends StatefulWidget {
 
 class _FlickerState extends State<Flicker> {
   late StateProvider _stateProvider;
-  final SettingsManager _manager = SettingsManager();
+  final _manager = SettingsManager();
+  final _optManager = OptionManager();
+
   var formattter = NumberFormat('#,##0');
 
-  String _number = '';
-  String _answer = '';
+  var _number = '';
+  var _answer = '';
+
+  var _isInit = true;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +84,10 @@ class _FlickerState extends State<Flicker> {
   }
 
   Future<void> _initiateIteration(SettingsManager manager) async {
+    if (_isInit) {
+      _optManager.soundOption.initPlaySound();
+      _isInit = false;
+    }
     _answer = '';
 
     switch (manager.getCurrentEnum<CalculationMode>()) {
@@ -147,7 +160,7 @@ class _FlickerState extends State<Flicker> {
         str = questions[i].toString();
       }
 
-      OptionManager().soundOption.playSound();
+      _optManager.soundOption.playSound();
       setState(() {
         _number = str;
       });

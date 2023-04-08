@@ -19,12 +19,15 @@ class SoundOptionHandler {
   }
 
   Future<void> _initSettings(SharedPreferences pref) async {
-    // await _audioplayer.stop();
-    // await _audioplayer2.stop();
-
     await _audioplayer.setAudioSource(audioAsset);
     await _audioplayer2.setAudioSource(audioAsset);
 
+    var prefs = await SharedPreferences.getInstance();
+    isSoundOn = prefs.getBool(soundKey) ?? true;
+    SoundOptionHandler.isSoundOnStream.add(SoundOptionHandler.isSoundOn);
+  }
+
+  Future<void> initPlaySound() async {
     await _audioplayer.setVolume(0);
     await _audioplayer2.setVolume(0);
 
@@ -33,10 +36,6 @@ class SoundOptionHandler {
 
     await _audioplayer.setVolume(1);
     await _audioplayer2.setVolume(1);
-
-    var prefs = await SharedPreferences.getInstance();
-    isSoundOn = prefs.getBool(soundKey) ?? true;
-    SoundOptionHandler.isSoundOnStream.add(SoundOptionHandler.isSoundOn);
   }
 
   Future<void> playSound() async {
