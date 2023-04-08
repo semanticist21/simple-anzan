@@ -226,7 +226,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
     return getPadding(
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Flexible(
-          flex: 8,
+          flex: 10,
           child: Row(
             children: [
               icon,
