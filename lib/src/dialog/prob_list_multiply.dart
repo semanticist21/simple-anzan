@@ -67,7 +67,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                   width: double.infinity,
                                   color: Theme.of(context)
                                       .colorScheme
-                                      .onSecondaryContainer,
+                                      .onTertiaryContainer,
                                   child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
