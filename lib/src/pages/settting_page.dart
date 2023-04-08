@@ -316,7 +316,9 @@ class _SettingsPageState extends State<SettingsPage> {
             style: TextStyle(
                 height: Platform.isWindows
                     ? MediaQuery.of(context).size.height * 0.0035
-                    : MediaQuery.of(context).size.height * 0.0017,
+                    : MediaQuery.of(context).size.height * 0.0017 > 1
+                        ? MediaQuery.of(context).size.height * 0.0017
+                        : 1,
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 fontSize: MediaQuery.of(context).size.height * 0.0185,
                 fontWeight: FontWeight.w500),
