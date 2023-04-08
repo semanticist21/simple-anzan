@@ -24,7 +24,7 @@ class _AddDialogState extends State<AddDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Row(children: [
-        Icon(Icons.dashboard_customize,
+        Icon(Icons.forward_sharp,
             size: 15, color: Theme.of(context).colorScheme.primaryContainer),
         SizedBox(width: MediaQuery.of(context).size.width * 0.02),
         Container(
