@@ -28,6 +28,9 @@ class SoundOptionHandler {
   }
 
   Future<void> initPlaySound() async {
+    _audioplayer.load();
+    _audioplayer2.load();
+
     await _audioplayer.setVolume(0);
     await _audioplayer2.setVolume(0);
 

@@ -34,6 +34,7 @@ class _AddDialogState extends State<AddDialog> {
                 fit: BoxFit.contain,
                 child: Text(LocalizationChecker.setSpeedTitle,
                     style: TextStyle(
+                        fontWeight: FontWeight.normal,
                         fontSize: MediaQuery.of(context).size.height * 0.02,
                         color:
                             Theme.of(context).colorScheme.primaryContainer))))
