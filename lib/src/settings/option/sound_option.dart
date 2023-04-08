@@ -19,8 +19,8 @@ class SoundOptionHandler {
   }
 
   Future<void> _initSettings(SharedPreferences pref) async {
-    await _audioplayer.stop();
-    await _audioplayer2.stop();
+    // await _audioplayer.stop();
+    // await _audioplayer2.stop();
 
     await _audioplayer.setAudioSource(audioAsset);
     await _audioplayer2.setAudioSource(audioAsset);

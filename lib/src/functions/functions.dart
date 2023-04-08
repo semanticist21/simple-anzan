@@ -17,7 +17,7 @@ List<int> getPlusShuffleNums(int digit, int numOfNums) {
       randomNum = min + Random().nextInt(max - min);
     }
 
-    int digitNormalization = Random().nextInt(6);
+    int digitNormalization = Random().nextInt(8);
     if (digitNormalization == 0 && randomNum ~/ 10 != 0) {
       randomNum = randomNum ~/ 10;
     }
