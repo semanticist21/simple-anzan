@@ -9,7 +9,7 @@ class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
   final String _saveCustomKey = 'intervalCustom';
 
   final int _defaultIndex = 2;
-  final int _defaultCustomValue = 100;
+  final int _defaultCustomValue = 500;
 
   late int _currentIndex;
   late Speed _currentValue;
