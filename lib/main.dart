@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         initialData: true,
         stream: ThemeSelector.isDarkStream.stream,
         builder: (context, snapshot) => MaterialApp(
+              debugShowCheckedModeBanner: false,
               theme: ThemeSelector.isDark
                   ? ThemeSelector.getBlackTheme()
                   : ThemeSelector.getWhiteTheme(),
