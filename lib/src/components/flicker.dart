@@ -43,8 +43,9 @@ class _FlickerState extends State<Flicker> {
     _stateProvider = Provider.of(context, listen: false);
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.addListener(_callbackOnButtonClick);
+    print(_number);
 
-    return _number.length > 4
+    return _number.length > 6
         ? FittedBox(
             fit: BoxFit.contain,
             child: Padding(
@@ -199,10 +200,10 @@ class _FlickerState extends State<Flicker> {
         ? Theme.of(context).textTheme.titleLarge!.copyWith(
             fontSize: (MediaQuery.of(context).size.width * 0.7 +
                     MediaQuery.of(context).size.height * 1) *
-                0.15)
+                0.09)
         : Theme.of(context).textTheme.titleLarge!.copyWith(
             fontSize: (MediaQuery.of(context).size.width * 0.7 +
                     MediaQuery.of(context).size.height * 1) *
-                0.08);
+                0.07);
   }
 }
