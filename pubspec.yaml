@@ -40,6 +40,7 @@ dependencies:
   intl: ^0.18.0
   just_audio: ^0.9.32
   just_audio_windows: ^0.2.0
+  window_manager: ^0.3.2
 
 dev_dependencies:
   flutter_test:

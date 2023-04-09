@@ -11,11 +11,36 @@ import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:abacus_simple_anzan/router.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
+import 'package:universal_io/io.dart';
+import 'package:window_manager/window_manager.dart';
 import 'dart:async';
 
 import 'loading.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    await windowManager.ensureInitialized();
+    await windowManager.setMinimumSize(const Size(400, 600));
+
+    WindowOptions windowOptions = const WindowOptions(
+      size: Size(400, 600),
+      center: true,
+      backgroundColor: Colors.transparent,
+      skipTaskbar: false,
+      titleBarStyle: TitleBarStyle.normal,
+    );
+
+    windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.show();
+      await windowManager.focus();
+    });
+  }
+
+  FlutterError.onError =
+      (FlutterErrorDetails details) => FlutterError.presentError(details);
+
   runApp(const MyApp());
 }
 

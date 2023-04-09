@@ -49,8 +49,8 @@ class _FlickerState extends State<Flicker> {
             fit: BoxFit.contain,
             child: Padding(
                 padding: Platform.isWindows
-                    ? const EdgeInsets.fromLTRB(0, 0, 25, 0)
-                    : const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                    ? const EdgeInsets.fromLTRB(0, 0, 0, 0)
+                    : const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Text(
                   _number,
                   style: _getMainNumberTextStyle(),
@@ -58,8 +58,8 @@ class _FlickerState extends State<Flicker> {
                 )))
         : Padding(
             padding: Platform.isWindows
-                ? const EdgeInsets.fromLTRB(0, 0, 35, 0)
-                : const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                ? const EdgeInsets.fromLTRB(0, 0, 0, 0)
+                : const EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Text(
               _number,
               style: _getMainNumberTextStyle(),
@@ -155,9 +155,9 @@ class _FlickerState extends State<Flicker> {
 
       if (questions[i] > 0) {
         var parsedStr = questions[i].toString();
-        str = '\t$parsedStr';
+        str = '\t$parsedStr\t';
       } else {
-        str = questions[i].toString();
+        str = '${questions[i].toString()}\t';
       }
 
       _optManager.soundOption.playSound();
@@ -177,11 +177,12 @@ class _FlickerState extends State<Flicker> {
 
       await Future.delayed(duration);
     }
+    _optManager.soundOption.stopAudio();
   }
 
   void _showAnswer() {
     setState(() {
-      _number = '\t${formattter.format(int.parse(_answer))}';
+      _number = '\t${formattter.format(int.parse(_answer))}\t';
     });
   }
 
@@ -196,12 +197,12 @@ class _FlickerState extends State<Flicker> {
   TextStyle _getMainNumberTextStyle() {
     return Platform.isWindows
         ? Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: (MediaQuery.of(context).size.height * 0.7 +
-                    MediaQuery.of(context).size.width * 0.6) *
-                0.17)
+            fontSize: (MediaQuery.of(context).size.width * 0.7 +
+                    MediaQuery.of(context).size.height * 1) *
+                0.95)
         : Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: (MediaQuery.of(context).size.height * 0.7 +
-                    MediaQuery.of(context).size.width * 0.6) *
-                0.11);
+            fontSize: (MediaQuery.of(context).size.width * 0.7 +
+                    MediaQuery.of(context).size.height * 1) *
+                0.08);
   }
 }

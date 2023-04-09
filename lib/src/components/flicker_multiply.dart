@@ -225,6 +225,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         }
       }
     }
+    _optManager.soundOption.stopAudio();
   }
 
   @override
