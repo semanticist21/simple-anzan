@@ -78,6 +78,7 @@ class LocalizationChecker {
       check = checkKr;
 
       settings = settingsKr;
+      shuffle = shuffleKr;
       onlyPluses = onlyPlusesKr;
       speed = speedKr;
       digit = digitKr;

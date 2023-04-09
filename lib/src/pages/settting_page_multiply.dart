@@ -356,7 +356,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
             element,
             style: TextStyle(
                 height: Platform.isWindows
-                    ? MediaQuery.of(context).size.height * 0.0035
+                    ? MediaQuery.of(context).size.height * 0.0028
                     : MediaQuery.of(context).size.height * 0.00180 > 1
                         ? MediaQuery.of(context).size.height * 0.00198
                         : 1,

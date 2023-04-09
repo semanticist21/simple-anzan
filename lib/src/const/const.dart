@@ -45,7 +45,7 @@ const String error = 'The page you requested does not exist.';
 
 // options(settings)
 const String settingsKr = '설정';
-const String shuffleKr = '셔플하기';
+const String shuffleKr = '섞기';
 const String onlyPlusesKr = '덧셈(+)만 하기';
 const String speedKr = "문제 속도";
 const String digitKr = "자리 수";
