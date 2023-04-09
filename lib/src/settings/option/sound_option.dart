@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_io/io.dart';
 
 class SoundOptionHandler {
   static var soundKey = 'isSoundOn';
@@ -20,20 +21,19 @@ class SoundOptionHandler {
   }
 
   Future<void> _initSettings(SharedPreferences pref) async {
-    await _audioplayer.setAudioSource(emptyAsset);
-    await _audioplayer2.setAudioSource(emptyAsset);
+    if (Platform.isAndroid) {
+      await _audioplayer.setAudioSource(emptyAsset);
+      await _audioplayer2.setAudioSource(emptyAsset);
 
-    await _audioplayer.load();
-    await _audioplayer2.load();
+      await _audioplayer.play();
+      await _audioplayer2.play();
 
-    await _audioplayer.play();
-    await _audioplayer2.play();
+      await _audioplayer.load();
+      await _audioplayer2.load();
 
-    _audioplayer.stop();
-    _audioplayer2.stop();
-
-    await _audioplayer.setVolume(0.5);
-    await _audioplayer2.setVolume(0.5);
+      await _audioplayer.stop();
+      await _audioplayer2.stop();
+    }
 
     var prefs = await SharedPreferences.getInstance();
     isSoundOn = prefs.getBool(soundKey) ?? true;
@@ -41,6 +41,9 @@ class SoundOptionHandler {
   }
 
   Future<void> initPlaySound() async {
+    await _audioplayer.setVolume(0.5);
+    await _audioplayer2.setVolume(0.5);
+
     await _audioplayer.setAudioSource(audioAsset);
     await _audioplayer2.setAudioSource(audioAsset);
 
@@ -52,12 +55,16 @@ class SoundOptionHandler {
     if (isSoundOn) {
       if (_flag) {
         _flag = false;
-        // await _audioplayer.pause();
+        if (Platform.isWindows) {
+          await _audioplayer.pause();
+        }
         await _audioplayer.seek(Duration.zero);
         await _audioplayer.play();
       } else {
         _flag = true;
-        // await _audioplayer2.pause();
+        if (Platform.isWindows) {
+          await _audioplayer2.pause();
+        }
         await _audioplayer2.seek(Duration.zero);
         await _audioplayer2.play();
       }
