@@ -43,7 +43,6 @@ class _FlickerState extends State<Flicker> {
     _stateProvider = Provider.of(context, listen: false);
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.addListener(_callbackOnButtonClick);
-    print(_number);
 
     return _number.length > 6
         ? FittedBox(
