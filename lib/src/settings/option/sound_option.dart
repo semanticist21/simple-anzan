@@ -25,11 +25,11 @@ class SoundOptionHandler {
       await _audioplayer.setAudioSource(emptyAsset);
       await _audioplayer2.setAudioSource(emptyAsset);
 
-      await _audioplayer.play();
-      await _audioplayer2.play();
-
       await _audioplayer.load();
       await _audioplayer2.load();
+
+      await _audioplayer.play();
+      await _audioplayer2.play();
 
       await _audioplayer.stop();
       await _audioplayer2.stop();
@@ -54,14 +54,14 @@ class SoundOptionHandler {
   Future<void> playSound() async {
     if (isSoundOn) {
       if (_flag) {
-        _flag = false;
+        // _flag = false;
         if (Platform.isWindows) {
           await _audioplayer.pause();
         }
         await _audioplayer.seek(Duration.zero);
         await _audioplayer.play();
       } else {
-        _flag = true;
+        // _flag = true;
         if (Platform.isWindows) {
           await _audioplayer2.pause();
         }
