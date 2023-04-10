@@ -110,6 +110,55 @@ class LocalizationChecker {
       answer = answerKr;
 
       warning = warningKr;
+    } else if (defaultLocale.toLowerCase().contains('ja')) {
+      appName = appNameJa;
+
+      mode = modeJa;
+      soundOn = soundJa;
+      isKr = false;
+
+      homePlusLabel = homePlusLabelJa;
+      settingPlusLabel = settingPlusLabelJa;
+      homeMultiplyLabel = homeMultiplyLabelJa;
+      settingMultiplyLabel = settingMultiplyLabelJa;
+
+      ok = okJa;
+      start = startJa;
+      check = checkJa;
+
+      settings = settingsJa;
+      shuffle = shuffleJa;
+      onlyPluses = onlyPlusesJa;
+      speed = speedJa;
+      digit = digitJa;
+      numOfProblems = numOfProblemsJa;
+
+      setSpeedTitle = setSpeedTitleJa;
+      rangeWord = rangeWordJa;
+      pleaseInsertValue = pleaseInsertValueJa;
+      pleaseTooBigValue = pleaseTooBigValueJa;
+      pleaseTooSmallValue = pleaseTooSmallValueJa;
+
+      settingsMultiply = settingsMultiplyJa;
+      isMultiply = isMultiplyJa;
+      speedMultiply = speedMultiplyJa;
+      bigDigitMultiply = bigDigitMultiplyJa;
+      smallDigitMultiply = smallDigitMultiplyJa;
+      numOfProblemsMultiply = numOfProblemsMultiplyJa;
+
+      insertBigger = insertBiggerJa;
+
+      shulffleDesc = shuffleDescJa;
+      rangeMultiplyWord = rangeMultiplyWordJa;
+
+      noProbExecuted = noProbExecutedJa;
+      checkProb = checkProbJa;
+      checkProbQ = checkProbJa;
+
+      problem = problemJa;
+      answer = answerJa;
+
+      warning = warningJa;
     }
   }
 }
