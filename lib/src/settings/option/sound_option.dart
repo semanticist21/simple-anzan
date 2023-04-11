@@ -53,21 +53,27 @@ class SoundOptionHandler {
 
   Future<void> playSound() async {
     if (isSoundOn) {
-      if (_flag) {
-        // _flag = false;
-        if (Platform.isWindows) {
-          await _audioplayer.pause();
+      if (Platform.isWindows) {
+        if (_flag) {
+          _flag = false;
+          if (Platform.isWindows) {
+            await _audioplayer.pause();
+          }
+          await _audioplayer.seek(Duration.zero);
+          await _audioplayer.play();
+        } else {
+          _flag = true;
+          if (Platform.isWindows) {
+            await _audioplayer2.pause();
+          }
+          await _audioplayer2.seek(Duration.zero);
+          await _audioplayer2.play();
         }
-        await _audioplayer.seek(Duration.zero);
-        await _audioplayer.play();
-      } else {
-        // _flag = true;
-        if (Platform.isWindows) {
-          await _audioplayer2.pause();
-        }
-        await _audioplayer2.seek(Duration.zero);
-        await _audioplayer2.play();
       }
+      // stall 문제 때문에 하나의 오디오 플레이어 사용
+    } else {
+      await _audioplayer.seek(Duration.zero);
+      await _audioplayer.play();
     }
   }
 

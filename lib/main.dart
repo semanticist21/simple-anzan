@@ -26,19 +26,6 @@ void main() async {
     await windowManager.setMaximizable(true);
     await windowManager.setMinimizable(true);
     await windowManager.setSize(const Size(400, 600));
-
-    // WindowOptions windowOptions = const WindowOptions(
-    //   size: Size(400, 600),
-    //   center: true,
-    //   backgroundColor: Colors.transparent,
-    //   skipTaskbar: false,
-    //   titleBarStyle: TitleBarStyle.normal,
-    // );
-
-    // windowManager.waitUntilReadyToShow(windowOptions, () async {
-    //   await windowManager.show();
-    //   await windowManager.focus();
-    // });
   }
 
   FlutterError.onError =
