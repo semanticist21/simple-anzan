@@ -13,9 +13,11 @@ class LocalizationChecker {
   static String homeMultiplyLabel = homeMultiplyLabelEn;
   static String settingMultiplyLabel = settingMultiplyLabelEn;
 
-  // theme str
+  // theme str or top buttons
   static String mode = modeEn;
   static String soundOn = soundEn;
+  static String fastSetting = fastSettingEn;
+  static String notify = notifyEn;
 
   // button str
   static String ok = okEn;
@@ -110,6 +112,9 @@ class LocalizationChecker {
       answer = answerKr;
 
       warning = warningKr;
+
+      fastSetting = fastSettingKr;
+      notify = notifyKr;
     } else if (defaultLocale.toLowerCase().contains('ja')) {
       appName = appNameJa;
 
@@ -159,6 +164,9 @@ class LocalizationChecker {
       answer = answerJa;
 
       warning = warningJa;
+
+      fastSetting = fastSettingJa;
+      notify = notifyJa;
     }
   }
 }

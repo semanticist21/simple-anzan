@@ -160,7 +160,7 @@ List<int> getPlusMinusNums(int digit, int numOfNums) {
 // multiply zone
 // always divideDigit is smaller than startDigit.
 List<Tuple<int, int>> getMultiplyNums(
-    int smallDigit, int bigDigit, int numOfNums) {
+    int smallDigit, int bigDigit, int numOfNums, Tuple lastTuple) {
   var list = List<Tuple<int, int>>.empty(growable: true);
 
   var min = (pow(10, bigDigit - 1)).toInt();
@@ -171,12 +171,31 @@ List<Tuple<int, int>> getMultiplyNums(
 
   for (var i = 0; i < numOfNums; i++) {
     var firstGen = min + Random().nextInt(max - min);
-    while (firstGen == 0 || firstGen % 10 == 0 || firstGen == 1) {
+    var isAllSameList = firstGen.toString().split('').map((e) => int.parse(e));
+
+    while (firstGen == lastTuple.item2 ||
+        firstGen == 0 ||
+        firstGen % 10 == 0 ||
+        firstGen == 1 ||
+        (firstGen < 10
+            ? false
+            : isAllSameList
+                .every((element) => element == isAllSameList.first))) {
       firstGen = min + Random().nextInt(max - min);
+      isAllSameList = firstGen.toString().split('').map((e) => int.parse(e));
     }
 
     var secondGen = minSecond + Random().nextInt(maxSecond - minSecond);
-    while (secondGen == 0 || secondGen % 10 == 0 || secondGen == 1) {
+    isAllSameList = secondGen.toString().split('').map((e) => int.parse(e));
+
+    while (secondGen == lastTuple.item1 ||
+        secondGen == 0 ||
+        secondGen % 10 == 0 ||
+        secondGen == 1 ||
+        (secondGen < 10
+            ? false
+            : isAllSameList
+                .every((element) => element == isAllSameList.first))) {
       secondGen = minSecond + Random().nextInt(maxSecond - minSecond);
     }
 
@@ -187,10 +206,11 @@ List<Tuple<int, int>> getMultiplyNums(
 }
 
 List<Tuple<int, int>> getDivdieNums(
-    int divideDigit, int bigDigit, int numOfNums) {
+    int divideDigit, int bigDigit, int numOfNums, Tuple lastTuple) {
   var list = List<Tuple<int, int>>.empty(growable: true);
   var max = pow(10, bigDigit) - 1;
 
+  // when 1, 1
   if (bigDigit == 1 && divideDigit == 1) {
     for (var i = 0; i < numOfNums; i++) {
       var minSame = pow(10, bigDigit - 1).toInt();
@@ -199,17 +219,14 @@ List<Tuple<int, int>> getDivdieNums(
       var divideNum = minSame + Random().nextInt(maxSame - minSame);
       var multiplier = Random().nextInt(10) + 1;
 
-      while (multiplier * divideNum > max ||
-          multiplier == 1 ||
-          divideNum == 1 ||
-          divideNum % 10 == 0 ||
-          multiplier % 10 == 0) {
+      while (getRequirements(divideNum, multiplier, max, lastTuple)) {
         divideNum = minSame + Random().nextInt(maxSame - minSame);
         multiplier = Random().nextInt(10) + 1;
       }
 
       list.add(Tuple(multiplier * divideNum, divideNum));
     }
+    // when equal
   } else if (bigDigit == divideDigit) {
     for (var i = 0; i < numOfNums; i++) {
       var minSame = pow(10, bigDigit - 1).toInt();
@@ -218,11 +235,7 @@ List<Tuple<int, int>> getDivdieNums(
       var divideNum = minSame + Random().nextInt(maxSame - minSame);
       var multiplier = Random().nextInt(10) + 1;
 
-      while (multiplier * divideNum > max ||
-          multiplier == 1 ||
-          divideNum == 1 ||
-          divideNum % 10 == 0 ||
-          multiplier % 10 == 0) {
+      while (getRequirements(divideNum, multiplier, max, lastTuple)) {
         divideNum = minSame + Random().nextInt(maxSame - minSame);
         multiplier = Random().nextInt(10) + 1;
       }
@@ -242,11 +255,7 @@ List<Tuple<int, int>> getDivdieNums(
       var multiplier =
           minMultiplier + Random().nextInt(maxMultiplier - minMultiplier);
 
-      while (multiplier * divideNum > max ||
-          multiplier == 1 ||
-          divideNum == 1 ||
-          divideNum % 10 == 0 ||
-          multiplier % 10 == 0) {
+      while (getRequirements(divideNum, multiplier, max, lastTuple)) {
         divideNum = minDiff + Random().nextInt(maxDiff - minDiff);
         multiplier =
             minMultiplier + Random().nextInt(maxMultiplier - minMultiplier);
@@ -256,4 +265,43 @@ List<Tuple<int, int>> getDivdieNums(
     }
   }
   return list;
+}
+
+bool getRequirements(int divideNum, int multiplier, num max, Tuple lastTuple) {
+  var answer = divideNum * multiplier;
+  var isAllSameListDivide =
+      divideNum.toString().split('').map((e) => int.parse(e));
+  var isAllSameListMultiPlier =
+      multiplier.toString().split('').map((e) => int.parse(e));
+
+  if (divideNum > 10 &&
+      isAllSameListDivide
+          .every((element) => element == isAllSameListDivide.first)) {
+    return true;
+  }
+
+  if (multiplier > 10 &&
+      isAllSameListMultiPlier
+          .every((element) => element == isAllSameListDivide.first)) {
+    return true;
+  }
+
+  if (divideNum < 10) {
+    return divideNum == lastTuple.item2 ||
+        multiplier * divideNum > max ||
+        multiplier == 1 ||
+        divideNum == 1 ||
+        divideNum % 10 == 0 ||
+        multiplier % 10 == 0 ||
+        answer % 100 == 0 ||
+        answer % 11 == 0;
+  }
+
+  return divideNum == lastTuple.item2 ||
+      multiplier * divideNum > max ||
+      multiplier == 1 ||
+      divideNum == 1 ||
+      divideNum % 10 == 0 ||
+      multiplier % 10 == 0 ||
+      answer % 100 == 0;
 }

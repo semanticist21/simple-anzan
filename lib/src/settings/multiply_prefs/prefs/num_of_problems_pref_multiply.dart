@@ -12,6 +12,11 @@ class NumOfProblemsMultiplyPref
   late NumOfMultiplyProblems _currentValue;
 
   NumOfProblemsMultiplyPref(SharedPreferences prefs) {
+    // Warning !!!!!
+    // option remove !! due to removed option.
+    // always default 0.
+    prefs.setInt(_saveKey, _defaultIndex);
+
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }

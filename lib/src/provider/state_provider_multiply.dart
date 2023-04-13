@@ -12,6 +12,7 @@ class StateMultiplyProvider extends ChangeNotifier {
 
   var buttonText = LocalizationChecker.start;
   var nums = List<Tuple<int, int>>.empty(growable: true);
+  var isMultiplies = List<bool>.empty(growable: true);
 
   void changeState(
       {ButtonMultiplyState desiredState = ButtonMultiplyState.autoState}) {
@@ -29,7 +30,10 @@ class StateMultiplyProvider extends ChangeNotifier {
           state = ButtonMultiplyState.iterationStarted;
           break;
         case ButtonMultiplyState.iterationStarted:
-          state = ButtonMultiplyState.iterationStarted;
+          state = ButtonMultiplyState.iterationCompleted;
+          break;
+        case ButtonMultiplyState.iterationCompleted:
+          state = ButtonMultiplyState.iterationNotStarted;
           break;
         default:
           return;
@@ -46,6 +50,7 @@ class StateMultiplyProvider extends ChangeNotifier {
 enum ButtonMultiplyState {
   iterationNotStarted,
   iterationStarted,
+  iterationCompleted,
   autoState,
 }
 
@@ -55,6 +60,8 @@ String getButtonStr(ButtonMultiplyState state) {
       return LocalizationChecker.start;
     case ButtonMultiplyState.iterationStarted:
       return hidden;
+    case ButtonMultiplyState.iterationCompleted:
+      return LocalizationChecker.check;
     default:
       return LocalizationChecker.start;
   }
@@ -66,6 +73,8 @@ bool getButtonVisibility(ButtonMultiplyState state) {
       return true;
     case ButtonMultiplyState.iterationStarted:
       return false;
+    case ButtonMultiplyState.iterationCompleted:
+      return true;
     default:
       return true;
   }
@@ -77,6 +86,8 @@ bool getQuestionListButtonVisibility(ButtonMultiplyState state) {
       return true;
     case ButtonMultiplyState.iterationStarted:
       return false;
+    case ButtonMultiplyState.iterationCompleted:
+      return true;
     default:
       return false;
   }

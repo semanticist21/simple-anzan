@@ -1,25 +1,27 @@
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
-import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
 
-import '../dialog/add_dialog_multiply.dart';
+import '../const/localization.dart';
 import '../settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import '../settings/multiply_prefs/prefs/countdown_mode.dart';
 import '../settings/multiply_prefs/prefs/d_big_digit_pref.dart';
+import '../settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import '../settings/multiply_prefs/prefs/num_of_problems_pref_multiply.dart';
-import '../settings/multiply_prefs/settings_manager_multiply.dart';
 import '../settings/multiply_prefs/prefs/speed_multiply.dart';
+import '../settings/multiply_prefs/settings_manager_multiply.dart';
+import 'add_dialog_multiply.dart';
 
-class SettingsMultiplyPage extends StatefulWidget {
-  const SettingsMultiplyPage({super.key});
+class WindowsAddOptionMultiplyDialog extends StatefulWidget {
+  const WindowsAddOptionMultiplyDialog({super.key});
 
   @override
-  State<SettingsMultiplyPage> createState() => _SettingsPageState();
+  State<WindowsAddOptionMultiplyDialog> createState() =>
+      _WindowsAddOptionMultiplyDialogState();
 }
 
-class _SettingsPageState extends State<SettingsMultiplyPage> {
+class _WindowsAddOptionMultiplyDialogState
+    extends State<WindowsAddOptionMultiplyDialog> {
   final _manager = SettingsMultiplyManager();
 
   late CalCulationMultiplyMode _isMultiply;
@@ -39,140 +41,161 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        child: Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1000),
-        child: FractionallySizedBox(
-          widthFactor: 0.8,
-          heightFactor: 0.9,
-          child: Container(
-              decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onTertiaryContainer,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                      color: Theme.of(context).colorScheme.outlineVariant)),
-              child: FractionallySizedBox(
-                  widthFactor: 0.9,
-                  heightFactor: 0.9,
-                  child: ListView(
-                      controller: _controller,
-                      physics: const NeverScrollableScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      children: [
-                        SizedBox(
-                            height: Platform.isIOS || Platform.isAndroid
-                                ? 0
-                                : MediaQuery.of(context).size.height * 0.015),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.settings,
+    return AlertDialog(
+        contentPadding: const EdgeInsets.all(0),
+        backgroundColor: Colors.transparent,
+        content: ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 600, maxWidth: 800),
+            child: FractionallySizedBox(
+                heightFactor: 0.7,
+                child: Container(
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.transparent),
+                    child: Scaffold(
+                        appBar: AppBar(
+                          leading: IconButton(
+                            icon: Icon(
+                              Icons.arrow_back_ios,
                               color: Theme.of(context)
                                   .colorScheme
-                                  .secondaryContainer,
+                                  .onPrimaryContainer,
                               size: MediaQuery.of(context).size.height * 0.03,
                             ),
-                            SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.015),
-                            Text(
-                              LocalizationChecker.settingsMultiply,
+                            onPressed: () => Navigator.of(context).pop(),
+                            splashRadius: 10,
+                          ),
+                          automaticallyImplyLeading: false,
+                          title: Text(LocalizationChecker.settings,
                               style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.023,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondaryContainer,
-                              ),
-                            )
-                          ],
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer)),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.tertiaryContainer,
                         ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01),
-                        Divider(
-                          height: 20,
-                          thickness: 1,
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.005),
-                        // plus & minus mode.
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.55,
-                          child: SingleChildScrollView(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.background,
+                        body: Column(children: [
+                          Expanded(
+                            flex: 6,
+                            child: SingleChildScrollView(
+                              controller: _controller,
                               physics: const AlwaysScrollableScrollPhysics(
                                   parent: BouncingScrollPhysics()),
+                              child: Column(children: [
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.005),
+                                // plus & minus mode.
+                                Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      // plus & minus mode.
+                                      buildToggleOption(
+                                          LocalizationChecker.isMultiply,
+                                          Icons.calculate,
+                                          _manager.enumToValue<
+                                              CalCulationMultiplyMode,
+                                              bool>(_isMultiply),
+                                          toggleMultiplyModeCallback),
+                                      // speed.
+                                      buildDropdownButton(
+                                          LocalizationChecker.speedMultiply,
+                                          Icon(
+                                            Icons.speed,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primaryContainer,
+                                          ),
+                                          _manager.getItemStr<SpeedMultiply>(
+                                              _speed.name),
+                                          getDropdownMenuItemList<
+                                              SpeedMultiply>(_manager),
+                                          changeOptionCallback<SpeedMultiply>),
+                                      // digit.
+                                      buildDropdownButton(
+                                          LocalizationChecker
+                                              .smallDigitMultiply,
+                                          Icon(
+                                            CupertinoIcons.number_square,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primaryContainer,
+                                          ),
+                                          _manager.getItemStr<SmallDigit>(
+                                              _smallDigit.name),
+                                          getDropdownMenuItemList<SmallDigit>(
+                                              _manager),
+                                          changeOptionCallback<SmallDigit>),
+                                      buildDropdownButton(
+                                          LocalizationChecker.bigDigitMultiply,
+                                          Icon(
+                                            CupertinoIcons.number_square_fill,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primaryContainer,
+                                          ),
+                                          _manager.getItemStr<BigDigit>(
+                                              _bigDigit.name),
+                                          getDropdownMenuItemList<BigDigit>(
+                                              _manager),
+                                          changeOptionCallback<BigDigit>),
+                                      buildToggleOption(
+                                          LocalizationChecker.notify,
+                                          Icons.notifications,
+                                          _manager.enumToValue<
+                                              CountDownMultiplyMode,
+                                              bool>(_countDownMode),
+                                          toggleCounterModeCallback),
+                                      const SizedBox(height: 50),
+                                    ]),
+                              ]),
+                            ),
+                          ),
+                          Expanded(
                               child: Column(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    buildToggleOption(
-                                        LocalizationChecker.isMultiply,
-                                        Icons.calculate,
-                                        _manager.enumToValue<
-                                            CalCulationMultiplyMode,
-                                            bool>(_isMultiply),
-                                        toggleMultiplyModeCallback),
-                                    // speed.
-                                    buildDropdownButton(
-                                        LocalizationChecker.speedMultiply,
-                                        Icon(
-                                          Icons.speed,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primaryContainer,
+                                Divider(
+                                  color: Theme.of(context).colorScheme.outline,
+                                ),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text(
+                                          LocalizationChecker.ok,
+                                          style: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.02,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer),
                                         ),
-                                        _manager.getItemStr<SpeedMultiply>(
-                                            _speed.name),
-                                        getDropdownMenuItemList<SpeedMultiply>(
-                                            _manager),
-                                        changeOptionCallback<SpeedMultiply>),
-                                    // digit.
-                                    buildDropdownButton(
-                                        LocalizationChecker.smallDigitMultiply,
-                                        Icon(
-                                          CupertinoIcons.number_square,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primaryContainer,
-                                        ),
-                                        _manager.getItemStr<SmallDigit>(
-                                            _smallDigit.name),
-                                        getDropdownMenuItemList<SmallDigit>(
-                                            _manager),
-                                        changeOptionCallback<SmallDigit>),
-                                    buildDropdownButton(
-                                        LocalizationChecker.bigDigitMultiply,
-                                        Icon(
-                                          CupertinoIcons.number_square_fill,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primaryContainer,
-                                        ),
-                                        _manager.getItemStr<BigDigit>(
-                                            _bigDigit.name),
-                                        getDropdownMenuItemList<BigDigit>(
-                                            _manager),
-                                        changeOptionCallback<BigDigit>),
-                                    buildToggleOption(
-                                        LocalizationChecker.notify,
-                                        Icons.notifications,
-                                        _manager.enumToValue<
-                                            CountDownMultiplyMode,
-                                            bool>(_countDownMode),
-                                        toggleCounterModeCallback),
-                                    const SizedBox(height: 50),
-                                  ])),
-                        )
-                      ]))),
-        ),
-      ),
-    ));
+                                      ),
+                                      SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.02),
+                                    ]),
+                                const Divider(
+                                  color: Colors.transparent,
+                                ),
+                              ]))
+                        ]))))));
   }
 
   Padding buildToggleOption(String title, IconData iconData, bool value,

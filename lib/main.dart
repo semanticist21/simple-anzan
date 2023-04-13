@@ -1,3 +1,4 @@
+import 'package:abacus_simple_anzan/src/dialog/windows_add_option_multiply.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/option/option_manager.dart';
@@ -16,13 +17,14 @@ import 'package:window_manager/window_manager.dart';
 import 'dart:async';
 
 import 'loading.dart';
+import 'src/dialog/windows_add_option.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     await windowManager.ensureInitialized();
-    await windowManager.setMinimumSize(const Size(400, 600));
+    await windowManager.setMinimumSize(const Size(1024, 768));
     await windowManager.setMaximizable(true);
     await windowManager.setMinimizable(true);
     await windowManager.setSize(const Size(400, 600));
@@ -98,6 +100,10 @@ class _Home extends State<Home> {
     if (_stateProvider.state == ButtonState.iterationCompleted) {
       _stateProvider.changeState();
     }
+    if (_stateMultiplyProvider.state ==
+        ButtonMultiplyState.iterationCompleted) {
+      _stateMultiplyProvider.changeState();
+    }
   }
 
   @override
@@ -122,6 +128,39 @@ class _Home extends State<Home> {
                           stream: SoundOptionHandler.isSoundOnStream.stream,
                           builder: (context, snapshot) {
                             return Row(children: [
+                              Visibility(
+                                  visible: Platform.isWindows
+                                      ? _currentIndex == 0 || _currentIndex == 2
+                                          ? true
+                                          : false
+                                      : false,
+                                  child: Row(children: [
+                                    Tooltip(
+                                        message:
+                                            LocalizationChecker.fastSetting,
+                                        child: IconButton(
+                                          onPressed: () {
+                                            if (_currentIndex == 0) {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) =>
+                                                      const WindowsAddOptionDialog());
+                                            } else if (_currentIndex == 2) {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) =>
+                                                      const WindowsAddOptionMultiplyDialog());
+                                            }
+                                          },
+                                          icon: const Icon(
+                                              CupertinoIcons.settings),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground,
+                                          splashRadius: 15,
+                                        )),
+                                  ])),
+                              const SizedBox(width: 10),
                               Tooltip(
                                   message: LocalizationChecker.soundOn,
                                   child: Icon(

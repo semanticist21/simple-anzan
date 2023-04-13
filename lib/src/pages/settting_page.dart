@@ -1,4 +1,5 @@
 import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
@@ -26,6 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
   late Speed _speed;
   late Digit _digit;
   late NumOfProblems _numOfProblems;
+  late CountDownMode _countDownMode;
 
   final _controller = ScrollController();
 
@@ -164,6 +166,12 @@ class _SettingsPageState extends State<SettingsPage> {
                                         getDropdownMenuItemList<NumOfProblems>(
                                             _manager),
                                         changeOptionCallback<NumOfProblems>),
+                                    buildToggleOption(
+                                        LocalizationChecker.notify,
+                                        Icons.notifications,
+                                        _manager.enumToValue<CountDownMode,
+                                            bool>(_countDownMode),
+                                        toggleCounterModeCallback),
                                     const SizedBox(height: 50),
                                   ])),
                         )
@@ -213,6 +221,16 @@ class _SettingsPageState extends State<SettingsPage> {
     });
 
     _manager.saveSetting(_isShuffle);
+    initializeValues(_manager);
+  }
+
+  toggleCounterModeCallback(bool newValue) {
+    setState(() {
+      var valueToEnum = _manager.valueToEnum<bool, CountDownMode>(newValue);
+      _countDownMode = valueToEnum;
+    });
+
+    _manager.saveSetting(_countDownMode);
     initializeValues(_manager);
   }
 
@@ -315,12 +333,14 @@ class _SettingsPageState extends State<SettingsPage> {
             element,
             style: TextStyle(
                 height: Platform.isWindows
-                    ? MediaQuery.of(context).size.height * 0.00315
+                    ? MediaQuery.of(context).size.height * 0.00135
                     : MediaQuery.of(context).size.height * 0.0017 > 1
                         ? MediaQuery.of(context).size.height * 0.0017
                         : 1,
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
-                fontSize: MediaQuery.of(context).size.height * 0.0185,
+                fontSize: Platform.isWindows
+                    ? MediaQuery.of(context).size.height * 0.0175
+                    : MediaQuery.of(context).size.height * 0.0185,
                 fontWeight: FontWeight.w500),
           ));
       itemList.add(item);
@@ -346,6 +366,7 @@ class _SettingsPageState extends State<SettingsPage> {
       _speed = manager.getCurrentEnum<Speed>();
       _digit = manager.getCurrentEnum<Digit>();
       _numOfProblems = manager.getCurrentEnum<NumOfProblems>();
+      _countDownMode = manager.getCurrentEnum<CountDownMode>();
     });
   }
 }

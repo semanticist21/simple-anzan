@@ -1,4 +1,5 @@
 import 'package:abacus_simple_anzan/src/settings/option/option_manager.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
@@ -149,7 +150,15 @@ class _FlickerState extends State<Flicker> {
     setState(() {
       _number = '';
     });
-    await Future.delayed(const Duration(milliseconds: 300));
+
+    // wait before start
+    var isNotify = manager.getCurrentValue<CountDownMode, bool>();
+    if (isNotify) {
+      await _doCountDown();
+    } else {
+      await Future.delayed(const Duration(milliseconds: 1000));
+    }
+
     for (int i = 0; i < len; i++) {
       var str = '';
 
@@ -177,7 +186,6 @@ class _FlickerState extends State<Flicker> {
 
       await Future.delayed(duration);
     }
-    _optManager.soundOption.stopAudio();
   }
 
   void _showAnswer() {
@@ -191,6 +199,7 @@ class _FlickerState extends State<Flicker> {
     _stateProvider.removeListener(_callbackOnButtonClick);
     super.dispose();
     _optManager.soundOption.stopAudio();
+    _optManager.soundOption.stopCountAudio();
   }
 
 // styles.
@@ -204,5 +213,13 @@ class _FlickerState extends State<Flicker> {
             fontSize: (MediaQuery.of(context).size.width * 0.7 +
                     MediaQuery.of(context).size.height * 1) *
                 0.07);
+  }
+
+  Future<void> _doCountDown() async {
+    await Future.delayed(const Duration(milliseconds: 800));
+    await _optManager.soundOption.playCountSound();
+    await Future.delayed(const Duration(milliseconds: 800));
+    await _optManager.soundOption.playCountSound();
+    await Future.delayed(const Duration(milliseconds: 800));
   }
 }

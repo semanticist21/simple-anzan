@@ -1,9 +1,13 @@
 // app name
+import 'package:intl/intl.dart';
+
+final formatter = NumberFormat('#,##0');
+
 const String appNameEn = 'Abacus Simple Anzan';
 const String appNameKr = '주산심플암산';
 const String appNameJa = '珠算簡単暗算';
 
-// mode
+// mode, option button (top)
 const String modeKr = '색상 모드 바꾸기';
 const String modeEn = 'Change theme';
 const String modeJa = 'カラー テーマ 交換';
@@ -11,6 +15,10 @@ const String modeJa = 'カラー テーマ 交換';
 const String soundKr = '소리 실행/끄기';
 const String soundEn = 'Sound On/Off';
 const String soundJa = '音を立てる/消す';
+
+const String fastSettingKr = '빠른 설정';
+const String fastSettingEn = 'Fast Setting';
+const String fastSettingJa = '簡便設定';
 
 // routers
 const String mainPageAddress = '/';
@@ -54,7 +62,7 @@ const String checkJa = '正解を見る';
 // error page strings
 const String error = 'The page you requested does not exist.';
 
-// options(settings)
+// options(settings && common)
 const String settingsKr = '설정';
 const String shuffleKr = '섞기';
 const String onlyPlusesKr = '덧셈(+)만 하기';
@@ -75,6 +83,10 @@ const String onlyPlusesJa = '足し算だけ';
 const String speedJa = "速度";
 const String digitJa = "桁数";
 const String numOfProblemsJa = "問題数";
+
+const String notifyKr = '시작 전 알림';
+const String notifyEn = 'notify at start';
+const String notifyJa = '事前通知';
 
 // option(multiply)
 const String settingsMultiplyKr = '설정 (곱셈)';
@@ -126,7 +138,7 @@ const String rangeMultiplyWordKr = '100~30000 사이의 값을 입력하세요.'
 const String rangeMultiplyWordEn = 'put value between 100~30000.';
 const String rangeMultiplyWordJa = '100~30000の値を入れてください。';
 
-const String insertBiggerKr = '앞자리 수보다 작은 값을 입력해주세요.';
+const String insertBiggerKr = '작은 자리 수가 큰 자리 수보다 작아야 합니다.';
 const String insertBiggerEn = 'Small digit should be smaller.';
 const String insertBiggerJa = '小さい席の数がもっと大きいです。';
 

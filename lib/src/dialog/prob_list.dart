@@ -1,6 +1,7 @@
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
+import '../const/const.dart';
 
 class ProbList extends StatefulWidget {
   const ProbList({super.key, required this.numList});
@@ -11,8 +12,6 @@ class ProbList extends StatefulWidget {
 }
 
 class _ProbListState extends State<ProbList> {
-  final formattter = NumberFormat('#,##0');
-
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -58,54 +57,84 @@ class _ProbListState extends State<ProbList> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 1),
                                   child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.06,
+                                      height: MediaQuery.of(context).size.height *
+                                          0.06,
                                       width: double.infinity,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onTertiaryContainer,
-                                      child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Visibility(
-                                                visible: index ==
-                                                    widget.numList.length - 1,
-                                                child: Row(children: [
-                                                  Icon(
-                                                    Icons.check,
+                                      color: index == widget.numList.length - 1
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .onTertiaryContainer
+                                              .withGreen((Theme.of(context)
+                                                          .colorScheme
+                                                          .onTertiaryContainer
+                                                          .green *
+                                                      0.7)
+                                                  .toInt())
+                                              .withRed((Theme.of(context)
+                                                          .colorScheme
+                                                          .onTertiaryContainer
+                                                          .red *
+                                                      0.7)
+                                                  .toInt())
+                                              .withBlue((Theme.of(context)
+                                                          .colorScheme
+                                                          .onTertiaryContainer
+                                                          .blue *
+                                                      0.7)
+                                                  .toInt())
+                                          : Theme.of(context).colorScheme.onTertiaryContainer,
+                                      child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                                        Visibility(
+                                            visible: index ==
+                                                widget.numList.length - 1,
+                                            child: Row(children: [
+                                              Icon(
+                                                Icons.check,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .onPrimaryContainer,
+                                                size: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.025,
+                                              ),
+                                              const SizedBox(width: 10),
+                                            ])),
+                                        index != widget.numList.length - 1
+                                            ? Text(
+                                                formatter
+                                                    .format(
+                                                        widget.numList[index])
+                                                    .toString(),
+                                                textAlign: TextAlign.right,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.03,
                                                     color: Theme.of(context)
                                                         .colorScheme
-                                                        .onPrimaryContainer,
-                                                    size: MediaQuery.of(context)
-                                                            .size
-                                                            .height *
-                                                        0.025,
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                ])),
-                                            Text(
-                                              index != widget.numList.length - 1
-                                                  ? formattter
-                                                      .format(
-                                                          widget.numList[index])
-                                                      .toString()
-                                                  : formattter.format(
-                                                      widget.numList[index]),
-                                              textAlign: TextAlign.right,
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .height *
-                                                          0.03,
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .onBackground),
-                                            ),
-                                            const SizedBox(width: 20),
-                                          ])));
+                                                        .onBackground),
+                                              )
+                                            : Text(
+                                                formatter.format(
+                                                    widget.numList[index]),
+                                                textAlign: TextAlign.right,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.03,
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .onBackground,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                        const SizedBox(width: 20),
+                                      ])));
                             })
                         : getWhenItemEmpty()
                   ],

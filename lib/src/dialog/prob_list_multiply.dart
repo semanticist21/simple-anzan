@@ -1,31 +1,36 @@
 import 'package:abacus_simple_anzan/src/const/localization.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
+import '../const/const.dart';
 import '../functions/tuple.dart';
 
 class ProbMultiplyList extends StatefulWidget {
   const ProbMultiplyList(
       {super.key, required this.numList, required this.mode});
   final List<Tuple<int, int>> numList;
-  final CalCulationMultiplyMode mode;
+  final List<bool> mode;
 
   @override
   State<ProbMultiplyList> createState() => _ProbMultiplyListState();
 }
 
 class _ProbMultiplyListState extends State<ProbMultiplyList> {
-  var formattter = NumberFormat('#,##0');
+  final _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _controller.animateTo(_controller.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 200), curve: Curves.easeInOut);
+    });
+
     return Dialog(
         child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 800),
             child: FractionallySizedBox(
                 heightFactor: 0.7,
                 child: CustomScrollView(
+                  controller: _controller,
                   physics: const AlwaysScrollableScrollPhysics(
                       parent: BouncingScrollPhysics()),
                   slivers: [
@@ -65,32 +70,44 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                   height:
                                       MediaQuery.of(context).size.height * 0.14,
                                   width: double.infinity,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onTertiaryContainer,
+                                  color: index == widget.numList.length - 1
+                                      ? Theme.of(context)
+                                          .colorScheme
+                                          .onTertiaryContainer
+                                          .withGreen((Theme.of(context)
+                                                      .colorScheme
+                                                      .onTertiaryContainer
+                                                      .green *
+                                                  0.7)
+                                              .toInt())
+                                          .withRed((Theme.of(context)
+                                                      .colorScheme
+                                                      .onTertiaryContainer
+                                                      .red *
+                                                  0.7)
+                                              .toInt())
+                                          .withBlue((Theme.of(context)
+                                                      .colorScheme
+                                                      .onTertiaryContainer
+                                                      .blue *
+                                                  0.7)
+                                              .toInt())
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onTertiaryContainer,
                                   child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Row(
                                           children: [
-                                            Icon(
-                                              Icons.question_answer,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onBackground,
-                                              size: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.026,
-                                            ),
                                             const SizedBox(width: 5),
+                                            Text('$index.  ',
+                                                style: getTextStyle()),
                                             Text(
-                                              widget.mode ==
-                                                      CalCulationMultiplyMode
-                                                          .multiply
-                                                  ? '${LocalizationChecker.problem} : ${formattter.format(widget.numList[index].item1)} × ${formattter.format(widget.numList[index].item2)}'
-                                                  : '${LocalizationChecker.problem} : ${formattter.format(widget.numList[index].item1)} ÷ ${formattter.format(widget.numList[index].item2)}',
+                                              widget.mode[index]
+                                                  ? '${formatter.format(widget.numList[index].item1)} × ${formatter.format(widget.numList[index].item2)}'
+                                                  : '${formatter.format(widget.numList[index].item1)} ÷ ${formatter.format(widget.numList[index].item2)}',
                                               style: getTextStyle(),
                                             )
                                           ],
@@ -111,12 +128,13 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                                         .onBackground),
                                                 const SizedBox(width: 5),
                                                 Text(
-                                                  widget.mode ==
-                                                          CalCulationMultiplyMode
-                                                              .multiply
-                                                      ? '${LocalizationChecker.answer} : ${formattter.format(widget.numList[index].item1 * widget.numList[index].item2)}'
-                                                      : '${LocalizationChecker.answer} : ${formattter.format(widget.numList[index].item1 / widget.numList[index].item2)}',
-                                                  style: getTextStyle(),
+                                                  widget.mode[index]
+                                                      ? ' ${formatter.format(widget.numList[index].item1 * widget.numList[index].item2)}'
+                                                      : ' ${formatter.format(widget.numList[index].item1 / widget.numList[index].item2)}',
+                                                  style: getTextStyle()
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.w500),
                                                 )
                                               ],
                                             ),

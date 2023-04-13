@@ -1,7 +1,5 @@
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
@@ -59,9 +57,7 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                                     context: context,
                                     builder: (context) => ProbMultiplyList(
                                           numList: _stateProvider.nums,
-                                          mode: SettingsMultiplyManager()
-                                              .getCurrentEnum<
-                                                  CalCulationMultiplyMode>(),
+                                          mode: _stateProvider.isMultiplies,
                                         ));
                               },
                               icon: Icon(Icons.search,

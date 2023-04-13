@@ -12,6 +12,7 @@ import 'package:universal_io/io.dart';
 import '../functions/tuple.dart';
 import '../settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import '../functions/functions.dart';
+import '../settings/multiply_prefs/prefs/countdown_mode.dart';
 import '../settings/option/option_manager.dart';
 
 class FlickerMultiply extends StatefulWidget {
@@ -27,14 +28,24 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   final _optManager = OptionManager();
 
   var formattter = NumberFormat('#,##0');
+  var _lastTuple = Tuple(-1, -1);
 
   var _number = '';
+  var _answer = '';
 
   var _isInit = true;
 
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _stateProvider.removeListener(_callbackOnButtonClick);
+    super.dispose();
+    _optManager.soundOption.stopAudio();
+    _optManager.soundOption.stopCountAudio();
   }
 
   @override
@@ -66,9 +77,12 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   Future<void> _callbackOnButtonClick() async {
     switch (_stateProvider.state) {
       case ButtonMultiplyState.iterationNotStarted:
+        _showAnswer();
         break;
       case ButtonMultiplyState.iterationStarted:
         await _initiateIteration(_manager);
+        break;
+      case ButtonMultiplyState.iterationCompleted:
         break;
       default:
         return;
@@ -97,21 +111,37 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   Future<void> _runDivide(SettingsMultiplyManager manager) async =>
       await doProcess(getDivdieNums, manager);
 
-  Future<void> doProcess(List<Tuple<int, int>> Function(int, int, int) func,
+  // initially code was written for handling a number of problems,
+  // but now it takes only one. (removed option)
+  Future<void> doProcess(
+      List<Tuple<int, int>> Function(int, int, int, Tuple) func,
       SettingsMultiplyManager manager) async {
     var questions = func(
         manager.getCurrentValue<SmallDigit, int>(),
         manager.getCurrentValue<BigDigit, int>(),
-        manager.getCurrentValue<NumOfMultiplyProblems, int>());
+        manager.getCurrentValue<NumOfMultiplyProblems, int>(),
+        _lastTuple);
 
-    _stateProvider.nums.clear();
+    if (_stateProvider.nums.length > 20) {
+      _stateProvider.nums.removeAt(0);
+      _stateProvider.isMultiplies.removeAt(0);
+    }
+
+    _lastTuple = questions.first;
+
     for (var element in questions) {
       _stateProvider.nums.add(element);
+      switch (manager.getCurrentEnum<CalCulationMultiplyMode>()) {
+        case CalCulationMultiplyMode.multiply:
+          _stateProvider.isMultiplies.add(true);
+        case CalCulationMultiplyMode.divide:
+          _stateProvider.isMultiplies.add(false);
+      }
     }
 
     await iterNums(manager, questions);
     _stateProvider.changeState(
-        desiredState: ButtonMultiplyState.iterationNotStarted);
+        desiredState: ButtonMultiplyState.iterationCompleted);
   }
 
   Future<void> iterNums(
@@ -126,7 +156,15 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       setState(() {
         _number = '';
       });
-      await Future.delayed(const Duration(milliseconds: 300));
+
+      // wait before start
+      var isNotify = manager.getCurrentValue<CountDownMultiplyMode, bool>();
+      if (isNotify) {
+        await _doCountDown();
+      } else {
+        await Future.delayed(const Duration(milliseconds: 1000));
+      }
+
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
@@ -140,44 +178,33 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
           _number = '';
         });
 
-        // make not to wait too long
-        if (duration >= const Duration(milliseconds: 2000)) {
-          await Future.delayed(const Duration(seconds: 2));
+        // make not to wait too long before answ
+        if (duration >= const Duration(milliseconds: 500)) {
+          await Future.delayed(const Duration(milliseconds: 500));
         } else {
           await Future.delayed(duration);
         }
 
-        //show answer
-        setState(() {
-          _number = formattter.format(item.item1 * item.item2);
-        });
+        //set answer
+        _answer = formattter.format(item.item1 * item.item2);
         if (i == length - 1) {
           break;
         }
-
-        // make not to wait too long
-        if (duration >= const Duration(milliseconds: 2500)) {
-          await Future.delayed(const Duration(milliseconds: 2500));
-        } else {
-          await Future.delayed(duration);
-        }
-
-        setState(() {
-          _number = '';
-        });
-
-        // make not to wait too long
-        if (duration >= const Duration(milliseconds: 1500)) {
-          await Future.delayed(const Duration(milliseconds: 1500));
-        } else {
-          await Future.delayed(duration);
-        }
       }
+      //when divide
     } else {
       setState(() {
         _number = '';
       });
-      await Future.delayed(const Duration(milliseconds: 300));
+
+      // wait before start
+      var isNotify = manager.getCurrentValue<CountDownMultiplyMode, bool>();
+      if (isNotify) {
+        await _doCountDown();
+      } else {
+        await Future.delayed(const Duration(milliseconds: 1000));
+      }
+
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
@@ -191,48 +218,27 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
           _number = '';
         });
 
-        // make not to wait too long
-        if (duration >= const Duration(milliseconds: 2000)) {
-          await Future.delayed(const Duration(seconds: 2));
+        // make not to wait too long before answ
+        if (duration >= const Duration(milliseconds: 500)) {
+          await Future.delayed(const Duration(milliseconds: 500));
         } else {
           await Future.delayed(duration);
         }
 
-        //show answer
-        setState(() {
-          _number = formattter.format(item.item1 ~/ item.item2);
-        });
+        //set answer
+        _answer = formattter.format(item.item1 ~/ item.item2);
+
         if (i == length - 1) {
           break;
         }
-
-        // make not to wait too long
-        if (duration >= const Duration(milliseconds: 2500)) {
-          await Future.delayed(const Duration(milliseconds: 2500));
-        } else {
-          await Future.delayed(duration);
-        }
-
-        setState(() {
-          _number = '';
-        });
-
-        // make not to wait too long
-        if (duration >= const Duration(milliseconds: 1500)) {
-          await Future.delayed(const Duration(milliseconds: 1500));
-        } else {
-          await Future.delayed(duration);
-        }
       }
     }
-    _optManager.soundOption.stopAudio();
   }
 
-  @override
-  void dispose() {
-    _stateProvider.removeListener(_callbackOnButtonClick);
-    super.dispose();
-    _optManager.soundOption.stopAudio();
+  void _showAnswer() {
+    setState(() {
+      _number = _answer;
+    });
   }
 
 // styles.
@@ -246,5 +252,13 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
             fontSize: (MediaQuery.of(context).size.height * 0.7 +
                     MediaQuery.of(context).size.width * 0.6) *
                 0.11);
+  }
+
+  Future<void> _doCountDown() async {
+    await Future.delayed(const Duration(milliseconds: 800));
+    await _optManager.soundOption.playCountSound();
+    await Future.delayed(const Duration(milliseconds: 800));
+    await _optManager.soundOption.playCountSound();
+    await Future.delayed(const Duration(milliseconds: 800));
   }
 }
