@@ -51,6 +51,6 @@ class CountDownModePref implements PreferenceInterface<CountDownMode, bool> {
 }
 
 enum CountDownMode {
-  on,
   off,
+  on,
 }

@@ -9,12 +9,12 @@ class SoundOptionHandler {
   static var isSoundOn = true;
   static StreamController<bool> isSoundOnStream = StreamController();
 
-  final _audioplayer = AudioPlayer();
-  final _countplayer = AudioPlayer();
+  static final audioplayer = AudioPlayer();
+  static final countplayer = AudioPlayer();
 
-  final _audioAsset = AssetSource('beep_short_two.wav');
-  final _audioAndroidAsset = AssetSource('beep_short_out_amplified.wav');
-  final _countDownAsset = AssetSource('count.wav');
+  static final _audioAsset = AssetSource('beep_short_two.wav');
+  static final _audioAndroidAsset = AssetSource('beep_short_out_amplified.wav');
+  static final _countDownAsset = AssetSource('count.wav');
 
   SoundOptionHandler(SharedPreferences pref) {
     _initSettings(pref);
@@ -27,32 +27,34 @@ class SoundOptionHandler {
   }
 
   Future<void> initPlaySound() async {
-    await _audioplayer.setVolume(1);
-    await _countplayer.setVolume(1);
+    await audioplayer.setVolume(1);
+    await countplayer.setVolume(1);
   }
 
   Future<void> playSound() async {
     if (isSoundOn) {
       if (!Platform.isWindows) {
-        await _audioplayer.seek(Duration.zero);
-        await _audioplayer.play(_audioAndroidAsset);
+        await audioplayer.seek(Duration.zero);
+        await audioplayer.play(_audioAndroidAsset);
       } else {
-        await _audioplayer.seek(Duration.zero);
-        await _audioplayer.play(_audioAsset);
+        await audioplayer.seek(Duration.zero);
+        await audioplayer.play(_audioAsset);
       }
     }
   }
 
   Future<void> stopAudio() async {
-    await _audioplayer.stop();
+    await audioplayer.stop();
   }
 
   Future<void> playCountSound() async {
-    await _countplayer.seek(Duration.zero);
-    await _countplayer.play(_countDownAsset);
+    if (isSoundOn) {
+      await countplayer.seek(Duration.zero);
+      await countplayer.play(_countDownAsset);
+    }
   }
 
   Future<void> stopCountAudio() async {
-    await _countplayer.stop();
+    await countplayer.stop();
   }
 }

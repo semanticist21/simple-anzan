@@ -21,11 +21,9 @@ class SettingsMultiplyManager {
   // constructor
   static final SettingsMultiplyManager _instance =
       SettingsMultiplyManager._constructor();
-  SettingsMultiplyManager._constructor() {
-    _initSettings();
-  }
+  SettingsMultiplyManager._constructor();
 
-  Future<void> _initSettings() async {
+  Future<void> initSettings() async {
     _prefs = await SharedPreferences.getInstance();
     refreshPrefValues(_prefs);
   }

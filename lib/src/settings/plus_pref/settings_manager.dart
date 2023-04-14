@@ -20,11 +20,9 @@ class SettingsManager {
 
   // constructor
   static final SettingsManager _instance = SettingsManager._constructor();
-  SettingsManager._constructor() {
-    _initSettings();
-  }
+  SettingsManager._constructor();
 
-  Future<void> _initSettings() async {
+  Future<void> initSettings() async {
     _prefs = await SharedPreferences.getInstance();
     refreshPrefValues(_prefs);
   }

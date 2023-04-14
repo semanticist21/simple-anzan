@@ -17,12 +17,13 @@ class LocalizationChecker {
   static String mode = modeEn;
   static String soundOn = soundEn;
   static String fastSetting = fastSettingEn;
-  static String notify = notifyEn;
+  static String preset = presetEn;
 
   // button str
   static String ok = okEn;
   static String start = startEn;
   static String check = checkEn;
+  static String presetSave = presetSaveEn;
 
   // options(settings)
   static String settings = settingsEn;
@@ -37,6 +38,8 @@ class LocalizationChecker {
   static String pleaseInsertValue = pleaseInsertValueEn;
   static String pleaseTooBigValue = pleaseTooBigValueEn;
   static String pleaseTooSmallValue = pleaseTooSmallValueEn;
+
+  static String notify = notifyEn;
 
   // option(multiply)
   static String settingsMultiply = settingsMultiplyEn;
@@ -115,6 +118,9 @@ class LocalizationChecker {
 
       fastSetting = fastSettingKr;
       notify = notifyKr;
+
+      preset = presetKr;
+      presetSave = presetSaveKr;
     } else if (defaultLocale.toLowerCase().contains('ja')) {
       appName = appNameJa;
 
@@ -167,6 +173,9 @@ class LocalizationChecker {
 
       fastSetting = fastSettingJa;
       notify = notifyJa;
+
+      preset = presetJa;
+      presetSave = presetSaveJa;
     }
   }
 }

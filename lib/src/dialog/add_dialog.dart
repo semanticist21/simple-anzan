@@ -25,8 +25,9 @@ class _AddDialogState extends State<AddDialog> {
     return AlertDialog(
       title: Row(children: [
         Icon(Icons.forward_sharp,
-            size: 15, color: Theme.of(context).colorScheme.primaryContainer),
-        SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+            size: MediaQuery.of(context).size.height * 0.0190,
+            color: Theme.of(context).colorScheme.primaryContainer),
+        SizedBox(width: MediaQuery.of(context).size.width * 0.015),
         Container(
             constraints: const BoxConstraints(maxWidth: 300),
             width: MediaQuery.of(context).size.width * 0.6,
@@ -35,7 +36,7 @@ class _AddDialogState extends State<AddDialog> {
                 child: Text(LocalizationChecker.setSpeedTitle,
                     style: TextStyle(
                         fontWeight: FontWeight.normal,
-                        fontSize: MediaQuery.of(context).size.height * 0.02,
+                        fontSize: MediaQuery.of(context).size.height * 0.0190,
                         color:
                             Theme.of(context).colorScheme.primaryContainer))))
       ]),

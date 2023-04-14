@@ -1,4 +1,10 @@
+import 'package:abacus_simple_anzan/client.dart';
+import 'package:abacus_simple_anzan/loading_stream.dart';
+import 'package:abacus_simple_anzan/src/dialog/preset_add_list.dart';
+import 'package:abacus_simple_anzan/src/dialog/preset_multiply_list.dart';
 import 'package:abacus_simple_anzan/src/dialog/windows_add_option_multiply.dart';
+import 'package:abacus_simple_anzan/src/model/preset_add_model.dart';
+import 'package:abacus_simple_anzan/src/model/preset_multiply_model.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/option/option_manager.dart';
@@ -40,10 +46,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    LocalizationChecker();
-    SettingsManager();
-    OptionManager();
-    SettingsMultiplyManager();
+    _init();
 
     return StreamBuilder<bool>(
         initialData: true,
@@ -53,14 +56,34 @@ class MyApp extends StatelessWidget {
               theme: ThemeSelector.isDark
                   ? ThemeSelector.getBlackTheme()
                   : ThemeSelector.getWhiteTheme(),
-              title: 'Simple Anzan',
-              home: MultiProvider(providers: [
-                ChangeNotifierProvider<StateProvider>(
-                    create: (_) => StateProvider()),
-                ChangeNotifierProvider<StateMultiplyProvider>(
-                    create: (_) => StateMultiplyProvider())
-              ], child: const Home()),
+              title: LocalizationChecker.appName,
+              home: WillPopScope(
+                onWillPop: () async {
+                  await SoundOptionHandler.audioplayer.dispose();
+                  await SoundOptionHandler.countplayer.dispose();
+                  return true;
+                },
+                child: MultiProvider(providers: [
+                  ChangeNotifierProvider<StateProvider>(
+                      create: (_) => StateProvider()),
+                  ChangeNotifierProvider<StateMultiplyProvider>(
+                      create: (_) => StateMultiplyProvider())
+                ], child: const Home()),
+              ),
             ));
+  }
+
+  Future<void> _init() async {
+    LocalizationChecker();
+    await SettingsManager().initSettings();
+    await SettingsMultiplyManager().initSettings();
+    await OptionManager().initSettings();
+    if (Platform.isWindows) {
+      await DbClient().initData();
+    }
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    LoadingStream.isLoadingStream.add(false);
   }
 }
 
@@ -114,7 +137,7 @@ class _Home extends State<Home> {
     // but shows loading page until saved data loads.
     return StreamBuilder(
         initialData: true,
-        stream: ThemeSelector.isLoadingStream.stream,
+        stream: LoadingStream.isLoadingStream.stream,
         builder: (context, snapshot) {
           return snapshot.requireData
               ? const Loading()
@@ -135,6 +158,47 @@ class _Home extends State<Home> {
                                           : false
                                       : false,
                                   child: Row(children: [
+                                    Tooltip(
+                                        message: LocalizationChecker.preset,
+                                        child: IconButton(
+                                          onPressed: () {
+                                            if (_currentIndex == 0) {
+                                              showDialog(
+                                                      context: context,
+                                                      builder: (context) =>
+                                                          const PresetAddList())
+                                                  .then((value) => {
+                                                        if (value
+                                                            is PresetAddModel)
+                                                          {
+                                                            PresetAddModel.saveItem(
+                                                                value,
+                                                                SettingsManager())
+                                                          }
+                                                      });
+                                            } else if (_currentIndex == 2) {
+                                              showDialog(
+                                                      context: context,
+                                                      builder: (context) =>
+                                                          const PresetMultiplyList())
+                                                  .then((value) => {
+                                                        if (value
+                                                            is PresetMultiplyModel)
+                                                          {
+                                                            PresetMultiplyModel
+                                                                .saveItem(value,
+                                                                    SettingsMultiplyManager())
+                                                          }
+                                                      });
+                                            }
+                                          },
+                                          icon: const Icon(
+                                              CupertinoIcons.collections),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground,
+                                          splashRadius: 15,
+                                        )),
                                     Tooltip(
                                         message:
                                             LocalizationChecker.fastSetting,

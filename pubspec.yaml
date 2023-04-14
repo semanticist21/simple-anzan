@@ -41,6 +41,9 @@ dependencies:
   just_audio_windows: ^0.2.0
   window_manager: ^0.3.2
   audioplayers: ^4.0.1
+  flutter_colorpicker: ^1.0.3
+  sqflite_common_ffi: ^2.2.3
+  crypto: ^3.0.2
 
 dev_dependencies:
   flutter_test:

@@ -9,26 +9,24 @@ class OptionManager {
 
   // constructor
   static final OptionManager _instance = OptionManager._constructor();
-  OptionManager._constructor() {
-    _initSettings();
-  }
+  OptionManager._constructor();
 
   factory OptionManager() {
     return _instance;
   }
 
-  Future<void> _initSettings() async {
+  Future<void> initSettings() async {
     _prefs = await SharedPreferences.getInstance();
     setSoundOption(_prefs);
-    setThemeSelector(_prefs);
+    await setThemeSelector(_prefs);
   }
 
   void setSoundOption(SharedPreferences prefs) {
     soundOption = SoundOptionHandler(prefs);
   }
 
-  void setThemeSelector(SharedPreferences prefs) {
-    ThemeSelector(prefs);
+  Future<void> setThemeSelector(SharedPreferences prefs) async {
+    await ThemeSelector(prefs: prefs).initSettings();
   }
 
   setSoundBool(bool value) {

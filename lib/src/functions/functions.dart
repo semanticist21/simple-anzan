@@ -173,8 +173,7 @@ List<Tuple<int, int>> getMultiplyNums(
     var firstGen = min + Random().nextInt(max - min);
     var isAllSameList = firstGen.toString().split('').map((e) => int.parse(e));
 
-    while (firstGen == lastTuple.item2 ||
-        firstGen == 0 ||
+    while (firstGen == 0 ||
         firstGen % 10 == 0 ||
         firstGen == 1 ||
         (firstGen < 10
@@ -188,7 +187,7 @@ List<Tuple<int, int>> getMultiplyNums(
     var secondGen = minSecond + Random().nextInt(maxSecond - minSecond);
     isAllSameList = secondGen.toString().split('').map((e) => int.parse(e));
 
-    while (secondGen == lastTuple.item1 ||
+    while ((firstGen == lastTuple.item2 && secondGen == lastTuple.item1) ||
         secondGen == 0 ||
         secondGen % 10 == 0 ||
         secondGen == 1 ||
@@ -269,20 +268,12 @@ List<Tuple<int, int>> getDivdieNums(
 
 bool getRequirements(int divideNum, int multiplier, num max, Tuple lastTuple) {
   var answer = divideNum * multiplier;
-  var isAllSameListDivide =
-      divideNum.toString().split('').map((e) => int.parse(e));
-  var isAllSameListMultiPlier =
-      multiplier.toString().split('').map((e) => int.parse(e));
+  var isAllSameListAnswer =
+      answer.toString().split('').map((e) => int.parse(e));
 
-  if (divideNum > 10 &&
-      isAllSameListDivide
-          .every((element) => element == isAllSameListDivide.first)) {
-    return true;
-  }
-
-  if (multiplier > 10 &&
-      isAllSameListMultiPlier
-          .every((element) => element == isAllSameListDivide.first)) {
+  if (answer > 10 &&
+      isAllSameListAnswer
+          .every((element) => element == isAllSameListAnswer.first)) {
     return true;
   }
 

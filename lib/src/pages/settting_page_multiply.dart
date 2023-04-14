@@ -1,3 +1,4 @@
+import 'package:abacus_simple_anzan/src/dialog/custom_alert_dialog.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -375,30 +376,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
     });
   }
 
-  AlertDialog getAlertWarningDialog(BuildContext context) {
-    return AlertDialog(
-      title: Text(
-        LocalizationChecker.warning,
-        style: TextStyle(
-            fontSize: MediaQuery.of(context).size.height * 0.025,
-            color: Theme.of(context).colorScheme.onBackground),
-      ),
-      content: Text(LocalizationChecker.insertBigger,
-          style: TextStyle(
-              fontSize: MediaQuery.of(context).size.height * 0.02,
-              color: Theme.of(context).colorScheme.onBackground)),
-      actions: [
-        Padding(
-            padding: const EdgeInsets.all(5),
-            child: TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(
-                  LocalizationChecker.ok,
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height * 0.02,
-                      color: Theme.of(context).colorScheme.onBackground),
-                )))
-      ],
-    );
+  Widget getAlertWarningDialog(BuildContext context) {
+    return CustomAlert(content: LocalizationChecker.insertBigger);
   }
 }

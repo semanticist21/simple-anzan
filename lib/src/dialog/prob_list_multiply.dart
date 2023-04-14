@@ -102,8 +102,10 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                         Row(
                                           children: [
                                             const SizedBox(width: 5),
-                                            Text('$index.  ',
-                                                style: getTextStyle()),
+                                            Text('${index + 1}.  ',
+                                                style: getTextStyle().copyWith(
+                                                    fontStyle:
+                                                        FontStyle.italic)),
                                             Text(
                                               widget.mode[index]
                                                   ? '${formatter.format(widget.numList[index].item1)} × ${formatter.format(widget.numList[index].item2)}'

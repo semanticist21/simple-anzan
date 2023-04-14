@@ -20,6 +20,14 @@ const String fastSettingKr = '빠른 설정';
 const String fastSettingEn = 'Fast Setting';
 const String fastSettingJa = '簡便設定';
 
+const String presetKr = '프리셋';
+const String presetEn = 'preset';
+const String presetJa = 'プリセット';
+
+const String presetSaveKr = '프리셋 저장';
+const String presetSaveEn = 'save preset';
+const String presetSaveJa = 'プリセットを保存する';
+
 // routers
 const String mainPageAddress = '/';
 const String settingsPageAddress = '/settings';

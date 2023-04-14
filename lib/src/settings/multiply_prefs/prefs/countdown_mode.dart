@@ -52,6 +52,6 @@ class CountDownModeMultiplyPref
 }
 
 enum CountDownMultiplyMode {
-  on,
   off,
+  on,
 }

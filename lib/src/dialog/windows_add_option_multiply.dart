@@ -1,3 +1,9 @@
+import 'package:abacus_simple_anzan/client.dart';
+import 'package:abacus_simple_anzan/src/dialog/custom_alert_dialog.dart';
+import 'package:abacus_simple_anzan/src/dialog/custom_preset_form_dialog.dart';
+import 'package:abacus_simple_anzan/src/functions/hash.dart';
+import 'package:abacus_simple_anzan/src/model/preset_multiply_model.dart';
+import 'package:abacus_simple_anzan/src/model/save_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
@@ -32,6 +38,7 @@ class _WindowsAddOptionMultiplyDialogState
   late CountDownMultiplyMode _countDownMode;
 
   final _controller = ScrollController();
+  var _indicatorVisible = false;
 
   @override
   void initState() {
@@ -169,6 +176,98 @@ class _WindowsAddOptionMultiplyDialogState
                                 Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
+                                      SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          child: Visibility(
+                                              visible: _indicatorVisible,
+                                              child:
+                                                  const CircularProgressIndicator())),
+                                      SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.005),
+                                      TextButton(
+                                        onPressed: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) =>
+                                                  const CustomPresetFormDialog(
+                                                    title: '프리셋 저장 (현재 값 기준)',
+                                                    hintWord:
+                                                        '저장할 아이템 이름을 입력하세요.',
+                                                  )).then((value) async {
+                                            if (value is SaveInfo) {
+                                              var newItem = PresetMultiplyModel(
+                                                  id: getHashId(),
+                                                  name: value.name,
+                                                  colorCode: value.colorCode,
+                                                  textColorCode:
+                                                      value.textColorCode,
+                                                  calculationMode: _manager
+                                                      .getCurrentEnum<
+                                                          CalCulationMultiplyMode>()
+                                                      .index,
+                                                  speedIndex: _manager
+                                                      .getCurrentEnum<
+                                                          SpeedMultiply>()
+                                                      .index,
+                                                  smallDigitIndex: _manager
+                                                      .getCurrentEnum<
+                                                          SmallDigit>()
+                                                      .index,
+                                                  bigDigitIndex: _manager
+                                                      .getCurrentEnum<
+                                                          BigDigit>()
+                                                      .index,
+                                                  notifyIndex: _manager
+                                                      .getCurrentEnum<
+                                                          CountDownMultiplyMode>()
+                                                      .index);
+                                              setState(() {
+                                                _indicatorVisible = true;
+                                              });
+                                              await DbClient.saveMultiplyPreset(
+                                                  newItem);
+                                              setState(() {
+                                                _indicatorVisible = false;
+                                              });
+
+                                              await DbClient
+                                                  .getMultiplyPresets();
+
+                                              if (context.mounted) {
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return const CustomAlert(
+                                                        title: '알림',
+                                                        content: '저장 완료!',
+                                                      );
+                                                    });
+                                              }
+                                            }
+                                          });
+                                        },
+                                        child: Text(
+                                          LocalizationChecker.presetSave,
+                                          style: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.02,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer),
+                                        ),
+                                      ),
                                       TextButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();

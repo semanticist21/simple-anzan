@@ -1,8 +1,12 @@
+import 'package:abacus_simple_anzan/client.dart';
+import 'package:abacus_simple_anzan/src/model/preset_add_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
 
 import '../const/localization.dart';
+import '../functions/hash.dart';
+import '../model/save_info.dart';
 import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
 import '../settings/plus_pref/prefs/countdown.dart';
 import '../settings/plus_pref/prefs/digit_pref.dart';
@@ -11,6 +15,8 @@ import '../settings/plus_pref/prefs/shuffle.dart';
 import '../settings/plus_pref/prefs/speed.dart';
 import '../settings/plus_pref/settings_manager.dart';
 import 'add_dialog.dart';
+import 'custom_alert_dialog.dart';
+import 'custom_preset_form_dialog.dart';
 
 class WindowsAddOptionDialog extends StatefulWidget {
   const WindowsAddOptionDialog({super.key});
@@ -30,6 +36,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
   late CountDownMode _countDownMode;
 
   final _controller = ScrollController();
+  var _indicatorVisible = false;
 
   @override
   void initState() {
@@ -171,6 +178,96 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
+                                    SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.height *
+                                                0.01,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.01,
+                                        child: Visibility(
+                                            visible: _indicatorVisible,
+                                            child:
+                                                const CircularProgressIndicator())),
+                                    SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.005),
+                                    TextButton(
+                                      onPressed: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                const CustomPresetFormDialog(
+                                                  title: '프리셋 저장 (현재 값 기준)',
+                                                  hintWord:
+                                                      '저장할 아이템 이름을 입력하세요.',
+                                                )).then((value) async {
+                                          if (value is SaveInfo) {
+                                            var newItem = PresetAddModel(
+                                                id: getHashId(),
+                                                name: value.name,
+                                                colorCode: value.colorCode,
+                                                textColorCode:
+                                                    value.textColorCode,
+                                                onlyPlusesIndex: _manager
+                                                    .getCurrentEnum<
+                                                        CalculationMode>()
+                                                    .index,
+                                                shuffleIndex: _manager
+                                                    .getCurrentEnum<
+                                                        ShuffleMode>()
+                                                    .index,
+                                                speedIndex: _manager
+                                                    .getCurrentEnum<Speed>()
+                                                    .index,
+                                                digitIndex: _manager
+                                                    .getCurrentEnum<Digit>()
+                                                    .index,
+                                                numOfProblemIndex: _manager
+                                                    .getCurrentEnum<
+                                                        NumOfProblems>()
+                                                    .index,
+                                                notifyIndex: _manager
+                                                    .getCurrentEnum<
+                                                        CountDownMode>()
+                                                    .index);
+                                            setState(() {
+                                              _indicatorVisible = true;
+                                            });
+                                            await DbClient.saveAddPreset(
+                                                newItem);
+                                            setState(() {
+                                              _indicatorVisible = false;
+                                            });
+
+                                            await DbClient.getAddPresets();
+
+                                            if (context.mounted) {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return const CustomAlert(
+                                                      title: '알림',
+                                                      content: '저장 완료!',
+                                                    );
+                                                  });
+                                            }
+                                          }
+                                        });
+                                      },
+                                      child: Text(
+                                        LocalizationChecker.presetSave,
+                                        style: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primaryContainer),
+                                      ),
+                                    ),
                                     TextButton(
                                       onPressed: () {
                                         Navigator.of(context).pop();
