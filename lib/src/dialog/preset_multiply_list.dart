@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:abacus_simple_anzan/client.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:abacus_simple_anzan/src/model/preset_multiply_model.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/countdown_mode.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_big_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
@@ -198,17 +197,20 @@ class _MultiplyItemState extends State<MultiplyItem> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Row(
-                      children: [
-                        Icon(CupertinoIcons.tag,
-                            size: MediaQuery.of(context).size.height * 0.026,
-                            color: Color(int.parse(item.textColorCode))),
-                        const SizedBox(width: 10),
-                        Text(item.name,
-                            style: getTextStyle().copyWith(
-                                fontWeight: FontWeight.w900,
-                                fontStyle: FontStyle.normal)),
-                      ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Icon(CupertinoIcons.tag,
+                              size: MediaQuery.of(context).size.height * 0.026,
+                              color: Color(int.parse(item.textColorCode))),
+                          const SizedBox(width: 10),
+                          Text(item.name,
+                              style: getTextStyle().copyWith(
+                                  fontWeight: FontWeight.w900,
+                                  fontStyle: FontStyle.normal)),
+                        ],
+                      ),
                     ),
                     const Divider(
                       thickness: 2,

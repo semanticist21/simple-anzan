@@ -3,11 +3,8 @@ import 'dart:async';
 import 'package:abacus_simple_anzan/client.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:abacus_simple_anzan/src/model/preset_add_model.dart';
-import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/calculation_mode_pref.dart';
-import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
-import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 import 'package:flutter/cupertino.dart';
@@ -199,17 +196,20 @@ class _AddItemState extends State<AddItem> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Row(
-                      children: [
-                        Icon(CupertinoIcons.tag,
-                            size: MediaQuery.of(context).size.height * 0.026,
-                            color: Color(int.parse(item.textColorCode))),
-                        const SizedBox(width: 10),
-                        Text(item.name,
-                            style: getTextStyle().copyWith(
-                                fontWeight: FontWeight.w900,
-                                fontStyle: FontStyle.normal)),
-                      ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Icon(CupertinoIcons.tag,
+                              size: MediaQuery.of(context).size.height * 0.026,
+                              color: Color(int.parse(item.textColorCode))),
+                          const SizedBox(width: 10),
+                          Text(item.name,
+                              style: getTextStyle().copyWith(
+                                  fontWeight: FontWeight.w900,
+                                  fontStyle: FontStyle.normal)),
+                        ],
+                      ),
                     ),
                     const Divider(
                       thickness: 2,
