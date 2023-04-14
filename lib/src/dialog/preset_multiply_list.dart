@@ -235,18 +235,18 @@ class _MultiplyItemState extends State<MultiplyItem> {
                                     .copyWith(fontStyle: FontStyle.italic)),
                             const SizedBox(width: 5),
                             Text('초', style: getTextStyle()),
-                            const SizedBox(width: 20),
-                            Icon(Icons.notifications,
-                                size:
-                                    MediaQuery.of(context).size.height * 0.026,
-                                color: Color(int.parse(item.textColorCode))),
-                            const SizedBox(width: 10),
-                            Text(
-                                ((_manager.enumToValue(CountDownMultiplyMode
-                                        .values[item.notifyIndex])))
-                                    .toString(),
-                                style: getTextStyle()
-                                    .copyWith(fontStyle: FontStyle.italic)),
+                            // const SizedBox(width: 20),
+                            // Icon(Icons.notifications,
+                            //     size:
+                            //         MediaQuery.of(context).size.height * 0.026,
+                            //     color: Color(int.parse(item.textColorCode))),
+                            // const SizedBox(width: 10),
+                            // Text(
+                            //     ((_manager.enumToValue(CountDownMultiplyMode
+                            //             .values[item.notifyIndex])))
+                            //         .toString(),
+                            //     style: getTextStyle()
+                            //         .copyWith(fontStyle: FontStyle.italic)),
                           ],
                         ),
                       ],

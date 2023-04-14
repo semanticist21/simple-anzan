@@ -222,32 +222,32 @@ class _AddItemState extends State<AddItem> {
                         children: [
                           Row(
                             children: [
-                              // 더하기모드
-                              Icon(Icons.calculate,
-                                  size: MediaQuery.of(context).size.height *
-                                      0.026,
-                                  color: Color(int.parse(item.textColorCode))),
-                              const SizedBox(width: 10),
-                              Text(
-                                  (_manager.enumToValue(CalculationMode
-                                          .values[item.onlyPlusesIndex]))
-                                      ? '더하기만'
-                                      : '빼기포함',
-                                  style: getTextStyle().copyWith()),
-                              const SizedBox(width: 20),
-                              // 셔플
-                              Icon(Icons.shuffle,
-                                  size: MediaQuery.of(context).size.height *
-                                      0.026,
-                                  color: Color(int.parse(item.textColorCode))),
-                              const SizedBox(width: 10),
-                              Text(
-                                  (_manager.enumToValue(ShuffleMode
-                                          .values[item.shuffleIndex]))
-                                      .toString(),
-                                  style: getTextStyle()
-                                      .copyWith(fontStyle: FontStyle.italic)),
-                              const SizedBox(width: 20),
+                              // // 더하기모드
+                              // Icon(Icons.calculate,
+                              //     size: MediaQuery.of(context).size.height *
+                              //         0.026,
+                              //     color: Color(int.parse(item.textColorCode))),
+                              // const SizedBox(width: 10),
+                              // Text(
+                              //     (_manager.enumToValue(CalculationMode
+                              //             .values[item.onlyPlusesIndex]))
+                              //         ? '더하기만'
+                              //         : '빼기포함',
+                              //     style: getTextStyle().copyWith()),
+                              // const SizedBox(width: 20),
+                              // // 셔플
+                              // Icon(Icons.shuffle,
+                              //     size: MediaQuery.of(context).size.height *
+                              //         0.026,
+                              //     color: Color(int.parse(item.textColorCode))),
+                              // const SizedBox(width: 10),
+                              // Text(
+                              //     (_manager.enumToValue(ShuffleMode
+                              //             .values[item.shuffleIndex]))
+                              //         .toString(),
+                              //     style: getTextStyle()
+                              //         .copyWith(fontStyle: FontStyle.italic)),
+                              // const SizedBox(width: 20),
                               // 스피드
                               Icon(Icons.speed,
                                   size: MediaQuery.of(context).size.height *
@@ -275,17 +275,17 @@ class _AddItemState extends State<AddItem> {
                       scrollDirection: Axis.horizontal,
                       child: Row(children: [
                         // 카운트 다운
-                        Icon(Icons.notifications,
-                            size: MediaQuery.of(context).size.height * 0.026,
-                            color: Color(int.parse(item.textColorCode))),
-                        const SizedBox(width: 10),
-                        Text(
-                            ((_manager.enumToValue(
-                                    CountDownMode.values[item.notifyIndex])))
-                                .toString(),
-                            style: getTextStyle()
-                                .copyWith(fontStyle: FontStyle.italic)),
-                        const SizedBox(width: 20),
+                        // Icon(Icons.notifications,
+                        //     size: MediaQuery.of(context).size.height * 0.026,
+                        //     color: Color(int.parse(item.textColorCode))),
+                        // const SizedBox(width: 10),
+                        // Text(
+                        //     ((_manager.enumToValue(
+                        //             CountDownMode.values[item.notifyIndex])))
+                        //         .toString(),
+                        //     style: getTextStyle()
+                        //         .copyWith(fontStyle: FontStyle.italic)),
+                        // const SizedBox(width: 20),
                         // 자리 수
                         Icon(Icons.onetwothree,
                             size: MediaQuery.of(context).size.height * 0.026,
