@@ -197,6 +197,12 @@ class _Home extends State<Home> {
                                           color: Theme.of(context)
                                               .colorScheme
                                               .onBackground,
+                                          iconSize: Platform.isWindows
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.038
+                                              : null,
                                           splashRadius: 15,
                                         )),
                                     Tooltip(
@@ -221,6 +227,12 @@ class _Home extends State<Home> {
                                           color: Theme.of(context)
                                               .colorScheme
                                               .onBackground,
+                                          iconSize: Platform.isWindows
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.038
+                                              : null,
                                           splashRadius: 15,
                                         )),
                                   ])),
@@ -234,6 +246,10 @@ class _Home extends State<Home> {
                                     color: Theme.of(context)
                                         .colorScheme
                                         .onBackground,
+                                    size: Platform.isWindows
+                                        ? MediaQuery.of(context).size.height *
+                                            0.038
+                                        : null,
                                   )),
                               Transform.scale(
                                   scale: 0.8,
@@ -261,6 +277,9 @@ class _Home extends State<Home> {
                                   ? Icons.nightlight
                                   : Icons.sunny,
                               color: Theme.of(context).colorScheme.onBackground,
+                              size: Platform.isWindows
+                                  ? MediaQuery.of(context).size.height * 0.038
+                                  : null,
                             )),
                         Transform.scale(
                             scale: 0.8,
