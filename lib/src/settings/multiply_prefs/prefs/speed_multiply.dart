@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_io/io.dart';
 import '../../Interface/preference_interface_items.dart';
 
 class SpeedMultiplyPref
@@ -113,7 +114,7 @@ class SpeedMultiplyPref
     var secondChar = second.last;
     var newStr = '$firstChar.$secondChar sec';
 
-    return '$first \n($newStr)';
+    return Platform.isWindows ? '$first ($newStr)' : '$first \n($newStr)';
   }
 }
 
