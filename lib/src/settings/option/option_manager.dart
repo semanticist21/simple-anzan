@@ -17,12 +17,13 @@ class OptionManager {
 
   Future<void> initSettings() async {
     _prefs = await SharedPreferences.getInstance();
-    setSoundOption(_prefs);
+    await setSoundOption(_prefs);
     await setThemeSelector(_prefs);
   }
 
-  void setSoundOption(SharedPreferences prefs) {
+  Future<void> setSoundOption(SharedPreferences prefs) async {
     soundOption = SoundOptionHandler(prefs);
+    await soundOption.initSettings(prefs);
   }
 
   Future<void> setThemeSelector(SharedPreferences prefs) async {

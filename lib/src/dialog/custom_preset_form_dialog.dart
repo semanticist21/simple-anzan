@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:abacus_simple_anzan/src/model/save_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,9 @@ class _CustomPresetFormDialogState extends State<CustomPresetFormDialog> {
   final _textController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  Color savedColor = const Color(0x00000000).withOpacity(0.95);
+  Color savedColor = Color(int.parse(
+      backgroundColors[Random().nextInt(backgroundColors.length)]
+          .replaceAll('#', '0xff')));
   Color currentColor = Colors.white;
 
   @override

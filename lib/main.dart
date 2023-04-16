@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
                 onWillPop: () async {
                   await SoundOptionHandler.audioplayer.dispose();
                   await SoundOptionHandler.countplayer.dispose();
+                  await SoundOptionHandler.audioAndroidPlayer.dispose();
                   return true;
                 },
                 child: MultiProvider(providers: [

@@ -10,6 +10,9 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
+import '../settings/plus_pref/prefs/shuffle.dart';
+
 class PresetAddList extends StatefulWidget {
   const PresetAddList({super.key});
 
@@ -215,107 +218,122 @@ class _AddItemState extends State<AddItem> {
                       thickness: 2,
                       color: Colors.white30,
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              // // 더하기모드
-                              // Icon(Icons.calculate,
-                              //     size: MediaQuery.of(context).size.height *
-                              //         0.026,
-                              //     color: Color(int.parse(item.textColorCode))),
-                              // const SizedBox(width: 10),
-                              // Text(
-                              //     (_manager.enumToValue(CalculationMode
-                              //             .values[item.onlyPlusesIndex]))
-                              //         ? '더하기만'
-                              //         : '빼기포함',
-                              //     style: getTextStyle().copyWith()),
-                              // const SizedBox(width: 20),
-                              // // 셔플
-                              // Icon(Icons.shuffle,
-                              //     size: MediaQuery.of(context).size.height *
-                              //         0.026,
-                              //     color: Color(int.parse(item.textColorCode))),
-                              // const SizedBox(width: 10),
-                              // Text(
-                              //     (_manager.enumToValue(ShuffleMode
-                              //             .values[item.shuffleIndex]))
-                              //         .toString(),
-                              //     style: getTextStyle()
-                              //         .copyWith(fontStyle: FontStyle.italic)),
-                              // const SizedBox(width: 20),
-                              // 스피드
-                              Icon(Icons.speed,
-                                  size: MediaQuery.of(context).size.height *
-                                      0.026,
-                                  color: Color(int.parse(item.textColorCode))),
-                              const SizedBox(width: 10),
-                              Text(
-                                  ((_manager.enumToValue(Speed
-                                                      .values[item.speedIndex])
-                                                  as Duration)
-                                              .inMilliseconds /
-                                          1000)
-                                      .toString(),
-                                  style: getTextStyle()
-                                      .copyWith(fontStyle: FontStyle.italic)),
-                              const SizedBox(width: 5),
-                              Text('초', style: getTextStyle()),
-                              const SizedBox(width: 20),
-                            ],
-                          ),
-                        ],
+                    Opacity(
+                      opacity: 0.9,
+                      child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(children: [
+                            // 더하기모드
+                            Icon(Icons.calculate,
+                                size:
+                                    MediaQuery.of(context).size.height * 0.026,
+                                color: Color(int.parse(item.textColorCode))),
+                            const SizedBox(width: 10),
+                            Text(
+                                (_manager.enumToValue(CalculationMode
+                                        .values[item.onlyPlusesIndex]))
+                                    ? '더하기만'
+                                    : '빼기포함',
+                                style: getTextStyle().copyWith()),
+                            const SizedBox(width: 20),
+                          ])),
+                    ),
+                    Opacity(
+                      opacity: 0.9,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                // 셔플
+                                Icon(Icons.shuffle,
+                                    size: MediaQuery.of(context).size.height *
+                                        0.026,
+                                    color:
+                                        Color(int.parse(item.textColorCode))),
+                                const SizedBox(width: 10),
+                                Text(
+                                    (_manager.enumToValue(ShuffleMode
+                                            .values[item.shuffleIndex]))
+                                        ? '섞기'
+                                        : '고정',
+                                    style: getTextStyle()
+                                        .copyWith(fontStyle: FontStyle.normal)),
+                                const SizedBox(width: 20),
+                                // 스피드
+                                Icon(Icons.speed,
+                                    size: MediaQuery.of(context).size.height *
+                                        0.026,
+                                    color:
+                                        Color(int.parse(item.textColorCode))),
+                                const SizedBox(width: 10),
+                                Text(
+                                    ((_manager.enumToValue(Speed.values[item
+                                                    .speedIndex]) as Duration)
+                                                .inMilliseconds /
+                                            1000)
+                                        .toString(),
+                                    style: getTextStyle()
+                                        .copyWith(fontStyle: FontStyle.italic)),
+                                const SizedBox(width: 5),
+                                Text('초', style: getTextStyle()),
+                                const SizedBox(width: 20),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(children: [
-                        // 카운트 다운
-                        // Icon(Icons.notifications,
-                        //     size: MediaQuery.of(context).size.height * 0.026,
-                        //     color: Color(int.parse(item.textColorCode))),
-                        // const SizedBox(width: 10),
-                        // Text(
-                        //     ((_manager.enumToValue(
-                        //             CountDownMode.values[item.notifyIndex])))
-                        //         .toString(),
-                        //     style: getTextStyle()
-                        //         .copyWith(fontStyle: FontStyle.italic)),
-                        // const SizedBox(width: 20),
-                        // 자리 수
-                        Icon(Icons.onetwothree,
-                            size: MediaQuery.of(context).size.height * 0.026,
-                            color: Color(int.parse(item.textColorCode))),
-                        const SizedBox(width: 10),
-                        Text(
-                            ((_manager.enumToValue(
-                                    Digit.values[item.digitIndex])))
-                                .toString(),
-                            style: getTextStyle()
-                                .copyWith(fontStyle: FontStyle.italic)),
-                        const SizedBox(width: 10),
-                        Text('자리', style: getTextStyle().copyWith()),
-                        const SizedBox(width: 20),
-                        // 문제 수
-                        Icon(Icons.check,
-                            size: MediaQuery.of(context).size.height * 0.026,
-                            color: Color(int.parse(item.textColorCode))),
-                        const SizedBox(width: 10),
-                        Text(
-                            ((_manager.enumToValue(NumOfProblems
-                                    .values[item.numOfProblemIndex])))
-                                .toString(),
-                            style: getTextStyle()
-                                .copyWith(fontStyle: FontStyle.italic)),
-                        const SizedBox(width: 10),
-                        Text('문제', style: getTextStyle().copyWith()),
-                        const SizedBox(width: 10),
-                      ]),
-                    )
+                    Opacity(
+                      opacity: 0.9,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(children: [
+                          // 카운트 다운
+                          // Icon(Icons.notifications,
+                          //     size: MediaQuery.of(context).size.height * 0.026,
+                          //     color: Color(int.parse(item.textColorCode))),
+                          // const SizedBox(width: 10),
+                          // Text(
+                          //     ((_manager.enumToValue(
+                          //             CountDownMode.values[item.notifyIndex])))
+                          //         .toString(),
+                          //     style: getTextStyle()
+                          //         .copyWith(fontStyle: FontStyle.italic)),
+                          // const SizedBox(width: 20),
+                          // 자리 수
+                          Icon(Icons.onetwothree,
+                              size: MediaQuery.of(context).size.height * 0.026,
+                              color: Color(int.parse(item.textColorCode))),
+                          const SizedBox(width: 10),
+                          Text(
+                              ((_manager.enumToValue(
+                                      Digit.values[item.digitIndex])))
+                                  .toString(),
+                              style: getTextStyle()
+                                  .copyWith(fontStyle: FontStyle.italic)),
+                          const SizedBox(width: 10),
+                          Text('자리', style: getTextStyle().copyWith()),
+                          const SizedBox(width: 20),
+                          // 문제 수
+                          Icon(Icons.check,
+                              size: MediaQuery.of(context).size.height * 0.026,
+                              color: Color(int.parse(item.textColorCode))),
+                          const SizedBox(width: 10),
+                          Text(
+                              ((_manager.enumToValue(NumOfProblems
+                                      .values[item.numOfProblemIndex])))
+                                  .toString(),
+                              style: getTextStyle()
+                                  .copyWith(fontStyle: FontStyle.italic)),
+                          const SizedBox(width: 10),
+                          Text('문제', style: getTextStyle().copyWith()),
+                          const SizedBox(width: 10),
+                        ]),
+                      ),
+                    ),
                   ]),
             ),
           ),

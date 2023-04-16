@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:abacus_simple_anzan/client.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:abacus_simple_anzan/src/model/preset_multiply_model.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_big_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
@@ -216,44 +217,49 @@ class _MultiplyItemState extends State<MultiplyItem> {
                       thickness: 2,
                       color: Colors.white30,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(Icons.speed,
-                                size:
-                                    MediaQuery.of(context).size.height * 0.026,
-                                color: Color(int.parse(item.textColorCode))),
-                            const SizedBox(width: 10),
-                            Text(
-                                ((_manager.enumToValue(SpeedMultiply
-                                                    .values[item.speedIndex])
-                                                as Duration)
-                                            .inMilliseconds /
-                                        1000)
-                                    .toString(),
-                                style: getTextStyle()
-                                    .copyWith(fontStyle: FontStyle.italic)),
-                            const SizedBox(width: 5),
-                            Text('초', style: getTextStyle()),
-                            // const SizedBox(width: 20),
-                            // Icon(Icons.notifications,
-                            //     size:
-                            //         MediaQuery.of(context).size.height * 0.026,
-                            //     color: Color(int.parse(item.textColorCode))),
-                            // const SizedBox(width: 10),
-                            // Text(
-                            //     ((_manager.enumToValue(CountDownMultiplyMode
-                            //             .values[item.notifyIndex])))
-                            //         .toString(),
-                            //     style: getTextStyle()
-                            //         .copyWith(fontStyle: FontStyle.italic)),
-                          ],
-                        ),
-                      ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              // 나눗셈 여부
+                              Icon(Icons.calculate,
+                                  size: MediaQuery.of(context).size.height *
+                                      0.026,
+                                  color: Color(int.parse(item.textColorCode))),
+                              const SizedBox(width: 10),
+                              Text(
+                                  ((_manager.enumToValue(CalCulationMultiplyMode
+                                          .values[item.calculationMode])))
+                                      ? '나눗셈'
+                                      : '곱셈',
+                                  style: getTextStyle()
+                                      .copyWith(fontStyle: FontStyle.normal)),
+                              const SizedBox(width: 20),
+                              Icon(Icons.speed,
+                                  size: MediaQuery.of(context).size.height *
+                                      0.026,
+                                  color: Color(int.parse(item.textColorCode))),
+                              const SizedBox(width: 10),
+                              Text(
+                                  ((_manager.enumToValue(SpeedMultiply
+                                                      .values[item.speedIndex])
+                                                  as Duration)
+                                              .inMilliseconds /
+                                          1000)
+                                      .toString(),
+                                  style: getTextStyle()
+                                      .copyWith(fontStyle: FontStyle.italic)),
+                              const SizedBox(width: 5),
+                              Text('초', style: getTextStyle()),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    Row(children: [
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Icon(CupertinoIcons.number_square,
                           size: MediaQuery.of(context).size.height * 0.026,
                           color: Color(int.parse(item.textColorCode))),

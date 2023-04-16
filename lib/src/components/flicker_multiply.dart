@@ -255,10 +255,20 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   }
 
   Future<void> _doCountDown() async {
-    await Future.delayed(const Duration(milliseconds: 800));
+    if (Platform.isWindows) {
+      await Future.delayed(const Duration(milliseconds: 800));
+    }
     await _optManager.soundOption.playCountSound();
-    await Future.delayed(const Duration(milliseconds: 800));
+
+    if (Platform.isWindows) {
+      await Future.delayed(const Duration(milliseconds: 800));
+    }
     await _optManager.soundOption.playCountSound();
-    await Future.delayed(const Duration(milliseconds: 800));
+
+    if (Platform.isWindows) {
+      await Future.delayed(const Duration(milliseconds: 800));
+    }
+
+    await _optManager.soundOption.resetSource();
   }
 }
