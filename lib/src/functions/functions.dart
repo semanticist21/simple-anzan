@@ -11,9 +11,20 @@ List<int> getPlusShuffleNums(int digit, int numOfNums) {
   int len = list.length;
   int sum = 0;
 
-  for (int i = 0; i < len - 1; i++) {
+  // first number is not shuffled.
+  int minForFirst = (pow(10, digit - 1)).toInt();
+  var firstNum = minForFirst + Random().nextInt(max - minForFirst);
+  while (firstNum % 100 == 0 || firstNum == 1) {
+    firstNum = minForFirst + Random().nextInt(max - minForFirst);
+  }
+
+  list[0] = firstNum;
+  sum += firstNum;
+
+  // do the rest.
+  for (int i = 1; i < len - 1; i++) {
     int randomNum = min + Random().nextInt(max - min);
-    while (randomNum % 100 == 0) {
+    while (randomNum % 100 == 0 || randomNum == 1) {
       randomNum = min + Random().nextInt(max - min);
     }
 
@@ -48,12 +59,31 @@ List<int> getPlusMinusShuffleNums(int digit, int numOfNums) {
   int len = list.length;
   int sum = 0;
 
-  for (int i = 0; i < len - 1; i++) {
+  // first number is not shuffled.
+  int minForFirst = (pow(10, digit - 1)).toInt();
+  var firstNum = minForFirst + Random().nextInt(max - minForFirst);
+
+  while (firstNum % 100 == 0 || firstNum == 1) {
+    firstNum = minForFirst + Random().nextInt(max - minForFirst);
+  }
+
+  if (firstNum < 0) {
+    firstNum = -firstNum;
+  }
+
+  list[0] = firstNum;
+  sum += firstNum;
+
+  // do the rest.
+  for (int i = 1; i < len - 1; i++) {
     int randomNum = min + Random().nextInt(max - min);
 
     // num should not be zero.
     // randomNum % 10 == 0 not to make easy.
-    while (randomNum == 0 || randomNum % 100 == 0) {
+    while (randomNum == 0 ||
+        randomNum % 100 == 0 ||
+        randomNum == 1 ||
+        randomNum == -1) {
       randomNum = min + Random().nextInt(max - min);
     }
 
@@ -100,7 +130,7 @@ List<int> getPlusNums(int digit, int numOfNums) {
   for (int i = 0; i < len - 1; i++) {
     int randomNum = min + Random().nextInt(max - min);
 
-    while (randomNum == 0 || randomNum % 100 == 0) {
+    while (randomNum == 0 || randomNum % 100 == 0 || randomNum == 1) {
       randomNum = min + Random().nextInt(max - min);
     }
 
@@ -132,7 +162,7 @@ List<int> getPlusMinusNums(int digit, int numOfNums) {
 
     // num should not be zero.
     // randomNum % 10 == 0 not to make easy.
-    while (randomNum == 0 || randomNum % 100 == 0) {
+    while (randomNum == 0 || randomNum % 100 == 0 || randomNum == -1) {
       randomNum = min + Random().nextInt(max - min);
       bool randomFlag = Random().nextBool();
       if (!randomFlag) {
