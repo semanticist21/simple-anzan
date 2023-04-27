@@ -83,9 +83,11 @@ class SoundOptionHandler {
   }
 
   Future<void> resetSource() async {
-    await audioAndroidPlayer.stop();
-    await audioAndroidPlayer.setAudioSource(_androidAsset);
-    await audioAndroidPlayer.load();
+    if (!Platform.isWindows) {
+      await audioAndroidPlayer.stop();
+      await audioAndroidPlayer.setAudioSource(_androidAsset);
+      await audioAndroidPlayer.load();
+    }
   }
 
   Future<void> stopCountAudio() async {

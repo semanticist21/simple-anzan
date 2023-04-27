@@ -190,7 +190,8 @@ class _FlickerState extends State<Flicker> {
 
   void _showAnswer() {
     setState(() {
-      _number = '\t${formattter.format(int.parse(_answer))}\t';
+      _number =
+          _answer == '' ? '' : '\t${formattter.format(int.parse(_answer))}\t';
     });
   }
 
