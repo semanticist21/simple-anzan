@@ -14,6 +14,7 @@ import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:abacus_simple_anzan/router.dart';
@@ -22,7 +23,7 @@ import 'package:universal_io/io.dart';
 import 'package:window_manager/window_manager.dart';
 import 'dart:async';
 
-import 'loading.dart';
+// import 'loading.dart';
 import 'src/dialog/windows_add_option.dart';
 
 void main() async {
@@ -38,6 +39,9 @@ void main() async {
 
   FlutterError.onError =
       (FlutterErrorDetails details) => FlutterError.presentError(details);
+
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
   runApp(const MyApp());
 }
@@ -134,231 +138,204 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     _stateProvider = Provider.of<StateProvider>(context);
     _stateMultiplyProvider = Provider.of<StateMultiplyProvider>(context);
+
+    return buildMainHome();
+
     // theme is first set true,
     // but shows loading page until saved data loads.
-    return StreamBuilder(
-        initialData: true,
-        stream: LoadingStream.isLoadingStream.stream,
-        builder: (context, snapshot) {
-          return snapshot.requireData
-              ? const Loading()
-              : Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    actions: [
-                      StreamBuilder(
-                          initialData: true,
-                          stream: SoundOptionHandler.isSoundOnStream.stream,
-                          builder: (context, snapshot) {
-                            return Row(children: [
-                              Visibility(
-                                  visible: Platform.isWindows
-                                      ? _currentIndex == 0 || _currentIndex == 2
-                                          ? true
-                                          : false
-                                      : false,
-                                  child: Row(children: [
-                                    Tooltip(
-                                        message: LocalizationChecker.preset,
-                                        child: IconButton(
-                                          onPressed: () {
-                                            if (_currentIndex == 0) {
-                                              showDialog(
-                                                      context: context,
-                                                      builder: (context) =>
-                                                          const PresetAddList())
-                                                  .then((value) => {
-                                                        if (value
-                                                            is PresetAddModel)
-                                                          {
-                                                            PresetAddModel.saveItem(
-                                                                value,
-                                                                SettingsManager())
-                                                          }
-                                                      });
-                                            } else if (_currentIndex == 2) {
-                                              showDialog(
-                                                      context: context,
-                                                      builder: (context) =>
-                                                          const PresetMultiplyList())
-                                                  .then((value) => {
-                                                        if (value
-                                                            is PresetMultiplyModel)
-                                                          {
-                                                            PresetMultiplyModel
-                                                                .saveItem(value,
-                                                                    SettingsMultiplyManager())
-                                                          }
-                                                      });
-                                            }
-                                          },
-                                          icon: const Icon(
-                                              CupertinoIcons.collections),
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onBackground,
-                                          iconSize: Platform.isWindows
-                                              ? MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.038
-                                              : null,
-                                          splashRadius: 15,
-                                        )),
-                                    Tooltip(
-                                        message:
-                                            LocalizationChecker.fastSetting,
-                                        child: IconButton(
-                                          onPressed: () {
-                                            if (_currentIndex == 0) {
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (_) =>
-                                                      const WindowsAddOptionDialog());
-                                            } else if (_currentIndex == 2) {
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (_) =>
-                                                      const WindowsAddOptionMultiplyDialog());
-                                            }
-                                          },
-                                          icon: const Icon(
-                                              CupertinoIcons.settings),
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onBackground,
-                                          iconSize: Platform.isWindows
-                                              ? MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.038
-                                              : null,
-                                          splashRadius: 15,
-                                        )),
-                                  ])),
-                              const SizedBox(width: 10),
-                              Tooltip(
-                                  message: LocalizationChecker.soundOn,
-                                  child: Icon(
-                                    SoundOptionHandler.isSoundOn
-                                        ? CupertinoIcons.speaker_2
-                                        : CupertinoIcons.speaker_slash,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onBackground,
-                                    size: Platform.isWindows
-                                        ? MediaQuery.of(context).size.height *
-                                            0.038
-                                        : null,
-                                  )),
-                              Transform.scale(
-                                  scale: 0.8,
-                                  child: CupertinoSwitch(
-                                    activeColor: Theme.of(context)
-                                        .colorScheme
-                                        .onSecondary,
-                                    trackColor:
-                                        Theme.of(context).colorScheme.onPrimary,
-                                    onChanged: (value) {
-                                      OptionManager().setSoundBool(
-                                          !SoundOptionHandler.isSoundOn);
-                                      setState(() {});
-                                    },
-                                    value: SoundOptionHandler.isSoundOn,
-                                  )),
-                            ]);
-                          }),
-                      const SizedBox(width: 10),
-                      Row(children: [
+    // return StreamBuilder(
+    //     initialData: true,
+    //     stream: LoadingStream.isLoadingStream.stream,
+    //     builder: (context, snapshot) {
+    //       return snapshot.requireData ? const Loading() : buildMainHome();
+    //     });
+  }
+
+  Widget buildMainHome() {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        actions: [
+          StreamBuilder(
+              initialData: true,
+              stream: SoundOptionHandler.isSoundOnStream.stream,
+              builder: (context, snapshot) {
+                return Row(children: [
+                  Visibility(
+                      visible: Platform.isWindows
+                          ? _currentIndex == 0 || _currentIndex == 2
+                              ? true
+                              : false
+                          : false,
+                      child: Row(children: [
                         Tooltip(
-                            message: LocalizationChecker.mode,
-                            child: Icon(
-                              ThemeSelector.isDark
-                                  ? Icons.nightlight
-                                  : Icons.sunny,
+                            message: LocalizationChecker.preset,
+                            child: IconButton(
+                              onPressed: () {
+                                if (_currentIndex == 0) {
+                                  showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              const PresetAddList())
+                                      .then((value) => {
+                                            if (value is PresetAddModel)
+                                              {
+                                                PresetAddModel.saveItem(
+                                                    value, SettingsManager())
+                                              }
+                                          });
+                                } else if (_currentIndex == 2) {
+                                  showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              const PresetMultiplyList())
+                                      .then((value) => {
+                                            if (value is PresetMultiplyModel)
+                                              {
+                                                PresetMultiplyModel.saveItem(
+                                                    value,
+                                                    SettingsMultiplyManager())
+                                              }
+                                          });
+                                }
+                              },
+                              icon: const Icon(CupertinoIcons.collections),
                               color: Theme.of(context).colorScheme.onBackground,
-                              size: Platform.isWindows
+                              iconSize: Platform.isWindows
                                   ? MediaQuery.of(context).size.height * 0.038
                                   : null,
+                              splashRadius: 15,
                             )),
-                        Transform.scale(
-                            scale: 0.8,
-                            child: CupertinoSwitch(
-                              activeColor:
-                                  Theme.of(context).colorScheme.onSecondary,
-                              trackColor:
-                                  Theme.of(context).colorScheme.onPrimary,
-                              onChanged: (value) {
-                                OptionManager()
-                                    .setThemeBool(!ThemeSelector.isDark);
-                                setState(() {});
+                        Tooltip(
+                            message: LocalizationChecker.fastSetting,
+                            child: IconButton(
+                              onPressed: () {
+                                if (_currentIndex == 0) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) =>
+                                          const WindowsAddOptionDialog());
+                                } else if (_currentIndex == 2) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (_) =>
+                                          const WindowsAddOptionMultiplyDialog());
+                                }
                               },
-                              value: ThemeSelector.isDark,
+                              icon: const Icon(CupertinoIcons.settings),
+                              color: Theme.of(context).colorScheme.onBackground,
+                              iconSize: Platform.isWindows
+                                  ? MediaQuery.of(context).size.height * 0.038
+                                  : null,
+                              splashRadius: 15,
                             )),
-                      ]),
-                      const SizedBox(width: 10),
-                    ],
-                  ),
-                  backgroundColor: Theme.of(context).colorScheme.background,
-                  body: Navigator(
-                    key: navigationKey,
-                    onGenerateRoute: generateRoutes,
-                    onUnknownRoute: generateErrorPages,
-                    initialRoute: mainPageAddress,
-                  ),
-                  bottomNavigationBar: BottomNavigationBar(
-                    backgroundColor: Theme.of(context).colorScheme.onBackground,
-                    selectedItemColor: Theme.of(context).colorScheme.background,
-                    unselectedItemColor:
-                        Theme.of(context).colorScheme.onInverseSurface,
-                    type: BottomNavigationBarType.fixed,
-                    items: [
-                      BottomNavigationBarItem(
-                        activeIcon: Icon(Icons.add_to_photos_outlined,
-                            color: Theme.of(context).colorScheme.background,
-                            size: MediaQuery.of(context).size.height * 0.023),
-                        icon: Icon(Icons.add_to_photos,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface,
-                            size: MediaQuery.of(context).size.height * 0.023),
-                        label: LocalizationChecker.homePlusLabel,
-                      ),
-                      BottomNavigationBarItem(
-                        activeIcon: Icon(Icons.settings_outlined,
-                            color: Theme.of(context).colorScheme.background,
-                            size: MediaQuery.of(context).size.height * 0.023),
-                        icon: Icon(Icons.settings,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface,
-                            size: MediaQuery.of(context).size.height * 0.023),
-                        label: LocalizationChecker.settingPlusLabel,
-                      ),
-                      BottomNavigationBarItem(
-                        activeIcon: Icon(CupertinoIcons.xmark_circle,
-                            color: Theme.of(context).colorScheme.background,
-                            size: MediaQuery.of(context).size.height * 0.023),
-                        icon: Icon(CupertinoIcons.xmark_circle_fill,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface,
-                            size: MediaQuery.of(context).size.height * 0.023),
-                        label: LocalizationChecker.homeMultiplyLabel,
-                      ),
-                      BottomNavigationBarItem(
-                        activeIcon: Icon(CupertinoIcons.gear,
-                            color: Theme.of(context).colorScheme.background,
-                            size: MediaQuery.of(context).size.height * 0.023),
-                        icon: Icon(CupertinoIcons.gear_alt_fill,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface,
-                            size: MediaQuery.of(context).size.height * 0.023),
-                        label: LocalizationChecker.settingMultiplyLabel,
-                      )
-                    ],
-                    onTap: _onTap,
-                    currentIndex: _currentIndex,
-                  ),
-                );
-        });
+                      ])),
+                  const SizedBox(width: 10),
+                  Tooltip(
+                      message: LocalizationChecker.soundOn,
+                      child: Icon(
+                        SoundOptionHandler.isSoundOn
+                            ? CupertinoIcons.speaker_2
+                            : CupertinoIcons.speaker_slash,
+                        color: Theme.of(context).colorScheme.onBackground,
+                        size: Platform.isWindows
+                            ? MediaQuery.of(context).size.height * 0.038
+                            : null,
+                      )),
+                  Transform.scale(
+                      scale: 0.8,
+                      child: CupertinoSwitch(
+                        activeColor: Theme.of(context).colorScheme.onSecondary,
+                        trackColor: Theme.of(context).colorScheme.onPrimary,
+                        onChanged: (value) {
+                          OptionManager()
+                              .setSoundBool(!SoundOptionHandler.isSoundOn);
+                          setState(() {});
+                        },
+                        value: SoundOptionHandler.isSoundOn,
+                      )),
+                ]);
+              }),
+          const SizedBox(width: 10),
+          Row(children: [
+            Tooltip(
+                message: LocalizationChecker.mode,
+                child: Icon(
+                  ThemeSelector.isDark ? Icons.nightlight : Icons.sunny,
+                  color: Theme.of(context).colorScheme.onBackground,
+                  size: Platform.isWindows
+                      ? MediaQuery.of(context).size.height * 0.038
+                      : null,
+                )),
+            Transform.scale(
+                scale: 0.8,
+                child: CupertinoSwitch(
+                  activeColor: Theme.of(context).colorScheme.onSecondary,
+                  trackColor: Theme.of(context).colorScheme.onPrimary,
+                  onChanged: (value) {
+                    OptionManager().setThemeBool(!ThemeSelector.isDark);
+                    setState(() {});
+                  },
+                  value: ThemeSelector.isDark,
+                )),
+          ]),
+          const SizedBox(width: 10),
+        ],
+      ),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      body: Navigator(
+        key: navigationKey,
+        onGenerateRoute: generateRoutes,
+        onUnknownRoute: generateErrorPages,
+        initialRoute: mainPageAddress,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Theme.of(context).colorScheme.onBackground,
+        selectedItemColor: Theme.of(context).colorScheme.background,
+        unselectedItemColor: Theme.of(context).colorScheme.onInverseSurface,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            activeIcon: Icon(Icons.add_to_photos_outlined,
+                color: Theme.of(context).colorScheme.background,
+                size: MediaQuery.of(context).size.height * 0.023),
+            icon: Icon(Icons.add_to_photos,
+                color: Theme.of(context).colorScheme.onInverseSurface,
+                size: MediaQuery.of(context).size.height * 0.023),
+            label: LocalizationChecker.homePlusLabel,
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(Icons.settings_outlined,
+                color: Theme.of(context).colorScheme.background,
+                size: MediaQuery.of(context).size.height * 0.023),
+            icon: Icon(Icons.settings,
+                color: Theme.of(context).colorScheme.onInverseSurface,
+                size: MediaQuery.of(context).size.height * 0.023),
+            label: LocalizationChecker.settingPlusLabel,
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(CupertinoIcons.xmark_circle,
+                color: Theme.of(context).colorScheme.background,
+                size: MediaQuery.of(context).size.height * 0.023),
+            icon: Icon(CupertinoIcons.xmark_circle_fill,
+                color: Theme.of(context).colorScheme.onInverseSurface,
+                size: MediaQuery.of(context).size.height * 0.023),
+            label: LocalizationChecker.homeMultiplyLabel,
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(CupertinoIcons.gear,
+                color: Theme.of(context).colorScheme.background,
+                size: MediaQuery.of(context).size.height * 0.023),
+            icon: Icon(CupertinoIcons.gear_alt_fill,
+                color: Theme.of(context).colorScheme.onInverseSurface,
+                size: MediaQuery.of(context).size.height * 0.023),
+            label: LocalizationChecker.settingMultiplyLabel,
+          )
+        ],
+        onTap: _onTap,
+        currentIndex: _currentIndex,
+      ),
+    );
   }
 }

@@ -45,6 +45,7 @@ dependencies:
   sqflite_common_ffi: ^2.2.3
   crypto: ^3.0.2
   just_audio: ^0.9.32
+  flutter_native_splash: ^2.3.1
 
 dev_dependencies:
   flutter_test:
@@ -120,4 +121,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_native_splash:
+  color : "#ffffff"
+  image: assets/icon_512.png
+  android_12:
 
