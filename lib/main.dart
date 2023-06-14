@@ -83,10 +83,11 @@ class MyApp extends StatelessWidget {
     await SettingsManager().initSettings();
     await SettingsMultiplyManager().initSettings();
     await OptionManager().initSettings();
+    
     if (Platform.isWindows) {
       await DbClient().initData();
     }
-    await Future.delayed(const Duration(milliseconds: 500));
+    // await Future.delayed(const Duration(milliseconds: 500));
 
     LoadingStream.isLoadingStream.add(false);
   }
