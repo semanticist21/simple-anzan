@@ -14,7 +14,6 @@ import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:abacus_simple_anzan/router.dart';
@@ -24,6 +23,8 @@ import 'package:window_manager/window_manager.dart';
 import 'dart:async';
 
 // import 'loading.dart';
+import 'src/dialog/prob_list.dart';
+import 'src/dialog/prob_list_multiply.dart';
 import 'src/dialog/windows_add_option.dart';
 
 void main() async {
@@ -40,8 +41,8 @@ void main() async {
   FlutterError.onError =
       (FlutterErrorDetails details) => FlutterError.presentError(details);
 
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+  // SystemChrome.setPreferredOrientations(
+  //     [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
   runApp(const MyApp());
 }
@@ -232,6 +233,27 @@ class _Home extends State<Home> {
                             )),
                       ])),
                   const SizedBox(width: 10),
+                  Visibility(
+                    visible: !(_currentIndex != 0 && _currentIndex != 2),
+                    child: Tooltip(
+                        message: LocalizationChecker.checkProb,
+                        child: RawMaterialButton(
+                          onPressed: () {
+                            if (_currentIndex != 0 && _currentIndex != 2) {
+                              return;
+                            }
+                            showProbDialog(_currentIndex == 0 ? true : false);
+                          },
+                          elevation: 2.0,
+                          fillColor: Theme.of(context).colorScheme.onBackground,
+                          padding: const EdgeInsets.all(2),
+                          shape: const CircleBorder(),
+                          child: Icon(
+                            CupertinoIcons.question,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                        )),
+                  ),
                   Tooltip(
                       message: LocalizationChecker.soundOn,
                       child: Icon(
@@ -337,5 +359,29 @@ class _Home extends State<Home> {
         currentIndex: _currentIndex,
       ),
     );
+  }
+
+  void showProbDialog(bool isAddHome) {
+    if (isAddHome) {
+      if (_stateProvider.state == ButtonState.iterationStarted) {
+        return;
+      }
+
+      showDialog(
+          context: context,
+          builder: (context) => ProbList(numList: _stateProvider.nums));
+    } else {
+      if (_stateMultiplyProvider.state ==
+          ButtonMultiplyState.iterationStarted) {
+        return;
+      }
+
+      showDialog(
+          context: context,
+          builder: (context) => ProbMultiplyList(
+                numList: _stateMultiplyProvider.nums,
+                mode: _stateMultiplyProvider.isMultiplies,
+              ));
+    }
   }
 }

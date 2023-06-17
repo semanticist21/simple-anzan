@@ -31,7 +31,8 @@ class _HomePageState extends State<HomePage> {
             Expanded(
                 flex: 1,
                 child: Visibility(
-                    visible: _stateProvider.isQuestionListButtonVisible,
+                    // visible: _stateProvider.isQuestionListButtonVisible,
+                    visible: false,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.center,

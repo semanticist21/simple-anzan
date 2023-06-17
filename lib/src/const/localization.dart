@@ -51,6 +51,7 @@ class LocalizationChecker {
 
   static String rangeMultiplyWord = rangeMultiplyWordEn;
   static String shulffleDesc = shuffleDescEn;
+  static String shouldSoundOnDesc = shouldSoundOnDescEn;
 
   static String insertBigger = insertBiggerEn;
 
@@ -105,6 +106,7 @@ class LocalizationChecker {
       insertBigger = insertBiggerKr;
 
       shulffleDesc = shuffleDescKr;
+      shouldSoundOnDesc = shouldSoundOnDescKr;
       rangeMultiplyWord = rangeMultiplyWordKr;
 
       noProbExecuted = noProbExecutedKr;
@@ -160,6 +162,7 @@ class LocalizationChecker {
       insertBigger = insertBiggerJa;
 
       shulffleDesc = shuffleDescJa;
+      shouldSoundOnDesc = shouldSoundOnDescJa;
       rangeMultiplyWord = rangeMultiplyWordJa;
 
       noProbExecuted = noProbExecutedJa;
