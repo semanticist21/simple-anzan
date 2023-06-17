@@ -7,7 +7,7 @@ import 'package:just_audio/just_audio.dart' as just;
 
 class SoundOptionHandler {
   static var soundKey = 'isSoundOn';
-  static var isSoundOn = true;
+  static var isSoundOn = false;
   static StreamController<bool> isSoundOnStream = StreamController();
 
   static final audioplayer = AudioPlayer();
