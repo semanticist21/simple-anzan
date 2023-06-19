@@ -5,7 +5,7 @@ abstract class PreferenceInterfaceItems<T, V>
   PreferenceInterfaceItems(super.prefs);
   T itemStrToValue(String str);
 
-  // enum name will be converted appropriate to Items.
+  // enum name will be converted, appropriate to Items.
   // for example, Slow_07 will be converted to Slow.
   // num_5 will be converted to 5.
   String enumNameToItemString(String name);
