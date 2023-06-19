@@ -13,7 +13,7 @@ class NumOfProblemsMultiplyPref
 
   NumOfProblemsMultiplyPref(SharedPreferences prefs) {
     // Warning !!!!!
-    // option remove !! due to removed option.
+    // change this option when implementing!!
     // always default 0.
     prefs.setInt(_saveKey, _defaultIndex);
 
