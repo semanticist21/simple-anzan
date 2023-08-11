@@ -100,35 +100,42 @@ class SoundOptionHandler {
 
   Future<void> playCountSound() async {
     if (isSoundOn) {
-      if (!Platform.isWindows) {
-        if (_isToggle) {
-          await audioAndroidPlayer.stop();
+      await audioAndroidPlayer.setVolume(1);
+      await audioAndroidPlayer2.setVolume(1);
+      await audioplayer.setVolume(1);
+    } else {
+      await audioAndroidPlayer.setVolume(0);
+      await audioAndroidPlayer2.setVolume(0);
+      await audioplayer.setVolume(0);
+    }
+    if (!Platform.isWindows) {
+      if (_isToggle) {
+        await audioAndroidPlayer.stop();
 
-          await audioAndroidPlayer.setAudioSource(_countDownAndroidAsset);
-          await audioAndroidPlayer.seek(Duration.zero);
-          await audioAndroidPlayer.play();
+        await audioAndroidPlayer.setAudioSource(_countDownAndroidAsset);
+        await audioAndroidPlayer.seek(Duration.zero);
+        await audioAndroidPlayer.play();
 
-          await Future.delayed(
-              audioAndroidPlayer.duration! + const Duration(milliseconds: 100));
-        } else {
-          await audioAndroidPlayer2.stop();
-
-          await audioAndroidPlayer2.setAudioSource(_countDownAndroidAsset);
-          await audioAndroidPlayer2.seek(Duration.zero);
-          await audioAndroidPlayer2.play();
-
-          await Future.delayed(audioAndroidPlayer2.duration! +
-              const Duration(milliseconds: 100));
-        }
+        await Future.delayed(
+            audioAndroidPlayer.duration! + const Duration(milliseconds: 100));
       } else {
-        try {
-          await audioplayer.seek(Duration.zero);
-          await audioplayer.play(_countDownAsset);
-        } catch (_) {
-          _countDownAsset = _countDownAsset == _countDownAssetSpare
-              ? _countDownAssetSpareTwo
-              : _countDownAssetSpare;
-        }
+        await audioAndroidPlayer2.stop();
+
+        await audioAndroidPlayer2.setAudioSource(_countDownAndroidAsset);
+        await audioAndroidPlayer2.seek(Duration.zero);
+        await audioAndroidPlayer2.play();
+
+        await Future.delayed(
+            audioAndroidPlayer2.duration! + const Duration(milliseconds: 100));
+      }
+    } else {
+      try {
+        await audioplayer.seek(Duration.zero);
+        await audioplayer.play(_countDownAsset);
+      } catch (_) {
+        _countDownAsset = _countDownAsset == _countDownAssetSpare
+            ? _countDownAssetSpareTwo
+            : _countDownAssetSpare;
       }
     }
   }

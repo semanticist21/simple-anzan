@@ -154,7 +154,8 @@ class _ProbListState extends State<ProbList> {
       child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Icon(Icons.no_sim_sharp,
-            size: MediaQuery.of(context).size.height * 0.13),
+            size: MediaQuery.of(context).size.height * 0.13,
+            color: Theme.of(context).colorScheme.onBackground),
         const SizedBox(height: 10),
         Text(LocalizationChecker.noProbExecuted,
             style: TextStyle(

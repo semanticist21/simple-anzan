@@ -174,8 +174,11 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
       color: Theme.of(context).colorScheme.background,
       child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Icon(Icons.no_sim_sharp,
-            size: MediaQuery.of(context).size.height * 0.15),
+        Icon(
+          Icons.no_sim_sharp,
+          size: MediaQuery.of(context).size.height * 0.15,
+          color: Theme.of(context).colorScheme.onBackground,
+        ),
         const SizedBox(height: 10),
         Text(LocalizationChecker.noProbExecuted,
             style: TextStyle(
