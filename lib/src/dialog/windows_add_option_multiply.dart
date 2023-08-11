@@ -430,8 +430,6 @@ class _WindowsAddOptionMultiplyDialogState
               builder: (context) {
                 return getAlertWarningDialog(context);
               });
-          _bigDigit = _manager.itemStrToEnum<BigDigit>("8");
-          _manager.saveSetting(_bigDigit);
           return;
         }
 
@@ -445,8 +443,6 @@ class _WindowsAddOptionMultiplyDialogState
               builder: (context) {
                 return getAlertWarningDialog(context);
               });
-          _smallDigit = _manager.itemStrToEnum<SmallDigit>("1");
-          _manager.saveSetting(_smallDigit);
           return;
         }
 

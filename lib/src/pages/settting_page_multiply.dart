@@ -301,9 +301,6 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           showDialog(
               context: context,
               builder: (context) => getAlertWarningDialog(context));
-          _bigDigit = _manager.itemStrToEnum<BigDigit>("8");
-          _manager.saveSetting(_bigDigit);
-          setState(() {});
           return;
         }
 
@@ -315,9 +312,6 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           showDialog(
               context: context,
               builder: (context) => getAlertWarningDialog(context));
-          _smallDigit = _manager.itemStrToEnum<SmallDigit>("1");
-          _manager.saveSetting(_smallDigit);
-          setState(() {});
           return;
         }
 
