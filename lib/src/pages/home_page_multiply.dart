@@ -1,3 +1,4 @@
+import 'package:abacus_simple_anzan/src/components/flashing_container.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,12 @@ class HomeMultiplyPage extends StatefulWidget {
 class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
   final FlickerMultiply _flicker = const FlickerMultiply();
   late StateMultiplyProvider _stateProvider;
+  FlashingContainer flashingContainer = FlashingContainer();
 
   @override
   Widget build(BuildContext context) {
     _stateProvider = Provider.of<StateMultiplyProvider>(context, listen: true);
+    _stateProvider.flashingContainer = flashingContainer;
 
     return SizedBox(
         width: double.infinity,
@@ -83,19 +86,15 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                   child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.7,
                 height: MediaQuery.of(context).size.height * 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.onSecondaryContainer,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          color: Theme.of(context).colorScheme.shadow)),
-                  child: Center(
+                child: Stack(children: [
+                  flashingContainer,
+                  Center(
                     child: FractionallySizedBox(
                         widthFactor: 0.9,
                         heightFactor: 0.9,
                         child: Center(child: _flicker)),
                   ),
-                ),
+                ]),
               )),
             ),
             Expanded(
@@ -109,7 +108,7 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                           visible: value.isButtonVisible,
                           child: FractionallySizedBox(
                             widthFactor: 0.6,
-                            heightFactor: 0.35,
+                            heightFactor: 0.4,
                             child: ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor:

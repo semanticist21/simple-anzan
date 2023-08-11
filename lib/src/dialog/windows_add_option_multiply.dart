@@ -51,250 +51,260 @@ class _WindowsAddOptionMultiplyDialogState
     return AlertDialog(
         contentPadding: const EdgeInsets.all(0),
         backgroundColor: Colors.transparent,
-        content: ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: 600, maxWidth: 800),
-            child: FractionallySizedBox(
-                heightFactor: 0.7,
-                child: Container(
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.transparent),
-                    child: Scaffold(
-                        appBar: AppBar(
-                          leading: IconButton(
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onPrimaryContainer,
-                              size: MediaQuery.of(context).size.height * 0.03,
+        content: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(
+              parent: BouncingScrollPhysics()),
+          child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                  minWidth: 600, maxWidth: 800, maxHeight: 800),
+              child: FractionallySizedBox(
+                  heightFactor: 0.7,
+                  child: Container(
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.transparent),
+                      child: Scaffold(
+                          appBar: AppBar(
+                            leading: IconButton(
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onPrimaryContainer,
+                                size: MediaQuery.of(context).size.height * 0.03,
+                              ),
+                              onPressed: () => Navigator.of(context).pop(),
+                              splashRadius: 10,
                             ),
-                            onPressed: () => Navigator.of(context).pop(),
-                            splashRadius: 10,
+                            automaticallyImplyLeading: false,
+                            title: Text(LocalizationChecker.settings,
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimaryContainer)),
+                            backgroundColor:
+                                Theme.of(context).colorScheme.tertiaryContainer,
                           ),
-                          automaticallyImplyLeading: false,
-                          title: Text(LocalizationChecker.settings,
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onPrimaryContainer)),
                           backgroundColor:
-                              Theme.of(context).colorScheme.tertiaryContainer,
-                        ),
-                        backgroundColor:
-                            Theme.of(context).colorScheme.background,
-                        body: Column(children: [
-                          Expanded(
-                            flex: 6,
-                            child: SingleChildScrollView(
-                              controller: _controller,
-                              physics: const AlwaysScrollableScrollPhysics(
-                                  parent: BouncingScrollPhysics()),
-                              child: Column(children: [
-                                SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.005),
-                                // plus & minus mode.
-                                Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      // plus & minus mode.
-                                      buildToggleOption(
-                                          LocalizationChecker.isMultiply,
-                                          Icons.calculate,
-                                          _manager.enumToValue<
-                                              CalCulationMultiplyMode,
-                                              bool>(_isMultiply),
-                                          toggleMultiplyModeCallback),
-                                      // speed.
-                                      buildDropdownButton(
-                                          LocalizationChecker.speedMultiply,
-                                          Icon(
-                                            Icons.speed,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primaryContainer,
-                                          ),
-                                          _manager.getItemStr<SpeedMultiply>(
-                                              _speed.name),
-                                          getDropdownMenuItemList<
-                                              SpeedMultiply>(_manager),
-                                          changeOptionCallback<SpeedMultiply>),
-                                      // digit.
-                                      buildDropdownButton(
-                                          LocalizationChecker
-                                              .smallDigitMultiply,
-                                          Icon(
-                                            CupertinoIcons.number_square,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primaryContainer,
-                                          ),
-                                          _manager.getItemStr<SmallDigit>(
-                                              _smallDigit.name),
-                                          getDropdownMenuItemList<SmallDigit>(
-                                              _manager),
-                                          changeOptionCallback<SmallDigit>),
-                                      buildDropdownButton(
-                                          LocalizationChecker.bigDigitMultiply,
-                                          Icon(
-                                            CupertinoIcons.number_square_fill,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primaryContainer,
-                                          ),
-                                          _manager.getItemStr<BigDigit>(
-                                              _bigDigit.name),
-                                          getDropdownMenuItemList<BigDigit>(
-                                              _manager),
-                                          changeOptionCallback<BigDigit>),
-                                      buildToggleOption(
-                                          LocalizationChecker.notify,
-                                          Icons.notifications,
-                                          _manager.enumToValue<
-                                              CountDownMultiplyMode,
-                                              bool>(_countDownMode),
-                                          toggleCounterModeCallback),
-                                      const SizedBox(height: 50),
-                                    ]),
-                              ]),
-                            ),
-                          ),
-                          Expanded(
-                              child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                Divider(
-                                  color: Theme.of(context).colorScheme.outline,
-                                ),
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.01,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.01,
-                                          child: Visibility(
-                                              visible: _indicatorVisible,
-                                              child:
-                                                  const CircularProgressIndicator())),
-                                      SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
+                              Theme.of(context).colorScheme.background,
+                          body: Column(children: [
+                            Expanded(
+                              flex: 6,
+                              child: SingleChildScrollView(
+                                controller: _controller,
+                                physics: const AlwaysScrollableScrollPhysics(
+                                    parent: BouncingScrollPhysics()),
+                                child: Column(children: [
+                                  SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
                                               0.005),
-                                      TextButton(
-                                        onPressed: () {
-                                          showDialog(
-                                              context: context,
-                                              builder: (context) =>
-                                                  const CustomPresetFormDialog(
-                                                    title: '프리셋 저장 (현재 값 기준)',
-                                                    hintWord:
-                                                        '저장할 아이템 이름을 입력하세요.',
-                                                  )).then((value) async {
-                                            if (value is SaveInfo) {
-                                              var newItem = PresetMultiplyModel(
-                                                  id: getHashId(),
-                                                  name: value.name,
-                                                  colorCode: value.colorCode,
-                                                  textColorCode:
-                                                      value.textColorCode,
-                                                  calculationMode: _manager
-                                                      .getCurrentEnum<
-                                                          CalCulationMultiplyMode>()
-                                                      .index,
-                                                  speedIndex: _manager
-                                                      .getCurrentEnum<
-                                                          SpeedMultiply>()
-                                                      .index,
-                                                  smallDigitIndex: _manager
-                                                      .getCurrentEnum<
-                                                          SmallDigit>()
-                                                      .index,
-                                                  bigDigitIndex: _manager
-                                                      .getCurrentEnum<
-                                                          BigDigit>()
-                                                      .index,
-                                                  notifyIndex: _manager
-                                                      .getCurrentEnum<
-                                                          CountDownMultiplyMode>()
-                                                      .index);
-                                              setState(() {
-                                                _indicatorVisible = true;
-                                              });
-                                              await DbClient.saveMultiplyPreset(
-                                                  newItem);
-                                              setState(() {
-                                                _indicatorVisible = false;
-                                              });
+                                  // plus & minus mode.
+                                  Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        // plus & minus mode.
+                                        buildToggleOption(
+                                            LocalizationChecker.isMultiply,
+                                            Icons.calculate,
+                                            _manager.enumToValue<
+                                                CalCulationMultiplyMode,
+                                                bool>(_isMultiply),
+                                            toggleMultiplyModeCallback),
+                                        // speed.
+                                        buildDropdownButton(
+                                            LocalizationChecker.speedMultiply,
+                                            Icon(
+                                              Icons.speed,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer,
+                                            ),
+                                            _manager.getItemStr<SpeedMultiply>(
+                                                _speed.name),
+                                            getDropdownMenuItemList<
+                                                SpeedMultiply>(_manager),
+                                            changeOptionCallback<
+                                                SpeedMultiply>),
+                                        // digit.
+                                        buildDropdownButton(
+                                            LocalizationChecker
+                                                .smallDigitMultiply,
+                                            Icon(
+                                              CupertinoIcons.number_square,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer,
+                                            ),
+                                            _manager.getItemStr<SmallDigit>(
+                                                _smallDigit.name),
+                                            getDropdownMenuItemList<SmallDigit>(
+                                                _manager),
+                                            changeOptionCallback<SmallDigit>),
+                                        buildDropdownButton(
+                                            LocalizationChecker
+                                                .bigDigitMultiply,
+                                            Icon(
+                                              CupertinoIcons.number_square_fill,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer,
+                                            ),
+                                            _manager.getItemStr<BigDigit>(
+                                                _bigDigit.name),
+                                            getDropdownMenuItemList<BigDigit>(
+                                                _manager),
+                                            changeOptionCallback<BigDigit>),
+                                        buildToggleOption(
+                                            LocalizationChecker.notify,
+                                            Icons.notifications,
+                                            _manager.enumToValue<
+                                                CountDownMultiplyMode,
+                                                bool>(_countDownMode),
+                                            toggleCounterModeCallback),
+                                        const SizedBox(height: 50),
+                                      ]),
+                                ]),
+                              ),
+                            ),
+                            Expanded(
+                                child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                  Divider(
+                                    color:
+                                        Theme.of(context).colorScheme.outline,
+                                  ),
+                                  Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
+                                            child: Visibility(
+                                                visible: _indicatorVisible,
+                                                child:
+                                                    const CircularProgressIndicator())),
+                                        SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.005),
+                                        TextButton(
+                                          onPressed: () {
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    const CustomPresetFormDialog(
+                                                      title: '프리셋 저장 (현재 값 기준)',
+                                                      hintWord:
+                                                          '저장할 아이템 이름을 입력하세요.',
+                                                    )).then((value) async {
+                                              if (value is SaveInfo) {
+                                                var newItem = PresetMultiplyModel(
+                                                    id: getHashId(),
+                                                    name: value.name,
+                                                    colorCode: value.colorCode,
+                                                    textColorCode:
+                                                        value.textColorCode,
+                                                    calculationMode: _manager
+                                                        .getCurrentEnum<
+                                                            CalCulationMultiplyMode>()
+                                                        .index,
+                                                    speedIndex: _manager
+                                                        .getCurrentEnum<
+                                                            SpeedMultiply>()
+                                                        .index,
+                                                    smallDigitIndex: _manager
+                                                        .getCurrentEnum<
+                                                            SmallDigit>()
+                                                        .index,
+                                                    bigDigitIndex: _manager
+                                                        .getCurrentEnum<
+                                                            BigDigit>()
+                                                        .index,
+                                                    notifyIndex: _manager
+                                                        .getCurrentEnum<
+                                                            CountDownMultiplyMode>()
+                                                        .index);
+                                                setState(() {
+                                                  _indicatorVisible = true;
+                                                });
+                                                await DbClient
+                                                    .saveMultiplyPreset(
+                                                        newItem);
+                                                setState(() {
+                                                  _indicatorVisible = false;
+                                                });
 
-                                              await DbClient
-                                                  .getMultiplyPresets();
+                                                await DbClient
+                                                    .getMultiplyPresets();
 
-                                              if (context.mounted) {
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return const CustomAlert(
-                                                        title: '알림',
-                                                        content: '저장 완료!',
-                                                      );
-                                                    });
+                                                if (context.mounted) {
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return const CustomAlert(
+                                                          title: '알림',
+                                                          content: '저장 완료!',
+                                                        );
+                                                      });
+                                                }
                                               }
-                                            }
-                                          });
-                                        },
-                                        child: Text(
-                                          LocalizationChecker.presetSave,
-                                          style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.02,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primaryContainer),
+                                            });
+                                          },
+                                          child: Text(
+                                            LocalizationChecker.presetSave,
+                                            style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.02,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primaryContainer),
+                                          ),
                                         ),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Text(
-                                          LocalizationChecker.ok,
-                                          style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.02,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primaryContainer),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            LocalizationChecker.ok,
+                                            style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.02,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primaryContainer),
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.02),
-                                    ]),
-                                const Divider(
-                                  color: Colors.transparent,
-                                ),
-                              ]))
-                        ]))))));
+                                        SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.02),
+                                      ]),
+                                  const Divider(
+                                    color: Colors.transparent,
+                                  ),
+                                ]))
+                          ]))))),
+        ));
   }
 
   Padding buildToggleOption(String title, IconData iconData, bool value,
@@ -417,7 +427,11 @@ class _WindowsAddOptionMultiplyDialogState
         if (int.parse(value) < _manager.getCurrentValue<SmallDigit, int>()) {
           showDialog(
               context: context,
-              builder: (context) => getAlertWarningDialog(context));
+              builder: (context) {
+                return getAlertWarningDialog(context);
+              });
+          _bigDigit = _manager.itemStrToEnum<BigDigit>("8");
+          _manager.saveSetting(_bigDigit);
           return;
         }
 
@@ -428,7 +442,11 @@ class _WindowsAddOptionMultiplyDialogState
         if (int.parse(value) > _manager.getCurrentValue<BigDigit, int>()) {
           showDialog(
               context: context,
-              builder: (context) => getAlertWarningDialog(context));
+              builder: (context) {
+                return getAlertWarningDialog(context);
+              });
+          _smallDigit = _manager.itemStrToEnum<SmallDigit>("1");
+          _manager.saveSetting(_smallDigit);
           return;
         }
 

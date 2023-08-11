@@ -220,11 +220,13 @@ class _FlickerState extends State<Flicker> {
     if (Platform.isWindows) {
       await Future.delayed(const Duration(milliseconds: 800));
     }
+    _stateProvider.flashingContainer?.containerState.startFlashing();
     await _optManager.soundOption.playCountSound();
 
     if (Platform.isWindows) {
       await Future.delayed(const Duration(milliseconds: 800));
     }
+    _stateProvider.flashingContainer?.containerState.startFlashing();
     await _optManager.soundOption.playCountSound();
 
     if (Platform.isWindows) {

@@ -49,251 +49,265 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
     return AlertDialog(
       contentPadding: const EdgeInsets.all(0),
       backgroundColor: Colors.transparent,
-      content: ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 600, maxWidth: 800),
-          child: FractionallySizedBox(
-              heightFactor: 0.7,
-              child: Container(
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.transparent),
-                  child: Scaffold(
-                      appBar: AppBar(
-                        leading: IconButton(
-                          icon: Icon(
-                            Icons.arrow_back_ios,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimaryContainer,
-                            size: MediaQuery.of(context).size.height * 0.03,
+      content: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics()),
+        child: ConstrainedBox(
+            constraints: const BoxConstraints(
+                minWidth: 600, maxWidth: 800, maxHeight: 800),
+            child: FractionallySizedBox(
+                heightFactor: 0.7,
+                child: Container(
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.transparent),
+                    child: Scaffold(
+                        appBar: AppBar(
+                          leading: IconButton(
+                            icon: Icon(
+                              Icons.arrow_back_ios,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer,
+                              size: MediaQuery.of(context).size.height * 0.03,
+                            ),
+                            onPressed: () => Navigator.of(context).pop(),
+                            splashRadius: 10,
                           ),
-                          onPressed: () => Navigator.of(context).pop(),
-                          splashRadius: 10,
+                          automaticallyImplyLeading: false,
+                          title: Text(LocalizationChecker.settings,
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer)),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.tertiaryContainer,
                         ),
-                        automaticallyImplyLeading: false,
-                        title: Text(LocalizationChecker.settings,
-                            style: TextStyle(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onPrimaryContainer)),
                         backgroundColor:
-                            Theme.of(context).colorScheme.tertiaryContainer,
-                      ),
-                      backgroundColor: Theme.of(context).colorScheme.background,
-                      body: Column(children: [
-                        Expanded(
-                            flex: 6,
-                            child: SingleChildScrollView(
-                              controller: _controller,
-                              physics: const AlwaysScrollableScrollPhysics(
-                                  parent: BouncingScrollPhysics()),
-                              child: Column(children: [
-                                SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.005),
-                                // plus & minus mode.
-                                Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      buildToggleOption(
-                                          LocalizationChecker.onlyPluses,
-                                          Icons.calculate,
-                                          _manager.enumToValue<CalculationMode,
-                                              bool>(_isOnlyPlus),
-                                          togglePlusModeCallback),
-                                      Tooltip(
-                                          message:
-                                              LocalizationChecker.shulffleDesc,
-                                          child: buildToggleOption(
-                                              LocalizationChecker.shuffle,
-                                              Icons.shuffle,
-                                              _manager.enumToValue<ShuffleMode,
-                                                  bool>(_isShuffle),
-                                              toggleShuffleModeCallback)),
-                                      // speed.
-                                      buildDropdownButton(
-                                          LocalizationChecker.speed,
-                                          Icon(
-                                            Icons.speed,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primaryContainer,
-                                          ),
-                                          _manager
-                                              .getItemStr<Speed>(_speed.name),
-                                          getDropdownMenuItemList<Speed>(
-                                              _manager),
-                                          changeOptionCallback<Speed>),
-                                      // digit.
-                                      buildDropdownButton(
-                                          LocalizationChecker.digit,
-                                          Icon(
-                                            Icons.onetwothree,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primaryContainer,
-                                          ),
-                                          _manager
-                                              .getItemStr<Digit>(_digit.name),
-                                          getDropdownMenuItemList<Digit>(
-                                              _manager),
-                                          changeOptionCallback<Digit>),
-                                      // num of problems.
-                                      buildDropdownButton(
-                                          LocalizationChecker.numOfProblems,
-                                          Icon(
-                                            Icons.check,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primaryContainer,
-                                          ),
-                                          _manager.getItemStr<NumOfProblems>(
-                                              _numOfProblems.name),
-                                          getDropdownMenuItemList<
-                                              NumOfProblems>(_manager),
-                                          changeOptionCallback<NumOfProblems>),
-                                      buildToggleOption(
-                                          LocalizationChecker.notify,
-                                          Icons.notifications,
-                                          _manager.enumToValue<CountDownMode,
-                                              bool>(_countDownMode),
-                                          toggleCounterModeCallback),
-                                      const SizedBox(height: 50),
-                                    ])
-                              ]),
-                            )),
-                        Expanded(
-                            child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                              Divider(
-                                color: Theme.of(context).colorScheme.outline,
-                              ),
-                              Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                            Theme.of(context).colorScheme.background,
+                        body: Column(children: [
+                          Expanded(
+                              flex: 6,
+                              child: SingleChildScrollView(
+                                controller: _controller,
+                                physics: const AlwaysScrollableScrollPhysics(
+                                    parent: BouncingScrollPhysics()),
+                                child: Column(children: [
+                                  SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.005),
+                                  // plus & minus mode.
+                                  Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        buildToggleOption(
+                                            LocalizationChecker.onlyPluses,
+                                            Icons.calculate,
+                                            _manager.enumToValue<
+                                                CalculationMode,
+                                                bool>(_isOnlyPlus),
+                                            togglePlusModeCallback),
+                                        Tooltip(
+                                            message: LocalizationChecker
+                                                .shulffleDesc,
+                                            child: buildToggleOption(
+                                                LocalizationChecker.shuffle,
+                                                Icons.shuffle,
+                                                _manager.enumToValue<
+                                                    ShuffleMode,
+                                                    bool>(_isShuffle),
+                                                toggleShuffleModeCallback)),
+                                        // speed.
+                                        buildDropdownButton(
+                                            LocalizationChecker.speed,
+                                            Icon(
+                                              Icons.speed,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer,
+                                            ),
+                                            _manager
+                                                .getItemStr<Speed>(_speed.name),
+                                            getDropdownMenuItemList<Speed>(
+                                                _manager),
+                                            changeOptionCallback<Speed>),
+                                        // digit.
+                                        buildDropdownButton(
+                                            LocalizationChecker.digit,
+                                            Icon(
+                                              Icons.onetwothree,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer,
+                                            ),
+                                            _manager
+                                                .getItemStr<Digit>(_digit.name),
+                                            getDropdownMenuItemList<Digit>(
+                                                _manager),
+                                            changeOptionCallback<Digit>),
+                                        // num of problems.
+                                        buildDropdownButton(
+                                            LocalizationChecker.numOfProblems,
+                                            Icon(
+                                              Icons.check,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer,
+                                            ),
+                                            _manager.getItemStr<NumOfProblems>(
+                                                _numOfProblems.name),
+                                            getDropdownMenuItemList<
+                                                NumOfProblems>(_manager),
+                                            changeOptionCallback<
+                                                NumOfProblems>),
+                                        buildToggleOption(
+                                            LocalizationChecker.notify,
+                                            Icons.notifications,
+                                            _manager.enumToValue<CountDownMode,
+                                                bool>(_countDownMode),
+                                            toggleCounterModeCallback),
+                                        const SizedBox(height: 50),
+                                      ])
+                                ]),
+                              )),
+                          Expanded(
+                              child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.height *
-                                                0.01,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.01,
-                                        child: Visibility(
-                                            visible: _indicatorVisible,
-                                            child:
-                                                const CircularProgressIndicator())),
-                                    SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.005),
-                                    TextButton(
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) =>
-                                                const CustomPresetFormDialog(
-                                                  title: '프리셋 저장 (현재 값 기준)',
-                                                  hintWord:
-                                                      '저장할 아이템 이름을 입력하세요.',
-                                                )).then((value) async {
-                                          if (value is SaveInfo) {
-                                            var newItem = PresetAddModel(
-                                                id: getHashId(),
-                                                name: value.name,
-                                                colorCode: value.colorCode,
-                                                textColorCode:
-                                                    value.textColorCode,
-                                                onlyPlusesIndex: _manager
-                                                    .getCurrentEnum<
-                                                        CalculationMode>()
-                                                    .index,
-                                                shuffleIndex: _manager
-                                                    .getCurrentEnum<
-                                                        ShuffleMode>()
-                                                    .index,
-                                                speedIndex: _manager
-                                                    .getCurrentEnum<Speed>()
-                                                    .index,
-                                                digitIndex: _manager
-                                                    .getCurrentEnum<Digit>()
-                                                    .index,
-                                                numOfProblemIndex: _manager
-                                                    .getCurrentEnum<
-                                                        NumOfProblems>()
-                                                    .index,
-                                                notifyIndex: _manager
-                                                    .getCurrentEnum<
-                                                        CountDownMode>()
-                                                    .index);
-                                            setState(() {
-                                              _indicatorVisible = true;
-                                            });
-                                            await DbClient.saveAddPreset(
-                                                newItem);
-                                            setState(() {
-                                              _indicatorVisible = false;
-                                            });
+                                Divider(
+                                  color: Theme.of(context).colorScheme.outline,
+                                ),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          child: Visibility(
+                                              visible: _indicatorVisible,
+                                              child:
+                                                  const CircularProgressIndicator())),
+                                      SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.005),
+                                      TextButton(
+                                        onPressed: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) =>
+                                                  const CustomPresetFormDialog(
+                                                    title: '프리셋 저장 (현재 값 기준)',
+                                                    hintWord:
+                                                        '저장할 아이템 이름을 입력하세요.',
+                                                  )).then((value) async {
+                                            if (value is SaveInfo) {
+                                              var newItem = PresetAddModel(
+                                                  id: getHashId(),
+                                                  name: value.name,
+                                                  colorCode: value.colorCode,
+                                                  textColorCode:
+                                                      value.textColorCode,
+                                                  onlyPlusesIndex: _manager
+                                                      .getCurrentEnum<
+                                                          CalculationMode>()
+                                                      .index,
+                                                  shuffleIndex: _manager
+                                                      .getCurrentEnum<
+                                                          ShuffleMode>()
+                                                      .index,
+                                                  speedIndex: _manager
+                                                      .getCurrentEnum<Speed>()
+                                                      .index,
+                                                  digitIndex: _manager
+                                                      .getCurrentEnum<Digit>()
+                                                      .index,
+                                                  numOfProblemIndex: _manager
+                                                      .getCurrentEnum<
+                                                          NumOfProblems>()
+                                                      .index,
+                                                  notifyIndex: _manager
+                                                      .getCurrentEnum<
+                                                          CountDownMode>()
+                                                      .index);
+                                              setState(() {
+                                                _indicatorVisible = true;
+                                              });
+                                              await DbClient.saveAddPreset(
+                                                  newItem);
+                                              setState(() {
+                                                _indicatorVisible = false;
+                                              });
 
-                                            await DbClient.getAddPresets();
+                                              await DbClient.getAddPresets();
 
-                                            if (context.mounted) {
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return const CustomAlert(
-                                                      title: '알림',
-                                                      content: '저장 완료!',
-                                                    );
-                                                  });
+                                              if (context.mounted) {
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return const CustomAlert(
+                                                        title: '알림',
+                                                        content: '저장 완료!',
+                                                      );
+                                                    });
+                                              }
                                             }
-                                          }
-                                        });
-                                      },
-                                      child: Text(
-                                        LocalizationChecker.presetSave,
-                                        style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.02,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primaryContainer),
+                                          });
+                                        },
+                                        child: Text(
+                                          LocalizationChecker.presetSave,
+                                          style: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.02,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer),
+                                        ),
                                       ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text(
-                                        LocalizationChecker.ok,
-                                        style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.02,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primaryContainer),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text(
+                                          LocalizationChecker.ok,
+                                          style: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.02,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer),
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.02),
-                                  ]),
-                              const Divider(
-                                color: Colors.transparent,
-                              ),
-                            ]))
-                      ]))))),
+                                      SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.02),
+                                    ]),
+                                const Divider(
+                                  color: Colors.transparent,
+                                ),
+                              ]))
+                        ]))))),
+      ),
     );
   }
 
