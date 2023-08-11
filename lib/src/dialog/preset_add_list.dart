@@ -115,7 +115,8 @@ class _PresetAddListState extends State<PresetAddList> {
       child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Icon(Icons.no_sim_sharp,
-            size: MediaQuery.of(context).size.height * 0.15),
+            size: MediaQuery.of(context).size.height * 0.15,
+            color: Theme.of(context).colorScheme.onBackground),
         const SizedBox(height: 10),
         Text('아이템이 없습니다.',
             style: TextStyle(
