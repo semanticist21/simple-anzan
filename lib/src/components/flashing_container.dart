@@ -34,7 +34,7 @@ class FlashingContainerState extends State<FlashingContainer> {
               ? Theme.of(context)
                   .colorScheme
                   .onSecondaryContainer
-                  .withOpacity(0.3)
+                  .withOpacity(0.15)
               : Theme.of(context).colorScheme.onSecondaryContainer,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Theme.of(context).colorScheme.shadow)),
