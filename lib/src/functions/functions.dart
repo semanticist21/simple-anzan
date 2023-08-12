@@ -226,6 +226,7 @@ List<Tuple<int, int>> getMultiplyNums(
             : isAllSameList
                 .every((element) => element == isAllSameList.first))) {
       secondGen = minSecond + Random().nextInt(maxSecond - minSecond);
+      isAllSameList = secondGen.toString().split('').map((e) => int.parse(e));
     }
 
     list.add(Tuple(secondGen, firstGen));
