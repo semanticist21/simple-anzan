@@ -15,6 +15,7 @@ class _CustomAlertState extends State<CustomAlert> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      surfaceTintColor: Colors.transparent,
       title: Text(
         widget.title != null ? widget.title! : LocalizationChecker.warning,
         style: TextStyle(

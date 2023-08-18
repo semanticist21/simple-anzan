@@ -49,6 +49,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
     return AlertDialog(
       contentPadding: const EdgeInsets.all(0),
       backgroundColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
       content: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(
             parent: BouncingScrollPhysics()),

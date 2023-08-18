@@ -36,6 +36,7 @@ class _CustomPresetFormDialogState extends State<CustomPresetFormDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      surfaceTintColor: Colors.transparent,
       title: Row(children: [
         Icon(CupertinoIcons.bag,
             size: MediaQuery.of(context).size.height * 0.0190,
