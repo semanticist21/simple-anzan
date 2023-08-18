@@ -71,8 +71,19 @@ class NumOfProblemsPref
 }
 
 enum NumOfProblems {
+  n_2,
+  n_3,
+  n_4,
   n_5,
+  n_6,
+  n_7,
+  n_8,
+  n_9,
   n_10,
+  n_11,
+  n_12,
+  n_13,
+  n_14,
   n_15,
   n_20,
   n_25,
@@ -81,4 +92,11 @@ enum NumOfProblems {
   n_40,
   n_45,
   n_50,
+  n_60,
+  n_70,
+  n_80,
+  n_90,
+  n_100,
+  n_150,
+  n_200,
 }

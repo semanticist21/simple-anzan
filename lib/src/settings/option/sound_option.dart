@@ -41,6 +41,10 @@ class SoundOptionHandler {
 
   Future<void> initPlaySound() async {
     if (!Platform.isWindows) {
+      if (Platform.isIOS) {
+        return;
+      }
+
       await Future.wait([
         resetAndroidPlayer(audioAndroidPlayer),
         resetAndroidPlayer(audioAndroidPlayer2),
