@@ -17,19 +17,18 @@ class SoundOptionHandler {
   static final audioAndroidPlayer2 = just.AudioPlayer();
   static bool _isToggle = false;
 
-  static AssetSource _audioAsset = AssetSource('beep_short_two.wav');
-  static final AssetSource _audioAssetSpareTwo =
-      AssetSource('beep_short_two.wav');
-  static final _audioAssetSpare = AssetSource('beep_short_two-spare.wav');
-  static AssetSource _countDownAsset = AssetSource('count.wav');
-  static final _countDownAssetSpareTwo = AssetSource('count.wav');
-  static final _countDownAssetSpare = AssetSource('count-spare.wav');
+  static AssetSource _audioAsset = AssetSource('beep_new.wav');
+  static final AssetSource _audioAssetSpareTwo = AssetSource('beep_new.wav');
+  static final _audioAssetSpare = AssetSource('beep_new-spare.wav');
 
-  static final _androidAsset =
-      just.AudioSource.asset('assets/beep_short_out_amplified.wav');
+  static AssetSource _countDownAsset = AssetSource('notify.mp3');
+  static final _countDownAssetSpareTwo = AssetSource('notify.mp3');
+  static final _countDownAssetSpare = AssetSource('notify-spare.mp3');
+
+  static final _androidAsset = just.AudioSource.asset('assets/beep_new.wav');
   static final _emptyAsset = just.AudioSource.asset('assets/empty.wav');
   static final _countDownAndroidAsset =
-      just.AudioSource.asset('assets/count.wav');
+      just.AudioSource.asset('assets/notify.mp3');
 
   SoundOptionHandler(SharedPreferences pref);
 
