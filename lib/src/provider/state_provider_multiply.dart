@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:abacus_simple_anzan/src/components/flashing_container.dart';
+import 'package:flutter/material.dart';
 
 import '../functions/tuple.dart';
 import '../const/const.dart';
@@ -6,6 +7,7 @@ import '../const/localization.dart';
 
 class StateMultiplyProvider extends ChangeNotifier {
   var state = ButtonMultiplyState.iterationNotStarted;
+  FlashingContainer? flashingContainer;
 
   var isButtonVisible = true;
   var isQuestionListButtonVisible = false;

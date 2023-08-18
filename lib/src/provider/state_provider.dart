@@ -1,11 +1,12 @@
+import 'package:abacus_simple_anzan/src/components/flashing_container.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../const/const.dart';
 
 class StateProvider extends ChangeNotifier {
   var state = ButtonState.iterationNotStarted;
+  FlashingContainer? flashingContainer;
 
   var isButtonVisible = true;
   var isQuestionListButtonVisible = false;

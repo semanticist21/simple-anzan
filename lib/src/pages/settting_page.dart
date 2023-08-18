@@ -166,12 +166,16 @@ class _SettingsPageState extends State<SettingsPage> {
                                         getDropdownMenuItemList<NumOfProblems>(
                                             _manager),
                                         changeOptionCallback<NumOfProblems>),
-                                    buildToggleOption(
-                                        LocalizationChecker.notify,
-                                        Icons.notifications,
-                                        _manager.enumToValue<CountDownMode,
-                                            bool>(_countDownMode),
-                                        toggleCounterModeCallback),
+                                    Tooltip(
+                                      message:
+                                          LocalizationChecker.shouldSoundOnDesc,
+                                      child: buildToggleOption(
+                                          LocalizationChecker.notify,
+                                          Icons.notifications,
+                                          _manager.enumToValue<CountDownMode,
+                                              bool>(_countDownMode),
+                                          toggleCounterModeCallback),
+                                    ),
                                     const SizedBox(height: 50),
                                   ])),
                         )

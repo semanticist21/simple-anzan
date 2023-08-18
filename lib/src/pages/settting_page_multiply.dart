@@ -160,13 +160,17 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         getDropdownMenuItemList<BigDigit>(
                                             _manager),
                                         changeOptionCallback<BigDigit>),
-                                    buildToggleOption(
-                                        LocalizationChecker.notify,
-                                        Icons.notifications,
-                                        _manager.enumToValue<
-                                            CountDownMultiplyMode,
-                                            bool>(_countDownMode),
-                                        toggleCounterModeCallback),
+                                    Tooltip(
+                                      message:
+                                          LocalizationChecker.shouldSoundOnDesc,
+                                      child: buildToggleOption(
+                                          LocalizationChecker.notify,
+                                          Icons.notifications,
+                                          _manager.enumToValue<
+                                              CountDownMultiplyMode,
+                                              bool>(_countDownMode),
+                                          toggleCounterModeCallback),
+                                    ),
                                     const SizedBox(height: 50),
                                   ])),
                         )

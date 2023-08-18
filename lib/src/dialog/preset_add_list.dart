@@ -45,51 +45,56 @@ class _PresetAddListState extends State<PresetAddList> {
             constraints: const BoxConstraints(maxWidth: 800),
             child: FractionallySizedBox(
                 heightFactor: 0.7,
-                child: CustomScrollView(
-                  controller: _controller,
-                  physics: const AlwaysScrollableScrollPhysics(
-                      parent: BouncingScrollPhysics()),
-                  slivers: [
-                    SliverAppBar(
-                      pinned: true,
-                      backgroundColor:
-                          Theme.of(context).colorScheme.tertiaryContainer,
-                      leading: IconButton(
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
-                          size: MediaQuery.of(context).size.height * 0.03,
+                child: Container(
+                  color: Theme.of(context).colorScheme.background,
+                  child: CustomScrollView(
+                    controller: _controller,
+                    physics: const AlwaysScrollableScrollPhysics(
+                        parent: BouncingScrollPhysics()),
+                    slivers: [
+                      SliverAppBar(
+                        pinned: true,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.tertiaryContainer,
+                        leading: IconButton(
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                            size: MediaQuery.of(context).size.height * 0.03,
+                          ),
+                          onPressed: () => Navigator.of(context).pop(),
+                          splashRadius: 10,
                         ),
-                        onPressed: () => Navigator.of(context).pop(),
-                        splashRadius: 10,
+                        title: FittedBox(
+                            child: Text(LocalizationChecker.preset,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimaryContainer,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.026))),
                       ),
-                      title: FittedBox(
-                          child: Text(LocalizationChecker.preset,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onPrimaryContainer,
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.026))),
-                    ),
-                    itemList.isNotEmpty
-                        ? SliverGrid.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 2,
-                            ),
-                            itemCount: itemList.length,
-                            itemBuilder: (context, index) {
-                              return AddItem(
-                                item: itemList[index],
-                                stream: itemChangeStream,
-                              );
-                            })
-                        : getWhenItemEmpty(),
-                  ],
+                      itemList.isNotEmpty
+                          ? SliverGrid.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 2,
+                              ),
+                              itemCount: itemList.length,
+                              itemBuilder: (context, index) {
+                                return AddItem(
+                                  item: itemList[index],
+                                  stream: itemChangeStream,
+                                );
+                              })
+                          : getWhenItemEmpty(),
+                    ],
+                  ),
                 )));
       },
     ));
@@ -105,12 +110,13 @@ class _PresetAddListState extends State<PresetAddList> {
     return SliverToBoxAdapter(
         child: Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * 0.55,
       color: Theme.of(context).colorScheme.background,
       child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Icon(Icons.no_sim_sharp,
-            size: MediaQuery.of(context).size.height * 0.15),
+            size: MediaQuery.of(context).size.height * 0.15,
+            color: Theme.of(context).colorScheme.onBackground),
         const SizedBox(height: 10),
         Text('아이템이 없습니다.',
             style: TextStyle(

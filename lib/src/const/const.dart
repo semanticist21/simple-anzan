@@ -142,6 +142,10 @@ const String shuffleDescKr = '다른 자릿수와 섞어 계산합니다.';
 const String shuffleDescEn = 'shuffle numbers with different digits';
 const String shuffleDescJa = '他の桁と混ぜて計算します。';
 
+const String shouldSoundOnDescKr = '사운드 옵션이 켜져 있어야 합니다.';
+const String shouldSoundOnDescEn = 'Sound option should be on';
+const String shouldSoundOnDescJa = 'Sound option should be on';
+
 const String rangeMultiplyWordKr = '100~30000 사이의 값을 입력하세요.';
 const String rangeMultiplyWordEn = 'put value between 100~30000.';
 const String rangeMultiplyWordJa = '100~30000の値を入れてください。';

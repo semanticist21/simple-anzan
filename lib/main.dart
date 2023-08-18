@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:abacus_simple_anzan/client.dart';
+import 'package:abacus_simple_anzan/exit_watcher.dart';
 import 'package:abacus_simple_anzan/loading_stream.dart';
 import 'package:abacus_simple_anzan/src/dialog/preset_add_list.dart';
 import 'package:abacus_simple_anzan/src/dialog/preset_multiply_list.dart';
@@ -14,7 +17,6 @@ import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:abacus_simple_anzan/router.dart';
@@ -24,6 +26,8 @@ import 'package:window_manager/window_manager.dart';
 import 'dart:async';
 
 // import 'loading.dart';
+import 'src/dialog/prob_list.dart';
+import 'src/dialog/prob_list_multiply.dart';
 import 'src/dialog/windows_add_option.dart';
 
 void main() async {
@@ -37,13 +41,26 @@ void main() async {
     await windowManager.setSize(const Size(400, 600));
   }
 
-  FlutterError.onError =
-      (FlutterErrorDetails details) => FlutterError.presentError(details);
+  FlutterError.onError = (FlutterErrorDetails details) async {
+    FlutterError.presentError(details);
+    if (Platform.isWindows) {
+      String currentPath = Directory.current.path;
+      var file = File('$currentPath\\errors.txt');
 
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+      // DateTime now = DateTime.now();
+      // String formattedTime = DateFormat('yyyy.MM.dd HH:mm:ss').format(now);
+      // var time = '[$formattedTime]';
 
-  runApp(const MyApp());
+      await file.writeAsString("\n", mode: FileMode.append);
+      await file.writeAsString("\n", mode: FileMode.append);
+      // await file.writeAsString(time, mode: FileMode.append);
+      await file.writeAsString(details.exception.toString(),
+          mode: FileMode.append);
+      await file.writeAsString(details.stack.toString(), mode: FileMode.append);
+    }
+  };
+
+  runApp(Platform.isWindows ? const ExitWatcher(item: MyApp()) : const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -56,6 +73,15 @@ class MyApp extends StatelessWidget {
         initialData: true,
         stream: ThemeSelector.isDarkStream.stream,
         builder: (context, snapshot) => MaterialApp(
+              scrollBehavior: const MaterialScrollBehavior().copyWith(
+                  dragDevices: {
+                    PointerDeviceKind.mouse,
+                    PointerDeviceKind.touch,
+                    PointerDeviceKind.stylus,
+                    PointerDeviceKind.unknown
+                  },
+                  physics: const AlwaysScrollableScrollPhysics(
+                      parent: BouncingScrollPhysics())),
               debugShowCheckedModeBanner: false,
               theme: ThemeSelector.isDark
                   ? ThemeSelector.getBlackTheme()
@@ -163,6 +189,27 @@ class _Home extends State<Home> {
               stream: SoundOptionHandler.isSoundOnStream.stream,
               builder: (context, snapshot) {
                 return Row(children: [
+                  Visibility(
+                    visible: !(_currentIndex != 0 && _currentIndex != 2),
+                    child: Tooltip(
+                        message: LocalizationChecker.checkProb,
+                        child: RawMaterialButton(
+                          onPressed: () {
+                            if (_currentIndex != 0 && _currentIndex != 2) {
+                              return;
+                            }
+                            showProbDialog(_currentIndex == 0 ? true : false);
+                          },
+                          elevation: 2.0,
+                          fillColor: Theme.of(context).colorScheme.onBackground,
+                          padding: const EdgeInsets.all(2),
+                          shape: const CircleBorder(),
+                          child: Icon(
+                            CupertinoIcons.question,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                        )),
+                  ),
                   Visibility(
                       visible: Platform.isWindows
                           ? _currentIndex == 0 || _currentIndex == 2
@@ -338,5 +385,29 @@ class _Home extends State<Home> {
         currentIndex: _currentIndex,
       ),
     );
+  }
+
+  void showProbDialog(bool isAddHome) {
+    if (isAddHome) {
+      if (_stateProvider.state == ButtonState.iterationStarted) {
+        return;
+      }
+
+      showDialog(
+          context: context,
+          builder: (context) => ProbList(numList: _stateProvider.nums));
+    } else {
+      if (_stateMultiplyProvider.state ==
+          ButtonMultiplyState.iterationStarted) {
+        return;
+      }
+
+      showDialog(
+          context: context,
+          builder: (context) => ProbMultiplyList(
+                numList: _stateMultiplyProvider.nums,
+                mode: _stateMultiplyProvider.isMultiplies,
+              ));
+    }
   }
 }

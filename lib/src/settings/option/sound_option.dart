@@ -7,16 +7,23 @@ import 'package:just_audio/just_audio.dart' as just;
 
 class SoundOptionHandler {
   static var soundKey = 'isSoundOn';
-  static var isSoundOn = true;
+  static var isSoundOn = false;
   static StreamController<bool> isSoundOnStream = StreamController();
 
   static final audioplayer = AudioPlayer();
   static final countplayer = AudioPlayer();
 
   static final audioAndroidPlayer = just.AudioPlayer();
+  static final audioAndroidPlayer2 = just.AudioPlayer();
+  static bool _isToggle = false;
 
-  static final _audioAsset = AssetSource('beep_short_two.wav');
-  static final _countDownAsset = AssetSource('count.wav');
+  static AssetSource _audioAsset = AssetSource('beep_short_two.wav');
+  static final AssetSource _audioAssetSpareTwo =
+      AssetSource('beep_short_two.wav');
+  static final _audioAssetSpare = AssetSource('beep_short_two-spare.wav');
+  static AssetSource _countDownAsset = AssetSource('count.wav');
+  static final _countDownAssetSpareTwo = AssetSource('count.wav');
+  static final _countDownAssetSpare = AssetSource('count-spare.wav');
 
   static final _androidAsset =
       just.AudioSource.asset('assets/beep_short_out_amplified.wav');
@@ -34,28 +41,55 @@ class SoundOptionHandler {
 
   Future<void> initPlaySound() async {
     if (!Platform.isWindows) {
-      await audioAndroidPlayer.setAudioSource(_emptyAsset);
-      await audioAndroidPlayer.load();
-      await audioAndroidPlayer.play();
-      await audioAndroidPlayer.stop();
-
-      await audioAndroidPlayer.setAudioSource(_androidAsset);
-      await audioAndroidPlayer.load();
+      await Future.wait([
+        resetAndroidPlayer(audioAndroidPlayer),
+        resetAndroidPlayer(audioAndroidPlayer2),
+      ]);
+      await countplayer.setVolume(0.5);
     } else {
       await countplayer.setVolume(1);
       await audioplayer.setVolume(1);
     }
   }
 
+  Future<void> resetAndroidPlayer(just.AudioPlayer audioAndroidPlayer) async {
+    await audioAndroidPlayer.setAudioSource(_emptyAsset);
+    await audioAndroidPlayer.load();
+    await audioAndroidPlayer.play();
+    await audioAndroidPlayer.stop();
+
+    await audioAndroidPlayer.setAudioSource(_androidAsset);
+    await audioAndroidPlayer.load();
+    await audioAndroidPlayer.setVolume(0.0);
+    await audioAndroidPlayer.play();
+    await audioAndroidPlayer.stop();
+    await audioAndroidPlayer.setVolume(1);
+  }
+
   Future<void> playSound() async {
     if (isSoundOn) {
       if (!Platform.isWindows) {
-        await audioAndroidPlayer.pause();
-        await audioAndroidPlayer.seek(Duration.zero);
-        await audioAndroidPlayer.play();
+        if (!_isToggle) {
+          await audioAndroidPlayer.pause();
+          await audioAndroidPlayer.seek(Duration.zero);
+          await audioAndroidPlayer.play();
+        } else {
+          await audioAndroidPlayer2.pause();
+          await audioAndroidPlayer2.seek(Duration.zero);
+          await audioAndroidPlayer2.play();
+        }
+
+        _isToggle = !_isToggle;
       } else {
         await audioplayer.seek(Duration.zero);
-        await audioplayer.play(_audioAsset);
+        try {
+          await audioplayer.play(_audioAsset);
+        } catch (_) {
+          _audioAsset = _audioAsset == _audioAssetSpare
+              ? _audioAssetSpareTwo
+              : _audioAssetSpare;
+          await audioplayer.play(_audioAsset);
+        }
       }
     }
   }
@@ -66,7 +100,16 @@ class SoundOptionHandler {
 
   Future<void> playCountSound() async {
     if (isSoundOn) {
-      if (!Platform.isWindows) {
+      await audioAndroidPlayer.setVolume(1);
+      await audioAndroidPlayer2.setVolume(1);
+      await audioplayer.setVolume(1);
+    } else {
+      await audioAndroidPlayer.setVolume(0);
+      await audioAndroidPlayer2.setVolume(0);
+      await audioplayer.setVolume(0);
+    }
+    if (!Platform.isWindows) {
+      if (_isToggle) {
         await audioAndroidPlayer.stop();
 
         await audioAndroidPlayer.setAudioSource(_countDownAndroidAsset);
@@ -76,18 +119,41 @@ class SoundOptionHandler {
         await Future.delayed(
             audioAndroidPlayer.duration! + const Duration(milliseconds: 100));
       } else {
+        await audioAndroidPlayer2.stop();
+
+        await audioAndroidPlayer2.setAudioSource(_countDownAndroidAsset);
+        await audioAndroidPlayer2.seek(Duration.zero);
+        await audioAndroidPlayer2.play();
+
+        await Future.delayed(
+            audioAndroidPlayer2.duration! + const Duration(milliseconds: 100));
+      }
+    } else {
+      try {
         await audioplayer.seek(Duration.zero);
         await audioplayer.play(_countDownAsset);
+      } catch (_) {
+        _countDownAsset = _countDownAsset == _countDownAssetSpare
+            ? _countDownAssetSpareTwo
+            : _countDownAssetSpare;
       }
     }
   }
 
   Future<void> resetSource() async {
     if (!Platform.isWindows) {
-      await audioAndroidPlayer.stop();
-      await audioAndroidPlayer.setAudioSource(_androidAsset);
-      await audioAndroidPlayer.load();
+      await Future.wait([
+        resetSourceIndividual(audioAndroidPlayer),
+        resetSourceIndividual(audioAndroidPlayer2)
+      ]);
     }
+  }
+
+  Future<void> resetSourceIndividual(
+      just.AudioPlayer audioAndroidPlayer) async {
+    await audioAndroidPlayer.stop();
+    await audioAndroidPlayer.setAudioSource(_androidAsset);
+    await audioAndroidPlayer.load();
   }
 
   Future<void> stopCountAudio() async {

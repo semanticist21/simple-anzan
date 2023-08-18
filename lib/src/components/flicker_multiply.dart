@@ -258,11 +258,14 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
     if (Platform.isWindows) {
       await Future.delayed(const Duration(milliseconds: 800));
     }
+
+    _stateProvider.flashingContainer?.containerState.startFlashing();
     await _optManager.soundOption.playCountSound();
 
     if (Platform.isWindows) {
       await Future.delayed(const Duration(milliseconds: 800));
     }
+    _stateProvider.flashingContainer?.containerState.startFlashing();
     await _optManager.soundOption.playCountSound();
 
     if (Platform.isWindows) {
