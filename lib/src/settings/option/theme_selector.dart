@@ -15,7 +15,7 @@ class ThemeSelector {
 
   Future<void> initSettings() async {
     var prefs = await SharedPreferences.getInstance();
-    isDark = prefs.getBool(themeKey) ?? true;
+    isDark = prefs.getBool(themeKey) ?? false;
     ThemeSelector.isDarkStream.add(ThemeSelector.isDark);
   }
 
