@@ -4,6 +4,7 @@ import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_big_digi
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/num_of_problems_pref_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -259,13 +260,18 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       await Future.delayed(const Duration(milliseconds: 800));
     }
 
-    _stateProvider.flashingContainer?.containerState.startFlashing();
+    if (!SoundOptionHandler.isSoundOn) {
+      _stateProvider.flashingContainer?.containerState.startFlashing();
+    }
     await _optManager.soundOption.playCountSound();
 
     if (Platform.isWindows) {
       await Future.delayed(const Duration(milliseconds: 800));
     }
-    _stateProvider.flashingContainer?.containerState.startFlashing();
+
+    if (!SoundOptionHandler.isSoundOn) {
+      _stateProvider.flashingContainer?.containerState.startFlashing();
+    }
     await _optManager.soundOption.playCountSound();
 
     if (Platform.isWindows) {

@@ -1,4 +1,5 @@
 import 'package:abacus_simple_anzan/src/settings/option/option_manager.dart';
+import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
@@ -220,13 +221,18 @@ class _FlickerState extends State<Flicker> {
     if (Platform.isWindows) {
       await Future.delayed(const Duration(milliseconds: 800));
     }
-    _stateProvider.flashingContainer?.containerState.startFlashing();
+
+    if (!SoundOptionHandler.isSoundOn) {
+      _stateProvider.flashingContainer?.containerState.startFlashing();
+    }
     await _optManager.soundOption.playCountSound();
 
     if (Platform.isWindows) {
       await Future.delayed(const Duration(milliseconds: 800));
     }
-    _stateProvider.flashingContainer?.containerState.startFlashing();
+    if (!SoundOptionHandler.isSoundOn) {
+      _stateProvider.flashingContainer?.containerState.startFlashing();
+    }
     await _optManager.soundOption.playCountSound();
 
     if (Platform.isWindows) {
