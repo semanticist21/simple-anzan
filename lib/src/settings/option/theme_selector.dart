@@ -7,7 +7,7 @@ import '../../const/const.dart';
 
 class ThemeSelector {
   static var themeKey = 'isDark';
-  static var isDark = true;
+  static var isDark = false;
   static StreamController<bool> isDarkStream = StreamController();
   SharedPreferences prefs;
 
