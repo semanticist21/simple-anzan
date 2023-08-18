@@ -80,10 +80,10 @@ class _HomePageState extends State<HomePage> {
                           )
                         ]))),
             Expanded(
-              flex: 8,
+              flex: 9,
               child: Center(
                   child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.7,
+                width: MediaQuery.of(context).size.width * 0.8,
                 height: MediaQuery.of(context).size.height * 1,
                 child: Stack(children: [
                   flashingContainer,
