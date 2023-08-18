@@ -87,12 +87,12 @@ class MyApp extends StatelessWidget {
                   ? ThemeSelector.getBlackTheme()
                   : ThemeSelector.getWhiteTheme(),
               title: LocalizationChecker.appName,
-              home: WillPopScope(
-                onWillPop: () async {
+              home: PopScope(
+                onPopInvoked: (_) async {
                   await SoundOptionHandler.audioplayer.dispose();
                   await SoundOptionHandler.countplayer.dispose();
                   await SoundOptionHandler.audioAndroidPlayer.dispose();
-                  return true;
+                  // return true;
                 },
                 child: MultiProvider(providers: [
                   ChangeNotifierProvider<StateProvider>(
@@ -109,7 +109,7 @@ class MyApp extends StatelessWidget {
     await SettingsManager().initSettings();
     await SettingsMultiplyManager().initSettings();
     await OptionManager().initSettings();
-    
+
     if (Platform.isWindows) {
       await DbClient().initData();
     }

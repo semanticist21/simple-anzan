@@ -26,6 +26,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
 
     return Dialog(
         backgroundColor: Theme.of(context).colorScheme.background,
+        surfaceTintColor: Colors.transparent,
         child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 800),
             child: FractionallySizedBox(

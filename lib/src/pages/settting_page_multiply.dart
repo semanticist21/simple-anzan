@@ -65,30 +65,33 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                             height: Platform.isIOS || Platform.isAndroid
                                 ? 0
                                 : MediaQuery.of(context).size.height * 0.015),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.settings,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .secondaryContainer,
-                              size: MediaQuery.of(context).size.height * 0.03,
-                            ),
-                            SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.015),
-                            Text(
-                              LocalizationChecker.settingsMultiply,
-                              style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.023,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.settings,
                                 color: Theme.of(context)
                                     .colorScheme
                                     .secondaryContainer,
+                                size: MediaQuery.of(context).size.height * 0.03,
                               ),
-                            )
-                          ],
+                              SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      0.015),
+                              Text(
+                                LocalizationChecker.settingsMultiply,
+                                style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.023,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondaryContainer,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.01),
@@ -184,15 +187,18 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
       Function(bool) onChangeMethod) {
     return getPadding(
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Row(children: [
-        Icon(iconData, color: Theme.of(context).colorScheme.primaryContainer),
-        const SizedBox(width: 10),
-        Text(title,
-            style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.0185,
-                fontWeight: FontWeight.w500,
-                color: Theme.of(context).colorScheme.primaryContainer))
-      ]),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [
+          Icon(iconData, color: Theme.of(context).colorScheme.primaryContainer),
+          const SizedBox(width: 10),
+          Text(title,
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.height * 0.0185,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.primaryContainer))
+        ]),
+      ),
       Transform.scale(
           scale: 0.9,
           filterQuality: FilterQuality.high,
@@ -235,16 +241,19 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Flexible(
           flex: 19,
-          child: Row(
-            children: [
-              icon,
-              const SizedBox(width: 10),
-              Text(title,
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height * 0.020,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.primaryContainer))
-            ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                icon,
+                const SizedBox(width: 10),
+                Text(title,
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.height * 0.020,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).colorScheme.primaryContainer))
+              ],
+            ),
           )),
       Flexible(
           flex: 20,

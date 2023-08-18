@@ -23,23 +23,29 @@ class _AddDialogMultiplyState extends State<AddDialogMultiply> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Row(children: [
-        Icon(Icons.forward_sharp,
-            size: MediaQuery.of(context).size.height * 0.0190,
-            color: Theme.of(context).colorScheme.primaryContainer),
-        SizedBox(width: MediaQuery.of(context).size.width * 0.015),
-        Container(
-            constraints: const BoxConstraints(maxWidth: 300),
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: FittedBox(
-                fit: BoxFit.contain,
-                child: Text(LocalizationChecker.setSpeedTitle,
-                    style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: MediaQuery.of(context).size.height * 0.0190,
-                        color:
-                            Theme.of(context).colorScheme.primaryContainer))))
-      ]),
+      surfaceTintColor: Colors.transparent,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0))),
+      title: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [
+          Icon(Icons.forward_sharp,
+              size: MediaQuery.of(context).size.height * 0.0190,
+              color: Theme.of(context).colorScheme.primaryContainer),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.015),
+          Container(
+              constraints: const BoxConstraints(maxWidth: 300),
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(LocalizationChecker.setSpeedTitle,
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: MediaQuery.of(context).size.height * 0.0190,
+                          color:
+                              Theme.of(context).colorScheme.primaryContainer))))
+        ]),
+      ),
       content: Form(
           key: _formKey,
           child: TextFormField(
