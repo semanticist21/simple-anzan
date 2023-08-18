@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                           )
                         ]))),
             Expanded(
-              flex: 9,
+              flex: 8,
               child: Center(
                   child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
