@@ -33,7 +33,7 @@ import 'src/dialog/windows_add_option.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+  if (Platform.isWindows) {
     await windowManager.ensureInitialized();
     await windowManager.setMinimumSize(const Size(1024, 768));
     await windowManager.setMaximizable(true);
