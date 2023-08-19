@@ -73,11 +73,13 @@ class SoundOptionHandler {
     if (isSoundOn) {
       if (!Platform.isWindows) {
         if (!_isToggle) {
-          await audioAndroidPlayer.pause();
+          await audioAndroidPlayer.stop();
+          await audioAndroidPlayer.setAudioSource(_androidAsset);
           await audioAndroidPlayer.seek(Duration.zero);
           await audioAndroidPlayer.play();
         } else {
-          await audioAndroidPlayer2.pause();
+          await audioAndroidPlayer2.stop();
+          await audioAndroidPlayer2.setAudioSource(_androidAsset);
           await audioAndroidPlayer2.seek(Duration.zero);
           await audioAndroidPlayer2.play();
         }
