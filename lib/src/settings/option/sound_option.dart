@@ -105,9 +105,9 @@ class SoundOptionHandler {
 
   Future<void> playCountSound() async {
     if (isSoundOn) {
-      await audioAndroidPlayer.setVolume(1);
-      await audioAndroidPlayer2.setVolume(1);
-      await audioplayer.setVolume(1);
+      await audioAndroidPlayer.setVolume(0.5);
+      await audioAndroidPlayer2.setVolume(0.5);
+      await audioplayer.setVolume(0.3);
     } else {
       await audioAndroidPlayer.setVolume(0);
       await audioAndroidPlayer2.setVolume(0);
@@ -141,6 +141,9 @@ class SoundOptionHandler {
         _countDownAsset = _countDownAsset == _countDownAssetSpare
             ? _countDownAssetSpareTwo
             : _countDownAssetSpare;
+
+        await audioplayer.seek(Duration.zero);
+        await audioplayer.play(_countDownAsset);
       }
     }
   }
