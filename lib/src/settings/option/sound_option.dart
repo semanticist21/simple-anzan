@@ -107,7 +107,7 @@ class SoundOptionHandler {
     if (isSoundOn) {
       await audioAndroidPlayer.setVolume(0.5);
       await audioAndroidPlayer2.setVolume(0.5);
-      await audioplayer.setVolume(0.3);
+      await audioplayer.setVolume(0.1);
     } else {
       await audioAndroidPlayer.setVolume(0);
       await audioAndroidPlayer2.setVolume(0);
