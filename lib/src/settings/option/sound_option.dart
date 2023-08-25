@@ -11,7 +11,8 @@ class SoundOptionHandler {
   static StreamController<bool> isSoundOnStream = StreamController();
 
   static final audioplayer = AudioPlayer();
-  static final countplayer = AudioPlayer();
+  static final countplayer2 = AudioPlayer();
+  static final countplayer_old = AudioPlayer();
 
   static final audioAndroidPlayer = just.AudioPlayer();
   static final audioAndroidPlayer2 = just.AudioPlayer();
@@ -48,9 +49,9 @@ class SoundOptionHandler {
         resetAndroidPlayer(audioAndroidPlayer),
         resetAndroidPlayer(audioAndroidPlayer2),
       ]);
-      await countplayer.setVolume(0.5);
+      await countplayer_old.setVolume(0.5);
     } else {
-      await countplayer.setVolume(1);
+      await countplayer_old.setVolume(1);
       await audioplayer.setVolume(1);
     }
   }
@@ -105,13 +106,15 @@ class SoundOptionHandler {
 
   Future<void> playCountSound() async {
     if (isSoundOn) {
-      await audioAndroidPlayer.setVolume(0.5);
-      await audioAndroidPlayer2.setVolume(0.5);
-      await audioplayer.setVolume(0.1);
+      await audioAndroidPlayer.setVolume(1);
+      await audioAndroidPlayer2.setVolume(1);
+      await audioplayer.setVolume(1);
+      await countplayer2.setVolume(0.4);
     } else {
       await audioAndroidPlayer.setVolume(0);
       await audioAndroidPlayer2.setVolume(0);
       await audioplayer.setVolume(0);
+      await countplayer2.setVolume(0);
     }
     if (!Platform.isWindows) {
       if (_isToggle) {
@@ -135,15 +138,15 @@ class SoundOptionHandler {
       }
     } else {
       try {
-        await audioplayer.seek(Duration.zero);
-        await audioplayer.play(_countDownAsset);
+        await countplayer2.seek(Duration.zero);
+        await countplayer2.play(_countDownAsset);
       } catch (_) {
         _countDownAsset = _countDownAsset == _countDownAssetSpare
             ? _countDownAssetSpareTwo
             : _countDownAssetSpare;
 
-        await audioplayer.seek(Duration.zero);
-        await audioplayer.play(_countDownAsset);
+        await countplayer2.seek(Duration.zero);
+        await countplayer2.play(_countDownAsset);
       }
     }
   }
@@ -165,6 +168,9 @@ class SoundOptionHandler {
   }
 
   Future<void> stopCountAudio() async {
-    await countplayer.stop();
+    if (Platform.isWindows) {
+      await countplayer_old.stop();
+      await countplayer2.stop();
+    }
   }
 }

@@ -23,7 +23,7 @@ class _ExitWatcherState extends State<ExitWatcher> with WindowListener {
     SoundOptionHandler.audioAndroidPlayer.dispose();
     SoundOptionHandler.audioAndroidPlayer2.dispose();
     SoundOptionHandler.audioplayer.dispose();
-    SoundOptionHandler.countplayer.dispose();
+    SoundOptionHandler.countplayer_old.dispose();
     super.dispose();
   }
 
@@ -33,7 +33,7 @@ class _ExitWatcherState extends State<ExitWatcher> with WindowListener {
     SoundOptionHandler.audioAndroidPlayer.dispose();
     SoundOptionHandler.audioAndroidPlayer2.dispose();
     SoundOptionHandler.audioplayer.dispose();
-    SoundOptionHandler.countplayer.dispose();
+    SoundOptionHandler.countplayer_old.dispose();
   }
 
   @override
