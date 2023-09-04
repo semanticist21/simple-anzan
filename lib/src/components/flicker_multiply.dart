@@ -65,13 +65,14 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
                   style: _getMainNumberTextStyle(),
                   textAlign: TextAlign.left,
                 )))
-        : Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+        : FittedBox(
+            fit: BoxFit.contain,
             child: Text(
               _number,
               style: _getMainNumberTextStyle(),
               textAlign: TextAlign.left,
-            ));
+            ),
+          );
   }
 
   // start iteration.
@@ -244,15 +245,25 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
 
 // styles.
   TextStyle _getMainNumberTextStyle() {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    var fontsize = 10.0;
+
+    if (Platform.isWindows) {
+      fontsize = height * 0.075 + width * 0.075;
+    } else {
+      fontsize = height * 0.075 + width * 0.075;
+    }
+
     return Platform.isWindows
-        ? Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: (MediaQuery.of(context).size.height * 0.7 +
-                    MediaQuery.of(context).size.width * 0.6) *
-                0.17)
+        ? Theme.of(context)
+            .textTheme
+            .titleLarge!
+            .copyWith(fontStyle: FontStyle.italic, fontSize: fontsize)
         : Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: (MediaQuery.of(context).size.height * 0.7 +
-                    MediaQuery.of(context).size.width * 0.6) *
-                0.11);
+              fontSize: fontsize,
+              fontStyle: FontStyle.italic,
+            );
   }
 
   Future<void> _doCountDown() async {

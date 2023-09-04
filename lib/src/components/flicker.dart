@@ -49,24 +49,19 @@ class _FlickerState extends State<Flicker> {
     return _number.length > 6
         ? FittedBox(
             fit: BoxFit.contain,
-            child: Padding(
-                padding: Platform.isWindows
-                    ? const EdgeInsets.fromLTRB(0, 0, 0, 0)
-                    : const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Text(
-                  _number,
-                  style: _getMainNumberTextStyle(),
-                  textAlign: TextAlign.left,
-                )))
-        : Padding(
-            padding: Platform.isWindows
-                ? const EdgeInsets.fromLTRB(0, 0, 0, 0)
-                : const EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Text(
               _number,
               style: _getMainNumberTextStyle(),
               textAlign: TextAlign.left,
-            ));
+            ))
+        : FittedBox(
+            fit: BoxFit.contain,
+            child: Text(
+              _number,
+              style: _getMainNumberTextStyle(),
+              textAlign: TextAlign.left,
+            ),
+          );
   }
 
   // start iteration.
@@ -185,7 +180,11 @@ class _FlickerState extends State<Flicker> {
         break;
       }
 
-      await Future.delayed(duration);
+      if (duration < const Duration(milliseconds: 200)) {
+        await Future.delayed(duration);
+      } else {
+        await Future.delayed(const Duration(milliseconds: 200));
+      }
     }
   }
 
@@ -206,15 +205,25 @@ class _FlickerState extends State<Flicker> {
 
 // styles.
   TextStyle _getMainNumberTextStyle() {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    var fontsize = 10.0;
+
+    if (Platform.isWindows) {
+      fontsize = height * 0.085 + width * 0.085;
+    } else {
+      fontsize = height * 0.085 + width * 0.085;
+    }
+
     return Platform.isWindows
-        ? Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: (MediaQuery.of(context).size.width * 0.7 +
-                    MediaQuery.of(context).size.height * 1) *
-                0.09)
-        : Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: (MediaQuery.of(context).size.width * 0.7 +
-                    MediaQuery.of(context).size.height * 1) *
-                0.07);
+        ? Theme.of(context)
+            .textTheme
+            .titleLarge!
+            .copyWith(fontStyle: FontStyle.italic, fontSize: fontsize)
+        : Theme.of(context)
+            .textTheme
+            .titleLarge!
+            .copyWith(fontStyle: FontStyle.italic, fontSize: fontsize);
   }
 
   Future<void> _doCountDown() async {
