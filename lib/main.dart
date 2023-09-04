@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
               home: PopScope(
                 onPopInvoked: (_) async {
                   await SoundOptionHandler.audioplayer.dispose();
-                  await SoundOptionHandler.countplayer.dispose();
+                  await SoundOptionHandler.countplayer_old.dispose();
                   await SoundOptionHandler.audioAndroidPlayer.dispose();
                   // return true;
                 },
