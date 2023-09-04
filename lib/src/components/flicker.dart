@@ -4,6 +4,7 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart'
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +46,13 @@ class _FlickerState extends State<Flicker> {
     _stateProvider = Provider.of(context, listen: false);
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.addListener(_callbackOnButtonClick);
+
+    if (_number.isEmpty) {
+      return const SizedBox(
+        width: 0,
+        height: 0,
+      );
+    }
 
     return _number.length > 6
         ? FittedBox(
@@ -210,9 +218,9 @@ class _FlickerState extends State<Flicker> {
     var fontsize = 10.0;
 
     if (Platform.isWindows) {
-      fontsize = height * 0.085 + width * 0.085;
+      fontsize = height * 0.095 + width * 0.095;
     } else {
-      fontsize = height * 0.085 + width * 0.085;
+      fontsize = height * 0.095 + width * 0.095;
     }
 
     return Platform.isWindows

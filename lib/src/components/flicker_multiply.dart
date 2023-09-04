@@ -55,6 +55,13 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.addListener(_callbackOnButtonClick);
 
+    if (_number.isEmpty) {
+      return const SizedBox(
+        width: 0,
+        height: 0,
+      );
+    }
+
     return _number.length > 4
         ? FittedBox(
             fit: BoxFit.contain,
