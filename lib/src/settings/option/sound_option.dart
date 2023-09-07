@@ -12,7 +12,7 @@ class SoundOptionHandler {
 
   static final audioplayer = AudioPlayer();
   static final countplayer2 = AudioPlayer();
-  static final countplayer_old = AudioPlayer();
+  static final countplayerOld = AudioPlayer();
 
   static final audioAndroidPlayer = just.AudioPlayer();
   static final audioAndroidPlayer2 = just.AudioPlayer();
@@ -49,9 +49,9 @@ class SoundOptionHandler {
         resetAndroidPlayer(audioAndroidPlayer),
         resetAndroidPlayer(audioAndroidPlayer2),
       ]);
-      await countplayer_old.setVolume(0.5);
+      await countplayerOld.setVolume(0.5);
     } else {
-      await countplayer_old.setVolume(1);
+      await countplayerOld.setVolume(1);
       await audioplayer.setVolume(1);
     }
   }
@@ -169,7 +169,7 @@ class SoundOptionHandler {
 
   Future<void> stopCountAudio() async {
     if (Platform.isWindows) {
-      await countplayer_old.stop();
+      await countplayerOld.stop();
       await countplayer2.stop();
     }
   }
