@@ -21,3 +21,5 @@ doc/api/
 *.js.map
 save/
 key.jks
+
+.flutter-plugins-dependencies

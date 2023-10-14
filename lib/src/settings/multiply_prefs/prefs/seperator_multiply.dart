@@ -1,4 +1,4 @@
-// ignore_for_file: annotation_overrides
+// ignore_for_file: annotate_overrides
 
 import 'package:abacus_simple_anzan/src/settings/Interface/preference_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
