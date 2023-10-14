@@ -2,6 +2,7 @@ import 'package:abacus_simple_anzan/src/settings/option/option_manager.dart';
 import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/seperator.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _FlickerState extends State<Flicker> {
   final _manager = SettingsManager();
   final _optManager = OptionManager();
 
-  var formattter = NumberFormat('#,##0');
+  var formatter = NumberFormat('#,##0');
 
   var _number = '';
   var _answer = '';
@@ -162,6 +163,8 @@ class _FlickerState extends State<Flicker> {
       await Future.delayed(const Duration(milliseconds: 1000));
     }
 
+    bool isSeperator = manager.getCurrentValue<SeperatorMode, bool>();
+
     for (int i = 0; i < len; i++) {
       var str = '';
 
@@ -174,7 +177,7 @@ class _FlickerState extends State<Flicker> {
 
       _optManager.soundOption.playSound();
       setState(() {
-        _number = str;
+        _number = isSeperator ? formatter.format(int.parse(str)) : str;
       });
       await Future.delayed(duration);
 
@@ -198,7 +201,7 @@ class _FlickerState extends State<Flicker> {
   void _showAnswer() {
     setState(() {
       _number =
-          _answer == '' ? '' : '\t${formattter.format(int.parse(_answer))}\t';
+          _answer == '' ? '' : '\t${formatter.format(int.parse(_answer))}\t';
     });
   }
 

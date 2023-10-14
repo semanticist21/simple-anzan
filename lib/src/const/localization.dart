@@ -40,6 +40,7 @@ class LocalizationChecker {
   static String pleaseTooSmallValue = pleaseTooSmallValueEn;
 
   static String notify = notifyEn;
+  static String seperator = seperatorEn;
 
   // option(multiply)
   static String settingsMultiply = settingsMultiplyEn;
@@ -120,6 +121,7 @@ class LocalizationChecker {
 
       fastSetting = fastSettingKr;
       notify = notifyKr;
+      seperator = seperatorKr;
 
       preset = presetKr;
       presetSave = presetSaveKr;

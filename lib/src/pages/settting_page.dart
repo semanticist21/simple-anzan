@@ -1,5 +1,6 @@
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/seperator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
@@ -28,6 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
   late Digit _digit;
   late NumOfProblems _numOfProblems;
   late CountDownMode _countDownMode;
+  late SeperatorMode _seperatorMode;
 
   final _controller = ScrollController();
 
@@ -170,6 +172,15 @@ class _SettingsPageState extends State<SettingsPage> {
                                             _manager),
                                         changeOptionCallback<NumOfProblems>),
                                     Tooltip(
+                                      message: LocalizationChecker.seperator,
+                                      child: buildToggleOption(
+                                          LocalizationChecker.seperator,
+                                          Icons.one_k,
+                                          _manager.enumToValue<SeperatorMode,
+                                              bool>(_seperatorMode),
+                                          toggleSepartorModeCallback),
+                                    ),
+                                    Tooltip(
                                       message:
                                           LocalizationChecker.shouldSoundOnDesc,
                                       child: buildToggleOption(
@@ -231,6 +242,16 @@ class _SettingsPageState extends State<SettingsPage> {
     });
 
     _manager.saveSetting(_isShuffle);
+    initializeValues(_manager);
+  }
+
+  toggleSepartorModeCallback(bool newValue) {
+    setState(() {
+      var valueToEnum = _manager.valueToEnum<bool, SeperatorMode>(newValue);
+      _seperatorMode = valueToEnum;
+    });
+
+    _manager.saveSetting(_seperatorMode);
     initializeValues(_manager);
   }
 
@@ -380,6 +401,7 @@ class _SettingsPageState extends State<SettingsPage> {
       _digit = manager.getCurrentEnum<Digit>();
       _numOfProblems = manager.getCurrentEnum<NumOfProblems>();
       _countDownMode = manager.getCurrentEnum<CountDownMode>();
+      _seperatorMode = manager.getCurrentEnum<SeperatorMode>();
     });
   }
 }

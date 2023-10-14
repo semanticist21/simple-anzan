@@ -2,6 +2,7 @@ import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_big_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/num_of_problems_pref_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/seperator_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
@@ -28,7 +29,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   final SettingsMultiplyManager _manager = SettingsMultiplyManager();
   final _optManager = OptionManager();
 
-  var formattter = NumberFormat('#,##0');
+  var formatter = NumberFormat('#,##0');
   var _lastTuple = Tuple(-1, -1);
 
   var _number = '';
@@ -174,12 +175,15 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         await Future.delayed(const Duration(milliseconds: 1000));
       }
 
+      bool isSeperator = manager.getCurrentValue<SeperatorMultiplyMode, bool>();
+
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
         _optManager.soundOption.playSound();
         setState(() {
-          _number = '${item.item1} × ${item.item2}';
+          _number =
+              '${isSeperator ? formatter.format(item.item1) : item.item1} × ${isSeperator ? formatter.format(item.item2) : item.item2}';
         });
         await Future.delayed(duration);
 
@@ -195,7 +199,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         }
 
         //set answer
-        _answer = formattter.format(item.item1 * item.item2);
+        _answer = formatter.format(item.item1 * item.item2);
         if (i == length - 1) {
           break;
         }
@@ -214,12 +218,15 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         await Future.delayed(const Duration(milliseconds: 1000));
       }
 
+      bool isSeperator = manager.getCurrentValue<SeperatorMultiplyMode, bool>();
+
       for (var i = 0; i < length; i++) {
         var item = questions[i];
 
         _optManager.soundOption.playSound();
         setState(() {
-          _number = '${item.item1} ÷ ${item.item2}';
+          _number =
+              '${isSeperator ? formatter.format(item.item1) : item.item1} ÷ ${isSeperator ? formatter.format(item.item2) : item.item2}';
         });
         await Future.delayed(duration);
 
@@ -235,7 +242,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         }
 
         //set answer
-        _answer = formattter.format(item.item1 ~/ item.item2);
+        _answer = formatter.format(item.item1 ~/ item.item2);
 
         if (i == length - 1) {
           break;

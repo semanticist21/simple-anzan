@@ -154,6 +154,9 @@ const String insertBiggerKr = '작은 자리 수가 큰 자리 수보다 작아�
 const String insertBiggerEn = 'Small digit should be smaller.';
 const String insertBiggerJa = '小さい席の数がもっと大きいです。';
 
+const String seperatorEn = 'Thousands Comma';
+const String seperatorKr = '쉼표 생성';
+
 // prob list
 const String noProbExecutedKr = '실행된 문제가 없습니다.';
 const String noProbExecutedEn = 'Run calculation first.';

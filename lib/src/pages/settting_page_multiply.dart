@@ -1,6 +1,7 @@
 import 'package:abacus_simple_anzan/src/dialog/custom_alert_dialog.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/seperator_multiply.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
@@ -29,6 +30,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
   late SmallDigit _smallDigit;
   late NumOfMultiplyProblems _numOfProblems;
   late CountDownMultiplyMode _countDownMode;
+  late SeperatorMultiplyMode _seperatorMode;
 
   final _controller = ScrollController();
 
@@ -164,6 +166,16 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                             _manager),
                                         changeOptionCallback<BigDigit>),
                                     Tooltip(
+                                      message: LocalizationChecker.seperator,
+                                      child: buildToggleOption(
+                                          LocalizationChecker.seperator,
+                                          Icons.one_k,
+                                          _manager.enumToValue<
+                                              SeperatorMultiplyMode,
+                                              bool>(_seperatorMode),
+                                          toggleSeperatorModoeCallback),
+                                    ),
+                                    Tooltip(
                                       message:
                                           LocalizationChecker.shouldSoundOnDesc,
                                       child: buildToggleOption(
@@ -217,6 +229,16 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
     });
 
     _manager.saveSetting(_isMultiply);
+    initializeValues(_manager);
+  }
+
+  toggleSeperatorModoeCallback(bool newValue) {
+    setState(() {
+      _seperatorMode =
+          _manager.valueToEnum<bool, SeperatorMultiplyMode>(newValue);
+    });
+
+    _manager.saveSetting(_seperatorMode);
     initializeValues(_manager);
   }
 
@@ -386,6 +408,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
       _smallDigit = manager.getCurrentEnum<SmallDigit>();
       _numOfProblems = manager.getCurrentEnum<NumOfMultiplyProblems>();
       _countDownMode = manager.getCurrentEnum<CountDownMultiplyMode>();
+      _seperatorMode = manager.getCurrentEnum<SeperatorMultiplyMode>();
     });
   }
 
