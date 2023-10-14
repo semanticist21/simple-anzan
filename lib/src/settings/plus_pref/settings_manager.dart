@@ -3,6 +3,7 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/calculation_mod
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/seperator.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +18,7 @@ class SettingsManager {
   late SpeedPref _speedPref;
   late DigitPref _digitPref;
   late NumOfProblemsPref _numOfProblemsPref;
+  late SeperatorModePref _seperatorModePref;
 
   // constructor
   static final SettingsManager _instance = SettingsManager._constructor();
@@ -34,6 +36,7 @@ class SettingsManager {
     _speedPref = SpeedPref(prefs);
     _digitPref = DigitPref(prefs);
     _numOfProblemsPref = NumOfProblemsPref(prefs);
+    _seperatorModePref = SeperatorModePref(prefs);
   }
 
   // returns _instance when it is called.
@@ -56,6 +59,8 @@ class SettingsManager {
         return _digitPref.getValue() as T;
       case NumOfProblems:
         return _numOfProblemsPref.getValue() as T;
+      case SeperatorMode:
+        return _seperatorModePref.getValue() as T;
       default:
         throw Error();
     }
@@ -75,6 +80,8 @@ class SettingsManager {
         return _digitPref.valueToEnum(value as int) as T;
       case NumOfProblems:
         return _numOfProblemsPref.valueToEnum(value as int) as T;
+      case SeperatorMode:
+        return _seperatorModePref.valueToEnum(value as bool) as T;
       default:
         throw Error();
     }
@@ -95,6 +102,8 @@ class SettingsManager {
         return _digitPref.enumToValue(enumValue as Digit) as V;
       case NumOfProblems:
         return _numOfProblemsPref.enumToValue(enumValue as NumOfProblems) as V;
+      case SeperatorMode:
+        return _seperatorModePref.enumToValue(enumValue as SeperatorMode) as V;
       default:
         throw Error();
     }
@@ -113,6 +122,9 @@ class SettingsManager {
         return _digitPref.enumToValue(getCurrentEnum<Digit>()) as V;
       case NumOfProblems:
         return _numOfProblemsPref.enumToValue(getCurrentEnum<NumOfProblems>())
+            as V;
+      case SeperatorMode:
+        return _seperatorModePref.enumToValue(getCurrentEnum<SeperatorMode>())
             as V;
       default:
         throw Error();
@@ -152,6 +164,9 @@ class SettingsManager {
         break;
       case NumOfProblems:
         _numOfProblemsPref.saveSetting(_prefs, value);
+        break;
+      case SeperatorMode:
+        _seperatorModePref.saveSetting(_prefs, value);
         break;
       default:
         throw Error();

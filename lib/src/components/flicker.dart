@@ -217,9 +217,9 @@ class _FlickerState extends State<Flicker> {
     var fontsize = 10.0;
 
     if (Platform.isWindows) {
-      fontsize = height * 0.095 + width * 0.095;
+      fontsize = height * 0.085 + width * 0.085;
     } else {
-      fontsize = height * 0.095 + width * 0.095;
+      fontsize = height * 0.085 + width * 0.085;
     }
 
     return Platform.isWindows

@@ -4,6 +4,7 @@ import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/countdown_
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_big_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/num_of_problems_pref_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/seperator_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,6 +18,7 @@ class SettingsMultiplyManager {
   late BigDigitPref _bigDigitPref;
   late SmallDigitPref _smallDigitPref;
   late NumOfProblemsMultiplyPref _numOfProblemsPref;
+  late SeperatorModeMultiplyPref _seperatorModePref;
 
   // constructor
   static final SettingsMultiplyManager _instance =
@@ -35,6 +37,7 @@ class SettingsMultiplyManager {
     _bigDigitPref = BigDigitPref(prefs);
     _smallDigitPref = SmallDigitPref(prefs);
     _numOfProblemsPref = NumOfProblemsMultiplyPref(prefs);
+    _seperatorModePref = SeperatorModeMultiplyPref(prefs);
   }
 
   // returns _instance when it is called.
@@ -57,6 +60,8 @@ class SettingsMultiplyManager {
         return _smallDigitPref.getValue() as T;
       case NumOfMultiplyProblems:
         return _numOfProblemsPref.getValue() as T;
+      case SeperatorMultiplyMode:
+        return _seperatorModePref.getValue() as T;
       default:
         throw Error();
     }
@@ -76,6 +81,8 @@ class SettingsMultiplyManager {
         return _smallDigitPref.valueToEnum(value as int) as T;
       case NumOfMultiplyProblems:
         return _numOfProblemsPref.valueToEnum(value as int) as T;
+      case SeperatorMultiplyMode:
+        return _seperatorModePref.valueToEnum(value as bool) as T;
       default:
         throw Error();
     }
@@ -98,6 +105,9 @@ class SettingsMultiplyManager {
       case NumOfMultiplyProblems:
         return _numOfProblemsPref
             .enumToValue(enumValue as NumOfMultiplyProblems) as V;
+      case SeperatorMultiplyMode:
+        return _seperatorModePref
+            .enumToValue(enumValue as SeperatorMultiplyMode) as V;
       default:
         throw Error();
     }
@@ -117,6 +127,9 @@ class SettingsMultiplyManager {
       case NumOfMultiplyProblems:
         return _numOfProblemsPref
             .enumToValue(getCurrentEnum<NumOfMultiplyProblems>()) as V;
+      case SeperatorMultiplyMode:
+        return _seperatorModePref
+            .enumToValue(getCurrentEnum<SeperatorMultiplyMode>()) as V;
       default:
         throw Error();
     }
@@ -156,6 +169,9 @@ class SettingsMultiplyManager {
         break;
       case NumOfMultiplyProblems:
         _numOfProblemsPref.saveSetting(_prefs, value);
+        break;
+      case SeperatorMultiplyMode:
+        _seperatorModePref.saveSetting(_prefs, value);
         break;
       default:
         throw Error();
