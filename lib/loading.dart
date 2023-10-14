@@ -24,7 +24,8 @@ class _LoadingState extends State<Loading> {
       child: FutureBuilder(
           future: loadImage(),
           builder: (context, snapshot) {
-            if (snapshot.data == null || !snapshot.data!) {
+            var out = snapshot.data;
+            if (out == null || !out) {
               return const SizedBox();
             } else {
               return FractionallySizedBox(

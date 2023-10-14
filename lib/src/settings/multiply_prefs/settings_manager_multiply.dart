@@ -164,6 +164,7 @@ class SettingsMultiplyManager {
         break;
       case BigDigit:
         _bigDigitPref.saveSetting(_prefs, value);
+        break;
       case SmallDigit:
         _smallDigitPref.saveSetting(_prefs, value);
         break;

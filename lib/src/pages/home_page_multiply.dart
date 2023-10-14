@@ -145,9 +145,13 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
   }
 
   TextStyle _getMainButtonTextStyle() {
-    return Theme.of(context)
-        .textTheme
-        .bodyLarge!
-        .copyWith(fontSize: MediaQuery.of(context).size.height * 0.04);
+    var titleBodyLarge = Theme.of(context).textTheme.bodyLarge;
+
+    if (titleBodyLarge != null) {
+      return titleBodyLarge.copyWith(
+          fontSize: MediaQuery.of(context).size.height * 0.04);
+    }
+
+    return TextStyle(fontSize: MediaQuery.of(context).size.height * 0.04);
   }
 }

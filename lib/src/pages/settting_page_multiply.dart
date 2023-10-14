@@ -413,6 +413,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
   }
 
   Widget getAlertWarningDialog(BuildContext context) {
-    return CustomAlert(content: LocalizationChecker.insertBigger);
+    return CustomAlert(
+        content: LocalizationChecker.insertBigger,
+        title: LocalizationChecker.warning);
   }
 }

@@ -225,15 +225,17 @@ class _FlickerState extends State<Flicker> {
       fontsize = height * 0.085 + width * 0.085;
     }
 
+    var titleLarge = Theme.of(context).textTheme.titleLarge;
+
+    if (titleLarge == null) {
+      return TextStyle(fontSize: fontsize, fontStyle: FontStyle.italic);
+    }
+
     return Platform.isWindows
-        ? Theme.of(context)
-            .textTheme
-            .titleLarge!
-            .copyWith(fontStyle: FontStyle.italic, fontSize: fontsize)
-        : Theme.of(context)
-            .textTheme
-            .titleLarge!
-            .copyWith(fontStyle: FontStyle.italic, fontSize: fontsize);
+        ? titleLarge.copyWith(
+            fontStyle: FontStyle.italic, fontSize: fontsize)
+        : titleLarge.copyWith(
+            fontStyle: FontStyle.italic, fontSize: fontsize);
   }
 
   Future<void> _doCountDown() async {

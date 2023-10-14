@@ -124,8 +124,12 @@ class SoundOptionHandler {
         await audioAndroidPlayer.seek(Duration.zero);
         await audioAndroidPlayer.play();
 
-        await Future.delayed(
-            audioAndroidPlayer.duration! + const Duration(milliseconds: 100));
+        Duration duration = const Duration(milliseconds: 100);
+        Duration? duration2 = audioAndroidPlayer.duration;
+        if (duration2 != null) {
+          duration += duration2;
+        }
+        await Future.delayed(duration);
       } else {
         await audioAndroidPlayer2.stop();
 
@@ -133,8 +137,12 @@ class SoundOptionHandler {
         await audioAndroidPlayer2.seek(Duration.zero);
         await audioAndroidPlayer2.play();
 
-        await Future.delayed(
-            audioAndroidPlayer2.duration! + const Duration(milliseconds: 100));
+        Duration duration = const Duration(milliseconds: 100);
+        Duration? duration2 = audioAndroidPlayer.duration;
+        if (duration2 != null) {
+          duration += duration2;
+        }
+        await Future.delayed(duration);
       }
     } else {
       try {

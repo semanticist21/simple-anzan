@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../const/localization.dart';
 
 class CustomAlert extends StatefulWidget {
-  const CustomAlert({super.key, required this.content, this.title});
-  final String? title;
+  const CustomAlert({super.key, required this.content, required this.title});
+  final String title;
   final String content;
 
   @override
@@ -17,7 +17,7 @@ class _CustomAlertState extends State<CustomAlert> {
     return AlertDialog(
       surfaceTintColor: Colors.transparent,
       title: Text(
-        widget.title != null ? widget.title! : LocalizationChecker.warning,
+        widget.title,
         style: TextStyle(
             fontSize: MediaQuery.of(context).size.height * 0.025,
             color: Theme.of(context).colorScheme.primaryContainer),

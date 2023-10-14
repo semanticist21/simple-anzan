@@ -144,8 +144,10 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       switch (manager.getCurrentEnum<CalCulationMultiplyMode>()) {
         case CalCulationMultiplyMode.multiply:
           _stateProvider.isMultiplies.add(true);
+          break;
         case CalCulationMultiplyMode.divide:
           _stateProvider.isMultiplies.add(false);
+          break;
       }
     }
 
@@ -269,15 +271,18 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       fontsize = height * 0.075 + width * 0.075;
     }
 
+    var titleLarge = Theme.of(context).textTheme.titleLarge;
+
+    if (titleLarge == null) {
+      return TextStyle(fontSize: fontsize, fontStyle: FontStyle.italic);
+    }
+
     return Platform.isWindows
-        ? Theme.of(context)
-            .textTheme
-            .titleLarge!
-            .copyWith(fontStyle: FontStyle.italic, fontSize: fontsize)
-        : Theme.of(context).textTheme.titleLarge!.copyWith(
-              fontSize: fontsize,
-              fontStyle: FontStyle.italic,
-            );
+        ? titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontsize)
+        : titleLarge.copyWith(
+            fontSize: fontsize,
+            fontStyle: FontStyle.italic,
+          );
   }
 
   Future<void> _doCountDown() async {
