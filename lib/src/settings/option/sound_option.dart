@@ -1,184 +1,68 @@
 import 'dart:async';
-
-import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_io/io.dart';
-import 'package:just_audio/just_audio.dart' as just;
+import 'package:soundpool/soundpool.dart';
 
 class SoundOptionHandler {
   static var soundKey = 'isSoundOn';
   static var isSoundOn = false;
   static StreamController<bool> isSoundOnStream = StreamController();
 
-  static final audioplayer = AudioPlayer();
-  static final countplayer2 = AudioPlayer();
-  static final countplayerOld = AudioPlayer();
-
-  static final audioAndroidPlayer = just.AudioPlayer();
-  static final audioAndroidPlayer2 = just.AudioPlayer();
-  static bool _isToggle = false;
-
-  static AssetSource _audioAsset = AssetSource('beep_new.wav');
-  static final AssetSource _audioAssetSpareTwo = AssetSource('beep_new.wav');
-  static final _audioAssetSpare = AssetSource('beep_new-spare.wav');
-
-  static AssetSource _countDownAsset = AssetSource('notify.mp3');
-  static final _countDownAssetSpareTwo = AssetSource('notify.mp3');
-  static final _countDownAssetSpare = AssetSource('notify-spare.mp3');
-
-  static final _androidAsset = just.AudioSource.asset('assets/beep_new.wav');
-  static final _emptyAsset = just.AudioSource.asset('assets/empty.wav');
-  static final _countDownAndroidAsset =
-      just.AudioSource.asset('assets/notify.mp3');
-
   SoundOptionHandler(SharedPreferences pref);
+
+  static SoundpoolOptions options = const SoundpoolOptions(
+    maxStreams: 2,
+    streamType: StreamType.ring,
+  );
+
+  static Soundpool pool = Soundpool.fromOptions(options: options);
+  static Soundpool pool2 = Soundpool.fromOptions(options: options);
+
+  int _beepSoundId = 0;
+  int _beepSoundId2 = 0;
+  bool _switch = false;
+
+  int _countDownSoundId = 0;
 
   Future<void> initSettings(SharedPreferences pref) async {
     var prefs = await SharedPreferences.getInstance();
     isSoundOn = prefs.getBool(soundKey) ?? true;
     SoundOptionHandler.isSoundOnStream.add(SoundOptionHandler.isSoundOn);
-  }
 
-  Future<void> initPlaySound() async {
-    if (!Platform.isWindows) {
-      if (Platform.isIOS) {
-        return;
-      }
+    ByteData value = await rootBundle.load('assets/beep_new.wav');
+    _beepSoundId = await pool.load(value);
 
-      await Future.wait([
-        resetAndroidPlayer(audioAndroidPlayer),
-        resetAndroidPlayer(audioAndroidPlayer2),
-      ]);
-      await countplayerOld.setVolume(0.5);
-    } else {
-      await countplayerOld.setVolume(1);
-      await audioplayer.setVolume(1);
-    }
-  }
+    ByteData value2 = await rootBundle.load('assets/beep_new-spare.wav');
+    _beepSoundId2 = await pool2.load(value2);
 
-  Future<void> resetAndroidPlayer(just.AudioPlayer audioAndroidPlayer) async {
-    await audioAndroidPlayer.setAudioSource(_emptyAsset);
-    await audioAndroidPlayer.load();
-    await audioAndroidPlayer.play();
-    await audioAndroidPlayer.stop();
-
-    await audioAndroidPlayer.setAudioSource(_androidAsset);
-    await audioAndroidPlayer.load();
-    await audioAndroidPlayer.setVolume(0.0);
-    await audioAndroidPlayer.play();
-    await audioAndroidPlayer.stop();
-    await audioAndroidPlayer.setVolume(1);
+    value = await rootBundle.load('assets/notify.mp3');
+    _countDownSoundId = await pool.load(value);
   }
 
   Future<void> playSound() async {
+    // 사운드 체크
     if (isSoundOn) {
-      if (!Platform.isWindows) {
-        if (!_isToggle) {
-          await audioAndroidPlayer.stop();
-          await audioAndroidPlayer.setAudioSource(_androidAsset);
-          await audioAndroidPlayer.seek(Duration.zero);
-          await audioAndroidPlayer.play();
-        } else {
-          await audioAndroidPlayer2.stop();
-          await audioAndroidPlayer2.setAudioSource(_androidAsset);
-          await audioAndroidPlayer2.seek(Duration.zero);
-          await audioAndroidPlayer2.play();
-        }
-
-        _isToggle = !_isToggle;
-      } else {
-        await audioplayer.seek(Duration.zero);
-        try {
-          await audioplayer.play(_audioAsset);
-        } catch (_) {
-          _audioAsset = _audioAsset == _audioAssetSpare
-              ? _audioAssetSpareTwo
-              : _audioAssetSpare;
-          await audioplayer.play(_audioAsset);
-        }
-      }
+      await pool.setVolume(soundId: _beepSoundId, volume: 1);
+      await pool2.setVolume(soundId: _beepSoundId2, volume: 0);
+    } else {
+      await pool.setVolume(soundId: _beepSoundId, volume: 0);
+      await pool2.setVolume(soundId: _beepSoundId2, volume: 0);
     }
-  }
 
-  Future<void> stopAudio() async {
-    await audioplayer.stop();
+    // 사운드 재생
+    await pool.play(_beepSoundId, rate: 1.0);
   }
 
   Future<void> playCountSound() async {
+    // 사운드 체크
     if (isSoundOn) {
-      await audioAndroidPlayer.setVolume(1);
-      await audioAndroidPlayer2.setVolume(1);
-      await audioplayer.setVolume(1);
-      await countplayer2.setVolume(0.4);
+      await pool.setVolume(soundId: _countDownSoundId, volume: 1);
     } else {
-      await audioAndroidPlayer.setVolume(0);
-      await audioAndroidPlayer2.setVolume(0);
-      await audioplayer.setVolume(0);
-      await countplayer2.setVolume(0);
+      await pool.setVolume(soundId: _countDownSoundId, volume: 0);
     }
-    if (!Platform.isWindows) {
-      if (_isToggle) {
-        await audioAndroidPlayer.stop();
 
-        await audioAndroidPlayer.setAudioSource(_countDownAndroidAsset);
-        await audioAndroidPlayer.seek(Duration.zero);
-        await audioAndroidPlayer.play();
-
-        Duration duration = const Duration(milliseconds: 100);
-        Duration? duration2 = audioAndroidPlayer.duration;
-        if (duration2 != null) {
-          duration += duration2;
-        }
-        await Future.delayed(duration);
-      } else {
-        await audioAndroidPlayer2.stop();
-
-        await audioAndroidPlayer2.setAudioSource(_countDownAndroidAsset);
-        await audioAndroidPlayer2.seek(Duration.zero);
-        await audioAndroidPlayer2.play();
-
-        Duration duration = const Duration(milliseconds: 100);
-        Duration? duration2 = audioAndroidPlayer.duration;
-        if (duration2 != null) {
-          duration += duration2;
-        }
-        await Future.delayed(duration);
-      }
-    } else {
-      try {
-        await countplayer2.seek(Duration.zero);
-        await countplayer2.play(_countDownAsset);
-      } catch (_) {
-        _countDownAsset = _countDownAsset == _countDownAssetSpare
-            ? _countDownAssetSpareTwo
-            : _countDownAssetSpare;
-
-        await countplayer2.seek(Duration.zero);
-        await countplayer2.play(_countDownAsset);
-      }
-    }
-  }
-
-  Future<void> resetSource() async {
-    if (!Platform.isWindows) {
-      await Future.wait([
-        resetSourceIndividual(audioAndroidPlayer),
-        resetSourceIndividual(audioAndroidPlayer2)
-      ]);
-    }
-  }
-
-  Future<void> resetSourceIndividual(
-      just.AudioPlayer audioAndroidPlayer) async {
-    await audioAndroidPlayer.stop();
-    await audioAndroidPlayer.setAudioSource(_androidAsset);
-    await audioAndroidPlayer.load();
-  }
-
-  Future<void> stopCountAudio() async {
-    if (Platform.isWindows) {
-      await countplayerOld.stop();
-      await countplayer2.stop();
-    }
+    // 사운드 재생
+    await pool.play(_countDownSoundId);
+    await Future.delayed(const Duration(milliseconds: 800));
   }
 }

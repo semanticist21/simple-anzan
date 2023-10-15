@@ -34,8 +34,6 @@ class _FlickerState extends State<Flicker> {
   var _number = '';
   var _answer = '';
 
-  var _isInit = true;
-
   @override
   void initState() {
     super.initState();
@@ -89,10 +87,6 @@ class _FlickerState extends State<Flicker> {
   }
 
   Future<void> _initiateIteration(SettingsManager manager) async {
-    if (_isInit) {
-      await _optManager.soundOption.initPlaySound();
-      _isInit = false;
-    }
     _answer = '';
 
     switch (manager.getCurrentEnum<CalculationMode>()) {
@@ -209,8 +203,6 @@ class _FlickerState extends State<Flicker> {
   void dispose() {
     _stateProvider.removeListener(_callbackOnButtonClick);
     super.dispose();
-    _optManager.soundOption.stopAudio();
-    _optManager.soundOption.stopCountAudio();
   }
 
 // styles.
@@ -232,34 +224,19 @@ class _FlickerState extends State<Flicker> {
     }
 
     return Platform.isWindows
-        ? titleLarge.copyWith(
-            fontStyle: FontStyle.italic, fontSize: fontsize)
-        : titleLarge.copyWith(
-            fontStyle: FontStyle.italic, fontSize: fontsize);
+        ? titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontsize)
+        : titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontsize);
   }
 
   Future<void> _doCountDown() async {
-    if (Platform.isWindows) {
-      await Future.delayed(const Duration(milliseconds: 800));
-    }
-
     if (!SoundOptionHandler.isSoundOn) {
       _stateProvider.flashingContainer?.containerState.startFlashing();
     }
     await _optManager.soundOption.playCountSound();
 
-    if (Platform.isWindows) {
-      await Future.delayed(const Duration(milliseconds: 800));
-    }
     if (!SoundOptionHandler.isSoundOn) {
       _stateProvider.flashingContainer?.containerState.startFlashing();
     }
     await _optManager.soundOption.playCountSound();
-
-    if (Platform.isWindows) {
-      await Future.delayed(const Duration(milliseconds: 800));
-    }
-
-    await _optManager.soundOption.resetSource();
   }
 }

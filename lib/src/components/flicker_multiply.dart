@@ -35,8 +35,6 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   var _number = '';
   var _answer = '';
 
-  var _isInit = true;
-
   @override
   void initState() {
     super.initState();
@@ -46,8 +44,6 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   void dispose() {
     _stateProvider.removeListener(_callbackOnButtonClick);
     super.dispose();
-    _optManager.soundOption.stopAudio();
-    _optManager.soundOption.stopCountAudio();
   }
 
   @override
@@ -100,11 +96,6 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   }
 
   Future<void> _initiateIteration(SettingsMultiplyManager manager) async {
-    if (_isInit) {
-      await _optManager.soundOption.initPlaySound();
-      _isInit = false;
-    }
-
     switch (manager.getCurrentEnum<CalCulationMultiplyMode>()) {
       case CalCulationMultiplyMode.multiply:
         _runMultiply(_manager);
@@ -286,28 +277,14 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   }
 
   Future<void> _doCountDown() async {
-    if (Platform.isWindows) {
-      await Future.delayed(const Duration(milliseconds: 800));
-    }
-
     if (!SoundOptionHandler.isSoundOn) {
       _stateProvider.flashingContainer?.containerState.startFlashing();
     }
     await _optManager.soundOption.playCountSound();
 
-    if (Platform.isWindows) {
-      await Future.delayed(const Duration(milliseconds: 800));
-    }
-
     if (!SoundOptionHandler.isSoundOn) {
       _stateProvider.flashingContainer?.containerState.startFlashing();
     }
     await _optManager.soundOption.playCountSound();
-
-    if (Platform.isWindows) {
-      await Future.delayed(const Duration(milliseconds: 800));
-    }
-
-    await _optManager.soundOption.resetSource();
   }
 }

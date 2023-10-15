@@ -89,10 +89,7 @@ class MyApp extends StatelessWidget {
               title: LocalizationChecker.appName,
               home: PopScope(
                 onPopInvoked: (_) async {
-                  await SoundOptionHandler.audioplayer.dispose();
-                  await SoundOptionHandler.countplayerOld.dispose();
-                  await SoundOptionHandler.audioAndroidPlayer.dispose();
-                  // return true;
+                  SoundOptionHandler.pool.dispose();
                 },
                 child: MultiProvider(providers: [
                   ChangeNotifierProvider<StateProvider>(

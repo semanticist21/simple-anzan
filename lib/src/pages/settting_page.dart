@@ -274,7 +274,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return getPadding(
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Flexible(
-          flex: 8,
+          flex: 19,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -290,7 +290,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           )),
       Flexible(
-          flex: 10,
+          flex: 20,
           child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 350),
               child: FractionallySizedBox(
@@ -374,7 +374,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 fontSize: Platform.isWindows
                     ? MediaQuery.of(context).size.height * 0.0175
-                    : MediaQuery.of(context).size.height * 0.0185,
+                    : MediaQuery.of(context).size.height * 0.0165,
                 fontWeight: FontWeight.w500),
           ));
       itemList.add(item);

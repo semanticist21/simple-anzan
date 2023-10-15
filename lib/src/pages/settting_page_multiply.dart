@@ -381,7 +381,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 fontSize: Platform.isWindows
                     ? MediaQuery.of(context).size.height * 0.0175
-                    : MediaQuery.of(context).size.height * 0.0185,
+                    : MediaQuery.of(context).size.height * 0.0165,
                 fontWeight: FontWeight.w500),
           ));
       itemList.add(item);
