@@ -1,5 +1,6 @@
 import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:universal_io/io.dart';
 
 class FlashingContainer extends StatefulWidget {
   FlashingContainer({super.key});
@@ -14,7 +15,7 @@ class FlashingContainer extends StatefulWidget {
 class FlashingContainerState extends State<FlashingContainer> {
   bool _isFlashing = false;
 
-  void startFlashing() {
+  Future<void> startFlashing() async {
     setState(() {
       _isFlashing = true;
     });
@@ -24,6 +25,8 @@ class FlashingContainerState extends State<FlashingContainer> {
         _isFlashing = false;
       });
     });
+
+    await Future.delayed(const Duration(milliseconds: 800));
   }
 
   @override

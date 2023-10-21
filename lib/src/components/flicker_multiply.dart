@@ -278,12 +278,12 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
 
   Future<void> _doCountDown() async {
     if (!SoundOptionHandler.isSoundOn) {
-      _stateProvider.flashingContainer?.containerState.startFlashing();
+      await _stateProvider.flashingContainer?.containerState.startFlashing();
     }
     await _optManager.soundOption.playCountSound();
 
     if (!SoundOptionHandler.isSoundOn) {
-      _stateProvider.flashingContainer?.containerState.startFlashing();
+      await _stateProvider.flashingContainer?.containerState.startFlashing();
     }
     await _optManager.soundOption.playCountSound();
   }
