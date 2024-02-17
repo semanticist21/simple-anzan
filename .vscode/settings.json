@@ -1,6 +1,0 @@
-{
-    "cmake.configureOnOpen": false,
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "cmake.sourceDirectory": "${workspaceFolder}/linux",
-    "git.ignoreLimitWarning": true
-}
