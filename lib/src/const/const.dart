@@ -170,6 +170,9 @@ const String checkProbQKr = '문제 리스트 확인';
 const String checkProbQEn = 'Check Questions';
 const String checkProbQJa = '問題リストの確認';
 
+const String stopIterationKr = '문제 중지';
+const String stopIterationEn = 'Stop Iteration';
+
 const String problemKr = '문제';
 const String problemEn = 'question';
 const String problemJa = '問題';

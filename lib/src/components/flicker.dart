@@ -6,6 +6,7 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/seperator.dart'
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbols.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
@@ -33,17 +34,31 @@ class _FlickerState extends State<Flicker> {
 
   var _number = '';
   var _answer = '';
+  var _isCloseMicrotask = false;
+
+  void _handleResetText() {
+    if (_stateProvider.state == ButtonState.iterationCompleted) {
+      setState(() {
+        _number = empty;
+      });
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _stateProvider.removeListener(_callbackOnButtonClick);
+      _stateProvider.removeListener(_handleResetText);
+      _stateProvider.addListener(_callbackOnButtonClick);
+      _stateProvider.addListener(_handleResetText);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    _stateProvider = Provider.of(context, listen: false);
-    _stateProvider.removeListener(_callbackOnButtonClick);
-    _stateProvider.addListener(_callbackOnButtonClick);
+    _stateProvider = Provider.of(context, listen: true);
 
     if (_number.isEmpty) {
       return const SizedBox(
@@ -137,11 +152,12 @@ class _FlickerState extends State<Flicker> {
     var questions = nums.sublist(0, len - 1);
     _answer = nums.last.toString();
 
-    await iterNums(manager, questions);
+    await iterNums(manager, questions, _stateProvider);
     _stateProvider.changeState(desiredState: ButtonState.iterationCompleted);
   }
 
-  Future<void> iterNums(SettingsManager manager, List<int> questions) async {
+  Future<void> iterNums(SettingsManager manager, List<int> questions,
+      StateProvider stateProvider) async {
     var duration = manager.getCurrentValue<Speed, Duration>();
     var len = questions.length;
 
@@ -160,6 +176,13 @@ class _FlickerState extends State<Flicker> {
     bool isSeperator = manager.getCurrentValue<SeperatorMode, bool>();
 
     for (int i = 0; i < len; i++) {
+      if (_stateProvider.state == ButtonState.iterationCompleted) {
+        setState(() {
+          _number = empty;
+        });
+        break;
+      }
+
       var str = '';
 
       if (questions[i] > 0) {
@@ -170,10 +193,21 @@ class _FlickerState extends State<Flicker> {
       }
 
       _optManager.soundOption.playSound();
+      if (_stateProvider.state == ButtonState.iterationCompleted) {
+        break;
+      }
       setState(() {
         _number = isSeperator ? formatter.format(int.parse(str)) : str;
       });
+
       await Future.delayed(duration);
+
+      if (_stateProvider.state == ButtonState.iterationCompleted) {
+        setState(() {
+          _number = empty;
+        });
+        break;
+      }
 
       setState(() {
         _number = empty;
@@ -181,6 +215,13 @@ class _FlickerState extends State<Flicker> {
 
       // if it is the last iteration, then don't await.
       if (i == len - 1) {
+        break;
+      }
+
+      if (_stateProvider.state == ButtonState.iterationCompleted) {
+        setState(() {
+          _number = empty;
+        });
         break;
       }
 
@@ -202,6 +243,7 @@ class _FlickerState extends State<Flicker> {
   @override
   void dispose() {
     _stateProvider.removeListener(_callbackOnButtonClick);
+    _stateProvider.removeListener(_handleResetText);
     super.dispose();
   }
 

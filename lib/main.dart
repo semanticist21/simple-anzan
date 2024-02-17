@@ -163,7 +163,7 @@ class _Home extends State<Home> {
     _stateProvider = Provider.of<StateProvider>(context);
     _stateMultiplyProvider = Provider.of<StateMultiplyProvider>(context);
 
-    return buildMainHome();
+    return buildMainHome(context);
 
     // theme is first set true,
     // but shows loading page until saved data loads.
@@ -175,10 +175,11 @@ class _Home extends State<Home> {
     //     });
   }
 
-  Widget buildMainHome() {
+  Widget buildMainHome(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         elevation: 0,
         actions: [
           StreamBuilder(
@@ -187,25 +188,49 @@ class _Home extends State<Home> {
               builder: (context, snapshot) {
                 return Row(children: [
                   Visibility(
+                    visible: _currentIndex == 0,
+                    child: Container(
+                      width: 40,
+                      margin: const EdgeInsets.only(right: 20),
+                      child: Tooltip(
+                          message: LocalizationChecker.stopIteration,
+                          child: RawMaterialButton(
+                            onPressed: requestButtonStopIteration,
+                            elevation: 2.0,
+                            fillColor: Theme.of(context).colorScheme.error,
+                            shape: const CircleBorder(),
+                            child: Icon(
+                              CupertinoIcons.xmark,
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                          )),
+                    ),
+                  ),
+                  Visibility(
                     visible: !(_currentIndex != 0 && _currentIndex != 2),
-                    child: Tooltip(
-                        message: LocalizationChecker.checkProb,
-                        child: RawMaterialButton(
-                          onPressed: () {
-                            if (_currentIndex != 0 && _currentIndex != 2) {
-                              return;
-                            }
-                            showProbDialog(_currentIndex == 0 ? true : false);
-                          },
-                          elevation: 2.0,
-                          fillColor: Theme.of(context).colorScheme.onBackground,
-                          padding: const EdgeInsets.all(2),
-                          shape: const CircleBorder(),
-                          child: Icon(
-                            CupertinoIcons.question,
-                            color: Theme.of(context).colorScheme.secondary,
-                          ),
-                        )),
+                    child: Container(
+                      width: 40,
+                      margin: const EdgeInsets.only(right: 10),
+                      child: Tooltip(
+                          message: LocalizationChecker.checkProb,
+                          child: RawMaterialButton(
+                            onPressed: () {
+                              if (_currentIndex != 0 && _currentIndex != 2) {
+                                return;
+                              }
+                              showProbDialog(_currentIndex == 0 ? true : false);
+                            },
+                            elevation: 2.0,
+                            fillColor:
+                                Theme.of(context).colorScheme.onBackground,
+                            padding: const EdgeInsets.all(2),
+                            shape: const CircleBorder(),
+                            child: Icon(
+                              CupertinoIcons.question,
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                          )),
+                    ),
                   ),
                   Visibility(
                       visible: Platform.isWindows
@@ -382,6 +407,12 @@ class _Home extends State<Home> {
         currentIndex: _currentIndex,
       ),
     );
+  }
+
+  void requestButtonStopIteration() {
+    if (_stateProvider.state == ButtonState.iterationStarted) {
+      _stateProvider.changeState(desiredState: ButtonState.iterationCompleted);
+    }
   }
 
   void showProbDialog(bool isAddHome) {

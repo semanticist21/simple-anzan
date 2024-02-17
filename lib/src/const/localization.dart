@@ -61,6 +61,8 @@ class LocalizationChecker {
   static String checkProb = checkProbEn;
   static String checkProbQ = checkProbQEn;
 
+  static String stopIteration = stopIterationEn;
+
   static String problem = problemEn;
   static String answer = answerEn;
 
@@ -113,6 +115,8 @@ class LocalizationChecker {
       noProbExecuted = noProbExecutedKr;
       checkProb = checkProbKr;
       checkProbQ = checkProbKr;
+
+      stopIteration = stopIterationKr;
 
       problem = problemKr;
       answer = answerKr;
