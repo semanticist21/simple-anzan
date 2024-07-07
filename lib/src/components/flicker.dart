@@ -6,7 +6,6 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/seperator.dart'
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbols.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
@@ -34,7 +33,6 @@ class _FlickerState extends State<Flicker> {
 
   var _number = '';
   var _answer = '';
-  var _isCloseMicrotask = false;
 
   void _handleResetText() {
     if (_stateProvider.state == ButtonState.iterationCompleted) {
