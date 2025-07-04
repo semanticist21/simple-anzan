@@ -34,8 +34,9 @@ android {
     ndkVersion flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        // Updated from Java 8 to Java 11 to fix obsolete version warnings
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
@@ -80,7 +81,7 @@ android {
             
             // Add debug symbol generation for native code crash diagnostics
             ndk {
-                debugSymbolLevel 'FULL'
+                debugSymbolLevel 'SYMBOL_TABLE' // Changed from FULL to fix bundling issues
             }
 
             minifyEnabled true
