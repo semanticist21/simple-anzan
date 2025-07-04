@@ -203,7 +203,7 @@ class _Home extends State<Home> {
                             shape: const CircleBorder(),
                             child: Icon(
                               CupertinoIcons.xmark,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Colors.white70,
                             ),
                           )),
                     ),

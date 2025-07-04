@@ -313,18 +313,24 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
     switch (T) {
       case SpeedMultiply:
         if (value == 'custom') {
+          // When custom is selected, show the dialog and handle the result
           showDialog(
               context: context,
               builder: (context) => AddDialogMultiply(
                   defaultValue: _manager
                       .getCurrentValue<SpeedMultiply, Duration>()
                       .inMilliseconds
-                      .toString())).then(
-              (value) => _manager.saveCustomSpeedSetting(int.parse(value)));
+                      .toString())).then((dialogValue) {
+            if (dialogValue != null) {
+              // Only save the custom speed setting if a value was returned
+              _manager.saveCustomSpeedSetting(int.parse(dialogValue));
+            }
+          });
+        } else {
+          // Only set and save the speed if a non-custom value was selected
+          _speed = _manager.itemStrToEnum<SpeedMultiply>(value);
+          _manager.saveSetting(_speed);
         }
-
-        _speed = _manager.itemStrToEnum<SpeedMultiply>(value);
-        _manager.saveSetting(_speed);
         break;
       case BigDigit:
         _manager.getCurrentValue<SmallDigit, int>();

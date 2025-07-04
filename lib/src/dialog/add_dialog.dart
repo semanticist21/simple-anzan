@@ -23,7 +23,8 @@ class _AddDialogState extends State<AddDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      surfaceTintColor: Colors.transparent,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      surfaceTintColor: Theme.of(context).colorScheme.surface,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0))),
       title: SingleChildScrollView(
@@ -31,7 +32,7 @@ class _AddDialogState extends State<AddDialog> {
         child: Row(children: [
           Icon(Icons.forward_sharp,
               size: MediaQuery.of(context).size.height * 0.0190,
-              color: Theme.of(context).colorScheme.primaryContainer),
+              color: Theme.of(context).colorScheme.onPrimaryContainer),
           SizedBox(width: MediaQuery.of(context).size.width * 0.015),
           Container(
               constraints: const BoxConstraints(maxWidth: 300),
@@ -42,8 +43,9 @@ class _AddDialogState extends State<AddDialog> {
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: MediaQuery.of(context).size.height * 0.0190,
-                          color:
-                              Theme.of(context).colorScheme.primaryContainer))))
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onPrimaryContainer))))
         ]),
       ),
       content: Form(
@@ -51,11 +53,11 @@ class _AddDialogState extends State<AddDialog> {
           child: TextFormField(
             controller: _textController,
             style: TextStyle(
-                color: Theme.of(context).colorScheme.primaryContainer),
+                color: Theme.of(context).colorScheme.onPrimaryContainer),
             decoration: InputDecoration(
               hintText: LocalizationChecker.rangeWord,
-              hintStyle: TextStyle(
-                  color: Theme.of(context).colorScheme.primaryContainer),
+              hintStyle:
+                  TextStyle(color: Theme.of(context).colorScheme.onPrimary),
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.primaryContainer)),
@@ -102,7 +104,7 @@ class _AddDialogState extends State<AddDialog> {
                 LocalizationChecker.ok,
                 style: TextStyle(
                     fontSize: MediaQuery.of(context).size.height * 0.02,
-                    color: Theme.of(context).colorScheme.primaryContainer),
+                    color: Theme.of(context).colorScheme.onPrimaryContainer),
               ),
             ))
       ],
