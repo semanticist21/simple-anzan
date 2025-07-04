@@ -2,8 +2,9 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:soundpool/soundpool.dart';
 import 'package:universal_io/io.dart';
+
+import '../../utils/native_sound_player.dart';
 
 class SoundOptionHandler {
   static var soundKey = 'isSoundOn';
@@ -12,12 +13,7 @@ class SoundOptionHandler {
 
   SoundOptionHandler(SharedPreferences pref);
 
-  static SoundpoolOptions options = const SoundpoolOptions(
-    maxStreams: 2,
-    streamType: StreamType.ring,
-  );
-
-  static Soundpool pool = Soundpool.fromOptions(options: options);
+  static NativeSoundPlayer nativeSoundPlayer = NativeSoundPlayer();
 
   int _beepSoundId = 0;
   int _countDownSoundId = 0;
@@ -48,13 +44,13 @@ class SoundOptionHandler {
 
   Future<void> initMobileSettings() async {
     ByteData value = await rootBundle.load('assets/beep_new.wav');
-    _beepSoundId = await pool.load(value);
+    _beepSoundId = await nativeSoundPlayer.load(value, assetName: 'beep_new.wav');
 
     value = await rootBundle.load('assets/notify.mp3');
-    _countDownSoundId = await pool.load(value);
+    _countDownSoundId = await nativeSoundPlayer.load(value, assetName: 'notify.mp3');
 
-    await pool.setVolume(soundId: _beepSoundId, volume: 1);
-    await pool.setVolume(soundId: _countDownSoundId, volume: 1);
+    await nativeSoundPlayer.setVolume(soundId: _beepSoundId, volume: 1);
+    await nativeSoundPlayer.setVolume(soundId: _countDownSoundId, volume: 1);
   }
 
   Future<void> playSound() async {
@@ -77,7 +73,7 @@ class SoundOptionHandler {
     if (!isSoundOn) return;
 
     // 사운드 재생
-    await pool.play(_beepSoundId, rate: 1.0);
+    await nativeSoundPlayer.play(_beepSoundId, rate: 1.0);
   }
 
   Future<void> playCountSound() async {
@@ -101,7 +97,7 @@ class SoundOptionHandler {
     if (!isSoundOn) return;
 
     // 사운드 재생
-    await pool.play(_countDownSoundId);
+    await nativeSoundPlayer.play(_countDownSoundId);
     await Future.delayed(const Duration(milliseconds: 800));
   }
 }

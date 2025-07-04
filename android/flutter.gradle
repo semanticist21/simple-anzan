@@ -1,0 +1,3 @@
+// Override Flutter's default compileSdkVersion
+ext.compileSdkVersion = 34
+ext.targetSdkVersion = 34

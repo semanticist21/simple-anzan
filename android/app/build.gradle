@@ -29,6 +29,7 @@ if (flutterVersionName == null) {
 }
 
 android {
+    namespace "com.kobbokkom.abacus_simple_anzan"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 

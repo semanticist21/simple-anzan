@@ -1,6 +1,5 @@
 import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:flutter/material.dart';
-import 'package:universal_io/io.dart';
 
 class FlashingContainer extends StatefulWidget {
   FlashingContainer({super.key});
