@@ -19,6 +19,7 @@ class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
 
   SpeedPref(SharedPreferences prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
+    print(index);
     setIndex(index);
 
     var customVal = prefs.getInt(_saveCustomKey) ?? _defaultCustomValue;

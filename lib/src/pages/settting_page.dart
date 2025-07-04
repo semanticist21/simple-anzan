@@ -226,7 +226,7 @@ class _SettingsPageState extends State<SettingsPage> {
     ]));
   }
 
-  togglePlusModeCallback(bool newValue) {
+  void togglePlusModeCallback(bool newValue) {
     setState(() {
       _isOnlyPlus = _manager.valueToEnum<bool, CalculationMode>(newValue);
     });
@@ -235,7 +235,7 @@ class _SettingsPageState extends State<SettingsPage> {
     initializeValues(_manager);
   }
 
-  toggleShuffleModeCallback(bool newValue) {
+  void toggleShuffleModeCallback(bool newValue) {
     setState(() {
       var valueToEnum = _manager.valueToEnum<bool, ShuffleMode>(newValue);
       _isShuffle = valueToEnum;
@@ -245,7 +245,7 @@ class _SettingsPageState extends State<SettingsPage> {
     initializeValues(_manager);
   }
 
-  toggleSepartorModeCallback(bool newValue) {
+  void toggleSepartorModeCallback(bool newValue) {
     setState(() {
       var valueToEnum = _manager.valueToEnum<bool, SeperatorMode>(newValue);
       _seperatorMode = valueToEnum;
@@ -255,7 +255,7 @@ class _SettingsPageState extends State<SettingsPage> {
     initializeValues(_manager);
   }
 
-  toggleCounterModeCallback(bool newValue) {
+  void toggleCounterModeCallback(bool newValue) {
     setState(() {
       var valueToEnum = _manager.valueToEnum<bool, CountDownMode>(newValue);
       _countDownMode = valueToEnum;
@@ -334,8 +334,9 @@ class _SettingsPageState extends State<SettingsPage> {
                       .inMilliseconds
                       .toString())).then((dialogValue) {
             if (dialogValue != null) {
-              // Only save the custom speed setting if a value was returned
+              // Save both the custom value and update the speed enum
               _manager.saveCustomSpeedSetting(int.parse(dialogValue));
+              _manager.saveSetting(Speed.custom);
             }
           });
         } else {

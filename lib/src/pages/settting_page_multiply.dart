@@ -222,7 +222,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
     ]));
   }
 
-  toggleMultiplyModeCallback(bool newValue) {
+  void toggleMultiplyModeCallback(bool newValue) {
     setState(() {
       _isMultiply =
           _manager.valueToEnum<bool, CalCulationMultiplyMode>(newValue);
@@ -232,7 +232,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
     initializeValues(_manager);
   }
 
-  toggleSeperatorModoeCallback(bool newValue) {
+  void toggleSeperatorModoeCallback(bool newValue) {
     setState(() {
       _seperatorMode =
           _manager.valueToEnum<bool, SeperatorMultiplyMode>(newValue);
@@ -242,7 +242,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
     initializeValues(_manager);
   }
 
-  toggleCounterModeCallback(bool newValue) {
+  void toggleCounterModeCallback(bool newValue) {
     setState(() {
       var valueToEnum =
           _manager.valueToEnum<bool, CountDownMultiplyMode>(newValue);
@@ -324,6 +324,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
             if (dialogValue != null) {
               // Only save the custom speed setting if a value was returned
               _manager.saveCustomSpeedSetting(int.parse(dialogValue));
+              _manager.saveSetting(SpeedMultiply.custom);
             }
           });
         } else {
