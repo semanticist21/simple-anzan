@@ -21,11 +21,11 @@ const String fastSettingEn = 'Fast Setting';
 const String fastSettingJa = '簡便設定';
 
 const String presetKr = '프리셋';
-const String presetEn = 'preset';
+const String presetEn = 'Preset';
 const String presetJa = 'プリセット';
 
 const String presetSaveKr = '프리셋 저장';
-const String presetSaveEn = 'save preset';
+const String presetSaveEn = 'Save Preset';
 const String presetSaveJa = 'プリセットを保存する';
 
 // routers
@@ -93,7 +93,7 @@ const String digitJa = "桁数";
 const String numOfProblemsJa = "問題数";
 
 const String notifyKr = '시작 전 알림';
-const String notifyEn = 'notify at start';
+const String notifyEn = 'Notify at Start';
 const String notifyJa = '事前通知';
 
 // option(multiply)
@@ -127,16 +127,16 @@ const String pleaseTooBigValueKr = '값이 너무 큽니다.';
 const String pleaseTooSmallValueKr = '값이 너무 작습니다.';
 
 const String setSpeedTitleEn = 'Set custom speed. (1000 = 1sec)';
-const String rangeWordEn = 'put value between 100~30000.';
-const String pleaseInsertValueEn = 'the value is empty.';
-const String pleaseTooBigValueEn = 'too big value.';
-const String pleaseTooSmallValueEn = 'too small value.';
+const String rangeWordEn = 'Enter a value between 100 and 30000.';
+const String pleaseInsertValueEn = 'Please enter a value.';
+const String pleaseTooBigValueEn = 'Value is too large.';
+const String pleaseTooSmallValueEn = 'Value is too small.';
 
 const String setSpeedTitleJa = '速度を設定します。(1000 = 1秒)';
 const String rangeWordJa = '100~30000の値を入れてください。';
-const String pleaseInsertValueJa = '値段が空きました。';
-const String pleaseTooBigValueJa = '値段が大きすぎます。';
-const String pleaseTooSmallValueJa = '値段が小さすぎます。';
+const String pleaseInsertValueJa = '値を入力してください。';
+const String pleaseTooBigValueJa = '値が大きすぎます。';
+const String pleaseTooSmallValueJa = '値が小さすぎます。';
 
 const String shuffleDescKr = '다른 자릿수와 섞어 계산합니다.';
 const String shuffleDescEn = 'shuffle numbers with different digits';
@@ -144,15 +144,15 @@ const String shuffleDescJa = '他の桁と混ぜて計算します。';
 
 const String shouldSoundOnDescKr = '사운드 옵션이 켜져 있어야 합니다.';
 const String shouldSoundOnDescEn = 'Sound option should be on';
-const String shouldSoundOnDescJa = 'Sound option should be on';
+const String shouldSoundOnDescJa = 'サウンドオプションをオンにする必要があります';
 
 const String rangeMultiplyWordKr = '100~30000 사이의 값을 입력하세요.';
-const String rangeMultiplyWordEn = 'put value between 100~30000.';
+const String rangeMultiplyWordEn = 'Enter a value between 100 and 30000.';
 const String rangeMultiplyWordJa = '100~30000の値を入れてください。';
 
 const String insertBiggerKr = '작은 자리 수가 큰 자리 수보다 작아야 합니다.';
-const String insertBiggerEn = 'Small digit should be smaller.';
-const String insertBiggerJa = '小さい席の数がもっと大きいです。';
+const String insertBiggerEn = 'Small digit must be less than big digit.';
+const String insertBiggerJa = '小さい桁数は大きい桁数より小さくする必要があります。';
 
 const String seperatorEn = 'Thousands Comma';
 const String seperatorKr = '쉼표 생성';
@@ -174,11 +174,11 @@ const String stopIterationKr = '문제 중지';
 const String stopIterationEn = 'Stop Iteration';
 
 const String problemKr = '문제';
-const String problemEn = 'question';
+const String problemEn = 'Question';
 const String problemJa = '問題';
 
 const String answerKr = '정답';
-const String answerEn = 'answer';
+const String answerEn = 'Answer';
 const String answerJa = '正答';
 
 // other
