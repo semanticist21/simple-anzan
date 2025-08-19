@@ -55,9 +55,9 @@ class _AddDialogState extends State<AddDialog> {
             style: TextStyle(
                 color: Theme.of(context).colorScheme.onPrimaryContainer),
             decoration: InputDecoration(
-              hintText: LocalizationChecker.rangeWord,
-              hintStyle:
-                  TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              helperText: LocalizationChecker.rangeWord,
+              helperStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer),
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.primaryContainer)),
@@ -78,7 +78,7 @@ class _AddDialogState extends State<AddDialog> {
                 return null;
               }
 
-              if (valueInt > 5000) {
+              if (valueInt > 30000) {
                 return LocalizationChecker.pleaseTooBigValue;
               }
 

@@ -121,19 +121,19 @@ const String numOfProblemsMultiplyJa = "問題数";
 // custom option related
 
 const String setSpeedTitleKr = '속도를 설정합니다. (1000 = 1초)';
-const String rangeWordKr = '100~5000 사이의 값을 입력하세요.';
+const String rangeWordKr = '100~30000 사이의 값을 입력하세요.';
 const String pleaseInsertValueKr = '값을 입력하세요.';
 const String pleaseTooBigValueKr = '값이 너무 큽니다.';
 const String pleaseTooSmallValueKr = '값이 너무 작습니다.';
 
 const String setSpeedTitleEn = 'Set custom speed. (1000 = 1sec)';
-const String rangeWordEn = 'put value between 100~5000.';
+const String rangeWordEn = 'put value between 100~30000.';
 const String pleaseInsertValueEn = 'the value is empty.';
 const String pleaseTooBigValueEn = 'too big value.';
 const String pleaseTooSmallValueEn = 'too small value.';
 
 const String setSpeedTitleJa = '速度を設定します。(1000 = 1秒)';
-const String rangeWordJa = '100~5000の値を入れてください。';
+const String rangeWordJa = '100~30000の値を入れてください。';
 const String pleaseInsertValueJa = '値段が空きました。';
 const String pleaseTooBigValueJa = '値段が大きすぎます。';
 const String pleaseTooSmallValueJa = '値段が小さすぎます。';

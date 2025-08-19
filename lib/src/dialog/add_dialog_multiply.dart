@@ -55,9 +55,9 @@ class _AddDialogMultiplyState extends State<AddDialogMultiply> {
             style: TextStyle(
                 color: Theme.of(context).colorScheme.onPrimaryContainer),
             decoration: InputDecoration(
-              hintText: LocalizationChecker.rangeMultiplyWord,
-              hintStyle:
-                  TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              helperText: LocalizationChecker.rangeMultiplyWord,
+              helperStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer),
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.primaryContainer)),
