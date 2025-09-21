@@ -177,6 +177,14 @@ const String burningModeKr = '연속 모드';
 const String burningModeEn = 'Burning Mode';
 const String burningModeJa = '連続モード';
 
+const String burningModeEnabledKr = '연속 모드가 활성화되었습니다. 이제 문제가 무한히 계속됩니다.';
+const String burningModeEnabledEn = 'Burning mode enabled. Now it will continue infinitely without stop.';
+const String burningModeEnabledJa = '連続モードが有効になりました。これで無限に続きます。';
+
+const String burningModeDisabledKr = '연속 모드가 비활성화되었습니다. 설정된 문제 수만큼만 실행됩니다.';
+const String burningModeDisabledEn = 'Burning mode disabled. Now it will stop after the set number of questions.';
+const String burningModeDisabledJa = '連続モードが無効になりました。設定された問題数で停止します。';
+
 const String problemKr = '문제';
 const String problemEn = 'Question';
 const String problemJa = '問題';

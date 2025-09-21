@@ -461,9 +461,7 @@ class _Home extends State<Home> {
     try {
       if (_currentIndex == 0) {
         BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
-        return mode == BurningMode.on
-            ? Colors.orange.shade300
-            : Colors.grey;
+        return mode == BurningMode.on ? Colors.orange.shade300 : Colors.grey;
       } else if (_currentIndex == 2) {
         BurningModeMultiply mode =
             SettingsMultiplyManager().getCurrentEnum<BurningModeMultiply>();
@@ -479,6 +477,7 @@ class _Home extends State<Home> {
 
   void _toggleBurningMode() {
     try {
+      String message = '';
       if (_currentIndex == 0) {
         // Addition mode
         BurningMode currentMode =
@@ -486,6 +485,9 @@ class _Home extends State<Home> {
         BurningMode newMode =
             currentMode == BurningMode.on ? BurningMode.off : BurningMode.on;
         SettingsManager().saveSetting(newMode);
+        message = newMode == BurningMode.on
+            ? LocalizationChecker.burningModeEnabled
+            : LocalizationChecker.burningModeDisabled;
       } else if (_currentIndex == 2) {
         // Multiplication mode
         BurningModeMultiply currentMode =
@@ -494,7 +496,22 @@ class _Home extends State<Home> {
             ? BurningModeMultiply.off
             : BurningModeMultiply.on;
         SettingsMultiplyManager().saveSetting(newMode);
+        message = newMode == BurningModeMultiply.on
+            ? LocalizationChecker.burningModeEnabled
+            : LocalizationChecker.burningModeDisabled;
       }
+
+      // Show toast notification
+      if (message.isNotEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(message),
+            duration: const Duration(seconds: 5),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+
       setState(() {});
     } catch (e) {
       // Do nothing if preferences not initialized yet

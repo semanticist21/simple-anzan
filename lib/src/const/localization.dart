@@ -63,6 +63,8 @@ class LocalizationChecker {
 
   static String stopIteration = stopIterationEn;
   static String burningMode = burningModeEn;
+  static String burningModeEnabled = burningModeEnabledEn;
+  static String burningModeDisabled = burningModeDisabledEn;
 
   static String problem = problemEn;
   static String answer = answerEn;
@@ -119,6 +121,8 @@ class LocalizationChecker {
 
       stopIteration = stopIterationKr;
       burningMode = burningModeKr;
+      burningModeEnabled = burningModeEnabledKr;
+      burningModeDisabled = burningModeDisabledKr;
 
       problem = problemKr;
       answer = answerKr;
@@ -178,6 +182,8 @@ class LocalizationChecker {
       checkProbQ = checkProbJa;
 
       burningMode = burningModeJa;
+      burningModeEnabled = burningModeEnabledJa;
+      burningModeDisabled = burningModeDisabledJa;
 
       problem = problemJa;
       answer = answerJa;
