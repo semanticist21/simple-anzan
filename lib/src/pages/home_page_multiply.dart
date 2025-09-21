@@ -2,11 +2,14 @@ import 'package:abacus_simple_anzan/src/components/flashing_container.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 
 import '../components/flicker_multiply.dart';
 import '../dialog/prob_list_multiply.dart';
+import '../settings/multiply_prefs/prefs/burning_mode_multiply_pref.dart';
+import '../settings/multiply_prefs/settings_manager_multiply.dart';
 
 class HomeMultiplyPage extends StatefulWidget {
   const HomeMultiplyPage({super.key});
@@ -109,18 +112,36 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                           child: FractionallySizedBox(
                             widthFactor: 0.6,
                             heightFactor: 0.4,
-                            child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateColor.resolveWith(
-                                          _getButtonColorProp),
-                                ),
-                                onPressed: _onPressed,
-                                child: Text(
-                                  value.buttonText,
-                                  style: _getMainButtonTextStyle(),
-                                  textAlign: TextAlign.center,
-                                )),
+                            child: _isBurningModeActive(value)
+                                ? ElevatedButton.icon(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          WidgetStateColor.resolveWith(
+                                              _getButtonColorProp),
+                                    ),
+                                    onPressed: _onPressed,
+                                    icon: Icon(
+                                      CupertinoIcons.flame_fill,
+                                      color: Colors.white,
+                                      size: MediaQuery.of(context).size.height * 0.05,
+                                    ),
+                                    label: Text(
+                                      value.buttonText,
+                                      style: _getBurningModeTextStyle(),
+                                      textAlign: TextAlign.center,
+                                    ))
+                                : ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          WidgetStateColor.resolveWith(
+                                              _getButtonColorProp),
+                                    ),
+                                    onPressed: _onPressed,
+                                    child: Text(
+                                      value.buttonText,
+                                      style: _getMainButtonTextStyle(),
+                                      textAlign: TextAlign.center,
+                                    )),
                           ),
                         );
                       }))),
@@ -135,10 +156,33 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
     _stateProvider.changeState();
   }
 
+  // helper method to check if burning mode is active and button is showing "On Burning"
+  bool _isBurningModeActive(StateMultiplyProvider value) {
+    if (value.state == ButtonMultiplyState.iterationStarted) {
+      BurningModeMultiply mode = SettingsMultiplyManager().getCurrentEnum<BurningModeMultiply>();
+      return mode == BurningModeMultiply.on;
+    }
+    return false;
+  }
+
   // styles
-  Color _getButtonColorProp(Set<MaterialState> states) {
-    if (states.contains(MaterialState.pressed)) {
-      return Theme.of(context).colorScheme.surfaceVariant;
+  Color _getButtonColorProp(Set<WidgetState> states) {
+    // Check if burning mode is active
+    if (_stateProvider.state == ButtonMultiplyState.iterationStarted) {
+      try {
+        BurningModeMultiply mode = SettingsMultiplyManager().getCurrentEnum<BurningModeMultiply>();
+        if (mode == BurningModeMultiply.on) {
+          return states.contains(WidgetState.pressed)
+              ? Colors.red.shade700
+              : Colors.red;
+        }
+      } catch (e) {
+        // If preferences not initialized, use default colors
+      }
+    }
+
+    if (states.contains(WidgetState.pressed)) {
+      return Theme.of(context).colorScheme.surfaceContainerHighest;
     } else {
       return Theme.of(context).colorScheme.surfaceTint;
     }
@@ -153,5 +197,19 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
     }
 
     return TextStyle(fontSize: MediaQuery.of(context).size.height * 0.04);
+  }
+
+  TextStyle _getBurningModeTextStyle() {
+    var titleBodyLarge = Theme.of(context).textTheme.bodyLarge;
+
+    if (titleBodyLarge != null) {
+      return titleBodyLarge.copyWith(
+          fontSize: MediaQuery.of(context).size.height * 0.025,
+          color: Colors.white);
+    }
+
+    return TextStyle(
+        fontSize: MediaQuery.of(context).size.height * 0.025,
+        color: Colors.white);
   }
 }

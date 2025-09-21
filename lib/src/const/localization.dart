@@ -71,6 +71,7 @@ class LocalizationChecker {
 
   // other
   static String warning = warningEn;
+  static String onBurning = onBurningEn;
 
   LocalizationChecker() {
     if (defaultLocale.toLowerCase().contains('ko')) {
@@ -128,6 +129,7 @@ class LocalizationChecker {
       answer = answerKr;
 
       warning = warningKr;
+      onBurning = onBurningKr;
 
       fastSetting = fastSettingKr;
       notify = notifyKr;
@@ -189,6 +191,7 @@ class LocalizationChecker {
       answer = answerJa;
 
       warning = warningJa;
+      onBurning = onBurningJa;
 
       fastSetting = fastSettingJa;
       notify = notifyJa;

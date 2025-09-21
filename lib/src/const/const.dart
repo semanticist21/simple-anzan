@@ -200,3 +200,7 @@ const String defaultFontFamily = 'Roboto';
 const String warningKr = '경고';
 const String warningEn = 'Warning';
 const String warningJa = '警告';
+
+const String onBurningKr = '연속 모드';
+const String onBurningEn = 'On Burning';
+const String onBurningJa = '連続モード';

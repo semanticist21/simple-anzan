@@ -1,5 +1,6 @@
 import 'package:abacus_simple_anzan/src/components/flashing_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 
@@ -7,6 +8,8 @@ import '../components/flicker.dart';
 import '../const/localization.dart';
 import '../dialog/prob_list.dart';
 import '../provider/state_provider.dart';
+import '../settings/plus_pref/prefs/burning_mode_pref.dart';
+import '../settings/plus_pref/settings_manager.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -108,18 +111,36 @@ class _HomePageState extends State<HomePage> {
                           child: FractionallySizedBox(
                             widthFactor: 0.6,
                             heightFactor: 0.4,
-                            child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateColor.resolveWith(
-                                          _getButtonColorProp),
-                                ),
-                                onPressed: _onPressed,
-                                child: Text(
-                                  value.buttonText,
-                                  style: _getMainButtonTextStyle(),
-                                  textAlign: TextAlign.center,
-                                )),
+                            child: _isBurningModeActive(value)
+                                ? ElevatedButton.icon(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          WidgetStateColor.resolveWith(
+                                              _getButtonColorProp),
+                                    ),
+                                    onPressed: _onPressed,
+                                    icon: Icon(
+                                      CupertinoIcons.flame_fill,
+                                      color: Colors.white,
+                                      size: MediaQuery.of(context).size.height * 0.05,
+                                    ),
+                                    label: Text(
+                                      value.buttonText,
+                                      style: _getBurningModeTextStyle(),
+                                      textAlign: TextAlign.center,
+                                    ))
+                                : ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          WidgetStateColor.resolveWith(
+                                              _getButtonColorProp),
+                                    ),
+                                    onPressed: _onPressed,
+                                    child: Text(
+                                      value.buttonText,
+                                      style: _getMainButtonTextStyle(),
+                                      textAlign: TextAlign.center,
+                                    )),
                           ),
                         );
                       }))),
@@ -134,9 +155,32 @@ class _HomePageState extends State<HomePage> {
     _stateProvider.changeState();
   }
 
+  // helper method to check if burning mode is active and button is showing "On Burning"
+  bool _isBurningModeActive(StateProvider value) {
+    if (value.state == ButtonState.iterationStarted) {
+      BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
+      return mode == BurningMode.on;
+    }
+    return false;
+  }
+
   // styles
-  Color _getButtonColorProp(Set<MaterialState> states) {
-    if (states.contains(MaterialState.pressed)) {
+  Color _getButtonColorProp(Set<WidgetState> states) {
+    // Check if burning mode is active
+    if (_stateProvider.state == ButtonState.iterationStarted) {
+      try {
+        BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
+        if (mode == BurningMode.on) {
+          return states.contains(WidgetState.pressed)
+              ? Colors.red.shade700
+              : Colors.red;
+        }
+      } catch (e) {
+        // If preferences not initialized, use default colors
+      }
+    }
+
+    if (states.contains(WidgetState.pressed)) {
       return Theme.of(context).colorScheme.onSurfaceVariant;
     } else {
       return Theme.of(context).colorScheme.onSurface;
@@ -152,5 +196,19 @@ class _HomePageState extends State<HomePage> {
     }
 
     return TextStyle(fontSize: MediaQuery.of(context).size.height * 0.04);
+  }
+
+  TextStyle _getBurningModeTextStyle() {
+    var titleBodyLarge = Theme.of(context).textTheme.bodyLarge;
+
+    if (titleBodyLarge != null) {
+      return titleBodyLarge.copyWith(
+          fontSize: MediaQuery.of(context).size.height * 0.025,
+          color: Colors.white);
+    }
+
+    return TextStyle(
+        fontSize: MediaQuery.of(context).size.height * 0.025,
+        color: Colors.white);
   }
 }

@@ -1,6 +1,8 @@
 import 'package:abacus_simple_anzan/src/components/flashing_container.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/material.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/burning_mode_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 
 import '../const/const.dart';
 
@@ -57,6 +59,11 @@ String getButtonStr(ButtonState state) {
     case ButtonState.iterationNotStarted:
       return LocalizationChecker.start;
     case ButtonState.iterationStarted:
+      // Check if burning mode is enabled
+      BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
+      if (mode == BurningMode.on) {
+        return LocalizationChecker.onBurning;
+      }
       return hidden;
     case ButtonState.iterationCompleted:
       return LocalizationChecker.check;
@@ -70,6 +77,11 @@ bool getButtonVisibility(ButtonState state) {
     case ButtonState.iterationNotStarted:
       return true;
     case ButtonState.iterationStarted:
+      // Check if burning mode is enabled - keep button visible if it is
+      BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
+      if (mode == BurningMode.on) {
+        return true;
+      }
       return false;
     case ButtonState.iterationCompleted:
       return true;

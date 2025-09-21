@@ -503,6 +503,7 @@ class _Home extends State<Home> {
 
       // Show toast notification
       if (message.isNotEmpty) {
+        ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(message),
