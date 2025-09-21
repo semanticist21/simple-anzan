@@ -10,11 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
+import 'dart:async';
 
 import '../functions/tuple.dart';
 import '../settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import '../functions/functions.dart';
 import '../settings/multiply_prefs/prefs/countdown_mode.dart';
+import '../settings/multiply_prefs/prefs/burning_mode_multiply_pref.dart';
 import '../settings/option/option_manager.dart';
 
 class FlickerMultiply extends StatefulWidget {
@@ -34,15 +36,25 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
 
   var _number = '';
   var _answer = '';
+  Timer? _burningModeTimer;
 
   @override
   void initState() {
     super.initState();
   }
 
+  void _handleStateChange() {
+    if (_stateProvider.state == ButtonMultiplyState.iterationCompleted) {
+      // Cancel burning mode timer when iteration is completed
+      _burningModeTimer?.cancel();
+    }
+  }
+
   @override
   void dispose() {
     _stateProvider.removeListener(_callbackOnButtonClick);
+    _stateProvider.removeListener(_handleStateChange);
+    _burningModeTimer?.cancel();
     super.dispose();
   }
 
@@ -50,7 +62,9 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   Widget build(BuildContext context) {
     _stateProvider = Provider.of(context, listen: false);
     _stateProvider.removeListener(_callbackOnButtonClick);
+    _stateProvider.removeListener(_handleStateChange);
     _stateProvider.addListener(_callbackOnButtonClick);
+    _stateProvider.addListener(_handleStateChange);
 
     if (_number.isEmpty) {
       return const SizedBox(
@@ -143,8 +157,16 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
     }
 
     await iterNums(manager, questions);
-    _stateProvider.changeState(
-        desiredState: ButtonMultiplyState.iterationCompleted);
+
+    // Check if burning mode is enabled for automatic cycling
+    BurningModeMultiply burningMode = manager.getCurrentEnum<BurningModeMultiply>();
+    if (burningMode == BurningModeMultiply.on && _stateProvider.state != ButtonMultiplyState.iterationCompleted) {
+      // Start automatic cycling in burning mode - don't change to completed state
+      _startBurningModeCycle(manager);
+    } else {
+      _stateProvider.changeState(
+          desiredState: ButtonMultiplyState.iterationCompleted);
+    }
   }
 
   Future<void> iterNums(
@@ -247,6 +269,30 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   void _showAnswer() {
     setState(() {
       _number = _answer;
+    });
+  }
+
+  void _startBurningModeCycle(SettingsMultiplyManager manager) {
+    // Cancel any existing timer
+    _burningModeTimer?.cancel();
+
+    // Show answer after 2 seconds
+    _burningModeTimer = Timer(const Duration(seconds: 2), () {
+      if (_stateProvider.state == ButtonMultiplyState.iterationStarted && mounted) {
+        _showAnswer();
+
+        // Start new problem cycle after 3 more seconds (total 5 seconds)
+        _burningModeTimer = Timer(const Duration(seconds: 3), () {
+          if (_stateProvider.state == ButtonMultiplyState.iterationStarted && mounted) {
+            // Clear answer display and start a new problem cycle
+            setState(() {
+              _number = '';
+            });
+            // Start a new problem cycle
+            _initiateIteration(manager);
+          }
+        });
+      }
     });
   }
 

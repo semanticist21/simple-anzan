@@ -10,11 +10,13 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 import 'package:universal_io/io.dart';
+import 'dart:async';
 
 import '../const/const.dart';
 import '../functions/functions.dart';
 import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
 import '../settings/plus_pref/prefs/digit_pref.dart';
+import '../settings/plus_pref/prefs/burning_mode_pref.dart';
 import '../settings/plus_pref/settings_manager.dart';
 
 class Flicker extends StatefulWidget {
@@ -33,9 +35,12 @@ class _FlickerState extends State<Flicker> {
 
   var _number = '';
   var _answer = '';
+  Timer? _burningModeTimer;
 
   void _handleResetText() {
     if (_stateProvider.state == ButtonState.iterationCompleted) {
+      // Cancel burning mode timer when iteration is completed
+      _burningModeTimer?.cancel();
       setState(() {
         _number = empty;
       });
@@ -151,7 +156,15 @@ class _FlickerState extends State<Flicker> {
     _answer = nums.last.toString();
 
     await iterNums(manager, questions, _stateProvider);
-    _stateProvider.changeState(desiredState: ButtonState.iterationCompleted);
+
+    // Check if burning mode is enabled for automatic cycling
+    BurningMode burningMode = manager.getCurrentEnum<BurningMode>();
+    if (burningMode == BurningMode.on && _stateProvider.state != ButtonState.iterationCompleted) {
+      // Start automatic cycling in burning mode - don't change to completed state
+      _startBurningModeCycle(manager);
+    } else {
+      _stateProvider.changeState(desiredState: ButtonState.iterationCompleted);
+    }
   }
 
   Future<void> iterNums(SettingsManager manager, List<int> questions,
@@ -238,10 +251,35 @@ class _FlickerState extends State<Flicker> {
     });
   }
 
+  void _startBurningModeCycle(SettingsManager manager) {
+    // Cancel any existing timer
+    _burningModeTimer?.cancel();
+
+    // Show answer after 2 seconds
+    _burningModeTimer = Timer(const Duration(seconds: 2), () {
+      if (_stateProvider.state == ButtonState.iterationStarted && mounted) {
+        _showAnswer();
+
+        // Start new problem cycle after 3 more seconds (total 5 seconds)
+        _burningModeTimer = Timer(const Duration(seconds: 3), () {
+          if (_stateProvider.state == ButtonState.iterationStarted && mounted) {
+            // Clear answer display and start a new problem cycle
+            setState(() {
+              _number = '';
+            });
+            // Start a new problem cycle
+            _initiateIteration(manager);
+          }
+        });
+      }
+    });
+  }
+
   @override
   void dispose() {
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.removeListener(_handleResetText);
+    _burningModeTimer?.cancel();
     super.dispose();
   }
 
