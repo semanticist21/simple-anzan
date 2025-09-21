@@ -45,8 +45,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
 
   void _handleStateChange() {
     if (_stateProvider.state == ButtonMultiplyState.iterationCompleted) {
-      // Cancel burning mode timer when iteration is completed
-      _burningModeTimer?.cancel();
+      _cancelBurningModeTimer();
     }
   }
 
@@ -54,7 +53,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   void dispose() {
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.removeListener(_handleStateChange);
-    _burningModeTimer?.cancel();
+    _cancelBurningModeTimer();
     super.dispose();
   }
 
@@ -158,15 +157,24 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
 
     await iterNums(manager, questions);
 
-    // Check if burning mode is enabled for automatic cycling
-    BurningModeMultiply burningMode = manager.getCurrentEnum<BurningModeMultiply>();
-    if (burningMode == BurningModeMultiply.on && _stateProvider.state != ButtonMultiplyState.iterationCompleted) {
-      // Start automatic cycling in burning mode - don't change to completed state
+    _handleProblemCompletion(manager);
+  }
+
+  void _handleProblemCompletion(SettingsMultiplyManager manager) {
+    if (_isBurningModeActive() && _isIterationActive()) {
       _startBurningModeCycle(manager);
     } else {
       _stateProvider.changeState(
           desiredState: ButtonMultiplyState.iterationCompleted);
     }
+  }
+
+  bool _isBurningModeActive() {
+    return _manager.getCurrentEnum<BurningModeMultiply>() == BurningModeMultiply.on;
+  }
+
+  bool _isIterationActive() {
+    return _stateProvider.state != ButtonMultiplyState.iterationCompleted;
   }
 
   Future<void> iterNums(
@@ -273,26 +281,44 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   }
 
   void _startBurningModeCycle(SettingsMultiplyManager manager) {
-    // Cancel any existing timer
+    _cancelBurningModeTimer();
+
+    _scheduleAnswerDisplay(() => _scheduleNextProblem(manager));
+  }
+
+  void _cancelBurningModeTimer() {
     _burningModeTimer?.cancel();
+  }
 
-    // Show answer after 2 seconds
-    _burningModeTimer = Timer(const Duration(seconds: 2), () {
-      if (_stateProvider.state == ButtonMultiplyState.iterationStarted && mounted) {
+  void _scheduleAnswerDisplay(VoidCallback onAnswerShown) {
+    const answerDisplayDelay = Duration(seconds: 2);
+
+    _burningModeTimer = Timer(answerDisplayDelay, () {
+      if (_shouldContinueBurningMode()) {
         _showAnswer();
-
-        // Start new problem cycle after 3 more seconds (total 5 seconds)
-        _burningModeTimer = Timer(const Duration(seconds: 3), () {
-          if (_stateProvider.state == ButtonMultiplyState.iterationStarted && mounted) {
-            // Clear answer display and start a new problem cycle
-            setState(() {
-              _number = '';
-            });
-            // Start a new problem cycle
-            _initiateIteration(manager);
-          }
-        });
+        onAnswerShown();
       }
+    });
+  }
+
+  void _scheduleNextProblem(SettingsMultiplyManager manager) {
+    const nextProblemDelay = Duration(seconds: 3);
+
+    _burningModeTimer = Timer(nextProblemDelay, () {
+      if (_shouldContinueBurningMode()) {
+        _clearDisplay();
+        _initiateIteration(manager);
+      }
+    });
+  }
+
+  bool _shouldContinueBurningMode() {
+    return _stateProvider.state == ButtonMultiplyState.iterationStarted && mounted;
+  }
+
+  void _clearDisplay() {
+    setState(() {
+      _number = '';
     });
   }
 

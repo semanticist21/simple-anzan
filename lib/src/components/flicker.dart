@@ -39,8 +39,7 @@ class _FlickerState extends State<Flicker> {
 
   void _handleResetText() {
     if (_stateProvider.state == ButtonState.iterationCompleted) {
-      // Cancel burning mode timer when iteration is completed
-      _burningModeTimer?.cancel();
+      _cancelBurningModeTimer();
       setState(() {
         _number = empty;
       });
@@ -151,20 +150,28 @@ class _FlickerState extends State<Flicker> {
     }
 
     var len = nums.length;
-
     var questions = nums.sublist(0, len - 1);
     _answer = nums.last.toString();
 
     await iterNums(manager, questions, _stateProvider);
 
-    // Check if burning mode is enabled for automatic cycling
-    BurningMode burningMode = manager.getCurrentEnum<BurningMode>();
-    if (burningMode == BurningMode.on && _stateProvider.state != ButtonState.iterationCompleted) {
-      // Start automatic cycling in burning mode - don't change to completed state
+    _handleProblemCompletion(manager);
+  }
+
+  void _handleProblemCompletion(SettingsManager manager) {
+    if (_isBurningModeActive() && _isIterationActive()) {
       _startBurningModeCycle(manager);
     } else {
       _stateProvider.changeState(desiredState: ButtonState.iterationCompleted);
     }
+  }
+
+  bool _isBurningModeActive() {
+    return _manager.getCurrentEnum<BurningMode>() == BurningMode.on;
+  }
+
+  bool _isIterationActive() {
+    return _stateProvider.state != ButtonState.iterationCompleted;
   }
 
   Future<void> iterNums(SettingsManager manager, List<int> questions,
@@ -252,26 +259,44 @@ class _FlickerState extends State<Flicker> {
   }
 
   void _startBurningModeCycle(SettingsManager manager) {
-    // Cancel any existing timer
+    _cancelBurningModeTimer();
+
+    _scheduleAnswerDisplay(() => _scheduleNextProblem(manager));
+  }
+
+  void _cancelBurningModeTimer() {
     _burningModeTimer?.cancel();
+  }
 
-    // Show answer after 2 seconds
-    _burningModeTimer = Timer(const Duration(seconds: 2), () {
-      if (_stateProvider.state == ButtonState.iterationStarted && mounted) {
+  void _scheduleAnswerDisplay(VoidCallback onAnswerShown) {
+    const answerDisplayDelay = Duration(seconds: 2);
+
+    _burningModeTimer = Timer(answerDisplayDelay, () {
+      if (_shouldContinueBurningMode()) {
         _showAnswer();
-
-        // Start new problem cycle after 3 more seconds (total 5 seconds)
-        _burningModeTimer = Timer(const Duration(seconds: 3), () {
-          if (_stateProvider.state == ButtonState.iterationStarted && mounted) {
-            // Clear answer display and start a new problem cycle
-            setState(() {
-              _number = '';
-            });
-            // Start a new problem cycle
-            _initiateIteration(manager);
-          }
-        });
+        onAnswerShown();
       }
+    });
+  }
+
+  void _scheduleNextProblem(SettingsManager manager) {
+    const nextProblemDelay = Duration(seconds: 3);
+
+    _burningModeTimer = Timer(nextProblemDelay, () {
+      if (_shouldContinueBurningMode()) {
+        _clearDisplay();
+        _initiateIteration(manager);
+      }
+    });
+  }
+
+  bool _shouldContinueBurningMode() {
+    return _stateProvider.state == ButtonState.iterationStarted && mounted;
+  }
+
+  void _clearDisplay() {
+    setState(() {
+      _number = '';
     });
   }
 
@@ -279,7 +304,7 @@ class _FlickerState extends State<Flicker> {
   void dispose() {
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.removeListener(_handleResetText);
-    _burningModeTimer?.cancel();
+    _cancelBurningModeTimer();
     super.dispose();
   }
 
