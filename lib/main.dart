@@ -12,6 +12,8 @@ import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/option/option_manager.dart';
 import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/burning_mode_pref.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/burning_mode_multiply_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:abacus_simple_anzan/src/const/localization.dart';
@@ -190,10 +192,33 @@ class _Home extends State<Home> {
               builder: (context, snapshot) {
                 return Row(children: [
                   Visibility(
+                    visible: !(_currentIndex != 0 && _currentIndex != 2),
+                    child: Container(
+                      width: 40,
+                      margin: const EdgeInsets.only(right: 10),
+                      child: Tooltip(
+                          message: LocalizationChecker.burningMode,
+                          child: RawMaterialButton(
+                            onPressed: _toggleBurningMode,
+                            elevation: 2.0,
+                            fillColor: _getBurningModeBackgroundColor(context),
+                            padding: const EdgeInsets.all(2),
+                            shape: const CircleBorder(),
+                            child: Icon(
+                              Icons.local_fire_department,
+                              color: _getBurningModeColor(context),
+                              size: Platform.isWindows
+                                  ? MediaQuery.of(context).size.height * 0.03
+                                  : null,
+                            ),
+                          )),
+                    ),
+                  ),
+                  Visibility(
                     visible: _currentIndex == 0,
                     child: Container(
                       width: 40,
-                      margin: const EdgeInsets.only(right: 20),
+                      margin: const EdgeInsets.only(right: 10),
                       child: Tooltip(
                           message: LocalizationChecker.stopIteration,
                           child: RawMaterialButton(
@@ -303,7 +328,7 @@ class _Home extends State<Home> {
                               splashRadius: 15,
                             )),
                       ])),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 5),
                   Tooltip(
                       message: LocalizationChecker.soundOn,
                       child: Icon(
@@ -329,7 +354,7 @@ class _Home extends State<Home> {
                       )),
                 ]);
               }),
-          const SizedBox(width: 10),
+          const SizedBox(width: 5),
           Row(children: [
             Tooltip(
                 message: LocalizationChecker.mode,
@@ -352,7 +377,7 @@ class _Home extends State<Home> {
                   value: ThemeSelector.isDark,
                 )),
           ]),
-          const SizedBox(width: 10),
+          const SizedBox(width: 5),
         ],
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -409,6 +434,72 @@ class _Home extends State<Home> {
         currentIndex: _currentIndex,
       ),
     );
+  }
+
+  Color _getBurningModeColor(BuildContext context) {
+    try {
+      if (_currentIndex == 0) {
+        BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
+        return mode == BurningMode.on
+            ? Colors.red
+            : Theme.of(context).colorScheme.secondary;
+      } else if (_currentIndex == 2) {
+        BurningModeMultiply mode =
+            SettingsMultiplyManager().getCurrentEnum<BurningModeMultiply>();
+        return mode == BurningModeMultiply.on
+            ? Colors.red
+            : Theme.of(context).colorScheme.secondary;
+      }
+    } catch (e) {
+      // Return default color if preferences not initialized yet
+      return Theme.of(context).colorScheme.secondary;
+    }
+    return Theme.of(context).colorScheme.secondary;
+  }
+
+  Color _getBurningModeBackgroundColor(BuildContext context) {
+    try {
+      if (_currentIndex == 0) {
+        BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
+        return mode == BurningMode.on
+            ? Colors.orange.shade300
+            : Colors.grey;
+      } else if (_currentIndex == 2) {
+        BurningModeMultiply mode =
+            SettingsMultiplyManager().getCurrentEnum<BurningModeMultiply>();
+        return mode == BurningModeMultiply.on
+            ? Colors.orange.shade300
+            : Colors.grey;
+      }
+    } catch (e) {
+      return Colors.grey;
+    }
+    return Colors.grey;
+  }
+
+  void _toggleBurningMode() {
+    try {
+      if (_currentIndex == 0) {
+        // Addition mode
+        BurningMode currentMode =
+            SettingsManager().getCurrentEnum<BurningMode>();
+        BurningMode newMode =
+            currentMode == BurningMode.on ? BurningMode.off : BurningMode.on;
+        SettingsManager().saveSetting(newMode);
+      } else if (_currentIndex == 2) {
+        // Multiplication mode
+        BurningModeMultiply currentMode =
+            SettingsMultiplyManager().getCurrentEnum<BurningModeMultiply>();
+        BurningModeMultiply newMode = currentMode == BurningModeMultiply.on
+            ? BurningModeMultiply.off
+            : BurningModeMultiply.on;
+        SettingsMultiplyManager().saveSetting(newMode);
+      }
+      setState(() {});
+    } catch (e) {
+      // Do nothing if preferences not initialized yet
+      print('Burning mode preferences not initialized yet: $e');
+    }
   }
 
   void requestButtonStopIteration() {

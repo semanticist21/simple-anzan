@@ -1,4 +1,5 @@
 // singleton
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/burning_mode_multiply_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/countdown_mode.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
@@ -12,6 +13,7 @@ class SettingsMultiplyManager {
   // member
   late SharedPreferences _prefs;
 
+  late BurningModeMultiplyPref _burningModePref;
   late CalculationModeMultiplyPref _calculationModePref;
   late CountDownModeMultiplyPref _countDownModePref;
   late SpeedMultiplyPref _speedPref;
@@ -31,6 +33,7 @@ class SettingsMultiplyManager {
   }
 
   void refreshPrefValues(SharedPreferences prefs) {
+    _burningModePref = BurningModeMultiplyPref(prefs);
     _calculationModePref = CalculationModeMultiplyPref(prefs);
     _countDownModePref = CountDownModeMultiplyPref(prefs);
     _speedPref = SpeedMultiplyPref(prefs);
@@ -48,6 +51,8 @@ class SettingsMultiplyManager {
   // calculation mode.
   T getCurrentEnum<T>() {
     switch (T) {
+      case BurningModeMultiply:
+        return _burningModePref.getValue() as T;
       case CalCulationMultiplyMode:
         return _calculationModePref.getValue() as T;
       case CountDownMultiplyMode:
@@ -69,6 +74,8 @@ class SettingsMultiplyManager {
 
   T valueToEnum<V, T>(V value) {
     switch (T) {
+      case BurningModeMultiply:
+        return _burningModePref.valueToEnum(value as bool) as T;
       case CalCulationMultiplyMode:
         return _calculationModePref.valueToEnum(value as bool) as T;
       case CountDownMultiplyMode:
@@ -153,6 +160,9 @@ class SettingsMultiplyManager {
   // save methods
   void saveSetting(dynamic value) {
     switch (value.runtimeType) {
+      case BurningModeMultiply:
+        _burningModePref.saveSetting(_prefs, value);
+        break;
       case CalCulationMultiplyMode:
         _calculationModePref.saveSetting(_prefs, value);
         break;

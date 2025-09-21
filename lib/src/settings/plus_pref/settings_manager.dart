@@ -1,4 +1,5 @@
 // singleton
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/burning_mode_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/calculation_mode_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/digit_pref.dart';
@@ -12,6 +13,7 @@ class SettingsManager {
   // member
   late SharedPreferences _prefs;
 
+  late BurningModePref _burningModePref;
   late CalculationModePref _calculationModePref;
   late ShuffleModePref _shuffleModePref;
   late CountDownModePref _countDownModePref;
@@ -30,6 +32,7 @@ class SettingsManager {
   }
 
   void refreshPrefValues(SharedPreferences prefs) {
+    _burningModePref = BurningModePref(prefs);
     _calculationModePref = CalculationModePref(prefs);
     _shuffleModePref = ShuffleModePref(prefs);
     _countDownModePref = CountDownModePref(prefs);
@@ -47,6 +50,8 @@ class SettingsManager {
   // calculation mode.
   T getCurrentEnum<T>() {
     switch (T) {
+      case BurningMode:
+        return _burningModePref.getValue() as T;
       case CalculationMode:
         return _calculationModePref.getValue() as T;
       case ShuffleMode:
@@ -68,6 +73,8 @@ class SettingsManager {
 
   T valueToEnum<V, T>(V value) {
     switch (T) {
+      case BurningMode:
+        return _burningModePref.valueToEnum(value as bool) as T;
       case CalculationMode:
         return _calculationModePref.valueToEnum(value as bool) as T;
       case ShuffleMode:
@@ -147,6 +154,9 @@ class SettingsManager {
   // save methods
   void saveSetting(dynamic value) {
     switch (value.runtimeType) {
+      case BurningMode:
+        _burningModePref.saveSetting(_prefs, value);
+        break;
       case CalculationMode:
         _calculationModePref.saveSetting(_prefs, value);
         break;

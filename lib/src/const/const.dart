@@ -173,6 +173,10 @@ const String checkProbQJa = '問題リストの確認';
 const String stopIterationKr = '문제 중지';
 const String stopIterationEn = 'Stop Iteration';
 
+const String burningModeKr = '연속 모드';
+const String burningModeEn = 'Burning Mode';
+const String burningModeJa = '連続モード';
+
 const String problemKr = '문제';
 const String problemEn = 'Question';
 const String problemJa = '問題';
