@@ -10,7 +10,7 @@ class DigitPref implements PreferenceInterfaceItems<Digit, int> {
   late int _currentIndex;
   late Digit _currentValue;
 
-  DigitPref(SharedPreferences prefs) {
+  DigitPref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -58,7 +58,7 @@ class DigitPref implements PreferenceInterfaceItems<Digit, int> {
     return result;
   }
 
-  void saveSetting(SharedPreferences prefs, value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, value) =>
       prefs.setInt(_saveKey, (value as Digit).index);
 
   Digit itemStrToValue(String str) {

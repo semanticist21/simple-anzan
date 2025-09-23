@@ -11,7 +11,7 @@ class CalculationModeMultiplyPref
   late int _currentIndex;
   late CalCulationMultiplyMode _currentValue;
 
-  CalculationModeMultiplyPref(SharedPreferences prefs) {
+  CalculationModeMultiplyPref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -47,7 +47,7 @@ class CalculationModeMultiplyPref
     }
   }
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as CalCulationMultiplyMode).index);
 }
 

@@ -11,7 +11,7 @@ class ShuffleModePref implements PreferenceInterface<ShuffleMode, bool> {
   late int _currentIndex;
   late ShuffleMode _currentValue;
 
-  ShuffleModePref(SharedPreferences prefs) {
+  ShuffleModePref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -47,7 +47,7 @@ class ShuffleModePref implements PreferenceInterface<ShuffleMode, bool> {
     }
   }
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as ShuffleMode).index);
 }
 

@@ -17,7 +17,7 @@ class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
 
   late int _currentCustomValue;
 
-  SpeedPref(SharedPreferences prefs) {
+  SpeedPref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     print(index);
     setIndex(index);
@@ -87,10 +87,10 @@ class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
     return result;
   }
 
-  void saveSetting(SharedPreferences prefs, value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, value) =>
       prefs.setInt(_saveKey, (value as Speed).index);
 
-  void saveCustomValue(SharedPreferences prefs, int value) =>
+  void saveCustomValue(SharedPreferencesWithCache prefs, int value) =>
       prefs.setInt(_saveCustomKey, value);
 
   int _getDurationInt(String str) {

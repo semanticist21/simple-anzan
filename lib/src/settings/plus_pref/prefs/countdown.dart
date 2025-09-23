@@ -10,7 +10,7 @@ class CountDownModePref implements PreferenceInterface<CountDownMode, bool> {
   late int _currentIndex;
   late CountDownMode _currentValue;
 
-  CountDownModePref(SharedPreferences prefs) {
+  CountDownModePref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -46,7 +46,7 @@ class CountDownModePref implements PreferenceInterface<CountDownMode, bool> {
     }
   }
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as CountDownMode).index);
 }
 

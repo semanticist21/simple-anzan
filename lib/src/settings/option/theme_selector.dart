@@ -9,12 +9,11 @@ class ThemeSelector {
   static var themeKey = 'isDark';
   static var isDark = false;
   static StreamController<bool> isDarkStream = StreamController();
-  SharedPreferences prefs;
+  SharedPreferencesWithCache prefs;
 
   ThemeSelector({required this.prefs});
 
   Future<void> initSettings() async {
-    var prefs = await SharedPreferences.getInstance();
     isDark = prefs.getBool(themeKey) ?? false;
     ThemeSelector.isDarkStream.add(ThemeSelector.isDark);
   }

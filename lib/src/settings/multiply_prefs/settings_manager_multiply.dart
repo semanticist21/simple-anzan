@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsMultiplyManager {
   // member
-  late SharedPreferences _prefs;
+  late SharedPreferencesWithCache _prefs;
 
   late BurningModeMultiplyPref _burningModePref;
   late CalculationModeMultiplyPref _calculationModePref;
@@ -28,11 +28,11 @@ class SettingsMultiplyManager {
   SettingsMultiplyManager._constructor();
 
   Future<void> initSettings() async {
-    _prefs = await SharedPreferences.getInstance();
+    _prefs = await SharedPreferencesWithCache.create(cacheOptions: const SharedPreferencesWithCacheOptions());
     refreshPrefValues(_prefs);
   }
 
-  void refreshPrefValues(SharedPreferences prefs) {
+  void refreshPrefValues(SharedPreferencesWithCache prefs) {
     _burningModePref = BurningModeMultiplyPref(prefs);
     _calculationModePref = CalculationModeMultiplyPref(prefs);
     _countDownModePref = CountDownModeMultiplyPref(prefs);

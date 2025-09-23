@@ -10,7 +10,7 @@ class BigDigitPref implements PreferenceInterfaceItems<BigDigit, int> {
   late int _currentIndex;
   late BigDigit _currentValue;
 
-  BigDigitPref(SharedPreferences prefs) {
+  BigDigitPref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -58,7 +58,7 @@ class BigDigitPref implements PreferenceInterfaceItems<BigDigit, int> {
     return result;
   }
 
-  void saveSetting(SharedPreferences prefs, value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, value) =>
       prefs.setInt(_saveKey, (value as BigDigit).index);
 
   BigDigit itemStrToValue(String str) {

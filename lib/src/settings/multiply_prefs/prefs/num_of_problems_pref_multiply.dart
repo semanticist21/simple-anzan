@@ -11,7 +11,7 @@ class NumOfProblemsMultiplyPref
   late int _currentIndex;
   late NumOfMultiplyProblems _currentValue;
 
-  NumOfProblemsMultiplyPref(SharedPreferences prefs) {
+  NumOfProblemsMultiplyPref(SharedPreferencesWithCache prefs) {
     // Warning !!!!!
     // change this option when implementing!!
     // always default 0.
@@ -48,7 +48,7 @@ class NumOfProblemsMultiplyPref
   int enumToValue(NumOfMultiplyProblems enumType) =>
       int.parse(enumNameToItemString(enumType.name));
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as NumOfMultiplyProblems).index);
 
   NumOfMultiplyProblems itemStrToValue(String str) {

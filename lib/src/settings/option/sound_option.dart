@@ -11,7 +11,7 @@ class SoundOptionHandler {
   static var isSoundOn = false;
   static StreamController<bool> isSoundOnStream = StreamController();
 
-  SoundOptionHandler(SharedPreferences pref);
+  SoundOptionHandler(SharedPreferencesWithCache pref);
 
   static NativeSoundPlayer nativeSoundPlayer = NativeSoundPlayer();
 
@@ -22,11 +22,10 @@ class SoundOptionHandler {
   static final windowsPlayer = AudioPlayer();
 
   final AssetSource _windowBeepSource = AssetSource('beep_new.wav');
-  final AssetSource _windowCountDownSource = AssetSource('notify.mp3');
+  final AssetSource _windowCountDownSource = AssetSource('notify_compress.mp3');
 
-  Future<void> initSettings(SharedPreferences pref) async {
-    var prefs = await SharedPreferences.getInstance();
-    isSoundOn = prefs.getBool(soundKey) ?? true;
+  Future<void> initSettings(SharedPreferencesWithCache pref) async {
+    isSoundOn = pref.getBool(soundKey) ?? true;
     SoundOptionHandler.isSoundOnStream.add(SoundOptionHandler.isSoundOn);
 
     if (Platform.isWindows) {
@@ -44,10 +43,12 @@ class SoundOptionHandler {
 
   Future<void> initMobileSettings() async {
     ByteData value = await rootBundle.load('assets/beep_new.wav');
-    _beepSoundId = await nativeSoundPlayer.load(value, assetName: 'beep_new.wav');
+    _beepSoundId =
+        await nativeSoundPlayer.load(value, assetName: 'beep_new.wav');
 
-    value = await rootBundle.load('assets/notify.mp3');
-    _countDownSoundId = await nativeSoundPlayer.load(value, assetName: 'notify.mp3');
+    value = await rootBundle.load('assets/notify_compress.mp3');
+    _countDownSoundId =
+        await nativeSoundPlayer.load(value, assetName: 'notify_compress.mp3');
 
     await nativeSoundPlayer.setVolume(soundId: _beepSoundId, volume: 1);
     await nativeSoundPlayer.setVolume(soundId: _countDownSoundId, volume: 1);

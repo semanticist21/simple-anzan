@@ -11,7 +11,7 @@ class NumOfProblemsPref
   late int _currentIndex;
   late NumOfProblems _currentValue;
 
-  NumOfProblemsPref(SharedPreferences prefs) {
+  NumOfProblemsPref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -43,7 +43,7 @@ class NumOfProblemsPref
   int enumToValue(NumOfProblems enumType) =>
       int.parse(enumNameToItemString(enumType.name));
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as NumOfProblems).index);
 
   NumOfProblems itemStrToValue(String str) {

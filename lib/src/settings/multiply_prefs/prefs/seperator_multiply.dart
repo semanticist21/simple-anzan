@@ -11,7 +11,7 @@ class SeperatorModeMultiplyPref
   late int _currentIndex;
   late SeperatorMultiplyMode _currentValue;
 
-  SeperatorModeMultiplyPref(SharedPreferences prefs) {
+  SeperatorModeMultiplyPref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -47,7 +47,7 @@ class SeperatorModeMultiplyPref
     }
   }
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as SeperatorMultiplyMode).index);
 }
 

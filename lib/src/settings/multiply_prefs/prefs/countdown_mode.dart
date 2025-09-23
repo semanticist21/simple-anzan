@@ -11,7 +11,7 @@ class CountDownModeMultiplyPref
   late int _currentIndex;
   late CountDownMultiplyMode _currentValue;
 
-  CountDownModeMultiplyPref(SharedPreferences prefs) {
+  CountDownModeMultiplyPref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -47,7 +47,7 @@ class CountDownModeMultiplyPref
     }
   }
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as CountDownMultiplyMode).index);
 }
 

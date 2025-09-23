@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsManager {
   // member
-  late SharedPreferences _prefs;
+  late SharedPreferencesWithCache _prefs;
 
   late BurningModePref _burningModePref;
   late CalculationModePref _calculationModePref;
@@ -27,11 +27,48 @@ class SettingsManager {
   SettingsManager._constructor();
 
   Future<void> initSettings() async {
-    _prefs = await SharedPreferences.getInstance();
+    // Migrate from legacy SharedPreferences to SharedPreferencesWithCache
+    final legacyPrefs = await SharedPreferences.getInstance();
+    _prefs = await SharedPreferencesWithCache.create(
+      cacheOptions: const SharedPreferencesWithCacheOptions(),
+    );
+
+    // Migrate existing data if needed
+    await _migrateFromLegacyPrefs(legacyPrefs, _prefs);
+
     refreshPrefValues(_prefs);
   }
 
-  void refreshPrefValues(SharedPreferences prefs) {
+  Future<void> _migrateFromLegacyPrefs(SharedPreferences legacy, SharedPreferencesWithCache cache) async {
+    // Only migrate if cache is empty and legacy has data
+    final legacyKeys = legacy.getKeys();
+    if (legacyKeys.isNotEmpty) {
+      for (String key in legacyKeys) {
+        final value = legacy.get(key);
+        if (value != null) {
+          switch (value.runtimeType) {
+            case bool:
+              await cache.setBool(key, value as bool);
+              break;
+            case int:
+              await cache.setInt(key, value as int);
+              break;
+            case double:
+              await cache.setDouble(key, value as double);
+              break;
+            case String:
+              await cache.setString(key, value as String);
+              break;
+            case List<String>:
+              await cache.setStringList(key, value as List<String>);
+              break;
+          }
+        }
+      }
+    }
+  }
+
+  void refreshPrefValues(SharedPreferencesWithCache prefs) {
     _burningModePref = BurningModePref(prefs);
     _calculationModePref = CalculationModePref(prefs);
     _shuffleModePref = ShuffleModePref(prefs);

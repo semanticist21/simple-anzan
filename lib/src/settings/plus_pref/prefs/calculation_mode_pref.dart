@@ -11,7 +11,7 @@ class CalculationModePref
   late int _currentIndex;
   late CalculationMode _currentValue;
 
-  CalculationModePref(SharedPreferences prefs) {
+  CalculationModePref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -47,7 +47,7 @@ class CalculationModePref
     }
   }
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as CalculationMode).index);
 }
 

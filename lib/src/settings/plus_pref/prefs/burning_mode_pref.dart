@@ -11,7 +11,7 @@ class BurningModePref implements PreferenceInterface<BurningMode, bool> {
   late int _currentIndex;
   late BurningMode _currentValue;
 
-  BurningModePref(SharedPreferences prefs) {
+  BurningModePref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -47,7 +47,7 @@ class BurningModePref implements PreferenceInterface<BurningMode, bool> {
     }
   }
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as BurningMode).index);
 }
 

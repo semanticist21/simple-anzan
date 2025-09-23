@@ -9,7 +9,7 @@ abstract class PreferenceInterface<T, V> {
   late int _currentIndex;
   late T _currentValue;
 
-  PreferenceInterface(SharedPreferences prefs) {
+  PreferenceInterface(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -30,5 +30,5 @@ abstract class PreferenceInterface<T, V> {
   // like Slow_07, It will extract duration 7000ms.
   V enumToValue(T enumType);
 
-  void saveSetting(SharedPreferences prefs, dynamic value);
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value);
 }

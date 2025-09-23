@@ -10,7 +10,7 @@ class SeperatorModePref implements PreferenceInterface<SeperatorMode, bool> {
   late int _currentIndex;
   late SeperatorMode _currentValue;
 
-  SeperatorModePref(SharedPreferences prefs) {
+  SeperatorModePref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -46,7 +46,7 @@ class SeperatorModePref implements PreferenceInterface<SeperatorMode, bool> {
     }
   }
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as SeperatorMode).index);
 }
 

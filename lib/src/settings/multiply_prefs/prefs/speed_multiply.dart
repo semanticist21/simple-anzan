@@ -18,7 +18,7 @@ class SpeedMultiplyPref
 
   late int _currentCustomValue;
 
-  SpeedMultiplyPref(SharedPreferences prefs) {
+  SpeedMultiplyPref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
 
@@ -87,10 +87,10 @@ class SpeedMultiplyPref
     return result;
   }
 
-  void saveSetting(SharedPreferences prefs, value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, value) =>
       prefs.setInt(_saveKey, (value as SpeedMultiply).index);
 
-  void saveCustomValue(SharedPreferences prefs, int value) =>
+  void saveCustomValue(SharedPreferencesWithCache prefs, int value) =>
       prefs.setInt(_saveCustomKey, value);
 
   int _getDurationInt(String str) {

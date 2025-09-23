@@ -11,7 +11,7 @@ class BurningModeMultiplyPref implements PreferenceInterface<BurningModeMultiply
   late int _currentIndex;
   late BurningModeMultiply _currentValue;
 
-  BurningModeMultiplyPref(SharedPreferences prefs) {
+  BurningModeMultiplyPref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -47,7 +47,7 @@ class BurningModeMultiplyPref implements PreferenceInterface<BurningModeMultiply
     }
   }
 
-  void saveSetting(SharedPreferences prefs, dynamic value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
       prefs.setInt(_saveKey, (value as BurningModeMultiply).index);
 }
 

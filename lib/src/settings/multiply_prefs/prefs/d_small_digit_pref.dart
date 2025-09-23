@@ -10,7 +10,7 @@ class SmallDigitPref implements PreferenceInterfaceItems<SmallDigit, int> {
   late int _currentIndex;
   late SmallDigit _currentValue;
 
-  SmallDigitPref(SharedPreferences prefs) {
+  SmallDigitPref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
     setIndex(index);
   }
@@ -59,7 +59,7 @@ class SmallDigitPref implements PreferenceInterfaceItems<SmallDigit, int> {
     return result;
   }
 
-  void saveSetting(SharedPreferences prefs, value) =>
+  void saveSetting(SharedPreferencesWithCache prefs, value) =>
       prefs.setInt(_saveKey, (value as SmallDigit).index);
 
   SmallDigit itemStrToValue(String str) {
