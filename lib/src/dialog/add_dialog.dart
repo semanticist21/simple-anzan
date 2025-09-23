@@ -39,7 +39,7 @@ class _AddDialogState extends State<AddDialog> {
               width: MediaQuery.of(context).size.width * 0.6,
               child: FittedBox(
                   fit: BoxFit.contain,
-                  child: Text('setSpeedTitle'.tr(),
+                  child: Text('customOptions.setSpeedTitle'.tr(),
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: MediaQuery.of(context).size.height * 0.0190,
@@ -55,7 +55,7 @@ class _AddDialogState extends State<AddDialog> {
             style: TextStyle(
                 color: Theme.of(context).colorScheme.onPrimaryContainer),
             decoration: InputDecoration(
-              helperText: 'rangeWord'.tr(),
+              helperText: 'customOptions.rangeWord'.tr(),
               helperStyle: TextStyle(
                   color: Theme.of(context).colorScheme.onPrimaryContainer),
               focusedBorder: UnderlineInputBorder(
@@ -70,7 +70,7 @@ class _AddDialogState extends State<AddDialog> {
             ],
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'pleaseInsertValue'.tr();
+                return 'customOptions.pleaseInsertValue'.tr();
               }
 
               var valueInt = int.tryParse(value);
@@ -79,11 +79,11 @@ class _AddDialogState extends State<AddDialog> {
               }
 
               if (valueInt > 30000) {
-                return 'pleaseTooBigValue'.tr();
+                return 'customOptions.pleaseTooBigValue'.tr();
               }
 
               if (valueInt < 100) {
-                return 'pleaseTooSmallValue'.tr();
+                return 'customOptions.pleaseTooSmallValue'.tr();
               }
 
               return null;

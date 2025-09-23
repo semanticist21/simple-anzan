@@ -1,4 +1,3 @@
-import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
 import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -20,9 +19,6 @@ class _ExitWatcherState extends State<ExitWatcher> with WindowListener {
   @override
   void dispose() {
     windowManager.removeListener(this);
-    SoundOptionHandler.nativeSoundPlayer.releaseAll();
-    SoundOptionHandler.windowsPlayer.release();
-    SoundOptionHandler.windowsPlayer.dispose();
     super.dispose();
   }
 

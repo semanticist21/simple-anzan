@@ -113,9 +113,7 @@ class MyApp extends StatelessWidget {
               title: 'app.name'.tr(),
               home: PopScope(
                 onPopInvokedWithResult: (didPop, result) async {
-                  if (didPop) {
-                    await SoundOptionHandler.nativeSoundPlayer.releaseAll();
-                  }
+                  // Audio players are automatically disposed
                 },
                 child: MultiProvider(providers: [
                   ChangeNotifierProvider<StateProvider>(

@@ -38,13 +38,12 @@ dependencies:
   shared_preferences: ^2.5.3
   universal_io: ^2.2.2
   intl: ^0.20.2
-  just_audio_windows: ^0.2.0
   window_manager: ^0.5.0
   flutter_colorpicker: ^1.0.3
   sqflite_common_ffi: ^2.3.3+1
   crypto: ^3.0.3
   flutter_native_splash: ^2.4.1
-  audioplayers: ^6.5.0
+  flutter_soloud: ^2.1.0
   easy_localization: ^3.0.7
   flutter_localizations:
     sdk: flutter

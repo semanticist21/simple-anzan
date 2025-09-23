@@ -29,7 +29,8 @@ class OptionManager {
     await setThemeSelector(_prefs);
   }
 
-  Future<void> _migrateFromLegacyPrefs(SharedPreferences legacy, SharedPreferencesWithCache cache) async {
+  Future<void> _migrateFromLegacyPrefs(
+      SharedPreferences legacy, SharedPreferencesWithCache cache) async {
     // Only migrate if cache is empty and legacy has data
     final legacyKeys = legacy.getKeys();
     if (legacyKeys.isNotEmpty) {

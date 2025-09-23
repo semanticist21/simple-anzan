@@ -28,7 +28,7 @@
     "digit": "桁数",
     "questions": "問題数",
     "notify": "事前通知",
-    "separator": ""
+    "separator": "コンマ生成"
   },
   "settingsMultiply": {
     "title": "設定(掛け算)",
@@ -53,7 +53,7 @@
     "noProbExecuted": "問題を先に実行してください。",
     "checkProb": "問題リストの確認",
     "checkProbQ": "問題リストの確認",
-    "stopIteration": "",
+    "stopIteration": "反復停止",
     "burningMode": "連続モード",
     "burningModeEnabled": "連続モードが有効になりました。これで無限に続きます。",
     "burningModeDisabled": "連続モードが無効になりました。設定された問題数で停止します。",

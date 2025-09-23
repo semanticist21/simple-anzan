@@ -23,7 +23,7 @@ Current version: 3.7.20+60
 ### Android 16KB Page Size Compliance
 - App targets Android 15 (API 35) for Google Play compliance
 - Updated dependencies to support 16KB memory page sizes
-- Key updated libraries: audioplayers ^6.6.0, shared_preferences ^2.2.3
+- Key updated libraries: flutter_soloud ^2.1.0, shared_preferences ^2.2.3
 
 ### Code Quality
 - `flutter analyze` - Run static analysis (uses analysis_options.yaml)
@@ -97,7 +97,7 @@ Uses Provider pattern for state management:
 - provider: State management
 - shared_preferences: Local storage
 - sqflite_common_ffi: Database
-- audioplayers: Audio playback
+- flutter_soloud: High-performance, low-latency audio playback
 - intl: Internationalization
 - crypto: Hashing utilities
 
@@ -114,10 +114,10 @@ Uses Provider pattern for state management:
 
 ### Android
 - Kotlin-based MainActivity
-- Custom NativeSoundPlayer for audio
 - Package name: com.kobbokkom.abacus_simple_anzan
 
 ### Sound System
-- Platform-specific audio handling
-- Native sound player implementation in `lib/src/utils/native_sound_player.dart`
+- High-performance audio handling using flutter_soloud package
+- Conditional audio format selection: OGG for Android, M4A for iOS, WAV for desktop
+- Low-latency audio playback optimized for games and interactive applications
 - Audio assets managed in the assets directory
