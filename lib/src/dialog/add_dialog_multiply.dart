@@ -1,4 +1,4 @@
-import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -39,7 +39,7 @@ class _AddDialogMultiplyState extends State<AddDialogMultiply> {
               width: MediaQuery.of(context).size.width * 0.6,
               child: FittedBox(
                   fit: BoxFit.contain,
-                  child: Text(LocalizationChecker.setSpeedTitle,
+                  child: Text('setSpeedTitle'.tr(),
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: MediaQuery.of(context).size.height * 0.0190,
@@ -55,7 +55,7 @@ class _AddDialogMultiplyState extends State<AddDialogMultiply> {
             style: TextStyle(
                 color: Theme.of(context).colorScheme.onPrimaryContainer),
             decoration: InputDecoration(
-              helperText: LocalizationChecker.rangeMultiplyWord,
+              helperText: 'rangeMultiplyWord'.tr(),
               helperStyle: TextStyle(
                   color: Theme.of(context).colorScheme.onPrimaryContainer),
               focusedBorder: UnderlineInputBorder(
@@ -70,7 +70,7 @@ class _AddDialogMultiplyState extends State<AddDialogMultiply> {
             ],
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return LocalizationChecker.pleaseInsertValue;
+                return 'pleaseInsertValue'.tr();
               }
 
               var valueInt = int.tryParse(value);
@@ -79,11 +79,11 @@ class _AddDialogMultiplyState extends State<AddDialogMultiply> {
               }
 
               if (valueInt > 30000) {
-                return LocalizationChecker.pleaseTooBigValue;
+                return 'pleaseTooBigValue'.tr();
               }
 
               if (valueInt < 100) {
-                return LocalizationChecker.pleaseTooSmallValue;
+                return 'pleaseTooSmallValue'.tr();
               }
 
               return null;
@@ -101,7 +101,7 @@ class _AddDialogMultiplyState extends State<AddDialogMultiply> {
                 }
               },
               child: Text(
-                LocalizationChecker.ok,
+                'buttons.ok'.tr(),
                 style: TextStyle(
                     fontSize: MediaQuery.of(context).size.height * 0.02,
                     color: Theme.of(context).colorScheme.onPrimaryContainer),

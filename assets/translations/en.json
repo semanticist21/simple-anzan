@@ -1,0 +1,67 @@
+{
+  "app": {
+    "name": "Abacus Simple Anzan"
+  },
+  "navigation": {
+    "homePlus": "addition",
+    "settingPlus": "+/-",
+    "homeMultiply": "multiplication",
+    "settingMultiply": " ×/÷"
+  },
+  "theme": {
+    "mode": "Change theme",
+    "sound": "Sound On/Off",
+    "fastSetting": "Fast Setting",
+    "preset": "Preset",
+    "presetSave": "Save Preset"
+  },
+  "buttons": {
+    "ok": "Ok",
+    "start": "Start !!",
+    "check": "Check Answer"
+  },
+  "settings": {
+    "title": "Settings",
+    "shuffle": "Shuffle",
+    "onlyPluses": "Only pluses",
+    "speed": "Speed",
+    "digit": "Digit",
+    "questions": "Questions",
+    "notify": "Notify at Start",
+    "separator": "Thousands Comma"
+  },
+  "settingsMultiply": {
+    "title": "Settings (multiplication)",
+    "isMultiply": "Change to division",
+    "speed": "Speed",
+    "bigDigit": "Big Digit",
+    "smallDigit": "Small Digit",
+    "questions": "Questions"
+  },
+  "customOptions": {
+    "setSpeedTitle": "Set custom speed. (1000 = 1sec)",
+    "rangeWord": "Enter a value between 100 and 30000.",
+    "pleaseInsertValue": "Please enter a value.",
+    "pleaseTooBigValue": "Value is too large.",
+    "pleaseTooSmallValue": "Value is too small.",
+    "rangeMultiplyWord": "Enter a value between 100 and 30000.",
+    "insertBigger": "Small digit must be less than big digit.",
+    "shuffleDesc": "shuffle numbers with different digits",
+    "shouldSoundOnDesc": "Sound option should be on"
+  },
+  "problemList": {
+    "noProbExecuted": "Run calculation first.",
+    "checkProb": "Check Questions & Answers",
+    "checkProbQ": "Check Questions",
+    "stopIteration": "Stop Iteration",
+    "burningMode": "Burning Mode",
+    "burningModeEnabled": "Burning mode enabled. Now it will continue infinitely without stop.",
+    "burningModeDisabled": "Burning mode disabled. Now it will stop after the set number of questions.",
+    "problem": "Question",
+    "answer": "Answer"
+  },
+  "other": {
+    "warning": "Warning",
+    "onBurning": "On Burning"
+  }
+}

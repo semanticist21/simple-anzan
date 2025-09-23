@@ -1,0 +1,67 @@
+{
+  "app": {
+    "name": "珠算簡単暗算"
+  },
+  "navigation": {
+    "homePlus": "足し算",
+    "settingPlus": "+/-",
+    "homeMultiply": "掛け算",
+    "settingMultiply": " ×/÷"
+  },
+  "theme": {
+    "mode": "カラー テーマ 交換",
+    "sound": "音を立てる/消す",
+    "fastSetting": "簡便設定",
+    "preset": "プリセット",
+    "presetSave": "プリセットを保存する"
+  },
+  "buttons": {
+    "ok": "確認",
+    "start": "スタート",
+    "check": "正解を見る"
+  },
+  "settings": {
+    "title": "設定",
+    "shuffle": "シャッフル",
+    "onlyPluses": "足し算だけ",
+    "speed": "速度",
+    "digit": "桁数",
+    "questions": "問題数",
+    "notify": "事前通知",
+    "separator": ""
+  },
+  "settingsMultiply": {
+    "title": "設定(掛け算)",
+    "isMultiply": "割り算",
+    "speed": "速さ",
+    "bigDigit": "大桁の数",
+    "smallDigit": "小桁の数",
+    "questions": "問題数"
+  },
+  "customOptions": {
+    "setSpeedTitle": "速度を設定します。(1000 = 1秒)",
+    "rangeWord": "100~30000の値を入れてください。",
+    "pleaseInsertValue": "値を入力してください。",
+    "pleaseTooBigValue": "値が大きすぎます。",
+    "pleaseTooSmallValue": "値が小さすぎます。",
+    "rangeMultiplyWord": "100~30000の値を入れてください。",
+    "insertBigger": "小さい桁数は大きい桁数より小さくする必要があります。",
+    "shuffleDesc": "他の桁と混ぜて計算します。",
+    "shouldSoundOnDesc": "サウンドオプションをオンにする必要があります"
+  },
+  "problemList": {
+    "noProbExecuted": "問題を先に実行してください。",
+    "checkProb": "問題リストの確認",
+    "checkProbQ": "問題リストの確認",
+    "stopIteration": "",
+    "burningMode": "連続モード",
+    "burningModeEnabled": "連続モードが有効になりました。これで無限に続きます。",
+    "burningModeDisabled": "連続モードが無効になりました。設定された問題数で停止します。",
+    "problem": "問題",
+    "answer": "正答"
+  },
+  "other": {
+    "warning": "警告",
+    "onBurning": "連続モード"
+  }
+}

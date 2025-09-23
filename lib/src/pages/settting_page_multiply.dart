@@ -1,6 +1,6 @@
 import 'package:abacus_simple_anzan/src/dialog/custom_alert_dialog.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
-import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/seperator_multiply.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +83,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                   width: MediaQuery.of(context).size.width *
                                       0.015),
                               Text(
-                                LocalizationChecker.settingsMultiply,
+                                'settingsMultiply.title'.tr(),
                                 style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.height *
                                       0.023,
@@ -118,7 +118,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     buildToggleOption(
-                                        LocalizationChecker.isMultiply,
+                                        'settingsMultiply.isMultiply'.tr(),
                                         Icons.calculate,
                                         _manager.enumToValue<
                                             CalCulationMultiplyMode,
@@ -126,7 +126,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         toggleMultiplyModeCallback),
                                     // speed.
                                     buildDropdownButton(
-                                        LocalizationChecker.speedMultiply,
+                                        'settingsMultiply.speed'.tr(),
                                         Icon(
                                           Icons.speed,
                                           color: Theme.of(context)
@@ -140,7 +140,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         changeOptionCallback<SpeedMultiply>),
                                     // digit.
                                     buildDropdownButton(
-                                        LocalizationChecker.smallDigitMultiply,
+                                        'settingsMultiply.smallDigit'.tr(),
                                         Icon(
                                           CupertinoIcons.number_square,
                                           color: Theme.of(context)
@@ -153,7 +153,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                             _manager),
                                         changeOptionCallback<SmallDigit>),
                                     buildDropdownButton(
-                                        LocalizationChecker.bigDigitMultiply,
+                                        'settingsMultiply.bigDigit'.tr(),
                                         Icon(
                                           CupertinoIcons.number_square_fill,
                                           color: Theme.of(context)
@@ -166,9 +166,9 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                             _manager),
                                         changeOptionCallback<BigDigit>),
                                     Tooltip(
-                                      message: LocalizationChecker.seperator,
+                                      message: 'settings.separator'.tr(),
                                       child: buildToggleOption(
-                                          LocalizationChecker.seperator,
+                                          'settings.separator'.tr(),
                                           Icons.one_k,
                                           _manager.enumToValue<
                                               SeperatorMultiplyMode,
@@ -177,9 +177,9 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                     ),
                                     Tooltip(
                                       message:
-                                          LocalizationChecker.shouldSoundOnDesc,
+                                          'customOptions.shouldSoundOnDesc'.tr(),
                                       child: buildToggleOption(
-                                          LocalizationChecker.notify,
+                                          'settings.notify'.tr(),
                                           Icons.notifications,
                                           _manager.enumToValue<
                                               CountDownMultiplyMode,
@@ -421,7 +421,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
 
   Widget getAlertWarningDialog(BuildContext context) {
     return CustomAlert(
-        content: LocalizationChecker.insertBigger,
-        title: LocalizationChecker.warning);
+        content: 'customOptions.insertBigger'.tr(),
+        title: 'other.warning'.tr());
   }
 }

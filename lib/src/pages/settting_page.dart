@@ -1,4 +1,4 @@
-import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/seperator.dart';
 import 'package:flutter/cupertino.dart';
@@ -82,7 +82,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   width: MediaQuery.of(context).size.width *
                                       0.015),
                               Text(
-                                LocalizationChecker.settings,
+                                'settings.title'.tr(),
                                 style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.height *
                                       0.023,
@@ -117,23 +117,23 @@ class _SettingsPageState extends State<SettingsPage> {
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     buildToggleOption(
-                                        LocalizationChecker.onlyPluses,
+                                        'settings.onlyPluses'.tr(),
                                         Icons.calculate,
                                         _manager.enumToValue<CalculationMode,
                                             bool>(_isOnlyPlus),
                                         togglePlusModeCallback),
                                     Tooltip(
                                         message:
-                                            LocalizationChecker.shulffleDesc,
+                                            'customOptions.shuffleDesc'.tr(),
                                         child: buildToggleOption(
-                                            LocalizationChecker.shuffle,
+                                            'settings.shuffle'.tr(),
                                             Icons.shuffle,
                                             _manager.enumToValue<ShuffleMode,
                                                 bool>(_isShuffle),
                                             toggleShuffleModeCallback)),
                                     // speed.
                                     buildDropdownButton(
-                                        LocalizationChecker.speed,
+                                        'settings.speed'.tr(),
                                         Icon(
                                           Icons.speed,
                                           color: Theme.of(context)
@@ -146,7 +146,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                         changeOptionCallback<Speed>),
                                     // digit.
                                     buildDropdownButton(
-                                        LocalizationChecker.digit,
+                                        'settings.digit'.tr(),
                                         Icon(
                                           Icons.onetwothree,
                                           color: Theme.of(context)
@@ -159,7 +159,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                         changeOptionCallback<Digit>),
                                     // num of problems.
                                     buildDropdownButton(
-                                        LocalizationChecker.numOfProblems,
+                                        'settings.questions'.tr(),
                                         Icon(
                                           Icons.check,
                                           color: Theme.of(context)
@@ -172,9 +172,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                             _manager),
                                         changeOptionCallback<NumOfProblems>),
                                     Tooltip(
-                                      message: LocalizationChecker.seperator,
+                                      message: 'settings.separator'.tr(),
                                       child: buildToggleOption(
-                                          LocalizationChecker.seperator,
+                                          'settings.separator'.tr(),
                                           Icons.one_k,
                                           _manager.enumToValue<SeperatorMode,
                                               bool>(_seperatorMode),
@@ -182,9 +182,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                     ),
                                     Tooltip(
                                       message:
-                                          LocalizationChecker.shouldSoundOnDesc,
+                                          'customOptions.shouldSoundOnDesc'.tr(),
                                       child: buildToggleOption(
-                                          LocalizationChecker.notify,
+                                          'settings.notify'.tr(),
                                           Icons.notifications,
                                           _manager.enumToValue<CountDownMode,
                                               bool>(_countDownMode),

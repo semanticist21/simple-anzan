@@ -1,5 +1,5 @@
 import 'package:abacus_simple_anzan/src/components/flashing_container.dart';
-import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/burning_mode_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
@@ -12,7 +12,7 @@ class StateProvider extends ChangeNotifier {
 
   var isButtonVisible = true;
   var isQuestionListButtonVisible = false;
-  var buttonText = LocalizationChecker.start;
+  var buttonText = 'buttons.start'.tr();
   var nums = List<int>.empty(growable: true);
 
   void changeState({ButtonState desiredState = ButtonState.autoState}) {
@@ -57,18 +57,18 @@ enum ButtonState {
 String getButtonStr(ButtonState state) {
   switch (state) {
     case ButtonState.iterationNotStarted:
-      return LocalizationChecker.start;
+      return 'buttons.start'.tr();
     case ButtonState.iterationStarted:
       // Check if burning mode is enabled
       BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
       if (mode == BurningMode.on) {
-        return LocalizationChecker.onBurning;
+        return 'other.onBurning'.tr();
       }
       return hidden;
     case ButtonState.iterationCompleted:
-      return LocalizationChecker.check;
+      return 'buttons.check'.tr();
     default:
-      return LocalizationChecker.start;
+      return 'buttons.start'.tr();
   }
 }
 

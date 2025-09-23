@@ -1,4 +1,4 @@
-import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../const/const.dart';
@@ -54,7 +54,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                           splashRadius: 10,
                         ),
                         title: FittedBox(
-                            child: Text(LocalizationChecker.checkProb,
+                            child: Text('problemList.checkProb'.tr(),
                                 style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     color: Theme.of(context)
@@ -181,7 +181,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
           color: Theme.of(context).colorScheme.onBackground,
         ),
         const SizedBox(height: 10),
-        Text(LocalizationChecker.noProbExecuted,
+        Text('problemList.noProbExecuted'.tr(),
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height * 0.034,
                 fontWeight: FontWeight.w600,

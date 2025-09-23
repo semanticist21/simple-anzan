@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:abacus_simple_anzan/client.dart';
-import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:abacus_simple_anzan/src/model/preset_multiply_model.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_big_digit_pref.dart';
@@ -67,7 +67,7 @@ class _PresetMultiplyListState extends State<PresetMultiplyList> {
                           splashRadius: 10,
                         ),
                         title: FittedBox(
-                            child: Text(LocalizationChecker.preset,
+                            child: Text('theme.preset'.tr(),
                                 style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     color: Theme.of(context)

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
 
-import '../const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../functions/hash.dart';
 import '../model/save_info.dart';
 import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
@@ -77,7 +77,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
                             splashRadius: 10,
                           ),
                           automaticallyImplyLeading: false,
-                          title: Text(LocalizationChecker.settings,
+                          title: Text('settings.title'.tr(),
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
@@ -108,17 +108,16 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
                                           CrossAxisAlignment.stretch,
                                       children: [
                                         buildToggleOption(
-                                            LocalizationChecker.onlyPluses,
+                                            'settings.onlyPluses'.tr(),
                                             Icons.calculate,
                                             _manager.enumToValue<
                                                 CalculationMode,
                                                 bool>(_isOnlyPlus),
                                             togglePlusModeCallback),
                                         Tooltip(
-                                            message: LocalizationChecker
-                                                .shulffleDesc,
+                                            message: 'customOptions.shuffleDesc'.tr(),
                                             child: buildToggleOption(
-                                                LocalizationChecker.shuffle,
+                                                'settings.shuffle'.tr(),
                                                 Icons.shuffle,
                                                 _manager.enumToValue<
                                                     ShuffleMode,
@@ -126,7 +125,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
                                                 toggleShuffleModeCallback)),
                                         // speed.
                                         buildDropdownButton(
-                                            LocalizationChecker.speed,
+                                            'settings.speed'.tr(),
                                             Icon(
                                               Icons.speed,
                                               color: Theme.of(context)
@@ -140,7 +139,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
                                             changeOptionCallback<Speed>),
                                         // digit.
                                         buildDropdownButton(
-                                            LocalizationChecker.digit,
+                                            'settings.digit'.tr(),
                                             Icon(
                                               Icons.onetwothree,
                                               color: Theme.of(context)
@@ -154,7 +153,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
                                             changeOptionCallback<Digit>),
                                         // num of problems.
                                         buildDropdownButton(
-                                            LocalizationChecker.numOfProblems,
+                                            'settings.questions'.tr(),
                                             Icon(
                                               Icons.check,
                                               color: Theme.of(context)
@@ -168,7 +167,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
                                             changeOptionCallback<
                                                 NumOfProblems>),
                                         buildToggleOption(
-                                            LocalizationChecker.notify,
+                                            'settings.notify'.tr(),
                                             Icons.notifications,
                                             _manager.enumToValue<CountDownMode,
                                                 bool>(_countDownMode),
@@ -270,7 +269,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
                                           });
                                         },
                                         child: Text(
-                                          LocalizationChecker.presetSave,
+                                          'theme.presetSave'.tr(),
                                           style: TextStyle(
                                               fontSize: MediaQuery.of(context)
                                                       .size
@@ -286,7 +285,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
                                           Navigator.of(context).pop();
                                         },
                                         child: Text(
-                                          LocalizationChecker.ok,
+                                          'buttons.ok'.tr(),
                                           style: TextStyle(
                                               fontSize: MediaQuery.of(context)
                                                       .size

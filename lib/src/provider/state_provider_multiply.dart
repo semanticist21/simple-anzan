@@ -5,7 +5,7 @@ import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager
 
 import '../functions/tuple.dart';
 import '../const/const.dart';
-import '../const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class StateMultiplyProvider extends ChangeNotifier {
   var state = ButtonMultiplyState.iterationNotStarted;
@@ -14,7 +14,7 @@ class StateMultiplyProvider extends ChangeNotifier {
   var isButtonVisible = true;
   var isQuestionListButtonVisible = false;
 
-  var buttonText = LocalizationChecker.start;
+  var buttonText = 'buttons.start'.tr();
   var nums = List<Tuple<int, int>>.empty(growable: true);
   var isMultiplies = List<bool>.empty(growable: true);
 
@@ -61,18 +61,18 @@ enum ButtonMultiplyState {
 String getButtonStr(ButtonMultiplyState state) {
   switch (state) {
     case ButtonMultiplyState.iterationNotStarted:
-      return LocalizationChecker.start;
+      return 'buttons.start'.tr();
     case ButtonMultiplyState.iterationStarted:
       // Check if burning mode is enabled
       BurningModeMultiply mode = SettingsMultiplyManager().getCurrentEnum<BurningModeMultiply>();
       if (mode == BurningModeMultiply.on) {
-        return LocalizationChecker.onBurning;
+        return 'other.onBurning'.tr();
       }
       return hidden;
     case ButtonMultiplyState.iterationCompleted:
-      return LocalizationChecker.check;
+      return 'buttons.check'.tr();
     default:
-      return LocalizationChecker.start;
+      return 'buttons.start'.tr();
   }
 }
 

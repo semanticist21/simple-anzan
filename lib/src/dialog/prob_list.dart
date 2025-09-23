@@ -1,4 +1,4 @@
-import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../const/const.dart';
@@ -44,7 +44,7 @@ class _ProbListState extends State<ProbList> {
                         ),
                         title: FittedBox(
                             child: Text(
-                          LocalizationChecker.checkProb,
+                          'problemList.checkProb'.tr(),
                           style: TextStyle(
                               fontWeight: FontWeight.normal,
                               fontSize:
@@ -158,7 +158,7 @@ class _ProbListState extends State<ProbList> {
             size: MediaQuery.of(context).size.height * 0.13,
             color: Theme.of(context).colorScheme.onBackground),
         const SizedBox(height: 10),
-        Text(LocalizationChecker.noProbExecuted,
+        Text('problemList.noProbExecuted'.tr(),
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height * 0.03,
                 fontWeight: FontWeight.w600,

@@ -16,9 +16,10 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/burning_mode_pr
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/burning_mode_multiply_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
-import 'package:abacus_simple_anzan/src/const/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:abacus_simple_anzan/router.dart';
@@ -34,6 +35,7 @@ import 'src/dialog/windows_add_option.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
   if (Platform.isWindows) {
     await windowManager.ensureInitialized();
@@ -62,7 +64,19 @@ void main() async {
     }
   };
 
-  runApp(Platform.isWindows ? const ExitWatcher(item: MyApp()) : const MyApp());
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ko'),
+        Locale('ja')
+      ],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      child:
+          Platform.isWindows ? const ExitWatcher(item: MyApp()) : const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -75,6 +89,14 @@ class MyApp extends StatelessWidget {
         initialData: true,
         stream: ThemeSelector.isDarkStream.stream,
         builder: (context, snapshot) => MaterialApp(
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                EasyLocalization.of(context)!.delegate,
+              ],
+              supportedLocales: EasyLocalization.of(context)!.supportedLocales,
+              locale: EasyLocalization.of(context)!.locale,
               scrollBehavior: const MaterialScrollBehavior().copyWith(
                   dragDevices: {
                     PointerDeviceKind.mouse,
@@ -88,7 +110,7 @@ class MyApp extends StatelessWidget {
               theme: ThemeSelector.isDark
                   ? ThemeSelector.getBlackTheme()
                   : ThemeSelector.getWhiteTheme(),
-              title: LocalizationChecker.appName,
+              title: 'app.name'.tr(),
               home: PopScope(
                 onPopInvokedWithResult: (didPop, result) async {
                   if (didPop) {
@@ -106,7 +128,6 @@ class MyApp extends StatelessWidget {
   }
 
   Future<void> _init() async {
-    LocalizationChecker();
     await SettingsManager().initSettings();
     await SettingsMultiplyManager().initSettings();
     await OptionManager().initSettings();
@@ -197,7 +218,7 @@ class _Home extends State<Home> {
                       width: 40,
                       margin: const EdgeInsets.only(right: 10),
                       child: Tooltip(
-                          message: LocalizationChecker.burningMode,
+                          message: 'problemList.burningMode'.tr(),
                           child: RawMaterialButton(
                             onPressed: _toggleBurningMode,
                             elevation: 2.0,
@@ -220,7 +241,7 @@ class _Home extends State<Home> {
                       width: 40,
                       margin: const EdgeInsets.only(right: 10),
                       child: Tooltip(
-                          message: LocalizationChecker.stopIteration,
+                          message: 'problemList.stopIteration'.tr(),
                           child: RawMaterialButton(
                             onPressed: requestButtonStopIteration,
                             elevation: 2.0,
@@ -239,7 +260,7 @@ class _Home extends State<Home> {
                       width: 40,
                       margin: const EdgeInsets.only(right: 10),
                       child: Tooltip(
-                          message: LocalizationChecker.checkProb,
+                          message: 'problemList.checkProb'.tr(),
                           child: RawMaterialButton(
                             onPressed: () {
                               if (_currentIndex != 0 && _currentIndex != 2) {
@@ -267,7 +288,7 @@ class _Home extends State<Home> {
                           : false,
                       child: Row(children: [
                         Tooltip(
-                            message: LocalizationChecker.preset,
+                            message: 'theme.preset'.tr(),
                             child: IconButton(
                               onPressed: () {
                                 if (_currentIndex == 0) {
@@ -305,7 +326,7 @@ class _Home extends State<Home> {
                               splashRadius: 15,
                             )),
                         Tooltip(
-                            message: LocalizationChecker.fastSetting,
+                            message: 'theme.fastSetting'.tr(),
                             child: IconButton(
                               onPressed: () {
                                 if (_currentIndex == 0) {
@@ -330,7 +351,7 @@ class _Home extends State<Home> {
                       ])),
                   const SizedBox(width: 5),
                   Tooltip(
-                      message: LocalizationChecker.soundOn,
+                      message: 'theme.sound'.tr(),
                       child: Icon(
                         SoundOptionHandler.isSoundOn
                             ? CupertinoIcons.speaker_2
@@ -357,7 +378,7 @@ class _Home extends State<Home> {
           const SizedBox(width: 5),
           Row(children: [
             Tooltip(
-                message: LocalizationChecker.mode,
+                message: 'theme.mode'.tr(),
                 child: Icon(
                   ThemeSelector.isDark ? Icons.nightlight : Icons.sunny,
                   color: Theme.of(context).colorScheme.onBackground,
@@ -400,7 +421,7 @@ class _Home extends State<Home> {
             icon: Icon(Icons.add_to_photos,
                 color: Theme.of(context).colorScheme.onInverseSurface,
                 size: MediaQuery.of(context).size.height * 0.023),
-            label: LocalizationChecker.homePlusLabel,
+            label: 'navigation.homePlus'.tr(),
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.settings_outlined,
@@ -409,7 +430,7 @@ class _Home extends State<Home> {
             icon: Icon(Icons.settings,
                 color: Theme.of(context).colorScheme.onInverseSurface,
                 size: MediaQuery.of(context).size.height * 0.023),
-            label: LocalizationChecker.settingPlusLabel,
+            label: 'navigation.settingPlus'.tr(),
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(CupertinoIcons.xmark_circle,
@@ -418,7 +439,7 @@ class _Home extends State<Home> {
             icon: Icon(CupertinoIcons.xmark_circle_fill,
                 color: Theme.of(context).colorScheme.onInverseSurface,
                 size: MediaQuery.of(context).size.height * 0.023),
-            label: LocalizationChecker.homeMultiplyLabel,
+            label: 'navigation.homeMultiply'.tr(),
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(CupertinoIcons.gear,
@@ -427,7 +448,7 @@ class _Home extends State<Home> {
             icon: Icon(CupertinoIcons.gear_alt_fill,
                 color: Theme.of(context).colorScheme.onInverseSurface,
                 size: MediaQuery.of(context).size.height * 0.023),
-            label: LocalizationChecker.settingMultiplyLabel,
+            label: 'navigation.settingMultiply'.tr(),
           )
         ],
         onTap: _onTap,
@@ -486,8 +507,8 @@ class _Home extends State<Home> {
             currentMode == BurningMode.on ? BurningMode.off : BurningMode.on;
         SettingsManager().saveSetting(newMode);
         message = newMode == BurningMode.on
-            ? LocalizationChecker.burningModeEnabled
-            : LocalizationChecker.burningModeDisabled;
+            ? 'problemList.burningModeEnabled'.tr()
+            : 'problemList.burningModeDisabled'.tr();
       } else if (_currentIndex == 2) {
         // Multiplication mode
         BurningModeMultiply currentMode =
@@ -497,8 +518,8 @@ class _Home extends State<Home> {
             : BurningModeMultiply.on;
         SettingsMultiplyManager().saveSetting(newMode);
         message = newMode == BurningModeMultiply.on
-            ? LocalizationChecker.burningModeEnabled
-            : LocalizationChecker.burningModeDisabled;
+            ? 'problemList.burningModeEnabled'.tr()
+            : 'problemList.burningModeDisabled'.tr();
       }
 
       // Show toast notification

@@ -1,5 +1,5 @@
 import 'package:abacus_simple_anzan/src/components/flashing_container.dart';
-import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,7 +43,7 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(LocalizationChecker.checkProb,
+                          Text('problemList.checkProb'.tr(),
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme

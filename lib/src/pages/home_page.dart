@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 
 import '../components/flicker.dart';
-import '../const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../dialog/prob_list.dart';
 import '../provider/state_provider.dart';
 import '../settings/plus_pref/prefs/burning_mode_pref.dart';
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(LocalizationChecker.checkProbQ,
+                          Text('problemList.checkProbQ'.tr(),
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
@@ -122,7 +122,8 @@ class _HomePageState extends State<HomePage> {
                                     icon: Icon(
                                       CupertinoIcons.flame_fill,
                                       color: Colors.white,
-                                      size: MediaQuery.of(context).size.height * 0.05,
+                                      size: MediaQuery.of(context).size.height *
+                                          0.05,
                                     ),
                                     label: Text(
                                       value.buttonText,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CustomAlert extends StatefulWidget {
   const CustomAlert({super.key, required this.content, required this.title});
@@ -32,7 +32,7 @@ class _CustomAlertState extends State<CustomAlert> {
             child: TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(
-                  LocalizationChecker.ok,
+                  'buttons.ok'.tr(),
                   style: TextStyle(
                       fontSize: MediaQuery.of(context).size.height * 0.02,
                       color: Theme.of(context).colorScheme.primaryContainer),

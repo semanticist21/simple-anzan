@@ -1,0 +1,67 @@
+{
+  "app": {
+    "name": "주산심플암산"
+  },
+  "navigation": {
+    "homePlus": "덧셈",
+    "settingPlus": "+/-",
+    "homeMultiply": "곱셈",
+    "settingMultiply": " ×/÷"
+  },
+  "theme": {
+    "mode": "색상 모드 바꾸기",
+    "sound": "소리 실행/끄기",
+    "fastSetting": "빠른 설정",
+    "preset": "프리셋",
+    "presetSave": "프리셋 저장"
+  },
+  "buttons": {
+    "ok": "확인",
+    "start": "시작 !!",
+    "check": "정답 확인"
+  },
+  "settings": {
+    "title": "설정",
+    "shuffle": "섞기",
+    "onlyPluses": "덧셈(+)만 하기",
+    "speed": "문제 속도",
+    "digit": "자리 수",
+    "questions": "문제 수",
+    "notify": "시작 전 알림",
+    "separator": "쉼표 생성"
+  },
+  "settingsMultiply": {
+    "title": "설정 (곱셈)",
+    "isMultiply": "나눗셈 하기",
+    "speed": "문제 속도",
+    "bigDigit": "큰 자리 수",
+    "smallDigit": "작은 자리 수",
+    "questions": "문제 수"
+  },
+  "customOptions": {
+    "setSpeedTitle": "속도를 설정합니다. (1000 = 1초)",
+    "rangeWord": "100~30000 사이의 값을 입력하세요.",
+    "pleaseInsertValue": "값을 입력하세요.",
+    "pleaseTooBigValue": "값이 너무 큽니다.",
+    "pleaseTooSmallValue": "값이 너무 작습니다.",
+    "rangeMultiplyWord": "100~30000 사이의 값을 입력하세요.",
+    "insertBigger": "작은 자리 수가 큰 자리 수보다 작아야 합니다.",
+    "shuffleDesc": "다른 자릿수와 섞어 계산합니다.",
+    "shouldSoundOnDesc": "사운드 옵션이 켜져 있어야 합니다."
+  },
+  "problemList": {
+    "noProbExecuted": "실행된 문제가 없습니다.",
+    "checkProb": "문제 & 정답 확인",
+    "checkProbQ": "문제 리스트 확인",
+    "stopIteration": "문제 중지",
+    "burningMode": "연속 모드",
+    "burningModeEnabled": "연속 모드가 활성화되었습니다. 이제 문제가 무한히 계속됩니다.",
+    "burningModeDisabled": "연속 모드가 비활성화되었습니다. 설정된 문제 수만큼만 실행됩니다.",
+    "problem": "문제",
+    "answer": "정답"
+  },
+  "other": {
+    "warning": "경고",
+    "onBurning": "연속 모드"
+  }
+}

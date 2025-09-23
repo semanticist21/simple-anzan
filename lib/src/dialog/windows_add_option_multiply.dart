@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
 
-import '../const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
 import '../settings/multiply_prefs/prefs/countdown_mode.dart';
 import '../settings/multiply_prefs/prefs/d_big_digit_pref.dart';
@@ -79,7 +79,7 @@ class _WindowsAddOptionMultiplyDialogState
                               splashRadius: 10,
                             ),
                             automaticallyImplyLeading: false,
-                            title: Text(LocalizationChecker.settings,
+                            title: Text('settings.title'.tr(),
                                 style: TextStyle(
                                     color: Theme.of(context)
                                         .colorScheme
@@ -111,7 +111,7 @@ class _WindowsAddOptionMultiplyDialogState
                                       children: [
                                         // plus & minus mode.
                                         buildToggleOption(
-                                            LocalizationChecker.isMultiply,
+                                            'settingsMultiply.isMultiply'.tr(),
                                             Icons.calculate,
                                             _manager.enumToValue<
                                                 CalCulationMultiplyMode,
@@ -119,7 +119,7 @@ class _WindowsAddOptionMultiplyDialogState
                                             toggleMultiplyModeCallback),
                                         // speed.
                                         buildDropdownButton(
-                                            LocalizationChecker.speedMultiply,
+                                            'settingsMultiply.speed'.tr(),
                                             Icon(
                                               Icons.speed,
                                               color: Theme.of(context)
@@ -134,8 +134,7 @@ class _WindowsAddOptionMultiplyDialogState
                                                 SpeedMultiply>),
                                         // digit.
                                         buildDropdownButton(
-                                            LocalizationChecker
-                                                .smallDigitMultiply,
+                                            'settingsMultiply.smallDigit'.tr(),
                                             Icon(
                                               CupertinoIcons.number_square,
                                               color: Theme.of(context)
@@ -148,8 +147,7 @@ class _WindowsAddOptionMultiplyDialogState
                                                 _manager),
                                             changeOptionCallback<SmallDigit>),
                                         buildDropdownButton(
-                                            LocalizationChecker
-                                                .bigDigitMultiply,
+                                            'settingsMultiply.bigDigit'.tr(),
                                             Icon(
                                               CupertinoIcons.number_square_fill,
                                               color: Theme.of(context)
@@ -162,7 +160,7 @@ class _WindowsAddOptionMultiplyDialogState
                                                 _manager),
                                             changeOptionCallback<BigDigit>),
                                         buildToggleOption(
-                                            LocalizationChecker.notify,
+                                            'settings.notify'.tr(),
                                             Icons.notifications,
                                             _manager.enumToValue<
                                                 CountDownMultiplyMode,
@@ -267,7 +265,7 @@ class _WindowsAddOptionMultiplyDialogState
                                             });
                                           },
                                           child: Text(
-                                            LocalizationChecker.presetSave,
+                                            'theme.presetSave'.tr(),
                                             style: TextStyle(
                                                 fontSize: MediaQuery.of(context)
                                                         .size
@@ -283,7 +281,7 @@ class _WindowsAddOptionMultiplyDialogState
                                             Navigator.of(context).pop();
                                           },
                                           child: Text(
-                                            LocalizationChecker.ok,
+                                            'buttons.ok'.tr(),
                                             style: TextStyle(
                                                 fontSize: MediaQuery.of(context)
                                                         .size
@@ -515,12 +513,12 @@ class _WindowsAddOptionMultiplyDialogState
   AlertDialog getAlertWarningDialog(BuildContext context) {
     return AlertDialog(
       title: Text(
-        LocalizationChecker.warning,
+        'other.warning'.tr(),
         style: TextStyle(
             fontSize: MediaQuery.of(context).size.height * 0.025,
             color: Theme.of(context).colorScheme.onBackground),
       ),
-      content: Text(LocalizationChecker.insertBigger,
+      content: Text('customOptions.insertBigger'.tr(),
           style: TextStyle(
               fontSize: MediaQuery.of(context).size.height * 0.02,
               color: Theme.of(context).colorScheme.onBackground)),
@@ -530,7 +528,7 @@ class _WindowsAddOptionMultiplyDialogState
             child: TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(
-                  LocalizationChecker.ok,
+                  'buttons.ok'.tr(),
                   style: TextStyle(
                       fontSize: MediaQuery.of(context).size.height * 0.02,
                       color: Theme.of(context).colorScheme.onBackground),

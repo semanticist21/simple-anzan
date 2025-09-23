@@ -1,4 +1,4 @@
-import 'package:abacus_simple_anzan/src/const/localization.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class Loading extends StatefulWidget {
@@ -42,7 +42,7 @@ class _LoadingState extends State<Loading> {
                         ),
                         const SizedBox(height: 20),
                         FittedBox(
-                            child: Text(LocalizationChecker.appName,
+                            child: Text('app.name'.tr(),
                                 style: const TextStyle(
                                     color: Colors.black87,
                                     decoration: TextDecoration.none,
