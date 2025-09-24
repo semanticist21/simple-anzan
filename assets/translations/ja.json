@@ -52,7 +52,8 @@
   },
   "problemList": {
     "noProbExecuted": "問題を先に実行してください。",
-    "checkProb": "問題リストの確認",
+    "checkProb": "問題と答え",
+    "checkProbDesc": "セッションのすべての計算問題と答えを確認します。",
     "checkProbQ": "問題リストの確認",
     "stopIteration": "反復停止",
     "burningMode": "連続モード",

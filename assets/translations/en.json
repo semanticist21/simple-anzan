@@ -52,7 +52,8 @@
   },
   "problemList": {
     "noProbExecuted": "Run calculation first.",
-    "checkProb": "Check Questions & Answers",
+    "checkProb": "Questions & Answers",
+    "checkProbDesc": "Review all calculation problems and answers from your session.",
     "checkProbQ": "Check Questions",
     "stopIteration": "Stop Iteration",
     "burningMode": "Burning Mode",

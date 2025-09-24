@@ -52,7 +52,8 @@
   },
   "problemList": {
     "noProbExecuted": "실행된 문제가 없습니다.",
-    "checkProb": "문제 & 정답 확인",
+    "checkProb": "문제와 정답",
+    "checkProbDesc": "세션의 모든 계산 문제와 답을 확인합니다.",
     "checkProbQ": "문제 리스트 확인",
     "stopIteration": "문제 중지",
     "burningMode": "연속 모드",

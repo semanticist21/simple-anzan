@@ -22,7 +22,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 600, maxHeight: 600),
+            constraints: const BoxConstraints(maxWidth: 600, maxHeight: 650),
             child: Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surface,
@@ -45,32 +45,45 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                         ),
                       ),
                     ),
-                    child: Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Text(
-                            'problemList.checkProb'.tr(),
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).colorScheme.onSurface,
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'problemList.checkProb'.tr(),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(context).colorScheme.onSurface,
+                                ),
+                              ),
                             ),
-                          ),
+                            GestureDetector(
+                              onTap: () => Navigator.of(context).pop(),
+                              child: Container(
+                                width: 32,
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Icon(
+                                  CupertinoIcons.xmark,
+                                  size: 16,
+                                  color: Theme.of(context).colorScheme.onSurface,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        GestureDetector(
-                          onTap: () => Navigator.of(context).pop(),
-                          child: Container(
-                            width: 32,
-                            height: 32,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Icon(
-                              CupertinoIcons.xmark,
-                              size: 16,
-                              color: Theme.of(context).colorScheme.onSurface,
-                            ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'problemList.checkProbDesc'.tr(),
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                           ),
                         ),
                       ],
