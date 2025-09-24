@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../const/const.dart';
 import '../functions/tuple.dart';
@@ -15,178 +16,205 @@ class ProbMultiplyList extends StatefulWidget {
 }
 
 class _ProbMultiplyListState extends State<ProbMultiplyList> {
-  final _controller = ScrollController();
-
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _controller.animateTo(_controller.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 200), curve: Curves.easeInOut);
-    });
-
     return Dialog(
-        backgroundColor: Theme.of(context).colorScheme.surface,
+        backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 800),
-            child: FractionallySizedBox(
-                heightFactor: 0.7,
-                child: Container(
-                  color: Theme.of(context).colorScheme.surface,
-                  child: CustomScrollView(
-                    controller: _controller,
-                    physics: const AlwaysScrollableScrollPhysics(
-                        parent: BouncingScrollPhysics()),
-                    slivers: [
-                      SliverAppBar(
-                        pinned: true,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.tertiaryContainer,
-                        leading: IconButton(
-                          icon: Icon(
-                            Icons.arrow_back_ios,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimaryContainer,
-                            size: MediaQuery.of(context).size.height * 0.03,
-                          ),
-                          onPressed: () => Navigator.of(context).pop(),
-                          splashRadius: 10,
+            constraints: const BoxConstraints(maxWidth: 600, maxHeight: 600),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                  width: 1,
+                ),
+              ),
+              child: Column(
+                children: [
+                  // Fixed Header
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                          width: 1,
                         ),
-                        title: FittedBox(
-                            child: Text('problemList.checkProb'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimaryContainer,
-                                    fontSize:
-                                        MediaQuery.of(context).size.height *
-                                            0.026))),
                       ),
-                      widget.numList.isNotEmpty
-                          ? SliverList.builder(
-                              itemCount: widget.numList.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 1),
-                                  child: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    height: MediaQuery.of(context).size.height *
-                                        0.14,
-                                    width: double.infinity,
-                                    color: index == widget.numList.length - 1
-                                        ? Theme.of(context)
-                                            .colorScheme
-                                            .onTertiaryContainer
-                                            .withGreen((Theme.of(context)
-                                                        .colorScheme
-                                                        .onTertiaryContainer
-                                                        .g *
-                                                    0.7)
-                                                .toInt())
-                                            .withRed((Theme.of(context)
-                                                        .colorScheme
-                                                        .onTertiaryContainer
-                                                        .r *
-                                                    0.7)
-                                                .toInt())
-                                            .withBlue((Theme.of(context)
-                                                        .colorScheme
-                                                        .onTertiaryContainer
-                                                        .b *
-                                                    0.7)
-                                                .toInt())
-                                        : Theme.of(context)
-                                            .colorScheme
-                                            .onTertiaryContainer,
-                                    child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              const SizedBox(width: 5),
-                                              Text('${index + 1}.  ',
-                                                  style: getTextStyle()
-                                                      .copyWith(
-                                                          fontStyle: FontStyle
-                                                              .italic)),
-                                              Text(
-                                                widget.mode[index]
-                                                    ? '${formatter.format(widget.numList[index].item1)} × ${formatter.format(widget.numList[index].item2)}'
-                                                    : '${formatter.format(widget.numList[index].item1)} ÷ ${formatter.format(widget.numList[index].item2)}',
-                                                style: getTextStyle(),
-                                              )
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Icon(Icons.check,
-                                                      size:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height *
-                                                              0.026,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .onSurface),
-                                                  const SizedBox(width: 5),
-                                                  Text(
-                                                    widget.mode[index]
-                                                        ? ' ${formatter.format(widget.numList[index].item1 * widget.numList[index].item2)}'
-                                                        : ' ${formatter.format(widget.numList[index].item1 / widget.numList[index].item2)}',
-                                                    style: getTextStyle()
-                                                        .copyWith(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                  )
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ]),
-                                  ),
-                                );
-                              })
-                          : getWhenItemEmpty()
-                    ],
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'problemList.checkProb'.tr(),
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).pop(),
+                          child: Container(
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              CupertinoIcons.xmark,
+                              size: 16,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ))));
+                  // Scrollable Content
+                  Expanded(
+                    child: widget.numList.isNotEmpty
+                        ? ListView.builder(
+                            padding: const EdgeInsets.all(16),
+                            itemCount: widget.numList.length,
+                            itemBuilder: (context, index) {
+                              final isCurrentAnswer = index == widget.numList.length - 1;
+                              final isMultiply = widget.mode[index];
+                              final question = isMultiply
+                                  ? '${formatter.format(widget.numList[index].item1)} × ${formatter.format(widget.numList[index].item2)}'
+                                  : '${formatter.format(widget.numList[index].item1)} ÷ ${formatter.format(widget.numList[index].item2)}';
+                              final answer = isMultiply
+                                  ? formatter.format(widget.numList[index].item1 * widget.numList[index].item2)
+                                  : formatter.format(widget.numList[index].item1 / widget.numList[index].item2);
+
+                              return Container(
+                                margin: const EdgeInsets.only(bottom: 12),
+                                padding: const EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                  color: isCurrentAnswer
+                                      ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.08)
+                                      : Theme.of(context).colorScheme.surface,
+                                  border: Border.all(
+                                    color: isCurrentAnswer
+                                        ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.2)
+                                        : Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: 24,
+                                          height: 24,
+                                          decoration: BoxDecoration(
+                                            color: isCurrentAnswer
+                                                ? Theme.of(context).colorScheme.primary
+                                                : Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
+                                            borderRadius: BorderRadius.circular(12),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '${index + 1}',
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                                color: isCurrentAnswer
+                                                    ? Colors.white
+                                                    : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        Expanded(
+                                          child: Text(
+                                            question,
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.normal,
+                                              color: Theme.of(context).colorScheme.onSurface,
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                          ),
+                                        ),
+                                        if (isCurrentAnswer)
+                                          Icon(
+                                            CupertinoIcons.checkmark_circle_fill,
+                                            size: 20,
+                                            color: Theme.of(context).colorScheme.primary,
+                                          ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 12),
+                                    Row(
+                                      children: [
+                                        const SizedBox(width: 36), // Align with question text
+                                        Icon(
+                                          CupertinoIcons.equal,
+                                          size: 16,
+                                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          answer,
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: isCurrentAnswer ? FontWeight.w600 : FontWeight.w500,
+                                            color: Theme.of(context).colorScheme.onSurface,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          )
+                        : _buildEmptyState(),
+                  ),
+                ],
+              ),
+            )));
   }
 
-  TextStyle getTextStyle() {
-    return TextStyle(
-        color: Theme.of(context).colorScheme.onSurface,
-        fontSize: MediaQuery.of(context).size.height * 0.025);
-  }
-
-  Widget getWhenItemEmpty() {
-    return SliverToBoxAdapter(
-        child: Container(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.55,
-      color: Theme.of(context).colorScheme.surface,
-      child: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Icon(
-          Icons.no_sim_sharp,
-          size: MediaQuery.of(context).size.height * 0.15,
-          color: Theme.of(context).colorScheme.onSurface,
-        ),
-        const SizedBox(height: 10),
-        Text('problemList.noProbExecuted'.tr(),
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: Icon(
+              CupertinoIcons.doc_text,
+              size: 40,
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.4),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'problemList.noProbExecuted'.tr(),
             style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.034,
-                fontWeight: FontWeight.w600,
-                color: Theme.of(context).colorScheme.onSurface))
-      ])),
-    ));
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

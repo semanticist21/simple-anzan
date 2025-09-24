@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../const/const.dart';
 
@@ -15,155 +16,180 @@ class _ProbListState extends State<ProbList> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        backgroundColor: Theme.of(context).colorScheme.surface,
+        backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 800),
-            child: FractionallySizedBox(
-                heightFactor: 0.7,
-                child: Container(
-                  color: Theme.of(context).colorScheme.surface,
-                  child: CustomScrollView(
-                    physics: const AlwaysScrollableScrollPhysics(
-                        parent: BouncingScrollPhysics()),
-                    slivers: [
-                      SliverAppBar(
-                        pinned: true,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.tertiaryContainer,
-                        leading: IconButton(
-                          icon: Icon(
-                            Icons.arrow_back_ios,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimaryContainer,
-                            size: MediaQuery.of(context).size.height * 0.025,
-                          ),
-                          onPressed: () => Navigator.of(context).pop(),
-                          splashRadius: 10,
+            constraints: const BoxConstraints(maxWidth: 600, maxHeight: 500),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                  width: 1,
+                ),
+              ),
+              child: Column(
+                children: [
+                  // Fixed Header
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                          width: 1,
                         ),
-                        title: FittedBox(
-                            child: Text(
-                          'problemList.checkProb'.tr(),
-                          style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.018,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onPrimaryContainer),
-                        )),
                       ),
-                      widget.numList.isNotEmpty
-                          ? SliverList.builder(
-                              itemCount: widget.numList.length,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 1),
-                                    child: Container(
-                                        height: MediaQuery.of(context).size.height *
-                                            0.06,
-                                        width: double.infinity,
-                                        color: index == widget.numList.length - 1
-                                            ? Theme.of(context)
-                                                .colorScheme
-                                                .onTertiaryContainer
-                                                .withGreen((Theme.of(context)
-                                                            .colorScheme
-                                                            .onTertiaryContainer
-                                                            .g *
-                                                        0.7)
-                                                    .toInt())
-                                                .withRed(
-                                                    (Theme.of(context).colorScheme.onTertiaryContainer.r * 0.7)
-                                                        .toInt())
-                                                .withBlue((Theme.of(context)
-                                                            .colorScheme
-                                                            .onTertiaryContainer
-                                                            .b *
-                                                        0.7)
-                                                    .toInt())
-                                            : Theme.of(context)
-                                                .colorScheme
-                                                .onTertiaryContainer,
-                                        child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                                          Visibility(
-                                              visible: index ==
-                                                  widget.numList.length - 1,
-                                              child: Row(children: [
-                                                Icon(
-                                                  Icons.check,
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .onPrimaryContainer,
-                                                  size: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.025,
-                                                ),
-                                                const SizedBox(width: 10),
-                                              ])),
-                                          index != widget.numList.length - 1
-                                              ? Text(
-                                                  formatter
-                                                      .format(
-                                                          widget.numList[index])
-                                                      .toString(),
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height *
-                                                              0.03,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .onSurface),
-                                                )
-                                              : Text(
-                                                  formatter.format(
-                                                      widget.numList[index]),
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height *
-                                                              0.03,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .onSurface,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                          const SizedBox(width: 20),
-                                        ])));
-                              })
-                          : getWhenItemEmpty()
-                    ],
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'problemList.checkProb'.tr(),
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).pop(),
+                          child: Container(
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              CupertinoIcons.xmark,
+                              size: 16,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ))));
+                  // Scrollable Content
+                  Expanded(
+                    child: widget.numList.isNotEmpty
+                        ? ListView.builder(
+                            padding: const EdgeInsets.all(16),
+                            itemCount: widget.numList.length,
+                            itemBuilder: (context, index) {
+                              final isCurrentAnswer = index == widget.numList.length - 1;
+                              return Container(
+                                margin: const EdgeInsets.only(bottom: 12),
+                                padding: const EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                  color: isCurrentAnswer
+                                      ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.08)
+                                      : Theme.of(context).colorScheme.surface,
+                                  border: Border.all(
+                                    color: isCurrentAnswer
+                                        ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.2)
+                                        : Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 24,
+                                      height: 24,
+                                      decoration: BoxDecoration(
+                                        color: isCurrentAnswer
+                                            ? Theme.of(context).colorScheme.primary
+                                            : Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          '${index + 1}',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: isCurrentAnswer
+                                                ? Colors.white
+                                                : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 16),
+                                    Expanded(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Icon(
+                                            CupertinoIcons.equal,
+                                            size: 16,
+                                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                                          ),
+                                          Text(
+                                            formatter.format(widget.numList[index]),
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: isCurrentAnswer ? FontWeight.w600 : FontWeight.normal,
+                                              color: Theme.of(context).colorScheme.onSurface,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    if (isCurrentAnswer) ...[
+                                      const SizedBox(width: 12),
+                                      Icon(
+                                        CupertinoIcons.checkmark_circle_fill,
+                                        size: 20,
+                                        color: Theme.of(context).colorScheme.primary,
+                                      ),
+                                    ],
+                                  ],
+                                ),
+                              );
+                            },
+                          )
+                        : _buildEmptyState(),
+                  ),
+                ],
+              ),
+            )));
   }
 
-  Widget getWhenItemEmpty() {
-    return SliverToBoxAdapter(
-        child: Container(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.55,
-      color: Theme.of(context).colorScheme.surface,
-      child: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Icon(Icons.no_sim_sharp,
-            size: MediaQuery.of(context).size.height * 0.13,
-            color: Theme.of(context).colorScheme.onSurface),
-        const SizedBox(height: 10),
-        Text('problemList.noProbExecuted'.tr(),
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: Icon(
+              CupertinoIcons.doc_text,
+              size: 40,
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.4),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'problemList.noProbExecuted'.tr(),
             style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.03,
-                fontWeight: FontWeight.w600,
-                color: Theme.of(context).colorScheme.onSurface))
-      ])),
-    ));
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
