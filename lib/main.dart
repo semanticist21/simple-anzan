@@ -217,18 +217,15 @@ class _Home extends State<Home> {
                       margin: const EdgeInsets.only(right: 10),
                       child: Tooltip(
                           message: 'problemList.burningMode'.tr(),
-                          child: RawMaterialButton(
+                          child: _FlatCircularButton(
                             onPressed: _toggleBurningMode,
-                            elevation: 2.0,
-                            fillColor: _getBurningModeBackgroundColor(context),
-                            padding: const EdgeInsets.all(2),
-                            shape: const CircleBorder(),
+                            backgroundColor: _getBurningModeBackgroundColor(context),
                             child: Icon(
                               Icons.local_fire_department,
                               color: _getBurningModeColor(context),
                               size: Platform.isWindows
                                   ? MediaQuery.of(context).size.height * 0.03
-                                  : null,
+                                  : 20,
                             ),
                           )),
                     ),
@@ -240,14 +237,13 @@ class _Home extends State<Home> {
                       margin: const EdgeInsets.only(right: 10),
                       child: Tooltip(
                           message: 'problemList.stopIteration'.tr(),
-                          child: RawMaterialButton(
+                          child: _FlatCircularButton(
                             onPressed: requestButtonStopIteration,
-                            elevation: 2.0,
-                            fillColor: Theme.of(context).colorScheme.error,
-                            shape: const CircleBorder(),
+                            backgroundColor: Theme.of(context).colorScheme.error,
                             child: Icon(
                               CupertinoIcons.xmark,
                               color: Colors.white70,
+                              size: 20,
                             ),
                           )),
                     ),
@@ -259,21 +255,18 @@ class _Home extends State<Home> {
                       margin: const EdgeInsets.only(right: 10),
                       child: Tooltip(
                           message: 'problemList.checkProb'.tr(),
-                          child: RawMaterialButton(
+                          child: _FlatCircularButton(
                             onPressed: () {
                               if (_currentIndex != 0 && _currentIndex != 2) {
                                 return;
                               }
                               showProbDialog(_currentIndex == 0 ? true : false);
                             },
-                            elevation: 2.0,
-                            fillColor:
-                                Theme.of(context).colorScheme.onSurface,
-                            padding: const EdgeInsets.all(2),
-                            shape: const CircleBorder(),
+                            backgroundColor: Theme.of(context).colorScheme.onSurface,
                             child: Icon(
                               CupertinoIcons.question,
                               color: Theme.of(context).colorScheme.secondary,
+                              size: 20,
                             ),
                           )),
                     ),
@@ -287,7 +280,7 @@ class _Home extends State<Home> {
                       child: Row(children: [
                         Tooltip(
                             message: 'theme.preset'.tr(),
-                            child: IconButton(
+                            child: _FlatIconButton(
                               onPressed: () {
                                 if (_currentIndex == 0) {
                                   showDialog(
@@ -318,14 +311,11 @@ class _Home extends State<Home> {
                               },
                               icon: const Icon(CupertinoIcons.collections),
                               color: Theme.of(context).colorScheme.onSurface,
-                              iconSize: Platform.isWindows
-                                  ? MediaQuery.of(context).size.height * 0.038
-                                  : null,
-                              splashRadius: 15,
+                              size: 20,
                             )),
                         Tooltip(
                             message: 'theme.fastSetting'.tr(),
-                            child: IconButton(
+                            child: _FlatIconButton(
                               onPressed: () {
                                 if (_currentIndex == 0) {
                                   showDialog(
@@ -341,10 +331,7 @@ class _Home extends State<Home> {
                               },
                               icon: const Icon(CupertinoIcons.settings),
                               color: Theme.of(context).colorScheme.onSurface,
-                              iconSize: Platform.isWindows
-                                  ? MediaQuery.of(context).size.height * 0.038
-                                  : null,
-                              splashRadius: 15,
+                              size: 20,
                             )),
                       ])),
                   const SizedBox(width: 5),
@@ -352,18 +339,21 @@ class _Home extends State<Home> {
                       message: 'theme.sound'.tr(),
                       child: Icon(
                         SoundOptionHandler.isSoundOn
-                            ? CupertinoIcons.speaker_2
-                            : CupertinoIcons.speaker_slash,
+                            ? CupertinoIcons.speaker_2_fill
+                            : CupertinoIcons.speaker_slash_fill,
                         color: Theme.of(context).colorScheme.onSurface,
-                        size: Platform.isWindows
-                            ? MediaQuery.of(context).size.height * 0.038
-                            : null,
+                        size: 20, // consistent icon size
                       )),
+                  const SizedBox(width: 4),
                   Transform.scale(
                       scale: 0.8,
                       child: CupertinoSwitch(
-                        activeTrackColor: Theme.of(context).colorScheme.onSecondary,
-                        inactiveTrackColor: Theme.of(context).colorScheme.onPrimary,
+                        activeTrackColor: ThemeSelector.isDark
+                            ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.3)
+                            : Theme.of(context).colorScheme.onSecondary,
+                        inactiveTrackColor: ThemeSelector.isDark
+                            ? Theme.of(context).colorScheme.onPrimary
+                            : Theme.of(context).colorScheme.onPrimary,
                         onChanged: (value) {
                           OptionManager()
                               .setSoundBool(!SoundOptionHandler.isSoundOn);
@@ -378,17 +368,20 @@ class _Home extends State<Home> {
             Tooltip(
                 message: 'theme.mode'.tr(),
                 child: Icon(
-                  ThemeSelector.isDark ? Icons.nightlight : Icons.sunny,
+                  ThemeSelector.isDark ? Icons.nightlight_outlined : Icons.wb_sunny_outlined,
                   color: Theme.of(context).colorScheme.onSurface,
-                  size: Platform.isWindows
-                      ? MediaQuery.of(context).size.height * 0.038
-                      : null,
+                  size: 20, // consistent icon size
                 )),
+            const SizedBox(width: 4),
             Transform.scale(
                 scale: 0.8,
                 child: CupertinoSwitch(
-                  activeTrackColor: Theme.of(context).colorScheme.onSecondary,
-                  inactiveTrackColor: Theme.of(context).colorScheme.onPrimary,
+                  activeTrackColor: ThemeSelector.isDark
+                      ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.3)
+                      : Theme.of(context).colorScheme.onSecondary,
+                  inactiveTrackColor: ThemeSelector.isDark
+                      ? Theme.of(context).colorScheme.onPrimary
+                      : Theme.of(context).colorScheme.onPrimary,
                   onChanged: (value) {
                     OptionManager().setThemeBool(!ThemeSelector.isDark);
                     setState(() {});
@@ -412,9 +405,13 @@ class _Home extends State<Home> {
           highlightColor: Colors.transparent,
         ),
         child: BottomNavigationBar(
-          backgroundColor: Theme.of(context).colorScheme.surface,
+          backgroundColor: ThemeSelector.isDark
+              ? Theme.of(context).colorScheme.surfaceContainerHighest // elevated dark surface
+              : Theme.of(context).colorScheme.surface,
           selectedItemColor: Theme.of(context).colorScheme.primary,
-          unselectedItemColor: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+          unselectedItemColor: ThemeSelector.isDark
+              ? Theme.of(context).colorScheme.onInverseSurface // muted grey for dark mode
+              : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
           type: BottomNavigationBarType.fixed,
           elevation: 0,
           selectedFontSize: 12,
@@ -558,5 +555,98 @@ class _Home extends State<Home> {
                 mode: _stateMultiplyProvider.isMultiplies,
               ));
     }
+  }
+}
+
+class _FlatIconButton extends StatefulWidget {
+  final VoidCallback onPressed;
+  final Icon icon;
+  final Color color;
+  final double size;
+
+  const _FlatIconButton({
+    required this.onPressed,
+    required this.icon,
+    required this.color,
+    required this.size,
+  });
+
+  @override
+  State<_FlatIconButton> createState() => _FlatIconButtonState();
+}
+
+class _FlatIconButtonState extends State<_FlatIconButton>
+    with SingleTickerProviderStateMixin {
+  bool _isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _isPressed = true),
+      onTapUp: (_) => setState(() => _isPressed = false),
+      onTapCancel: () => setState(() => _isPressed = false),
+      onTap: widget.onPressed,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: _isPressed
+              ? Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Icon(
+          widget.icon.icon,
+          color: _isPressed
+              ? widget.color.withValues(alpha: 0.7)
+              : widget.color,
+          size: widget.size,
+        ),
+      ),
+    );
+  }
+}
+
+class _FlatCircularButton extends StatefulWidget {
+  final VoidCallback onPressed;
+  final Widget child;
+  final Color backgroundColor;
+
+  const _FlatCircularButton({
+    required this.onPressed,
+    required this.child,
+    required this.backgroundColor,
+  });
+
+  @override
+  State<_FlatCircularButton> createState() => _FlatCircularButtonState();
+}
+
+class _FlatCircularButtonState extends State<_FlatCircularButton>
+    with SingleTickerProviderStateMixin {
+  bool _isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _isPressed = true),
+      onTapUp: (_) => setState(() => _isPressed = false),
+      onTapCancel: () => setState(() => _isPressed = false),
+      onTap: widget.onPressed,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: _isPressed
+              ? widget.backgroundColor.withValues(alpha: 0.8)
+              : widget.backgroundColor,
+          shape: BoxShape.circle,
+        ),
+        child: Center(
+          child: widget.child,
+        ),
+      ),
+    );
   }
 }

@@ -95,7 +95,10 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                     child: FractionallySizedBox(
                         widthFactor: 0.9,
                         heightFactor: 0.9,
-                        child: Center(child: _flicker)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Center(child: _flicker),
+                        )),
                   ),
                 ]),
               )),
@@ -112,36 +115,37 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
                           child: FractionallySizedBox(
                             widthFactor: 0.6,
                             heightFactor: 0.4,
-                            child: _isBurningModeActive(value)
-                                ? ElevatedButton.icon(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          WidgetStateColor.resolveWith(
-                                              _getButtonColorProp),
-                                    ),
-                                    onPressed: _onPressed,
-                                    icon: Icon(
-                                      CupertinoIcons.flame_fill,
-                                      color: Colors.white,
-                                      size: MediaQuery.of(context).size.height * 0.05,
-                                    ),
-                                    label: Text(
-                                      value.buttonText,
-                                      style: _getBurningModeTextStyle(),
-                                      textAlign: TextAlign.center,
-                                    ))
-                                : ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          WidgetStateColor.resolveWith(
-                                              _getButtonColorProp),
-                                    ),
-                                    onPressed: _onPressed,
-                                    child: Text(
+                            child: _FlatButton(
+                              onPressed: _onPressed,
+                              backgroundColor: _isBurningModeActive(value)
+                                  ? Colors.red.shade500
+                                  : Theme.of(context).colorScheme.primary,
+                              child: _isBurningModeActive(value)
+                                  ? Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.flame_fill,
+                                          color: Colors.white,
+                                          size: MediaQuery.of(context).size.height * 0.035,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Flexible(
+                                          child: Text(
+                                            value.buttonText,
+                                            style: _getBurningModeTextStyle(),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  : Text(
                                       value.buttonText,
                                       style: _getMainButtonTextStyle(),
                                       textAlign: TextAlign.center,
-                                    )),
+                                    ),
+                            ),
                           ),
                         );
                       }))),
@@ -166,28 +170,6 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
   }
 
   // styles
-  Color _getButtonColorProp(Set<WidgetState> states) {
-    // Check if burning mode is active
-    if (_stateProvider.state == ButtonMultiplyState.iterationStarted) {
-      try {
-        BurningModeMultiply mode = SettingsMultiplyManager().getCurrentEnum<BurningModeMultiply>();
-        if (mode == BurningModeMultiply.on) {
-          return states.contains(WidgetState.pressed)
-              ? Colors.red.shade700
-              : Colors.red;
-        }
-      } catch (e) {
-        // If preferences not initialized, use default colors
-      }
-    }
-
-    if (states.contains(WidgetState.pressed)) {
-      return Theme.of(context).colorScheme.surfaceContainerHighest;
-    } else {
-      return Theme.of(context).colorScheme.surfaceTint;
-    }
-  }
-
   TextStyle _getMainButtonTextStyle() {
     var titleBodyLarge = Theme.of(context).textTheme.bodyLarge;
 
@@ -211,5 +193,55 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
     return TextStyle(
         fontSize: MediaQuery.of(context).size.height * 0.025,
         color: Colors.white);
+  }
+}
+
+class _FlatButton extends StatefulWidget {
+  final VoidCallback onPressed;
+  final Widget child;
+  final Color backgroundColor;
+
+  const _FlatButton({
+    required this.onPressed,
+    required this.child,
+    required this.backgroundColor,
+  });
+
+  @override
+  State<_FlatButton> createState() => _FlatButtonState();
+}
+
+class _FlatButtonState extends State<_FlatButton>
+    with SingleTickerProviderStateMixin {
+  bool _isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _isPressed = true),
+      onTapUp: (_) => setState(() => _isPressed = false),
+      onTapCancel: () => setState(() => _isPressed = false),
+      onTap: widget.onPressed,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          color: _isPressed
+              ? widget.backgroundColor.withValues(alpha: 0.8)
+              : widget.backgroundColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          child: Center(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: widget.child,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

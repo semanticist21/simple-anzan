@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../../const/const.dart';
 
 class ThemeSelector {
   static var themeKey = 'isDark';
@@ -22,70 +22,69 @@ class ThemeSelector {
     return ThemeData.from(
             // toggle active color
             colorScheme: ThemeData().colorScheme.copyWith(
-                  // surface color (was background)
-                  surface: const Color(0xFF121212),
-                  primary: Colors.white,
+                  // surface color (was background) - pure black for OLED
+                  surface: const Color(0xFF000000),
+                  primary: const Color(0xFF64AFFF), // softer blue for natural dark mode
 
                   // secondary surface like ..dropdown button / scaffold background
-                  surfaceContainer: Colors.white,
+                  surfaceContainer: const Color(0xFF1C1C1E), // elevated surface
 
                   // not selected Color
-                  onInverseSurface: Colors.grey[400],
+                  onInverseSurface: const Color(0xFF8E8E93), // muted grey
 
                   // flicker background (option background)
                   // flicker border color
                   // flicker border
-                  onSecondaryContainer:
-                      const Color.fromRGBO(158, 158, 158, 0.1),
-                  shadow: const Color.fromRGBO(96, 125, 139, 0.1),
+                  onSecondaryContainer: Colors.transparent,
+                  shadow: Colors.transparent,
 
                   // setting page
                   // setting page drop down background
                   // setting page border
-                  onTertiaryContainer: const Color.fromRGBO(158, 158, 158, 0.1),
-                  tertiaryContainer: Colors.white,
-                  outlineVariant: const Color.fromRGBO(96, 125, 139, 0.1),
+                  onTertiaryContainer: const Color.fromRGBO(158, 158, 158, 0.08),
+                  tertiaryContainer: const Color(0xFFE5E5E7),
+                  outlineVariant: const Color.fromRGBO(255, 255, 255, 0.08),
 
                   // option title color
-                  secondaryContainer: Colors.grey,
+                  secondaryContainer: const Color(0xFF8E8E93),
 
                   // option primary text color
-                  primaryContainer: Colors.grey[400],
+                  primaryContainer: const Color(0xFFE5E5E7),
 
                   // button form text color
-                  onPrimaryContainer: Colors.grey[800],
+                  onPrimaryContainer: const Color(0xFF8E8E93),
 
                   // divider Color
-                  outline: const Color.fromARGB(255, 60, 60, 60),
+                  outline: const Color.fromRGBO(255, 255, 255, 0.08),
 
-                  // toggle track, active color
-                  onPrimary: Colors.grey,
-                  onSecondary: Colors.blueGrey,
+                  // toggle track, active color (for switches)
+                  onPrimary: const Color(0xFF3A3A3C), // inactive track
+                  onSecondary: const Color(0xFF64AFFF), // active track with opacity
 
-                  // button color
-                  onSurface: Colors.grey[600],
-                  onSurfaceVariant: Colors.greenAccent,
+                  // button color and text
+                  onSurface: const Color(0xFFE5E5E7), // warm white instead of pure white
+                  onSurfaceVariant: const Color(0xFF32D74B), // iOS green
 
-                  surfaceTint: const Color.fromRGBO(112, 128, 250, 1),
-                  surfaceContainerHighest: const Color.fromRGBO(99, 116, 244, 1),
+                  surfaceTint: const Color(0xFF64AFFF),
+                  surfaceContainerHighest: const Color(0xFF1C1C1E),
                 ),
-            textTheme: const TextTheme(
-              // option style
+            textTheme: GoogleFonts.openSansTextTheme(
+              const TextTheme(
+                // option style
 
-              // button text style
-              bodyLarge: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w900,
-                fontFamily: defaultFontFamily,
-                letterSpacing: 2.5,
-              ),
+                // button text style
+                bodyLarge: TextStyle(
+                  color: Color(0xFFE5E5E7), // warm white for natural dark mode
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.0,
+                ),
 
-              // flicker style
-              titleLarge: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontFamily: defaultFontFamily,
-                letterSpacing: 3,
-                color: Color.fromARGB(255, 113, 150, 67),
+                // flicker style
+                titleLarge: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2.0,
+                  color: Color(0xFF64AFFF), // use primary blue for better consistency
+                ),
               ),
             ))
         .copyWith(
@@ -146,23 +145,23 @@ class ThemeSelector {
                   surfaceTint: Colors.orange,
                   surfaceContainerHighest: Colors.orangeAccent,
                 ),
-            textTheme: const TextTheme(
-              // option style
+            textTheme: GoogleFonts.openSansTextTheme(
+              const TextTheme(
+                // option style
 
-              // button text style
-              bodyLarge: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w900,
-                fontFamily: defaultFontFamily,
-                letterSpacing: 2.5,
-              ),
+                // button text style
+                bodyLarge: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.0,
+                ),
 
-              // flicker style
-              titleLarge: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontFamily: defaultFontFamily,
-                letterSpacing: 3,
-                color: Colors.black87,
+                // flicker style
+                titleLarge: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2.0,
+                  color: Colors.black87,
+                ),
               ),
             ))
         .copyWith(

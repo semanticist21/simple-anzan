@@ -1,4 +1,3 @@
-import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:flutter/material.dart';
 
 class FlashingContainer extends StatefulWidget {
@@ -31,21 +30,13 @@ class FlashingContainerState extends State<FlashingContainer> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 150),
       decoration: BoxDecoration(
-          color: _isFlashing
-              ? ThemeSelector.isDark
-                  ? Theme.of(context)
-                      .colorScheme
-                      .onSecondaryContainer
-                      .withValues(alpha: 0.15)
-                  : Theme.of(context)
-                      .colorScheme
-                      .onSecondaryContainer
-                      .withValues(alpha: 0.3)
-              : Theme.of(context).colorScheme.onSecondaryContainer,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Theme.of(context).colorScheme.shadow)),
+        color: _isFlashing
+            ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.08)
+            : Colors.transparent,
+        borderRadius: BorderRadius.circular(12),
+      ),
     );
   }
 }

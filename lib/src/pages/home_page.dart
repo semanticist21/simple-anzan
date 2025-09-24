@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
         width: double.infinity,
         height: double.infinity,
         child: Container(
+          color: Theme.of(context).colorScheme.surface,
           alignment: Alignment.topCenter,
           child: Column(children: [
             Expanded(
@@ -85,16 +86,27 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               flex: 8,
               child: Center(
-                  child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 1,
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.85,
+                height: MediaQuery.of(context).size.height * 0.6,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.15),
+                    width: 1
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: Stack(children: [
                   flashingContainer,
                   Center(
                     child: FractionallySizedBox(
                         widthFactor: 0.95,
                         heightFactor: 0.95,
-                        child: Center(child: _flicker)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Center(child: _flicker),
+                        )),
                   ),
                 ]),
               )),
@@ -111,37 +123,43 @@ class _HomePageState extends State<HomePage> {
                           child: FractionallySizedBox(
                             widthFactor: 0.6,
                             heightFactor: 0.4,
-                            child: _isBurningModeActive(value)
-                                ? ElevatedButton.icon(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          WidgetStateColor.resolveWith(
-                                              _getButtonColorProp),
-                                    ),
-                                    onPressed: _onPressed,
-                                    icon: Icon(
-                                      CupertinoIcons.flame_fill,
-                                      color: Colors.white,
-                                      size: MediaQuery.of(context).size.height *
-                                          0.05,
-                                    ),
-                                    label: Text(
-                                      value.buttonText,
-                                      style: _getBurningModeTextStyle(),
-                                      textAlign: TextAlign.center,
-                                    ))
-                                : ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          WidgetStateColor.resolveWith(
-                                              _getButtonColorProp),
-                                    ),
-                                    onPressed: _onPressed,
-                                    child: Text(
-                                      value.buttonText,
-                                      style: _getMainButtonTextStyle(),
-                                      textAlign: TextAlign.center,
-                                    )),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: _isBurningModeActive(value)
+                                  ? Colors.red.shade500
+                                  : Theme.of(context).colorScheme.primary,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: _FlatButton(
+                                onPressed: _onPressed,
+                                backgroundColor: _isBurningModeActive(value)
+                                    ? Colors.red.shade500
+                                    : Theme.of(context).colorScheme.primary,
+                                child: _isBurningModeActive(value)
+                                    ? Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            CupertinoIcons.flame_fill,
+                                            color: Colors.white,
+                                            size: MediaQuery.of(context).size.height * 0.035,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            value.buttonText,
+                                            style: _getBurningModeTextStyle(),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
+                                      )
+                                    : Text(
+                                        value.buttonText,
+                                        style: _getMainButtonTextStyle(),
+                                        textAlign: TextAlign.center,
+                                      ),
+                              ),
+                            ),
                           ),
                         );
                       }))),
@@ -166,28 +184,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   // styles
-  Color _getButtonColorProp(Set<WidgetState> states) {
-    // Check if burning mode is active
-    if (_stateProvider.state == ButtonState.iterationStarted) {
-      try {
-        BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
-        if (mode == BurningMode.on) {
-          return states.contains(WidgetState.pressed)
-              ? Colors.red.shade700
-              : Colors.red;
-        }
-      } catch (e) {
-        // If preferences not initialized, use default colors
-      }
-    }
-
-    if (states.contains(WidgetState.pressed)) {
-      return Theme.of(context).colorScheme.onSurfaceVariant;
-    } else {
-      return Theme.of(context).colorScheme.onSurface;
-    }
-  }
-
   TextStyle _getMainButtonTextStyle() {
     var titleBodyLarge = Theme.of(context).textTheme.bodyLarge;
 
@@ -211,5 +207,55 @@ class _HomePageState extends State<HomePage> {
     return TextStyle(
         fontSize: MediaQuery.of(context).size.height * 0.025,
         color: Colors.white);
+  }
+}
+
+class _FlatButton extends StatefulWidget {
+  final VoidCallback onPressed;
+  final Widget child;
+  final Color backgroundColor;
+
+  const _FlatButton({
+    required this.onPressed,
+    required this.child,
+    required this.backgroundColor,
+  });
+
+  @override
+  State<_FlatButton> createState() => _FlatButtonState();
+}
+
+class _FlatButtonState extends State<_FlatButton>
+    with SingleTickerProviderStateMixin {
+  bool _isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _isPressed = true),
+      onTapUp: (_) => setState(() => _isPressed = false),
+      onTapCancel: () => setState(() => _isPressed = false),
+      onTap: widget.onPressed,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          color: _isPressed
+              ? widget.backgroundColor.withValues(alpha: 0.8)
+              : widget.backgroundColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          child: Center(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: widget.child,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
