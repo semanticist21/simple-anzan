@@ -3,12 +3,12 @@
 import 'package:abacus_simple_anzan/src/settings/Interface/preference_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SeperatorModePref implements PreferenceInterface<SeperatorMode, bool> {
+class SeperatorModePref implements PreferenceInterface<SeparatorMode, bool> {
   final String _saveKey = 'seperator';
   final int _defaultIndex = 0;
 
   late int _currentIndex;
-  late SeperatorMode _currentValue;
+  late SeparatorMode _currentValue;
 
   SeperatorModePref(SharedPreferencesWithCache prefs) {
     var index = prefs.getInt(_saveKey) ?? _defaultIndex;
@@ -16,41 +16,41 @@ class SeperatorModePref implements PreferenceInterface<SeperatorMode, bool> {
   }
 
   // when implemented, it should be synchronized for each other.
-  void setValue(SeperatorMode enumValue) {
+  void setValue(SeparatorMode enumValue) {
     _currentValue = enumValue;
     _currentIndex = _currentValue.index;
   }
 
   void setIndex(int index) {
     _currentIndex = index;
-    _currentValue = SeperatorMode.values[index];
+    _currentValue = SeparatorMode.values[index];
   }
 
-  SeperatorMode getValue() => _currentValue;
+  SeparatorMode getValue() => _currentValue;
   int getIndex() => _currentIndex;
 
-  SeperatorMode valueToEnum(bool flag) {
+  SeparatorMode valueToEnum(bool flag) {
     if (flag) {
-      return SeperatorMode.on;
+      return SeparatorMode.on;
     } else {
-      return SeperatorMode.off;
+      return SeparatorMode.off;
     }
   }
 
-  bool enumToValue(SeperatorMode mode) {
+  bool enumToValue(SeparatorMode mode) {
     switch (mode) {
-      case SeperatorMode.on:
+      case SeparatorMode.on:
         return true;
-      case SeperatorMode.off:
+      case SeparatorMode.off:
         return false;
     }
   }
 
   void saveSetting(SharedPreferencesWithCache prefs, dynamic value) =>
-      prefs.setInt(_saveKey, (value as SeperatorMode).index);
+      prefs.setInt(_saveKey, (value as SeparatorMode).index);
 }
 
-enum SeperatorMode {
+enum SeparatorMode {
   off,
   on,
 }

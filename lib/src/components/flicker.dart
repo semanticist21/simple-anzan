@@ -191,7 +191,7 @@ class _FlickerState extends State<Flicker> {
       await Future.delayed(const Duration(milliseconds: 1000));
     }
 
-    bool isSeperator = manager.getCurrentValue<SeperatorMode, bool>();
+    bool isSeperator = manager.getCurrentValue<SeparatorMode, bool>();
 
     for (int i = 0; i < len; i++) {
       if (_stateProvider.state == ButtonState.iterationCompleted) {

@@ -29,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
   late Digit _digit;
   late NumOfProblems _numOfProblems;
   late CountDownMode _countDownMode;
-  late SeperatorMode _seperatorMode;
+  late SeparatorMode _seperatorMode;
 
   final _controller = ScrollController();
 
@@ -176,13 +176,13 @@ class _SettingsPageState extends State<SettingsPage> {
                                       child: buildToggleOption(
                                           'settings.separator'.tr(),
                                           Icons.one_k,
-                                          _manager.enumToValue<SeperatorMode,
+                                          _manager.enumToValue<SeparatorMode,
                                               bool>(_seperatorMode),
                                           toggleSepartorModeCallback),
                                     ),
                                     Tooltip(
-                                      message:
-                                          'customOptions.shouldSoundOnDesc'.tr(),
+                                      message: 'customOptions.shouldSoundOnDesc'
+                                          .tr(),
                                       child: buildToggleOption(
                                           'settings.notify'.tr(),
                                           Icons.notifications,
@@ -247,7 +247,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void toggleSepartorModeCallback(bool newValue) {
     setState(() {
-      var valueToEnum = _manager.valueToEnum<bool, SeperatorMode>(newValue);
+      var valueToEnum = _manager.valueToEnum<bool, SeparatorMode>(newValue);
       _seperatorMode = valueToEnum;
     });
 
@@ -408,7 +408,7 @@ class _SettingsPageState extends State<SettingsPage> {
       _digit = manager.getCurrentEnum<Digit>();
       _numOfProblems = manager.getCurrentEnum<NumOfProblems>();
       _countDownMode = manager.getCurrentEnum<CountDownMode>();
-      _seperatorMode = manager.getCurrentEnum<SeperatorMode>();
+      _seperatorMode = manager.getCurrentEnum<SeparatorMode>();
     });
   }
 }

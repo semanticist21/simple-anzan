@@ -20,7 +20,7 @@ class SettingsManager {
   late SpeedPref _speedPref;
   late DigitPref _digitPref;
   late NumOfProblemsPref _numOfProblemsPref;
-  late SeperatorModePref _seperatorModePref;
+  late SeperatorModePref _separatorModePref;
 
   // constructor
   static final SettingsManager _instance = SettingsManager._constructor();
@@ -42,7 +42,7 @@ class SettingsManager {
     _speedPref = SpeedPref(prefs);
     _digitPref = DigitPref(prefs);
     _numOfProblemsPref = NumOfProblemsPref(prefs);
-    _seperatorModePref = SeperatorModePref(prefs);
+    _separatorModePref = SeperatorModePref(prefs);
   }
 
   // returns _instance when it is called.
@@ -67,8 +67,8 @@ class SettingsManager {
         return _digitPref.getValue() as T;
       case const (NumOfProblems):
         return _numOfProblemsPref.getValue() as T;
-      case const (SeperatorMode):
-        return _seperatorModePref.getValue() as T;
+      case const (SeparatorMode):
+        return _separatorModePref.getValue() as T;
       default:
         throw Error();
     }
@@ -90,8 +90,8 @@ class SettingsManager {
         return _digitPref.valueToEnum(value as int) as T;
       case const (NumOfProblems):
         return _numOfProblemsPref.valueToEnum(value as int) as T;
-      case const (SeperatorMode):
-        return _seperatorModePref.valueToEnum(value as bool) as T;
+      case const (SeparatorMode):
+        return _separatorModePref.valueToEnum(value as bool) as T;
       default:
         throw Error();
     }
@@ -112,8 +112,8 @@ class SettingsManager {
         return _digitPref.enumToValue(enumValue as Digit) as V;
       case const (NumOfProblems):
         return _numOfProblemsPref.enumToValue(enumValue as NumOfProblems) as V;
-      case const (SeperatorMode):
-        return _seperatorModePref.enumToValue(enumValue as SeperatorMode) as V;
+      case const (SeparatorMode):
+        return _separatorModePref.enumToValue(enumValue as SeparatorMode) as V;
       default:
         throw Error();
     }
@@ -133,8 +133,8 @@ class SettingsManager {
       case const (NumOfProblems):
         return _numOfProblemsPref.enumToValue(getCurrentEnum<NumOfProblems>())
             as V;
-      case const (SeperatorMode):
-        return _seperatorModePref.enumToValue(getCurrentEnum<SeperatorMode>())
+      case const (SeparatorMode):
+        return _separatorModePref.enumToValue(getCurrentEnum<SeparatorMode>())
             as V;
       default:
         throw Error();
@@ -178,8 +178,8 @@ class SettingsManager {
       case const (NumOfProblems):
         _numOfProblemsPref.saveSetting(_prefs, value);
         break;
-      case const (SeperatorMode):
-        _seperatorModePref.saveSetting(_prefs, value);
+      case const (SeparatorMode):
+        _separatorModePref.saveSetting(_prefs, value);
         break;
       default:
         throw Error();
