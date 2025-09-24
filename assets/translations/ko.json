@@ -40,8 +40,8 @@
     "questions": "문제 수"
   },
   "customOptions": {
-    "setSpeedTitle": "속도를 설정합니다. (1000 = 1초)",
-    "rangeWord": "100~30000 사이의 값을 입력하세요.",
+    "setSpeedTitle": "속도를 설정합니다.",
+    "rangeWord": "100~30000 사이의 값을 입력하세요. (1000 = 1초)",
     "pleaseInsertValue": "값을 입력하세요.",
     "pleaseTooBigValue": "값이 너무 큽니다.",
     "pleaseTooSmallValue": "값이 너무 작습니다.",

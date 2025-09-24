@@ -40,8 +40,8 @@
     "questions": "問題数"
   },
   "customOptions": {
-    "setSpeedTitle": "速度を設定します。(1000 = 1秒)",
-    "rangeWord": "100~30000の値を入れてください。",
+    "setSpeedTitle": "速度を設定します。",
+    "rangeWord": "100~30000の値を入れてください。(1000 = 1秒)",
     "pleaseInsertValue": "値を入力してください。",
     "pleaseTooBigValue": "値が大きすぎます。",
     "pleaseTooSmallValue": "値が小さすぎます。",

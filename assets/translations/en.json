@@ -40,8 +40,8 @@
     "questions": "Questions"
   },
   "customOptions": {
-    "setSpeedTitle": "Set custom speed. (1000 = 1sec)",
-    "rangeWord": "Enter a value between 100 and 30000.",
+    "setSpeedTitle": "Set custom speed.",
+    "rangeWord": "Enter a value between 100 and 30000. (1000 = 1 second)",
     "pleaseInsertValue": "Please enter a value.",
     "pleaseTooBigValue": "Value is too large.",
     "pleaseTooSmallValue": "Value is too small.",
