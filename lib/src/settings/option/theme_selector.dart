@@ -22,15 +22,15 @@ class ThemeSelector {
     return ThemeData.from(
             // toggle active color
             colorScheme: ThemeData().colorScheme.copyWith(
-                  // surface color (was background) - pure black for OLED
-                  surface: const Color(0xFF000000),
-                  primary: const Color(0xFF64AFFF), // softer blue for natural dark mode
+                  // surface color (was background) - softer dark instead of pure black
+                  surface: const Color(0xFF121212),
+                  primary: const Color(0xFF6DB4FF), // brighter blue for better contrast
 
                   // secondary surface like ..dropdown button / scaffold background
-                  surfaceContainer: const Color(0xFF1C1C1E), // elevated surface
+                  surfaceContainer: const Color(0xFF1E1E1E), // elevated surface
 
                   // not selected Color
-                  onInverseSurface: const Color(0xFF8E8E93), // muted grey
+                  onInverseSurface: const Color(0xFF9E9E9E), // slightly brighter muted grey
 
                   // flicker background (option background)
                   // flicker border color
@@ -41,32 +41,32 @@ class ThemeSelector {
                   // setting page
                   // setting page drop down background
                   // setting page border
-                  onTertiaryContainer: const Color.fromRGBO(158, 158, 158, 0.08),
-                  tertiaryContainer: const Color(0xFFE5E5E7),
-                  outlineVariant: const Color.fromRGBO(255, 255, 255, 0.08),
+                  onTertiaryContainer: const Color.fromRGBO(158, 158, 158, 0.12),
+                  tertiaryContainer: const Color(0xFFF0F0F0),
+                  outlineVariant: const Color.fromRGBO(255, 255, 255, 0.12),
 
                   // option title color
-                  secondaryContainer: const Color(0xFF8E8E93),
+                  secondaryContainer: const Color(0xFFB0B0B0),
 
                   // option primary text color
-                  primaryContainer: const Color(0xFFE5E5E7),
+                  primaryContainer: const Color(0xFFF0F0F0),
 
                   // button form text color
-                  onPrimaryContainer: const Color(0xFF8E8E93),
+                  onPrimaryContainer: const Color(0xFFB0B0B0),
 
                   // divider Color
-                  outline: const Color.fromRGBO(255, 255, 255, 0.08),
+                  outline: const Color.fromRGBO(255, 255, 255, 0.12),
 
                   // toggle track, active color (for switches)
-                  onPrimary: const Color(0xFF3A3A3C), // inactive track
-                  onSecondary: const Color(0xFF64AFFF), // active track with opacity
+                  onPrimary: const Color(0xFF404040), // inactive track
+                  onSecondary: const Color(0xFF6DB4FF), // active track with opacity
 
                   // button color and text
-                  onSurface: const Color(0xFFE5E5E7), // warm white instead of pure white
-                  onSurfaceVariant: const Color(0xFF32D74B), // iOS green
+                  onSurface: const Color(0xFFF0F0F0), // brighter warm white for better readability
+                  onSurfaceVariant: const Color(0xFF4AE54A), // brighter iOS green
 
-                  surfaceTint: const Color(0xFF64AFFF),
-                  surfaceContainerHighest: const Color(0xFF1C1C1E),
+                  surfaceTint: const Color(0xFF6DB4FF),
+                  surfaceContainerHighest: const Color(0xFF2A2A2A),
                 ),
             textTheme: GoogleFonts.openSansTextTheme(
               const TextTheme(
@@ -74,7 +74,7 @@ class ThemeSelector {
 
                 // button text style
                 bodyLarge: TextStyle(
-                  color: Color(0xFFE5E5E7), // warm white for natural dark mode
+                  color: Color(0xFFF0F0F0), // brighter warm white for better readability
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1.0,
                 ),
@@ -83,7 +83,7 @@ class ThemeSelector {
                 titleLarge: TextStyle(
                   fontWeight: FontWeight.w700,
                   letterSpacing: 2.0,
-                  color: Color(0xFF64AFFF), // use primary blue for better consistency
+                  color: Color(0xFF6DB4FF), // use brighter primary blue for better consistency
                 ),
               ),
             ))

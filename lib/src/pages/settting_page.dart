@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/seperator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
-import 'package:universal_io/io.dart';
 
 import '../dialog/add_dialog.dart';
 import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
@@ -41,189 +40,157 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        child: Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1000),
-        child: FractionallySizedBox(
-          widthFactor: 0.8,
-          heightFactor: 0.9,
-          child: Container(
-              decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onTertiaryContainer,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                      color: Theme.of(context).colorScheme.outlineVariant)),
-              child: FractionallySizedBox(
-                  widthFactor: 0.9,
-                  heightFactor: 0.9,
+    return Container(
+      color: Theme.of(context).colorScheme.surface,
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 800),
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              children: [
+                // Header
+                _buildHeader(context),
+                const SizedBox(height: 24),
+
+                // Settings List
+                Expanded(
                   child: ListView(
-                      controller: _controller,
-                      physics: const NeverScrollableScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      children: [
-                        SizedBox(
-                            height: Platform.isIOS || Platform.isAndroid
-                                ? 0
-                                : MediaQuery.of(context).size.height * 0.015),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.settings,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondaryContainer,
-                                size: MediaQuery.of(context).size.height * 0.03,
-                              ),
-                              SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      0.015),
-                              Text(
-                                'settings.title'.tr(),
-                                style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.023,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .secondaryContainer,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01),
-                        Divider(
-                          height: 20,
-                          thickness: 1,
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.005),
-                        // plus & minus mode.
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.55,
-                          child: SingleChildScrollView(
-                              physics: const AlwaysScrollableScrollPhysics(
-                                  parent: BouncingScrollPhysics()),
-                              child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    buildToggleOption(
-                                        'settings.onlyPluses'.tr(),
-                                        Icons.calculate,
-                                        _manager.enumToValue<CalculationMode,
-                                            bool>(_isOnlyPlus),
-                                        togglePlusModeCallback),
-                                    Tooltip(
-                                        message:
-                                            'customOptions.shuffleDesc'.tr(),
-                                        child: buildToggleOption(
-                                            'settings.shuffle'.tr(),
-                                            Icons.shuffle,
-                                            _manager.enumToValue<ShuffleMode,
-                                                bool>(_isShuffle),
-                                            toggleShuffleModeCallback)),
-                                    // speed.
-                                    buildDropdownButton(
-                                        'settings.speed'.tr(),
-                                        Icon(
-                                          Icons.speed,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primaryContainer,
-                                        ),
-                                        _manager.getItemStr<Speed>(_speed.name),
-                                        getDropdownMenuItemList<Speed>(
-                                            _manager),
-                                        changeOptionCallback<Speed>),
-                                    // digit.
-                                    buildDropdownButton(
-                                        'settings.digit'.tr(),
-                                        Icon(
-                                          Icons.onetwothree,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primaryContainer,
-                                        ),
-                                        _manager.getItemStr<Digit>(_digit.name),
-                                        getDropdownMenuItemList<Digit>(
-                                            _manager),
-                                        changeOptionCallback<Digit>),
-                                    // num of problems.
-                                    buildDropdownButton(
-                                        'settings.questions'.tr(),
-                                        Icon(
-                                          Icons.check,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primaryContainer,
-                                        ),
-                                        _manager.getItemStr<NumOfProblems>(
-                                            _numOfProblems.name),
-                                        getDropdownMenuItemList<NumOfProblems>(
-                                            _manager),
-                                        changeOptionCallback<NumOfProblems>),
-                                    Tooltip(
-                                      message: 'settings.separator'.tr(),
-                                      child: buildToggleOption(
-                                          'settings.separator'.tr(),
-                                          Icons.one_k,
-                                          _manager.enumToValue<SeparatorMode,
-                                              bool>(_seperatorMode),
-                                          toggleSepartorModeCallback),
-                                    ),
-                                    Tooltip(
-                                      message: 'customOptions.shouldSoundOnDesc'
-                                          .tr(),
-                                      child: buildToggleOption(
-                                          'settings.notify'.tr(),
-                                          Icons.notifications,
-                                          _manager.enumToValue<CountDownMode,
-                                              bool>(_countDownMode),
-                                          toggleCounterModeCallback),
-                                    ),
-                                    const SizedBox(height: 50),
-                                  ])),
-                        )
-                      ]))),
+                    controller: _controller,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    children: [
+                      _buildSettingsSection(context),
+                      const SizedBox(height: 24),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
-    ));
+    );
   }
 
-  Padding buildToggleOption(String title, IconData iconData, bool value,
+  Widget _buildHeader(BuildContext context) {
+    return Row(
+      children: [
+        Icon(
+          Icons.tune,
+          size: 28.0,
+          color: Colors.grey.shade600,
+        ),
+        const SizedBox(width: 16.0),
+        Text(
+          'settings.title'.tr(),
+          style: TextStyle(
+            fontSize: 24.0,
+            fontWeight: FontWeight.w600,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSettingsSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildToggleListTile(
+          'settings.onlyPluses'.tr(),
+          Icons.functions,
+          _manager.enumToValue<CalculationMode, bool>(_isOnlyPlus),
+          togglePlusModeCallback,
+        ),
+        Tooltip(
+          message: 'customOptions.shuffleDesc'.tr(),
+          child: _buildToggleListTile(
+            'settings.shuffle'.tr(),
+            Icons.shuffle_on,
+            _manager.enumToValue<ShuffleMode, bool>(_isShuffle),
+            toggleShuffleModeCallback,
+          ),
+        ),
+        _buildDropdownListTile(
+          'settings.speed'.tr(),
+          Icons.timer_outlined,
+          _manager.getItemStr<Speed>(_speed.name),
+          getDropdownMenuItemList<Speed>(_manager),
+          changeOptionCallback<Speed>,
+        ),
+        _buildDropdownListTile(
+          'settings.digit'.tr(),
+          Icons.pin,
+          _manager.getItemStr<Digit>(_digit.name),
+          getDropdownMenuItemList<Digit>(_manager),
+          changeOptionCallback<Digit>,
+        ),
+        _buildDropdownListTile(
+          'settings.questions'.tr(),
+          Icons.quiz_outlined,
+          _manager.getItemStr<NumOfProblems>(_numOfProblems.name),
+          getDropdownMenuItemList<NumOfProblems>(_manager),
+          changeOptionCallback<NumOfProblems>,
+        ),
+        Tooltip(
+          message: 'settings.separator'.tr(),
+          child: _buildToggleListTile(
+            'settings.separator'.tr(),
+            Icons.looks_one,
+            _manager.enumToValue<SeparatorMode, bool>(_seperatorMode),
+            toggleSepartorModeCallback,
+          ),
+        ),
+        Tooltip(
+          message: 'customOptions.shouldSoundOnDesc'.tr(),
+          child: _buildToggleListTile(
+            'settings.notify'.tr(),
+            Icons.notifications_outlined,
+            _manager.enumToValue<CountDownMode, bool>(_countDownMode),
+            toggleCounterModeCallback,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildToggleListTile(String title, IconData iconData, bool value,
       Function(bool) onChangeMethod) {
-    return getPadding(
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(children: [
-          Icon(iconData, color: Theme.of(context).colorScheme.primaryContainer),
-          const SizedBox(width: 10),
-          Text(title,
-              style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.0185,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.primaryContainer))
-        ]),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8.0),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+        leading: Icon(
+          iconData,
+          size: 24.0,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.w500,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
+        trailing: CupertinoSwitch(
+          value: value,
+          onChanged: onChangeMethod,
+          activeTrackColor: Theme.of(context).colorScheme.primary,
+          inactiveTrackColor: Theme.of(context).brightness == Brightness.dark
+              ? Colors.grey.shade700.withValues(alpha: 0.5)
+              : Colors.grey.shade300.withValues(alpha: 0.7),
+          thumbColor: Theme.of(context).brightness == Brightness.dark
+              ? Colors.grey.shade200
+              : Colors.white,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        tileColor: Theme.of(context).colorScheme.surface,
       ),
-      Transform.scale(
-          scale: 0.9,
-          filterQuality: FilterQuality.high,
-          child: CupertinoSwitch(
-              activeTrackColor: Theme.of(context).colorScheme.onSecondary,
-              inactiveTrackColor: Theme.of(context).colorScheme.onPrimary,
-              value: value,
-              onChanged: (bool newValue) => onChangeMethod(newValue))),
-    ]));
+    );
   }
 
   void togglePlusModeCallback(bool newValue) {
@@ -265,60 +232,83 @@ class _SettingsPageState extends State<SettingsPage> {
     initializeValues(_manager);
   }
 
-  Padding buildDropdownButton(
+  Widget _buildDropdownListTile(
       String title,
-      Icon icon,
+      IconData iconData,
       String initialValue,
       List<DropdownMenuItem<dynamic>> dropdownMenuItemList,
       Function(dynamic) onChangeMethod) {
-    return getPadding(
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Flexible(
-          flex: 19,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                icon,
-                const SizedBox(width: 10),
-                Text(title,
-                    style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height * 0.020,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.primaryContainer))
-              ],
-            ),
-          )),
-      Flexible(
-          flex: 20,
-          child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 350),
-              child: FractionallySizedBox(
-                widthFactor: 0.8,
-                child: DropdownButtonFormField(
-                  dropdownColor:
-                      Theme.of(context).colorScheme.tertiaryContainer,
-                  elevation: 0,
-                  isDense: true,
-                  itemHeight: 50,
-                  initialValue: initialValue,
-                  iconSize: 25,
-                  isExpanded: true,
-                  decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        borderSide: BorderSide(),
-                      ),
-                      filled: true,
-                      fillColor:
-                          Theme.of(context).colorScheme.tertiaryContainer,
-                      floatingLabelAlignment: FloatingLabelAlignment.center),
-                  items: dropdownMenuItemList,
-                  onChanged: onChangeMethod,
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8.0),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+        leading: Icon(
+          iconData,
+          size: 24.0,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.w500,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
+        trailing: SizedBox(
+          width: 120,
+          height: 48,
+          child: DropdownButtonFormField(
+            initialValue: initialValue,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.0),
+                borderSide: BorderSide.none,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.0),
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.0),
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 2.0,
                 ),
-              )))
-    ]));
+              ),
+              filled: true,
+              fillColor: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.grey.shade800
+                  : Colors.grey.shade100,
+            ),
+            items: dropdownMenuItemList,
+            onChanged: onChangeMethod,
+            isDense: false,
+            isExpanded: true,
+            dropdownColor: Theme.of(context).brightness == Brightness.dark
+                ? Colors.grey.shade800
+                : Colors.grey.shade50,
+            elevation: 8,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 14.0,
+              fontWeight: FontWeight.w500,
+              height: 1.2,
+            ),
+            icon: Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+              size: 20.0,
+            ),
+          ),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        tileColor: Theme.of(context).colorScheme.surface,
+      ),
+    );
   }
 
   void changeOptionCallback<T>(dynamic value) {
@@ -370,34 +360,22 @@ class _SettingsPageState extends State<SettingsPage> {
       var item = DropdownMenuItem<String>(
           alignment: isNumber ? Alignment.center : Alignment.centerLeft,
           value: element,
-          child: Text(
-            element,
-            style: TextStyle(
-                height: Platform.isWindows
-                    ? MediaQuery.of(context).size.height * 0.00135
-                    : MediaQuery.of(context).size.height * 0.0017 > 1
-                        ? MediaQuery.of(context).size.height * 0.0017
-                        : 1,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-                fontSize: Platform.isWindows
-                    ? MediaQuery.of(context).size.height * 0.0175
-                    : MediaQuery.of(context).size.height * 0.0165,
-                fontWeight: FontWeight.w500),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+            child: Text(
+              element,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: 14.0,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 0.1,
+              ),
+            ),
           ));
       itemList.add(item);
     }
 
     return itemList;
-  }
-
-  Padding getPadding(Widget? widget) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.of(context).size.height * 0.02,
-        horizontal: MediaQuery.of(context).size.width * 0.02,
-      ),
-      child: widget,
-    );
   }
 
   void initializeValues(SettingsManager manager) {
