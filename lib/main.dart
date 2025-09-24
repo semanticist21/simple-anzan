@@ -214,7 +214,7 @@ class _Home extends State<Home> {
                     visible: !(_currentIndex != 0 && _currentIndex != 2),
                     child: Container(
                       width: 40,
-                      margin: const EdgeInsets.only(right: 10),
+                      margin: const EdgeInsets.only(right: 16),
                       child: Tooltip(
                           message: 'problemList.burningMode'.tr(),
                           child: _FlatCircularButton(
@@ -234,7 +234,7 @@ class _Home extends State<Home> {
                     visible: _currentIndex == 0,
                     child: Container(
                       width: 40,
-                      margin: const EdgeInsets.only(right: 10),
+                      margin: const EdgeInsets.only(right: 16),
                       child: Tooltip(
                           message: 'problemList.stopIteration'.tr(),
                           child: _FlatCircularButton(
@@ -252,7 +252,7 @@ class _Home extends State<Home> {
                     visible: !(_currentIndex != 0 && _currentIndex != 2),
                     child: Container(
                       width: 40,
-                      margin: const EdgeInsets.only(right: 10),
+                      margin: const EdgeInsets.only(right: 16),
                       child: Tooltip(
                           message: 'problemList.checkProb'.tr(),
                           child: _FlatCircularButton(
@@ -334,7 +334,7 @@ class _Home extends State<Home> {
                               size: 20,
                             )),
                       ])),
-                  const SizedBox(width: 5),
+                  const SizedBox(width: 12),
                   Tooltip(
                       message: 'theme.sound'.tr(),
                       child: Icon(
@@ -344,7 +344,7 @@ class _Home extends State<Home> {
                         color: Theme.of(context).colorScheme.onSurface,
                         size: 20, // consistent icon size
                       )),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: 8),
                   Transform.scale(
                       scale: 0.8,
                       child: CupertinoSwitch(
