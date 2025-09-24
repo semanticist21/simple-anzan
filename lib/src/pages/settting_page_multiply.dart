@@ -215,8 +215,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           scale: 0.9,
           filterQuality: FilterQuality.high,
           child: CupertinoSwitch(
-              activeColor: Theme.of(context).colorScheme.onSecondary,
-              trackColor: Theme.of(context).colorScheme.onPrimary,
+              activeTrackColor: Theme.of(context).colorScheme.onSecondary,
+              inactiveTrackColor: Theme.of(context).colorScheme.onPrimary,
               value: value,
               onChanged: (bool newValue) => onChangeMethod(newValue))),
     ]));
@@ -289,7 +289,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                   elevation: 0,
                   isDense: true,
                   itemHeight: 50,
-                  value: initialValue,
+                  initialValue: initialValue,
                   iconSize: 25,
                   isExpanded: true,
                   decoration: InputDecoration(

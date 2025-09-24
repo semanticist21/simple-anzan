@@ -22,11 +22,11 @@ class ThemeSelector {
     return ThemeData.from(
             // toggle active color
             colorScheme: ThemeData().colorScheme.copyWith(
-                  // background color
-                  background: const ColorScheme.dark().background,
+                  // surface color (was background)
+                  surface: const ColorScheme.dark().surface,
 
-                  // secondary background like ..dropdown button / scaffold background
-                  onBackground: Colors.white,
+                  // secondary surface like ..dropdown button / scaffold background
+                  surfaceContainer: Colors.white,
 
                   // not selected Color
                   onInverseSurface: Colors.grey[400],
@@ -66,7 +66,7 @@ class ThemeSelector {
                   onSurfaceVariant: Colors.greenAccent,
 
                   surfaceTint: const Color.fromRGBO(112, 128, 250, 1),
-                  surfaceVariant: const Color.fromRGBO(99, 116, 244, 1),
+                  surfaceContainerHighest: const Color.fromRGBO(99, 116, 244, 1),
                 ),
             textTheme: const TextTheme(
               // option style
@@ -89,7 +89,7 @@ class ThemeSelector {
             ))
         .copyWith(
             scrollbarTheme: const ScrollbarThemeData().copyWith(
-                thumbColor: MaterialStateProperty.all(Colors.transparent)));
+                thumbColor: WidgetStateProperty.all(Colors.transparent)));
   }
 
   // name tangled strangely...
@@ -97,11 +97,11 @@ class ThemeSelector {
     return ThemeData.from(
             // toggle active color
             colorScheme: ThemeData().colorScheme.copyWith(
-                  // background color
-                  background: const Color.fromRGBO(250, 250, 250, 1),
+                  // surface color (was background)
+                  surface: const Color.fromRGBO(250, 250, 250, 1),
 
-                  // secondary background like ..dropdown button / scaffold background
-                  onBackground: Colors.grey[600],
+                  // secondary surface like ..dropdown button / scaffold background
+                  surfaceContainer: Colors.grey[600],
 
                   // not selected Color
                   onInverseSurface: Colors.grey[400],
@@ -142,7 +142,7 @@ class ThemeSelector {
                   onSurfaceVariant: Colors.blueAccent,
 
                   surfaceTint: Colors.orange,
-                  surfaceVariant: Colors.orangeAccent,
+                  surfaceContainerHighest: Colors.orangeAccent,
                 ),
             textTheme: const TextTheme(
               // option style
@@ -165,6 +165,6 @@ class ThemeSelector {
             ))
         .copyWith(
             scrollbarTheme: const ScrollbarThemeData().copyWith(
-                thumbColor: MaterialStateProperty.all(Colors.transparent)));
+                thumbColor: WidgetStateProperty.all(Colors.transparent)));
   }
 }
