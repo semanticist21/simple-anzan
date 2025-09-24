@@ -47,8 +47,8 @@ class _HomePageState extends State<HomePage> {
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
-                                      .onBackground
-                                      .withOpacity(0.7),
+                                      .onSurface
+                                      .withValues(alpha: 0.7),
                                   fontSize: Platform.isWindows
                                       ? MediaQuery.of(context).size.height *
                                           0.03
@@ -69,8 +69,8 @@ class _HomePageState extends State<HomePage> {
                               icon: Icon(Icons.search,
                                   color: Theme.of(context)
                                       .colorScheme
-                                      .onBackground
-                                      .withOpacity(0.7),
+                                      .onSurface
+                                      .withValues(alpha: 0.7),
                                   size: Platform.isWindows
                                       ? MediaQuery.of(context).size.height *
                                           0.03

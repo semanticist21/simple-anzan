@@ -88,7 +88,7 @@ class _WindowsAddOptionMultiplyDialogState
                                 Theme.of(context).colorScheme.tertiaryContainer,
                           ),
                           backgroundColor:
-                              Theme.of(context).colorScheme.background,
+                              Theme.of(context).colorScheme.surface,
                           body: Column(children: [
                             Expanded(
                               flex: 6,
@@ -406,7 +406,7 @@ class _WindowsAddOptionMultiplyDialogState
 
   void changeOptionCallback<T>(dynamic value) {
     switch (T) {
-      case SpeedMultiply:
+      case const (SpeedMultiply):
         if (value == 'custom') {
           showDialog(
               context: context,
@@ -421,7 +421,7 @@ class _WindowsAddOptionMultiplyDialogState
         _speed = _manager.itemStrToEnum<SpeedMultiply>(value);
         _manager.saveSetting(_speed);
         break;
-      case BigDigit:
+      case const (BigDigit):
         _manager.getCurrentValue<SmallDigit, int>();
         if (int.parse(value) < _manager.getCurrentValue<SmallDigit, int>()) {
           showDialog(
@@ -435,7 +435,7 @@ class _WindowsAddOptionMultiplyDialogState
         _bigDigit = _manager.itemStrToEnum<BigDigit>(value);
         _manager.saveSetting(_bigDigit);
         break;
-      case SmallDigit:
+      case const (SmallDigit):
         if (int.parse(value) > _manager.getCurrentValue<BigDigit, int>()) {
           showDialog(
               context: context,
@@ -448,7 +448,7 @@ class _WindowsAddOptionMultiplyDialogState
         _smallDigit = _manager.itemStrToEnum<SmallDigit>(value);
         _manager.saveSetting(_smallDigit);
         break;
-      case NumOfMultiplyProblems:
+      case const (NumOfMultiplyProblems):
         _numOfProblems = _manager.itemStrToEnum<NumOfMultiplyProblems>(value);
         _manager.saveSetting(_numOfProblems);
         break;
@@ -516,12 +516,12 @@ class _WindowsAddOptionMultiplyDialogState
         'other.warning'.tr(),
         style: TextStyle(
             fontSize: MediaQuery.of(context).size.height * 0.025,
-            color: Theme.of(context).colorScheme.onBackground),
+            color: Theme.of(context).colorScheme.onSurface),
       ),
       content: Text('customOptions.insertBigger'.tr(),
           style: TextStyle(
               fontSize: MediaQuery.of(context).size.height * 0.02,
-              color: Theme.of(context).colorScheme.onBackground)),
+              color: Theme.of(context).colorScheme.onSurface)),
       actions: [
         Padding(
             padding: const EdgeInsets.all(5),
@@ -531,7 +531,7 @@ class _WindowsAddOptionMultiplyDialogState
                   'buttons.ok'.tr(),
                   style: TextStyle(
                       fontSize: MediaQuery.of(context).size.height * 0.02,
-                      color: Theme.of(context).colorScheme.onBackground),
+                      color: Theme.of(context).colorScheme.onSurface),
                 )))
       ],
     );

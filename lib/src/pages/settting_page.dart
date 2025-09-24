@@ -323,7 +323,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void changeOptionCallback<T>(dynamic value) {
     switch (T) {
-      case Speed:
+      case const (Speed):
         if (value == 'custom') {
           // When custom is selected, show the dialog and handle the result
           showDialog(
@@ -345,11 +345,11 @@ class _SettingsPageState extends State<SettingsPage> {
           _manager.saveSetting(_speed);
         }
         break;
-      case Digit:
+      case const (Digit):
         _digit = _manager.itemStrToEnum<Digit>(value);
         _manager.saveSetting(_digit);
         break;
-      case NumOfProblems:
+      case const (NumOfProblems):
         _numOfProblems = _manager.itemStrToEnum<NumOfProblems>(value);
         _manager.saveSetting(_numOfProblems);
         break;

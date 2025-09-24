@@ -15,14 +15,14 @@ class _ProbListState extends State<ProbList> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         surfaceTintColor: Colors.transparent,
         child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 800),
             child: FractionallySizedBox(
                 heightFactor: 0.7,
                 child: Container(
-                  color: Theme.of(context).colorScheme.background,
+                  color: Theme.of(context).colorScheme.surface,
                   child: CustomScrollView(
                     physics: const AlwaysScrollableScrollPhysics(
                         parent: BouncingScrollPhysics()),
@@ -72,16 +72,16 @@ class _ProbListState extends State<ProbList> {
                                                 .withGreen((Theme.of(context)
                                                             .colorScheme
                                                             .onTertiaryContainer
-                                                            .green *
+                                                            .g *
                                                         0.7)
                                                     .toInt())
                                                 .withRed(
-                                                    (Theme.of(context).colorScheme.onTertiaryContainer.red * 0.7)
+                                                    (Theme.of(context).colorScheme.onTertiaryContainer.r * 0.7)
                                                         .toInt())
                                                 .withBlue((Theme.of(context)
                                                             .colorScheme
                                                             .onTertiaryContainer
-                                                            .blue *
+                                                            .b *
                                                         0.7)
                                                     .toInt())
                                             : Theme.of(context)
@@ -119,7 +119,7 @@ class _ProbListState extends State<ProbList> {
                                                               0.03,
                                                       color: Theme.of(context)
                                                           .colorScheme
-                                                          .onBackground),
+                                                          .onSurface),
                                                 )
                                               : Text(
                                                   formatter.format(
@@ -133,7 +133,7 @@ class _ProbListState extends State<ProbList> {
                                                               0.03,
                                                       color: Theme.of(context)
                                                           .colorScheme
-                                                          .onBackground,
+                                                          .onSurface,
                                                       fontWeight:
                                                           FontWeight.w500),
                                                 ),
@@ -151,18 +151,18 @@ class _ProbListState extends State<ProbList> {
         child: Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.55,
-      color: Theme.of(context).colorScheme.background,
+      color: Theme.of(context).colorScheme.surface,
       child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Icon(Icons.no_sim_sharp,
             size: MediaQuery.of(context).size.height * 0.13,
-            color: Theme.of(context).colorScheme.onBackground),
+            color: Theme.of(context).colorScheme.onSurface),
         const SizedBox(height: 10),
         Text('problemList.noProbExecuted'.tr(),
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height * 0.03,
                 fontWeight: FontWeight.w600,
-                color: Theme.of(context).colorScheme.onBackground))
+                color: Theme.of(context).colorScheme.onSurface))
       ])),
     ));
   }

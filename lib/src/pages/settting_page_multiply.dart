@@ -311,7 +311,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
 
   void changeOptionCallback<T>(dynamic value) {
     switch (T) {
-      case SpeedMultiply:
+      case const (SpeedMultiply):
         if (value == 'custom') {
           // When custom is selected, show the dialog and handle the result
           showDialog(
@@ -333,7 +333,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           _manager.saveSetting(_speed);
         }
         break;
-      case BigDigit:
+      case const (BigDigit):
         _manager.getCurrentValue<SmallDigit, int>();
         if (int.parse(value) < _manager.getCurrentValue<SmallDigit, int>()) {
           showDialog(
@@ -345,7 +345,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
         _bigDigit = _manager.itemStrToEnum<BigDigit>(value);
         _manager.saveSetting(_bigDigit);
         break;
-      case SmallDigit:
+      case const (SmallDigit):
         if (int.parse(value) > _manager.getCurrentValue<BigDigit, int>()) {
           showDialog(
               context: context,
@@ -356,7 +356,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
         _smallDigit = _manager.itemStrToEnum<SmallDigit>(value);
         _manager.saveSetting(_smallDigit);
         break;
-      case NumOfMultiplyProblems:
+      case const (NumOfMultiplyProblems):
         _numOfProblems = _manager.itemStrToEnum<NumOfMultiplyProblems>(value);
         _manager.saveSetting(_numOfProblems);
         break;

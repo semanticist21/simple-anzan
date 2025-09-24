@@ -51,21 +51,21 @@ class SettingsMultiplyManager {
   // calculation mode.
   T getCurrentEnum<T>() {
     switch (T) {
-      case BurningModeMultiply:
+      case const (BurningModeMultiply):
         return _burningModePref.getValue() as T;
-      case CalCulationMultiplyMode:
+      case const (CalCulationMultiplyMode):
         return _calculationModePref.getValue() as T;
-      case CountDownMultiplyMode:
+      case const (CountDownMultiplyMode):
         return _countDownModePref.getValue() as T;
-      case SpeedMultiply:
+      case const (SpeedMultiply):
         return _speedPref.getValue() as T;
-      case BigDigit:
+      case const (BigDigit):
         return _bigDigitPref.getValue() as T;
-      case SmallDigit:
+      case const (SmallDigit):
         return _smallDigitPref.getValue() as T;
-      case NumOfMultiplyProblems:
+      case const (NumOfMultiplyProblems):
         return _numOfProblemsPref.getValue() as T;
-      case SeperatorMultiplyMode:
+      case const (SeperatorMultiplyMode):
         return _seperatorModePref.getValue() as T;
       default:
         throw Error();
@@ -74,21 +74,21 @@ class SettingsMultiplyManager {
 
   T valueToEnum<V, T>(V value) {
     switch (T) {
-      case BurningModeMultiply:
+      case const (BurningModeMultiply):
         return _burningModePref.valueToEnum(value as bool) as T;
-      case CalCulationMultiplyMode:
+      case const (CalCulationMultiplyMode):
         return _calculationModePref.valueToEnum(value as bool) as T;
-      case CountDownMultiplyMode:
+      case const (CountDownMultiplyMode):
         return _countDownModePref.valueToEnum(value as bool) as T;
-      case SpeedMultiply:
+      case const (SpeedMultiply):
         return _speedPref.valueToEnum(value as Duration) as T;
-      case BigDigit:
+      case const (BigDigit):
         return _bigDigitPref.valueToEnum(value as int) as T;
-      case SmallDigit:
+      case const (SmallDigit):
         return _smallDigitPref.valueToEnum(value as int) as T;
-      case NumOfMultiplyProblems:
+      case const (NumOfMultiplyProblems):
         return _numOfProblemsPref.valueToEnum(value as int) as T;
-      case SeperatorMultiplyMode:
+      case const (SeperatorMultiplyMode):
         return _seperatorModePref.valueToEnum(value as bool) as T;
       default:
         throw Error();
@@ -97,22 +97,22 @@ class SettingsMultiplyManager {
 
   V enumToValue<T, V>(T enumValue) {
     switch (T) {
-      case CalCulationMultiplyMode:
+      case const (CalCulationMultiplyMode):
         return _calculationModePref
             .enumToValue(enumValue as CalCulationMultiplyMode) as V;
-      case CountDownMultiplyMode:
+      case const (CountDownMultiplyMode):
         return _countDownModePref
             .enumToValue(enumValue as CountDownMultiplyMode) as V;
-      case SpeedMultiply:
+      case const (SpeedMultiply):
         return _speedPref.enumToValue(enumValue as SpeedMultiply) as V;
-      case BigDigit:
+      case const (BigDigit):
         return _bigDigitPref.enumToValue(enumValue as BigDigit) as V;
-      case SmallDigit:
+      case const (SmallDigit):
         return _smallDigitPref.enumToValue(enumValue as SmallDigit) as V;
-      case NumOfMultiplyProblems:
+      case const (NumOfMultiplyProblems):
         return _numOfProblemsPref
             .enumToValue(enumValue as NumOfMultiplyProblems) as V;
-      case SeperatorMultiplyMode:
+      case const (SeperatorMultiplyMode):
         return _seperatorModePref
             .enumToValue(enumValue as SeperatorMultiplyMode) as V;
       default:
@@ -122,19 +122,19 @@ class SettingsMultiplyManager {
 
   V getCurrentValue<T, V>() {
     switch (T) {
-      case CountDownMultiplyMode:
+      case const (CountDownMultiplyMode):
         return _countDownModePref
             .enumToValue(getCurrentEnum<CountDownMultiplyMode>()) as V;
-      case SpeedMultiply:
+      case const (SpeedMultiply):
         return _speedPref.enumToValue(getCurrentEnum<SpeedMultiply>()) as V;
-      case BigDigit:
+      case const (BigDigit):
         return _bigDigitPref.enumToValue(getCurrentEnum<BigDigit>()) as V;
-      case SmallDigit:
+      case const (SmallDigit):
         return _smallDigitPref.enumToValue(getCurrentEnum<SmallDigit>()) as V;
-      case NumOfMultiplyProblems:
+      case const (NumOfMultiplyProblems):
         return _numOfProblemsPref
             .enumToValue(getCurrentEnum<NumOfMultiplyProblems>()) as V;
-      case SeperatorMultiplyMode:
+      case const (SeperatorMultiplyMode):
         return _seperatorModePref
             .enumToValue(getCurrentEnum<SeperatorMultiplyMode>()) as V;
       default:
@@ -144,13 +144,13 @@ class SettingsMultiplyManager {
 
   T itemStrToEnum<T>(String str) {
     switch (T) {
-      case SpeedMultiply:
+      case const (SpeedMultiply):
         return _speedPref.itemStrToValue(str) as T;
-      case BigDigit:
+      case const (BigDigit):
         return _bigDigitPref.itemStrToValue(str) as T;
-      case SmallDigit:
+      case const (SmallDigit):
         return _smallDigitPref.itemStrToValue(str) as T;
-      case NumOfMultiplyProblems:
+      case const (NumOfMultiplyProblems):
         return _numOfProblemsPref.itemStrToValue(str) as T;
       default:
         throw Error();
@@ -160,28 +160,28 @@ class SettingsMultiplyManager {
   // save methods
   void saveSetting(dynamic value) {
     switch (value.runtimeType) {
-      case BurningModeMultiply:
+      case const (BurningModeMultiply):
         _burningModePref.saveSetting(_prefs, value);
         break;
-      case CalCulationMultiplyMode:
+      case const (CalCulationMultiplyMode):
         _calculationModePref.saveSetting(_prefs, value);
         break;
-      case CountDownMultiplyMode:
+      case const (CountDownMultiplyMode):
         _countDownModePref.saveSetting(_prefs, value);
         break;
-      case SpeedMultiply:
+      case const (SpeedMultiply):
         _speedPref.saveSetting(_prefs, value);
         break;
-      case BigDigit:
+      case const (BigDigit):
         _bigDigitPref.saveSetting(_prefs, value);
         break;
-      case SmallDigit:
+      case const (SmallDigit):
         _smallDigitPref.saveSetting(_prefs, value);
         break;
-      case NumOfMultiplyProblems:
+      case const (NumOfMultiplyProblems):
         _numOfProblemsPref.saveSetting(_prefs, value);
         break;
-      case SeperatorMultiplyMode:
+      case const (SeperatorMultiplyMode):
         _seperatorModePref.saveSetting(_prefs, value);
         break;
       default:
@@ -199,13 +199,13 @@ class SettingsMultiplyManager {
   // enum to list of items
   List<String> getItemsListOfEnum<T>() {
     switch (T) {
-      case NumOfMultiplyProblems:
+      case const (NumOfMultiplyProblems):
         return _numOfProblemsPref.getItemsListofEnum();
-      case SpeedMultiply:
+      case const (SpeedMultiply):
         return _speedPref.getItemsListofEnum();
-      case BigDigit:
+      case const (BigDigit):
         return _bigDigitPref.getItemsListofEnum();
-      case SmallDigit:
+      case const (SmallDigit):
         return _smallDigitPref.getItemsListofEnum();
       default:
         throw Error();
@@ -214,13 +214,13 @@ class SettingsMultiplyManager {
 
   String getItemStr<T>(String enumName) {
     switch (T) {
-      case NumOfMultiplyProblems:
+      case const (NumOfMultiplyProblems):
         return _numOfProblemsPref.enumNameToItemString(enumName);
-      case SpeedMultiply:
+      case const (SpeedMultiply):
         return _speedPref.enumNameToItemString(enumName);
-      case BigDigit:
+      case const (BigDigit):
         return _bigDigitPref.enumNameToItemString(enumName);
-      case SmallDigit:
+      case const (SmallDigit):
         return _smallDigitPref.enumNameToItemString(enumName);
       default:
         throw Error();

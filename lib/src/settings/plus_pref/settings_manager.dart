@@ -34,7 +34,6 @@ class SettingsManager {
     refreshPrefValues(_prefs);
   }
 
-
   void refreshPrefValues(SharedPreferencesWithCache prefs) {
     _burningModePref = BurningModePref(prefs);
     _calculationModePref = CalculationModePref(prefs);
@@ -54,21 +53,21 @@ class SettingsManager {
   // calculation mode.
   T getCurrentEnum<T>() {
     switch (T) {
-      case BurningMode:
+      case const (BurningMode):
         return _burningModePref.getValue() as T;
-      case CalculationMode:
+      case const (CalculationMode):
         return _calculationModePref.getValue() as T;
-      case ShuffleMode:
+      case const (ShuffleMode):
         return _shuffleModePref.getValue() as T;
-      case CountDownMode:
+      case const (CountDownMode):
         return _countDownModePref.getValue() as T;
-      case Speed:
+      case const (Speed):
         return _speedPref.getValue() as T;
-      case Digit:
+      case const (Digit):
         return _digitPref.getValue() as T;
-      case NumOfProblems:
+      case const (NumOfProblems):
         return _numOfProblemsPref.getValue() as T;
-      case SeperatorMode:
+      case const (SeperatorMode):
         return _seperatorModePref.getValue() as T;
       default:
         throw Error();
@@ -77,21 +76,21 @@ class SettingsManager {
 
   T valueToEnum<V, T>(V value) {
     switch (T) {
-      case BurningMode:
+      case const (BurningMode):
         return _burningModePref.valueToEnum(value as bool) as T;
-      case CalculationMode:
+      case const (CalculationMode):
         return _calculationModePref.valueToEnum(value as bool) as T;
-      case ShuffleMode:
+      case const (ShuffleMode):
         return _shuffleModePref.valueToEnum(value as bool) as T;
-      case CountDownMode:
+      case const (CountDownMode):
         return _countDownModePref.valueToEnum(value as bool) as T;
-      case Speed:
+      case const (Speed):
         return _speedPref.valueToEnum(value as Duration) as T;
-      case Digit:
+      case const (Digit):
         return _digitPref.valueToEnum(value as int) as T;
-      case NumOfProblems:
+      case const (NumOfProblems):
         return _numOfProblemsPref.valueToEnum(value as int) as T;
-      case SeperatorMode:
+      case const (SeperatorMode):
         return _seperatorModePref.valueToEnum(value as bool) as T;
       default:
         throw Error();
@@ -100,20 +99,20 @@ class SettingsManager {
 
   V enumToValue<T, V>(T enumValue) {
     switch (T) {
-      case CalculationMode:
+      case const (CalculationMode):
         return _calculationModePref.enumToValue(enumValue as CalculationMode)
             as V;
-      case ShuffleMode:
+      case const (ShuffleMode):
         return _shuffleModePref.enumToValue(enumValue as ShuffleMode) as V;
-      case CountDownMode:
+      case const (CountDownMode):
         return _countDownModePref.enumToValue(enumValue as CountDownMode) as V;
-      case Speed:
+      case const (Speed):
         return _speedPref.enumToValue(enumValue as Speed) as V;
-      case Digit:
+      case const (Digit):
         return _digitPref.enumToValue(enumValue as Digit) as V;
-      case NumOfProblems:
+      case const (NumOfProblems):
         return _numOfProblemsPref.enumToValue(enumValue as NumOfProblems) as V;
-      case SeperatorMode:
+      case const (SeperatorMode):
         return _seperatorModePref.enumToValue(enumValue as SeperatorMode) as V;
       default:
         throw Error();
@@ -122,19 +121,19 @@ class SettingsManager {
 
   V getCurrentValue<T, V>() {
     switch (T) {
-      case ShuffleMode:
+      case const (ShuffleMode):
         return _shuffleModePref.enumToValue(getCurrentEnum<ShuffleMode>()) as V;
-      case CountDownMode:
+      case const (CountDownMode):
         return _countDownModePref.enumToValue(getCurrentEnum<CountDownMode>())
             as V;
-      case Speed:
+      case const (Speed):
         return _speedPref.enumToValue(getCurrentEnum<Speed>()) as V;
-      case Digit:
+      case const (Digit):
         return _digitPref.enumToValue(getCurrentEnum<Digit>()) as V;
-      case NumOfProblems:
+      case const (NumOfProblems):
         return _numOfProblemsPref.enumToValue(getCurrentEnum<NumOfProblems>())
             as V;
-      case SeperatorMode:
+      case const (SeperatorMode):
         return _seperatorModePref.enumToValue(getCurrentEnum<SeperatorMode>())
             as V;
       default:
@@ -144,11 +143,11 @@ class SettingsManager {
 
   T itemStrToEnum<T>(String str) {
     switch (T) {
-      case Speed:
+      case const (Speed):
         return _speedPref.itemStrToValue(str) as T;
-      case Digit:
+      case const (Digit):
         return _digitPref.itemStrToValue(str) as T;
-      case NumOfProblems:
+      case const (NumOfProblems):
         return _numOfProblemsPref.itemStrToValue(str) as T;
       default:
         throw Error();
@@ -158,28 +157,28 @@ class SettingsManager {
   // save methods
   void saveSetting(dynamic value) {
     switch (value.runtimeType) {
-      case BurningMode:
+      case const (BurningMode):
         _burningModePref.saveSetting(_prefs, value);
         break;
-      case CalculationMode:
+      case const (CalculationMode):
         _calculationModePref.saveSetting(_prefs, value);
         break;
-      case ShuffleMode:
+      case const (ShuffleMode):
         _shuffleModePref.saveSetting(_prefs, value);
         break;
-      case CountDownMode:
+      case const (CountDownMode):
         _countDownModePref.saveSetting(_prefs, value);
         break;
-      case Speed:
+      case const (Speed):
         _speedPref.saveSetting(_prefs, value);
         break;
-      case Digit:
+      case const (Digit):
         _digitPref.saveSetting(_prefs, value);
         break;
-      case NumOfProblems:
+      case const (NumOfProblems):
         _numOfProblemsPref.saveSetting(_prefs, value);
         break;
-      case SeperatorMode:
+      case const (SeperatorMode):
         _seperatorModePref.saveSetting(_prefs, value);
         break;
       default:
@@ -197,11 +196,11 @@ class SettingsManager {
   // enum to list of items
   List<String> getItemsListOfEnum<T>() {
     switch (T) {
-      case NumOfProblems:
+      case const (NumOfProblems):
         return _numOfProblemsPref.getItemsListofEnum();
-      case Speed:
+      case const (Speed):
         return _speedPref.getItemsListofEnum();
-      case Digit:
+      case const (Digit):
         return _digitPref.getItemsListofEnum();
       default:
         throw Error();
@@ -210,11 +209,11 @@ class SettingsManager {
 
   String getItemStr<T>(String enumName) {
     switch (T) {
-      case NumOfProblems:
+      case const (NumOfProblems):
         return _numOfProblemsPref.enumNameToItemString(enumName);
-      case Speed:
+      case const (Speed):
         return _speedPref.enumNameToItemString(enumName);
-      case Digit:
+      case const (Digit):
         return _digitPref.enumNameToItemString(enumName);
       default:
         throw Error();

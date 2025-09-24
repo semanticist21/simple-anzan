@@ -45,7 +45,7 @@ class _PresetMultiplyListState extends State<PresetMultiplyList> {
             child: FractionallySizedBox(
                 heightFactor: 0.7,
                 child: Container(
-                  color: Theme.of(context).colorScheme.background,
+                  color: Theme.of(context).colorScheme.surface,
                   child: CustomScrollView(
                     controller: _controller,
                     physics: const AlwaysScrollableScrollPhysics(
@@ -110,18 +110,18 @@ class _PresetMultiplyListState extends State<PresetMultiplyList> {
         child: Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.55,
-      color: Theme.of(context).colorScheme.background,
+      color: Theme.of(context).colorScheme.surface,
       child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Icon(Icons.no_sim_sharp,
             size: MediaQuery.of(context).size.height * 0.15,
-            color: Theme.of(context).colorScheme.onBackground),
+            color: Theme.of(context).colorScheme.onSurface),
         const SizedBox(height: 10),
         Text('아이템이 없습니다.',
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height * 0.034,
                 fontWeight: FontWeight.w600,
-                color: Theme.of(context).colorScheme.onBackground))
+                color: Theme.of(context).colorScheme.onSurface))
       ])),
     ));
   }

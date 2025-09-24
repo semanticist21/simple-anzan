@@ -25,14 +25,14 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
     });
 
     return Dialog(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         surfaceTintColor: Colors.transparent,
         child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 800),
             child: FractionallySizedBox(
                 heightFactor: 0.7,
                 child: Container(
-                  color: Theme.of(context).colorScheme.background,
+                  color: Theme.of(context).colorScheme.surface,
                   child: CustomScrollView(
                     controller: _controller,
                     physics: const AlwaysScrollableScrollPhysics(
@@ -83,19 +83,19 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                             .withGreen((Theme.of(context)
                                                         .colorScheme
                                                         .onTertiaryContainer
-                                                        .green *
+                                                        .g *
                                                     0.7)
                                                 .toInt())
                                             .withRed((Theme.of(context)
                                                         .colorScheme
                                                         .onTertiaryContainer
-                                                        .red *
+                                                        .r *
                                                     0.7)
                                                 .toInt())
                                             .withBlue((Theme.of(context)
                                                         .colorScheme
                                                         .onTertiaryContainer
-                                                        .blue *
+                                                        .b *
                                                     0.7)
                                                 .toInt())
                                         : Theme.of(context)
@@ -135,7 +135,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                                               0.026,
                                                       color: Theme.of(context)
                                                           .colorScheme
-                                                          .onBackground),
+                                                          .onSurface),
                                                   const SizedBox(width: 5),
                                                   Text(
                                                     widget.mode[index]
@@ -163,7 +163,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
 
   TextStyle getTextStyle() {
     return TextStyle(
-        color: Theme.of(context).colorScheme.onBackground,
+        color: Theme.of(context).colorScheme.onSurface,
         fontSize: MediaQuery.of(context).size.height * 0.025);
   }
 
@@ -172,20 +172,20 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
         child: Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.55,
-      color: Theme.of(context).colorScheme.background,
+      color: Theme.of(context).colorScheme.surface,
       child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Icon(
           Icons.no_sim_sharp,
           size: MediaQuery.of(context).size.height * 0.15,
-          color: Theme.of(context).colorScheme.onBackground,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
         const SizedBox(height: 10),
         Text('problemList.noProbExecuted'.tr(),
             style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height * 0.034,
                 fontWeight: FontWeight.w600,
-                color: Theme.of(context).colorScheme.onBackground))
+                color: Theme.of(context).colorScheme.onSurface))
       ])),
     ));
   }

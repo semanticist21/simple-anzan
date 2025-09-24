@@ -86,7 +86,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
                               Theme.of(context).colorScheme.tertiaryContainer,
                         ),
                         backgroundColor:
-                            Theme.of(context).colorScheme.background,
+                            Theme.of(context).colorScheme.surface,
                         body: Column(children: [
                           Expanded(
                               flex: 6,
@@ -419,7 +419,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
 
   void changeOptionCallback<T>(dynamic value) {
     switch (T) {
-      case Speed:
+      case const (Speed):
         if (value == 'custom') {
           showDialog(
               context: context,
@@ -434,11 +434,11 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
         _speed = _manager.itemStrToEnum<Speed>(value);
         _manager.saveSetting(_speed);
         break;
-      case Digit:
+      case const (Digit):
         _digit = _manager.itemStrToEnum<Digit>(value);
         _manager.saveSetting(_digit);
         break;
-      case NumOfProblems:
+      case const (NumOfProblems):
         _numOfProblems = _manager.itemStrToEnum<NumOfProblems>(value);
         _manager.saveSetting(_numOfProblems);
         break;

@@ -268,7 +268,7 @@ class _Home extends State<Home> {
                             },
                             elevation: 2.0,
                             fillColor:
-                                Theme.of(context).colorScheme.onBackground,
+                                Theme.of(context).colorScheme.onSurface,
                             padding: const EdgeInsets.all(2),
                             shape: const CircleBorder(),
                             child: Icon(
@@ -317,7 +317,7 @@ class _Home extends State<Home> {
                                 }
                               },
                               icon: const Icon(CupertinoIcons.collections),
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context).colorScheme.onSurface,
                               iconSize: Platform.isWindows
                                   ? MediaQuery.of(context).size.height * 0.038
                                   : null,
@@ -340,7 +340,7 @@ class _Home extends State<Home> {
                                 }
                               },
                               icon: const Icon(CupertinoIcons.settings),
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context).colorScheme.onSurface,
                               iconSize: Platform.isWindows
                                   ? MediaQuery.of(context).size.height * 0.038
                                   : null,
@@ -354,7 +354,7 @@ class _Home extends State<Home> {
                         SoundOptionHandler.isSoundOn
                             ? CupertinoIcons.speaker_2
                             : CupertinoIcons.speaker_slash,
-                        color: Theme.of(context).colorScheme.onBackground,
+                        color: Theme.of(context).colorScheme.onSurface,
                         size: Platform.isWindows
                             ? MediaQuery.of(context).size.height * 0.038
                             : null,
@@ -362,8 +362,8 @@ class _Home extends State<Home> {
                   Transform.scale(
                       scale: 0.8,
                       child: CupertinoSwitch(
-                        activeColor: Theme.of(context).colorScheme.onSecondary,
-                        trackColor: Theme.of(context).colorScheme.onPrimary,
+                        activeTrackColor: Theme.of(context).colorScheme.onSecondary,
+                        inactiveTrackColor: Theme.of(context).colorScheme.onPrimary,
                         onChanged: (value) {
                           OptionManager()
                               .setSoundBool(!SoundOptionHandler.isSoundOn);
@@ -379,7 +379,7 @@ class _Home extends State<Home> {
                 message: 'theme.mode'.tr(),
                 child: Icon(
                   ThemeSelector.isDark ? Icons.nightlight : Icons.sunny,
-                  color: Theme.of(context).colorScheme.onBackground,
+                  color: Theme.of(context).colorScheme.onSurface,
                   size: Platform.isWindows
                       ? MediaQuery.of(context).size.height * 0.038
                       : null,
@@ -387,8 +387,8 @@ class _Home extends State<Home> {
             Transform.scale(
                 scale: 0.8,
                 child: CupertinoSwitch(
-                  activeColor: Theme.of(context).colorScheme.onSecondary,
-                  trackColor: Theme.of(context).colorScheme.onPrimary,
+                  activeTrackColor: Theme.of(context).colorScheme.onSecondary,
+                  inactiveTrackColor: Theme.of(context).colorScheme.onPrimary,
                   onChanged: (value) {
                     OptionManager().setThemeBool(!ThemeSelector.isDark);
                     setState(() {});
@@ -399,7 +399,7 @@ class _Home extends State<Home> {
           const SizedBox(width: 5),
         ],
       ),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Navigator(
         key: navigationKey,
         onGenerateRoute: generateRoutes,
@@ -407,14 +407,14 @@ class _Home extends State<Home> {
         initialRoute: mainPageAddress,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.onBackground,
-        selectedItemColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.onSurface,
+        selectedItemColor: Theme.of(context).colorScheme.surface,
         unselectedItemColor: Theme.of(context).colorScheme.onInverseSurface,
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.add_to_photos_outlined,
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 size: MediaQuery.of(context).size.height * 0.023),
             icon: Icon(Icons.add_to_photos,
                 color: Theme.of(context).colorScheme.onInverseSurface,
@@ -423,7 +423,7 @@ class _Home extends State<Home> {
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.settings_outlined,
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 size: MediaQuery.of(context).size.height * 0.023),
             icon: Icon(Icons.settings,
                 color: Theme.of(context).colorScheme.onInverseSurface,
@@ -432,7 +432,7 @@ class _Home extends State<Home> {
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(CupertinoIcons.xmark_circle,
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 size: MediaQuery.of(context).size.height * 0.023),
             icon: Icon(CupertinoIcons.xmark_circle_fill,
                 color: Theme.of(context).colorScheme.onInverseSurface,
@@ -441,7 +441,7 @@ class _Home extends State<Home> {
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(CupertinoIcons.gear,
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 size: MediaQuery.of(context).size.height * 0.023),
             icon: Icon(CupertinoIcons.gear_alt_fill,
                 color: Theme.of(context).colorScheme.onInverseSurface,
@@ -535,7 +535,7 @@ class _Home extends State<Home> {
       setState(() {});
     } catch (e) {
       // Do nothing if preferences not initialized yet
-      print('Burning mode preferences not initialized yet: $e');
+      // Burning mode preferences not initialized yet: $e
     }
   }
 

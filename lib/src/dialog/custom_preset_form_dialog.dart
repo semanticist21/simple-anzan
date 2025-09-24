@@ -104,7 +104,7 @@ class _CustomPresetFormDialogState extends State<CustomPresetFormDialog> {
                               availableColors: backgroundColors
                                   .map((color) => Color(int.parse(
                                           color.replaceAll('#', '0xFF')))
-                                      .withOpacity(0.95))
+                                      .withValues(alpha: 0.95))
                                   .toList(),
                               pickerColor: currentColor,
                               onColorChanged: (Color color) {
@@ -181,9 +181,9 @@ class _CustomPresetFormDialogState extends State<CustomPresetFormDialog> {
                 if (result != null && result) {
                   Navigator.of(context).pop(SaveInfo(
                       colorCode:
-                          '0xff${savedColor.value.toRadixString(16).substring(2)}',
+                          '0xff${savedColor.toARGB32().toRadixString(16).substring(2)}',
                       textColorCode:
-                          '0xff${Colors.white.value.toRadixString(16).substring(2)}',
+                          '0xff${Colors.white.toARGB32().toRadixString(16).substring(2)}',
                       name: _textController.text));
                 }
               },

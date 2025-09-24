@@ -9,7 +9,7 @@ class ErrorPage extends StatelessWidget {
     return Center(
         child: Text(
       error,
-      style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+      style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
     ));
   }
 }
