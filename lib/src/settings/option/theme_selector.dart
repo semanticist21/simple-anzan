@@ -23,7 +23,8 @@ class ThemeSelector {
             // toggle active color
             colorScheme: ThemeData().colorScheme.copyWith(
                   // surface color (was background)
-                  surface: const ColorScheme.dark().surface,
+                  surface: const Color(0xFF121212),
+                  primary: Colors.white,
 
                   // secondary surface like ..dropdown button / scaffold background
                   surfaceContainer: Colors.white,
@@ -62,7 +63,7 @@ class ThemeSelector {
                   onSecondary: Colors.blueGrey,
 
                   // button color
-                  onSurface: Colors.green,
+                  onSurface: Colors.grey[600],
                   onSurfaceVariant: Colors.greenAccent,
 
                   surfaceTint: const Color.fromRGBO(112, 128, 250, 1),
@@ -98,7 +99,8 @@ class ThemeSelector {
             // toggle active color
             colorScheme: ThemeData().colorScheme.copyWith(
                   // surface color (was background)
-                  surface: const Color.fromRGBO(250, 250, 250, 1),
+                  surface: const Color(0xFFFAFAFA),
+                  primary: const Color(0xFF2196F3),
 
                   // secondary surface like ..dropdown button / scaffold background
                   surfaceContainer: Colors.grey[600],
@@ -138,7 +140,7 @@ class ThemeSelector {
                   onSecondary: Colors.black87,
 
                   // button color
-                  onSurface: Colors.blue,
+                  onSurface: Colors.grey[700],
                   onSurfaceVariant: Colors.blueAccent,
 
                   surfaceTint: Colors.orange,

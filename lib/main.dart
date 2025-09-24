@@ -406,51 +406,42 @@ class _Home extends State<Home> {
         onUnknownRoute: generateErrorPages,
         initialRoute: mainPageAddress,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.onSurface,
-        selectedItemColor: Theme.of(context).colorScheme.surface,
-        unselectedItemColor: Theme.of(context).colorScheme.onInverseSurface,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            activeIcon: Icon(Icons.add_to_photos_outlined,
-                color: Theme.of(context).colorScheme.surface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(Icons.add_to_photos,
-                color: Theme.of(context).colorScheme.onInverseSurface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            label: 'navigation.homePlus'.tr(),
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(Icons.settings_outlined,
-                color: Theme.of(context).colorScheme.surface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(Icons.settings,
-                color: Theme.of(context).colorScheme.onInverseSurface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            label: 'navigation.settingPlus'.tr(),
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(CupertinoIcons.xmark_circle,
-                color: Theme.of(context).colorScheme.surface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(CupertinoIcons.xmark_circle_fill,
-                color: Theme.of(context).colorScheme.onInverseSurface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            label: 'navigation.homeMultiply'.tr(),
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(CupertinoIcons.gear,
-                color: Theme.of(context).colorScheme.surface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            icon: Icon(CupertinoIcons.gear_alt_fill,
-                color: Theme.of(context).colorScheme.onInverseSurface,
-                size: MediaQuery.of(context).size.height * 0.023),
-            label: 'navigation.settingMultiply'.tr(),
-          )
-        ],
-        onTap: _onTap,
-        currentIndex: _currentIndex,
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          selectedItemColor: Theme.of(context).colorScheme.primary,
+          unselectedItemColor: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+          type: BottomNavigationBarType.fixed,
+          elevation: 0,
+          selectedFontSize: 12,
+          unselectedFontSize: 12,
+          enableFeedback: false,
+          mouseCursor: SystemMouseCursors.basic,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add, size: 24),
+              label: 'navigation.homePlus'.tr(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.tune, size: 24),
+              label: 'navigation.settingPlus'.tr(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.close, size: 24),
+              label: 'navigation.homeMultiply'.tr(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings, size: 24),
+              label: 'navigation.settingMultiply'.tr(),
+            )
+          ],
+          onTap: _onTap,
+          currentIndex: _currentIndex,
+        ),
       ),
     );
   }
