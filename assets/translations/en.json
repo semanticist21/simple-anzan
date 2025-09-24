@@ -17,6 +17,7 @@
   },
   "buttons": {
     "ok": "Ok",
+    "cancel": "Cancel",
     "start": "Start !!",
     "check": "Check Answer"
   },

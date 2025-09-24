@@ -18,6 +18,7 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart
 import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
@@ -364,31 +365,71 @@ class _Home extends State<Home> {
                 ]);
               }),
           const SizedBox(width: 5),
-          Row(children: [
-            Tooltip(
-                message: 'theme.mode'.tr(),
-                child: Icon(
-                  ThemeSelector.isDark ? Icons.nightlight_outlined : Icons.wb_sunny_outlined,
-                  color: Theme.of(context).colorScheme.onSurface,
-                  size: 20, // consistent icon size
-                )),
-            const SizedBox(width: 4),
-            Transform.scale(
-                scale: 0.8,
-                child: CupertinoSwitch(
-                  activeTrackColor: ThemeSelector.isDark
-                      ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.3)
-                      : Theme.of(context).colorScheme.onSecondary,
-                  inactiveTrackColor: ThemeSelector.isDark
-                      ? Theme.of(context).colorScheme.onPrimary
-                      : Theme.of(context).colorScheme.onPrimary,
-                  onChanged: (value) {
-                    OptionManager().setThemeBool(!ThemeSelector.isDark);
-                    setState(() {});
-                  },
-                  value: ThemeSelector.isDark,
-                )),
-          ]),
+          Tooltip(
+            message: 'theme.mode'.tr(),
+            child: AnimatedToggleSwitch<bool>.dual(
+              current: ThemeSelector.isDark,
+              first: false,
+              second: true,
+              onChanged: (value) {
+                OptionManager().setThemeBool(value);
+                setState(() {});
+              },
+              spacing: 2.0,
+              height: 32.0,
+              borderWidth: 1.0,
+              indicatorSize: const Size.fromWidth(28.0),
+              animationDuration: const Duration(milliseconds: 300),
+              animationCurve: Curves.easeInOut,
+              style: ToggleStyle(
+                borderColor: Colors.grey.shade300,
+                backgroundColor: Colors.grey.shade100,
+                indicatorColor: Colors.white,
+              ),
+              styleBuilder: (value) => ToggleStyle(
+                backgroundColor: value
+                    ? const Color(0xFF0F172A) // Deep midnight blue
+                    : const Color(0xFFFFF8E7), // Warm cream for day
+                borderColor: value
+                    ? const Color(0xFF1E293B) // Darker border for night
+                    : const Color(0xFFE5D5B7), // Warm beige border for day
+                indicatorColor: value
+                    ? const Color(0xFF1E2B3C) // Dark indicator for night
+                    : const Color(0xFFFFFAF0), // Pure warm white indicator for day
+              ),
+              iconBuilder: (value) => value
+                  ? Container(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          colors: [Color(0xFF6B7280), Color(0xFFD1D5DB)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.bedtime,
+                        color: Color(0xFFF8FAFC),
+                        size: 14.0,
+                      ),
+                    )
+                  : Container(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: RadialGradient(
+                          colors: [Color(0xFFFBBF24), Color(0xFFF59E0B)],
+                          center: Alignment.center,
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.wb_sunny,
+                        color: Color(0xFFFFFFFF),
+                        size: 14.0,
+                      ),
+                    ),
+              textBuilder: (value) => const SizedBox.shrink(),
+            ),
+          ),
           const SizedBox(width: 5),
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 
+import '../components/custom_dropdown.dart';
 import '../dialog/add_dialog.dart';
 import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
 import '../settings/plus_pref/prefs/digit_pref.dart';
@@ -107,7 +108,7 @@ class _SettingsPageState extends State<SettingsPage> {
           message: 'customOptions.shuffleDesc'.tr(),
           child: _buildToggleListTile(
             'settings.shuffle'.tr(),
-            Icons.shuffle_on,
+            Icons.casino_outlined,
             _manager.enumToValue<ShuffleMode, bool>(_isShuffle),
             toggleShuffleModeCallback,
           ),
@@ -146,7 +147,7 @@ class _SettingsPageState extends State<SettingsPage> {
           message: 'customOptions.shouldSoundOnDesc'.tr(),
           child: _buildToggleListTile(
             'settings.notify'.tr(),
-            Icons.notifications_outlined,
+            Icons.volume_up_outlined,
             _manager.enumToValue<CountDownMode, bool>(_countDownMode),
             toggleCounterModeCallback,
           ),
@@ -154,6 +155,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ],
     );
   }
+
 
   Widget _buildToggleListTile(String title, IconData iconData, bool value,
       Function(bool) onChangeMethod) {
@@ -255,53 +257,10 @@ class _SettingsPageState extends State<SettingsPage> {
             color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
-        trailing: SizedBox(
-          width: 120,
-          height: 48,
-          child: DropdownButtonFormField(
-            initialValue: initialValue,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.0),
-                borderSide: BorderSide.none,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.0),
-                borderSide: BorderSide.none,
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.0),
-                borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.primary,
-                  width: 2.0,
-                ),
-              ),
-              filled: true,
-              fillColor: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.grey.shade800
-                  : Colors.grey.shade100,
-            ),
-            items: dropdownMenuItemList,
-            onChanged: onChangeMethod,
-            isDense: false,
-            isExpanded: true,
-            dropdownColor: Theme.of(context).brightness == Brightness.dark
-                ? Colors.grey.shade800
-                : Colors.grey.shade50,
-            elevation: 8,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface,
-              fontSize: 14.0,
-              fontWeight: FontWeight.w500,
-              height: 1.2,
-            ),
-            icon: Icon(
-              Icons.keyboard_arrow_down_rounded,
-              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
-              size: 20.0,
-            ),
-          ),
+        trailing: CustomDropdown(
+          initialValue: initialValue,
+          items: dropdownMenuItemList,
+          onChanged: onChangeMethod,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
@@ -360,17 +319,16 @@ class _SettingsPageState extends State<SettingsPage> {
       var item = DropdownMenuItem<String>(
           alignment: isNumber ? Alignment.center : Alignment.centerLeft,
           value: element,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-            child: Text(
-              element,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontSize: 14.0,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 0.1,
-              ),
+          child: Text(
+            element,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 14.0,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.1,
+              height: 1.0,
             ),
+            textAlign: isNumber ? TextAlign.center : TextAlign.left,
           ));
       itemList.add(item);
     }
