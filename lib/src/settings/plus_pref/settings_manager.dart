@@ -4,7 +4,7 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/calculation_mod
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
-import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/seperator.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/separator.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/shuffle.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/speed.dart';
 import 'package:shared_preferences/shared_preferences.dart';

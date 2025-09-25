@@ -42,7 +42,7 @@ class _LoadingState extends State<Loading> {
                         ),
                         const SizedBox(height: 20),
                         FittedBox(
-                            child: Text('app.name'.tr(),
+                            child: Text(context.tr('app.name'),
                                 style: const TextStyle(
                                     color: Colors.black87,
                                     decoration: TextDecoration.none,

@@ -66,11 +66,7 @@ void main() async {
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [
-        Locale('en'),
-        Locale('ko'),
-        Locale('ja')
-      ],
+      supportedLocales: const [Locale('en'), Locale('ko'), Locale('ja')],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
       child:
@@ -88,39 +84,47 @@ class MyApp extends StatelessWidget {
     return StreamBuilder<bool>(
         initialData: true,
         stream: ThemeSelector.isDarkStream.stream,
-        builder: (context, snapshot) => MaterialApp(
-              localizationsDelegates: [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-                EasyLocalization.of(context)!.delegate,
-              ],
-              supportedLocales: EasyLocalization.of(context)!.supportedLocales,
-              locale: EasyLocalization.of(context)!.locale,
-              scrollBehavior: const MaterialScrollBehavior().copyWith(
-                  dragDevices: {
-                    PointerDeviceKind.mouse,
-                    PointerDeviceKind.touch,
-                    PointerDeviceKind.stylus,
-                    PointerDeviceKind.unknown
-                  },
-                  physics: const AlwaysScrollableScrollPhysics(
-                      parent: BouncingScrollPhysics())),
-              debugShowCheckedModeBanner: false,
-              theme: ThemeSelector.isDark
+        builder: (context, snapshot) => AnimatedTheme(
+              data: ThemeSelector.isDark
                   ? ThemeSelector.getBlackTheme()
                   : ThemeSelector.getWhiteTheme(),
-              title: 'app.name'.tr(),
-              home: PopScope(
-                onPopInvokedWithResult: (didPop, result) async {
-                  // Audio players are automatically disposed
-                },
-                child: MultiProvider(providers: [
-                  ChangeNotifierProvider<StateProvider>(
-                      create: (_) => StateProvider()),
-                  ChangeNotifierProvider<StateMultiplyProvider>(
-                      create: (_) => StateMultiplyProvider())
-                ], child: const Home()),
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              child: MaterialApp(
+                localizationsDelegates: [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                  EasyLocalization.of(context)!.delegate,
+                ],
+                supportedLocales:
+                    EasyLocalization.of(context)!.supportedLocales,
+                locale: EasyLocalization.of(context)!.locale,
+                scrollBehavior: const MaterialScrollBehavior().copyWith(
+                    dragDevices: {
+                      PointerDeviceKind.mouse,
+                      PointerDeviceKind.touch,
+                      PointerDeviceKind.stylus,
+                      PointerDeviceKind.unknown
+                    },
+                    physics: const AlwaysScrollableScrollPhysics(
+                        parent: BouncingScrollPhysics())),
+                debugShowCheckedModeBanner: false,
+                theme: ThemeSelector.isDark
+                    ? ThemeSelector.getBlackTheme()
+                    : ThemeSelector.getWhiteTheme(),
+                title: 'app.name'.tr(),
+                home: PopScope(
+                  onPopInvokedWithResult: (didPop, result) async {
+                    // Audio players are automatically disposed
+                  },
+                  child: MultiProvider(providers: [
+                    ChangeNotifierProvider<StateProvider>(
+                        create: (_) => StateProvider()),
+                    ChangeNotifierProvider<StateMultiplyProvider>(
+                        create: (_) => StateMultiplyProvider())
+                  ], child: const Home()),
+                ),
               ),
             ));
   }
@@ -219,7 +223,8 @@ class _Home extends State<Home> {
                           message: 'problemList.burningMode'.tr(),
                           child: _FlatCircularButton(
                             onPressed: _toggleBurningMode,
-                            backgroundColor: _getBurningModeBackgroundColor(context),
+                            backgroundColor:
+                                _getBurningModeBackgroundColor(context),
                             child: Icon(
                               Icons.local_fire_department,
                               color: _getBurningModeColor(context),
@@ -239,7 +244,8 @@ class _Home extends State<Home> {
                           message: 'problemList.stopIteration'.tr(),
                           child: _FlatCircularButton(
                             onPressed: requestButtonStopIteration,
-                            backgroundColor: Theme.of(context).colorScheme.error,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.error,
                             child: Icon(
                               CupertinoIcons.xmark,
                               color: Colors.white70,
@@ -262,7 +268,8 @@ class _Home extends State<Home> {
                               }
                               showProbDialog(_currentIndex == 0 ? true : false);
                             },
-                            backgroundColor: Theme.of(context).colorScheme.onSurface,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.onSurface,
                             child: Icon(
                               CupertinoIcons.question,
                               color: Theme.of(context).colorScheme.secondary,
@@ -336,31 +343,81 @@ class _Home extends State<Home> {
                       ])),
                   const SizedBox(width: 12),
                   Tooltip(
-                      message: 'theme.sound'.tr(),
-                      child: Icon(
-                        SoundOptionHandler.isSoundOn
-                            ? CupertinoIcons.speaker_2_fill
-                            : CupertinoIcons.speaker_slash_fill,
-                        color: Theme.of(context).colorScheme.onSurface,
-                        size: 20, // consistent icon size
-                      )),
-                  const SizedBox(width: 8),
-                  Transform.scale(
-                      scale: 0.8,
-                      child: CupertinoSwitch(
-                        activeTrackColor: ThemeSelector.isDark
-                            ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.3)
-                            : Theme.of(context).colorScheme.onSecondary,
-                        inactiveTrackColor: ThemeSelector.isDark
-                            ? Theme.of(context).colorScheme.onPrimary
-                            : Theme.of(context).colorScheme.onPrimary,
-                        onChanged: (value) {
-                          OptionManager()
-                              .setSoundBool(!SoundOptionHandler.isSoundOn);
-                          setState(() {});
-                        },
-                        value: SoundOptionHandler.isSoundOn,
-                      )),
+                    message: 'theme.sound'.tr(),
+                    child: AnimatedToggleSwitch<bool>.dual(
+                      current: SoundOptionHandler.isSoundOn,
+                      first: false,
+                      second: true,
+                      onChanged: (value) {
+                        OptionManager().setSoundBool(value);
+                        setState(() {});
+                      },
+                      spacing: 2.0,
+                      height: 32.0,
+                      borderWidth: 1.0,
+                      indicatorSize: const Size.fromWidth(28.0),
+                      animationDuration: const Duration(milliseconds: 300),
+                      animationCurve: Curves.easeInOut,
+                      style: ToggleStyle(
+                        borderColor: Colors.grey.shade300,
+                        backgroundColor: Colors.grey.shade100,
+                        indicatorColor: Colors.white,
+                      ),
+                      styleBuilder: (value) => ToggleStyle(
+                        backgroundColor: value
+                            ? ThemeSelector.isDark
+                                ? const Color(
+                                    0xFF1F2937) // Dark background for sound on
+                                : const Color(
+                                    0xFFF3F4F6) // Light background for sound on
+                            : ThemeSelector.isDark
+                                ? const Color(
+                                    0xFF374151) // Dark background for sound off
+                                : const Color(
+                                    0xFFE5E7EB), // Light background for sound off
+                        borderColor: value
+                            ? ThemeSelector.isDark
+                                ? const Color(
+                                    0xFF4B5563) // Darker border when on (dark mode)
+                                : const Color(
+                                    0xFFD1D5DB) // Lighter border when on (light mode)
+                            : ThemeSelector.isDark
+                                ? const Color(
+                                    0xFF6B7280) // Border when off (dark mode)
+                                : const Color(
+                                    0xFF9CA3AF), // Border when off (light mode)
+                        indicatorColor: value
+                            ? ThemeSelector.isDark
+                                ? const Color(
+                                    0xFF111827) // Dark indicator when on
+                                : const Color(
+                                    0xFFFFFFFF) // White indicator when on
+                            : ThemeSelector.isDark
+                                ? const Color(
+                                    0xFF1F2937) // Dark indicator when off
+                                : const Color(
+                                    0xFFF9FAFB), // Light indicator when off
+                      ),
+                      iconBuilder: (value) => value
+                          ? _buildToggleIcon(
+                              icon: Icons.volume_up_rounded,
+                              gradientColors: const [
+                                Color(0xFF9CA3AF),
+                                Color(0xFF6B7280)
+                              ],
+                              iconColor: const Color(0xFFFFFFFF),
+                            )
+                          : _buildToggleIcon(
+                              icon: Icons.volume_off_rounded,
+                              gradientColors: const [
+                                Color(0xFF9CA3AF),
+                                Color(0xFF6B7280)
+                              ],
+                              iconColor: const Color(0xFFFFFFFF),
+                            ),
+                      textBuilder: (value) => const SizedBox.shrink(),
+                    ),
+                  ),
                 ]);
               }),
           const SizedBox(width: 5),
@@ -390,41 +447,30 @@ class _Home extends State<Home> {
                     ? const Color(0xFF0F172A) // Deep midnight blue
                     : const Color(0xFFFFF8E7), // Warm cream for day
                 borderColor: value
-                    ? const Color(0xFF1E293B) // Darker border for night
-                    : const Color(0xFFE5D5B7), // Warm beige border for day
+                    ? const Color(0xFF374151) // More distinct border for night
+                    : const Color(0xFFD97706), // Distinct amber border for day
                 indicatorColor: value
                     ? const Color(0xFF1E2B3C) // Dark indicator for night
-                    : const Color(0xFFFFFAF0), // Pure warm white indicator for day
+                    : const Color(
+                        0xFFFFFAF0), // Pure warm white indicator for day
               ),
               iconBuilder: (value) => value
-                  ? Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                          colors: [Color(0xFF6B7280), Color(0xFFD1D5DB)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                      child: const Icon(
-                        Icons.bedtime,
-                        color: Color(0xFFF8FAFC),
-                        size: 14.0,
-                      ),
+                  ? _buildToggleIcon(
+                      icon: Icons.nightlight_round,
+                      gradientColors: const [
+                        Color(0xFF64748B),
+                        Color(0xFF94A3B8)
+                      ],
+                      iconColor: const Color(0xFFF1F5F9),
                     )
-                  : Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: RadialGradient(
-                          colors: [Color(0xFFFBBF24), Color(0xFFF59E0B)],
-                          center: Alignment.center,
-                        ),
-                      ),
-                      child: const Icon(
-                        Icons.wb_sunny,
-                        color: Color(0xFFFFFFFF),
-                        size: 14.0,
-                      ),
+                  : _buildToggleIcon(
+                      icon: Icons.light_mode,
+                      gradientColors: const [
+                        Color(0xFFFCD34D),
+                        Color(0xFFF59E0B)
+                      ],
+                      iconColor: const Color(0xFFFFFFFF),
+                      isRadial: true,
                     ),
               textBuilder: (value) => const SizedBox.shrink(),
             ),
@@ -446,11 +492,15 @@ class _Home extends State<Home> {
         ),
         child: BottomNavigationBar(
           backgroundColor: ThemeSelector.isDark
-              ? Theme.of(context).colorScheme.surfaceContainerHighest // elevated dark surface
+              ? Theme.of(context)
+                  .colorScheme
+                  .surfaceContainerHighest // elevated dark surface
               : Theme.of(context).colorScheme.surface,
           selectedItemColor: Theme.of(context).colorScheme.primary,
           unselectedItemColor: ThemeSelector.isDark
-              ? Theme.of(context).colorScheme.onInverseSurface // muted grey for dark mode
+              ? Theme.of(context)
+                  .colorScheme
+                  .onInverseSurface // muted grey for dark mode
               : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
           type: BottomNavigationBarType.fixed,
           elevation: 0,
@@ -505,21 +555,25 @@ class _Home extends State<Home> {
   }
 
   Color _getBurningModeBackgroundColor(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     try {
       if (_currentIndex == 0) {
         BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
-        return mode == BurningMode.on ? Colors.orange.shade300 : Colors.grey;
+        return mode == BurningMode.on
+            ? (isDark ? const Color(0xFF8B4513) : Colors.orange.shade300)  // Dark: saddle brown, Light: orange
+            : (isDark ? const Color(0xFF4A4A4A) : Colors.grey);
       } else if (_currentIndex == 2) {
         BurningModeMultiply mode =
             SettingsMultiplyManager().getCurrentEnum<BurningModeMultiply>();
         return mode == BurningModeMultiply.on
-            ? Colors.orange.shade300
-            : Colors.grey;
+            ? (isDark ? const Color(0xFF8B4513) : Colors.orange.shade300)  // Dark: saddle brown, Light: orange
+            : (isDark ? const Color(0xFF4A4A4A) : Colors.grey);
       }
     } catch (e) {
-      return Colors.grey;
+      return isDark ? const Color(0xFF4A4A4A) : Colors.grey;
     }
-    return Colors.grey;
+    return isDark ? const Color(0xFF4A4A4A) : Colors.grey;
   }
 
   void _toggleBurningMode() {
@@ -596,6 +650,43 @@ class _Home extends State<Home> {
               ));
     }
   }
+
+  Widget _buildToggleIcon({
+    required IconData icon,
+    required List<Color> gradientColors,
+    required Color iconColor,
+    bool isRadial = false,
+  }) {
+    return Container(
+      width: 24,
+      height: 24,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: isRadial
+            ? RadialGradient(
+                colors: gradientColors,
+                center: Alignment.center,
+              )
+            : LinearGradient(
+                colors: gradientColors,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+        boxShadow: [
+          BoxShadow(
+            color: gradientColors.last.withValues(alpha: 0.3),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Icon(
+        icon,
+        color: iconColor,
+        size: 22.0,
+      ),
+    );
+  }
 }
 
 class _FlatIconButton extends StatefulWidget {
@@ -637,9 +728,8 @@ class _FlatIconButtonState extends State<_FlatIconButton>
         ),
         child: Icon(
           widget.icon.icon,
-          color: _isPressed
-              ? widget.color.withValues(alpha: 0.7)
-              : widget.color,
+          color:
+              _isPressed ? widget.color.withValues(alpha: 0.7) : widget.color,
           size: widget.size,
         ),
       ),

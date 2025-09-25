@@ -44,7 +44,7 @@ class SoundOptionHandler {
       _beepSource = await _soloud.loadAsset(beepAsset);
       _countDownSource = await _soloud.loadAsset('assets/notify_compress.mp3');
     } catch (e) {
-      print('Error loading audio assets: $e');
+      // Audio loading failed silently
     }
   }
 
@@ -54,7 +54,7 @@ class SoundOptionHandler {
     try {
       await _soloud.play(_beepSource!);
     } catch (e) {
-      print('Error playing beep sound: $e');
+      // Sound playback failed silently
     }
   }
 
@@ -65,7 +65,7 @@ class SoundOptionHandler {
       await _soloud.play(_countDownSource!);
       await Future.delayed(const Duration(milliseconds: 800));
     } catch (e) {
-      print('Error playing countdown sound: $e');
+      // Countdown sound playback failed silently
     }
   }
 

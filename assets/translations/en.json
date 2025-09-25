@@ -51,7 +51,7 @@
     "shouldSoundOnDesc": "Sound option should be on"
   },
   "problemList": {
-    "noProbExecuted": "Run calculation first.",
+    "noProbExecuted": "Run first.",
     "checkProb": "Questions & Answers",
     "checkProbDesc": "Review all calculation problems and answers from your session.",
     "checkProbQ": "Check Questions",

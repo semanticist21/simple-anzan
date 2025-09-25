@@ -330,7 +330,7 @@ class _WindowsAddOptionMultiplyDialogState
     ]));
   }
 
-  toggleMultiplyModeCallback(bool newValue) {
+  void toggleMultiplyModeCallback(bool newValue) {
     setState(() {
       _isMultiply =
           _manager.valueToEnum<bool, CalCulationMultiplyMode>(newValue);
@@ -340,7 +340,7 @@ class _WindowsAddOptionMultiplyDialogState
     initializeValues(_manager);
   }
 
-  toggleCounterModeCallback(bool newValue) {
+  void toggleCounterModeCallback(bool newValue) {
     setState(() {
       var valueToEnum =
           _manager.valueToEnum<bool, CountDownMultiplyMode>(newValue);

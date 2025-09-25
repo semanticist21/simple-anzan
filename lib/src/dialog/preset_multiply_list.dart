@@ -99,7 +99,7 @@ class _PresetMultiplyListState extends State<PresetMultiplyList> {
     ));
   }
 
-  TextStyle getTextStyle(index) {
+  TextStyle getTextStyle(int index) {
     return TextStyle(
         color: Color(int.parse(itemList[index].textColorCode)),
         fontSize: MediaQuery.of(context).size.height * 0.025);

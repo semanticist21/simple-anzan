@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
-import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/seperator.dart';
+import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/separator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 
-import '../components/custom_dropdown.dart';
 import '../dialog/add_dialog.dart';
 import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
 import '../settings/plus_pref/prefs/digit_pref.dart';
@@ -29,7 +28,7 @@ class _SettingsPageState extends State<SettingsPage> {
   late Digit _digit;
   late NumOfProblems _numOfProblems;
   late CountDownMode _countDownMode;
-  late SeparatorMode _seperatorMode;
+  late SeparatorMode _separatorMode;
 
   final _controller = ScrollController();
 
@@ -139,7 +138,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: _buildToggleListTile(
             'settings.separator'.tr(),
             Icons.looks_one,
-            _manager.enumToValue<SeparatorMode, bool>(_seperatorMode),
+            _manager.enumToValue<SeparatorMode, bool>(_separatorMode),
             toggleSepartorModeCallback,
           ),
         ),
@@ -217,10 +216,10 @@ class _SettingsPageState extends State<SettingsPage> {
   void toggleSepartorModeCallback(bool newValue) {
     setState(() {
       var valueToEnum = _manager.valueToEnum<bool, SeparatorMode>(newValue);
-      _seperatorMode = valueToEnum;
+      _separatorMode = valueToEnum;
     });
 
-    _manager.saveSetting(_seperatorMode);
+    _manager.saveSetting(_separatorMode);
     initializeValues(_manager);
   }
 
@@ -258,11 +257,58 @@ class _SettingsPageState extends State<SettingsPage> {
             color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
-        trailing: CustomDropdown(
-          initialValue: initialValue,
-          items: dropdownMenuItemList,
-          onChanged: onChangeMethod,
-        ),
+        trailing: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 140),
+          child: SizedBox(
+            width: 140,
+              child: DropdownButtonFormField(
+                dropdownColor: Theme.of(context).brightness == Brightness.dark
+                    ? Theme.of(context).colorScheme.surfaceContainerHighest
+                    : Theme.of(context).colorScheme.surface,
+                elevation: 0,
+                isDense: true,
+                itemHeight: 54,
+                initialValue: initialValue,
+                iconSize: 25,
+                isExpanded: true,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.fromLTRB(15, 8, 10, 8),
+                  border: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? const Color(0xFF6B7280)  // Lighter gray for dark theme
+                          : const Color(0xFF9CA3AF),  // Darker gray for light theme
+                      width: 1.5,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? const Color(0xFF6B7280)  // Lighter gray for dark theme
+                          : const Color(0xFF9CA3AF),  // Darker gray for light theme
+                      width: 1.5,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.primary,
+                      width: 2.0,
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: Theme.of(context).brightness == Brightness.dark
+                      ? Theme.of(context).colorScheme.surfaceContainerHighest
+                      : Theme.of(context).colorScheme.surfaceContainer,
+                  floatingLabelAlignment: FloatingLabelAlignment.center,
+                ),
+                items: dropdownMenuItemList,
+                onChanged: onChangeMethod,
+              ),
+            ),
+          ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
@@ -322,13 +368,6 @@ class _SettingsPageState extends State<SettingsPage> {
           value: element,
           child: Text(
             element,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface,
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.1,
-              height: 1.2,
-            ),
             textAlign: isNumber ? TextAlign.center : TextAlign.left,
           ));
       itemList.add(item);
@@ -345,7 +384,7 @@ class _SettingsPageState extends State<SettingsPage> {
       _digit = manager.getCurrentEnum<Digit>();
       _numOfProblems = manager.getCurrentEnum<NumOfProblems>();
       _countDownMode = manager.getCurrentEnum<CountDownMode>();
-      _seperatorMode = manager.getCurrentEnum<SeparatorMode>();
+      _separatorMode = manager.getCurrentEnum<SeparatorMode>();
     });
   }
 }

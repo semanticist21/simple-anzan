@@ -74,9 +74,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                             children: [
                               Icon(
                                 Icons.settings,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondaryContainer,
+                                color: Theme.of(context).colorScheme.onSurface,
                                 size: MediaQuery.of(context).size.height * 0.03,
                               ),
                               SizedBox(
@@ -87,9 +85,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                 style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.height *
                                       0.023,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .secondaryContainer,
+                                  color: Theme.of(context).colorScheme.onSurface,
                                 ),
                               )
                             ],
@@ -129,9 +125,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         'settingsMultiply.speed'.tr(),
                                         Icon(
                                           Icons.speed,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primaryContainer,
+                                          color: Theme.of(context).colorScheme.primary,
                                         ),
                                         _manager.getItemStr<SpeedMultiply>(
                                             _speed.name),
@@ -143,9 +137,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         'settingsMultiply.smallDigit'.tr(),
                                         Icon(
                                           CupertinoIcons.number_square,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primaryContainer,
+                                          color: Theme.of(context).colorScheme.primary,
                                         ),
                                         _manager.getItemStr<SmallDigit>(
                                             _smallDigit.name),
@@ -156,9 +148,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         'settingsMultiply.bigDigit'.tr(),
                                         Icon(
                                           CupertinoIcons.number_square_fill,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primaryContainer,
+                                          color: Theme.of(context).colorScheme.primary,
                                         ),
                                         _manager.getItemStr<BigDigit>(
                                             _bigDigit.name),
@@ -202,13 +192,13 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(children: [
-          Icon(iconData, color: Theme.of(context).colorScheme.primaryContainer),
+          Icon(iconData, color: Theme.of(context).colorScheme.primary),
           const SizedBox(width: 10),
           Text(title,
               style: TextStyle(
                   fontSize: MediaQuery.of(context).size.height * 0.0185,
                   fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.primaryContainer))
+                  color: Theme.of(context).colorScheme.onSurface))
         ]),
       ),
       Transform.scale(
@@ -273,7 +263,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.height * 0.024,
                         fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.primaryContainer))
+                        color: Theme.of(context).colorScheme.onSurface))
               ],
             ),
           )),
@@ -284,8 +274,9 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
               child: FractionallySizedBox(
                 widthFactor: 0.8,
                 child: DropdownButtonFormField(
-                  dropdownColor:
-                      Theme.of(context).colorScheme.tertiaryContainer,
+                  dropdownColor: Theme.of(context).brightness == Brightness.dark
+                      ? Theme.of(context).colorScheme.surfaceContainerHighest
+                      : Theme.of(context).colorScheme.surface,
                   elevation: 0,
                   isDense: true,
                   itemHeight: 54,
@@ -294,13 +285,35 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                   isExpanded: true,
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.fromLTRB(15, 8, 10, 8),
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        borderSide: BorderSide(),
+                      border: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.grey.shade600
+                              : Colors.grey.shade300,
+                          width: 1.0,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.grey.shade600
+                              : Colors.grey.shade300,
+                          width: 1.0,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 2.0,
+                        ),
                       ),
                       filled: true,
-                      fillColor:
-                          Theme.of(context).colorScheme.tertiaryContainer,
+                      fillColor: Theme.of(context).brightness == Brightness.dark
+                          ? Theme.of(context).colorScheme.surfaceContainerHighest
+                          : Theme.of(context).colorScheme.surfaceContainer,
                       floatingLabelAlignment: FloatingLabelAlignment.center),
                   items: dropdownMenuItemList,
                   onChanged: onChangeMethod,
@@ -385,7 +398,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                     : MediaQuery.of(context).size.height * 0.0017 > 1
                         ? MediaQuery.of(context).size.height * 0.0017
                         : 1,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: Platform.isWindows
                     ? MediaQuery.of(context).size.height * 0.020
                     : MediaQuery.of(context).size.height * 0.018,

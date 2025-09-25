@@ -102,7 +102,7 @@ class ThemeSelector {
                   primary: const Color(0xFF2196F3),
 
                   // secondary surface like ..dropdown button / scaffold background
-                  surfaceContainer: Colors.grey[600],
+                  surfaceContainer: const Color(0xFFF5F5F5),
 
                   // not selected Color
                   onInverseSurface: Colors.grey[400],
@@ -142,8 +142,8 @@ class ThemeSelector {
                   onSurface: Colors.grey[700],
                   onSurfaceVariant: Colors.blueAccent,
 
-                  surfaceTint: Colors.orange,
-                  surfaceContainerHighest: Colors.orangeAccent,
+                  surfaceTint: const Color(0xFF2196F3), // Use primary blue instead of orange
+                  surfaceContainerHighest: const Color(0xFFE3F2FD), // Light blue container
                 ),
             textTheme: GoogleFonts.openSansTextTheme(
               const TextTheme(

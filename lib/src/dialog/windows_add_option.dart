@@ -335,7 +335,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
     ]));
   }
 
-  togglePlusModeCallback(bool newValue) {
+  void togglePlusModeCallback(bool newValue) {
     setState(() {
       _isOnlyPlus = _manager.valueToEnum<bool, CalculationMode>(newValue);
     });
@@ -344,7 +344,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
     initializeValues(_manager);
   }
 
-  toggleShuffleModeCallback(bool newValue) {
+  void toggleShuffleModeCallback(bool newValue) {
     setState(() {
       var valueToEnum = _manager.valueToEnum<bool, ShuffleMode>(newValue);
       _isShuffle = valueToEnum;
@@ -354,7 +354,7 @@ class _WindowsAddOptionDialogState extends State<WindowsAddOptionDialog> {
     initializeValues(_manager);
   }
 
-  toggleCounterModeCallback(bool newValue) {
+  void toggleCounterModeCallback(bool newValue) {
     setState(() {
       var valueToEnum = _manager.valueToEnum<bool, CountDownMode>(newValue);
       _countDownMode = valueToEnum;
