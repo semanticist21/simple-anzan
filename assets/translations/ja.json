@@ -13,7 +13,8 @@
     "sound": "音を立てる/消す",
     "fastSetting": "簡便設定",
     "preset": "プリセット",
-    "presetSave": "プリセットを保存する"
+    "presetSave": "プリセットを保存する",
+    "language": "言語"
   },
   "buttons": {
     "ok": "確認",

@@ -13,7 +13,8 @@
     "sound": "소리 실행/끄기",
     "fastSetting": "빠른 설정",
     "preset": "프리셋",
-    "presetSave": "프리셋 저장"
+    "presetSave": "프리셋 저장",
+    "language": "언어"
   },
   "buttons": {
     "ok": "확인",

@@ -1,0 +1,70 @@
+{
+  "app": {
+    "name": "Abacus Simple Anzan"
+  },
+  "navigation": {
+    "homePlus": "qo'shish",
+    "settingPlus": "+/-",
+    "homeMultiply": "ko'paytirish",
+    "settingMultiply": " ×/÷"
+  },
+  "theme": {
+    "mode": "Mavzuni o'zgartirish",
+    "sound": "Ovozni yoqish/o'chirish",
+    "fastSetting": "Tez sozlash",
+    "preset": "Oldindan sozlash",
+    "presetSave": "Sozlamani saqlash",
+    "language": "Til"
+  },
+  "buttons": {
+    "ok": "Yaxshi",
+    "cancel": "Bekor qilish",
+    "start": "Boshlash !!",
+    "check": "Javobni tekshirish"
+  },
+  "settings": {
+    "title": "Sozlamalar",
+    "shuffle": "Aralashtirish",
+    "onlyPluses": "Faqat qo'shish",
+    "speed": "Tezlik",
+    "digit": "Raqam",
+    "questions": "Savollar",
+    "notify": "Boshlanishda xabardor qilish",
+    "separator": "Minglar verguli"
+  },
+  "settingsMultiply": {
+    "title": "Sozlamalar (ko'paytirish)",
+    "isMultiply": "Bo'lishga o'zgartirish",
+    "speed": "Tezlik",
+    "bigDigit": "Katta raqam",
+    "smallDigit": "Kichik raqam",
+    "questions": "Savollar"
+  },
+  "customOptions": {
+    "setSpeedTitle": "Maxsus tezlikni belgilang.",
+    "rangeWord": "100 dan 30000 gacha qiymat kiriting. (1000 = 1 soniya)",
+    "pleaseInsertValue": "Iltimos, qiymat kiriting.",
+    "pleaseTooBigValue": "Qiymat juda katta.",
+    "pleaseTooSmallValue": "Qiymat juda kichik.",
+    "rangeMultiplyWord": "100 dan 30000 gacha qiymat kiriting.",
+    "insertBigger": "Kichik raqam katta raqamdan kichik bo'lishi kerak.",
+    "shuffleDesc": "turli raqamlar bilan sonlarni aralashtirish",
+    "shouldSoundOnDesc": "Ovoz parametri yoqilgan bo'lishi kerak"
+  },
+  "problemList": {
+    "noProbExecuted": "Avval ishga tushiring.",
+    "checkProb": "Savollar va javoblar",
+    "checkProbDesc": "Sessiyangizdan barcha hisoblash masalalari va javoblarini ko'rib chiqing.",
+    "checkProbQ": "Savollarni tekshirish",
+    "stopIteration": "Takrorlashni to'xtatish",
+    "burningMode": "Yonish rejimi",
+    "burningModeEnabled": "Yonish rejimi yoqilgan. Endi u cheksiz davom etadi.",
+    "burningModeDisabled": "Yonish rejimi o'chirilgan. Endi u belgilangan savollar sonidan keyin to'xtaydi.",
+    "problem": "Savol",
+    "answer": "Javob"
+  },
+  "other": {
+    "warning": "Ogohlantirish",
+    "onBurning": "Yonish holatida"
+  }
+}

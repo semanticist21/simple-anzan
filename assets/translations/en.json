@@ -13,7 +13,8 @@
     "sound": "Sound On/Off",
     "fastSetting": "Fast Setting",
     "preset": "Preset",
-    "presetSave": "Save Preset"
+    "presetSave": "Save Preset",
+    "language": "Language"
   },
   "buttons": {
     "ok": "Ok",

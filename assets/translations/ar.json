@@ -1,0 +1,70 @@
+{
+  "app": {
+    "name": "Abacus Simple Anzan"
+  },
+  "navigation": {
+    "homePlus": "الجمع",
+    "settingPlus": "+/-",
+    "homeMultiply": "الضرب",
+    "settingMultiply": " ×/÷"
+  },
+  "theme": {
+    "mode": "تغيير المظهر",
+    "sound": "تشغيل/إيقاف الصوت",
+    "fastSetting": "إعداد سريع",
+    "preset": "إعداد مسبق",
+    "presetSave": "حفظ الإعداد المسبق",
+    "language": "اللغة"
+  },
+  "buttons": {
+    "ok": "موافق",
+    "cancel": "إلغاء",
+    "start": "ابدأ !!",
+    "check": "فحص الإجابة"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "shuffle": "خلط",
+    "onlyPluses": "الجمع فقط",
+    "speed": "السرعة",
+    "digit": "الرقم",
+    "questions": "الأسئلة",
+    "notify": "إشعار عند البدء",
+    "separator": "فاصلة الآلاف"
+  },
+  "settingsMultiply": {
+    "title": "الإعدادات (الضرب)",
+    "isMultiply": "تغيير إلى القسمة",
+    "speed": "السرعة",
+    "bigDigit": "رقم كبير",
+    "smallDigit": "رقم صغير",
+    "questions": "الأسئلة"
+  },
+  "customOptions": {
+    "setSpeedTitle": "تعيين سرعة مخصصة.",
+    "rangeWord": "أدخل قيمة بين 100 و 30000. (1000 = 1 ثانية)",
+    "pleaseInsertValue": "يرجى إدخال قيمة.",
+    "pleaseTooBigValue": "القيمة كبيرة جداً.",
+    "pleaseTooSmallValue": "القيمة صغيرة جداً.",
+    "rangeMultiplyWord": "أدخل قيمة بين 100 و 30000.",
+    "insertBigger": "يجب أن يكون الرقم الصغير أصغر من الرقم الكبير.",
+    "shuffleDesc": "خلط الأرقام بأرقام مختلفة",
+    "shouldSoundOnDesc": "يجب تشغيل خيار الصوت"
+  },
+  "problemList": {
+    "noProbExecuted": "شغّل أولاً.",
+    "checkProb": "الأسئلة والأجوبة",
+    "checkProbDesc": "راجع جميع مسائل الحساب والأجوبة من جلستك.",
+    "checkProbQ": "فحص الأسئلة",
+    "stopIteration": "إيقاف التكرار",
+    "burningMode": "وضع الاحتراق",
+    "burningModeEnabled": "تم تفعيل وضع الاحتراق. سيستمر الآن إلى ما لا نهاية بدون توقف.",
+    "burningModeDisabled": "تم إلغاء وضع الاحتراق. سيتوقف الآن بعد العدد المحدد من الأسئلة.",
+    "problem": "السؤال",
+    "answer": "الجواب"
+  },
+  "other": {
+    "warning": "تحذير",
+    "onBurning": "في الاحتراق"
+  }
+}

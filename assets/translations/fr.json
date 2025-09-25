@@ -1,0 +1,70 @@
+{
+  "app": {
+    "name": "Abacus Simple Anzan"
+  },
+  "navigation": {
+    "homePlus": "addition",
+    "settingPlus": "+/-",
+    "homeMultiply": "multiplication",
+    "settingMultiply": " ×/÷"
+  },
+  "theme": {
+    "mode": "Changer le thème",
+    "sound": "Son Activé/Désactivé",
+    "fastSetting": "Réglage rapide",
+    "preset": "Préréglage",
+    "presetSave": "Sauvegarder le préréglage",
+    "language": "Langue"
+  },
+  "buttons": {
+    "ok": "D'accord",
+    "cancel": "Annuler",
+    "start": "Commencer !!",
+    "check": "Vérifier la réponse"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "shuffle": "Mélanger",
+    "onlyPluses": "Additions uniquement",
+    "speed": "Vitesse",
+    "digit": "Chiffre",
+    "questions": "Questions",
+    "notify": "Notifier au démarrage",
+    "separator": "Virgule des milliers"
+  },
+  "settingsMultiply": {
+    "title": "Paramètres (multiplication)",
+    "isMultiply": "Changer en division",
+    "speed": "Vitesse",
+    "bigDigit": "Grand chiffre",
+    "smallDigit": "Petit chiffre",
+    "questions": "Questions"
+  },
+  "customOptions": {
+    "setSpeedTitle": "Définir une vitesse personnalisée.",
+    "rangeWord": "Entrez une valeur entre 100 et 30000. (1000 = 1 seconde)",
+    "pleaseInsertValue": "Veuillez saisir une valeur.",
+    "pleaseTooBigValue": "La valeur est trop grande.",
+    "pleaseTooSmallValue": "La valeur est trop petite.",
+    "rangeMultiplyWord": "Entrez une valeur entre 100 et 30000.",
+    "insertBigger": "Le petit chiffre doit être inférieur au grand chiffre.",
+    "shuffleDesc": "mélanger les nombres avec des chiffres différents",
+    "shouldSoundOnDesc": "L'option son doit être activée"
+  },
+  "problemList": {
+    "noProbExecuted": "Exécutez d'abord.",
+    "checkProb": "Questions et réponses",
+    "checkProbDesc": "Examinez tous les problèmes de calcul et réponses de votre session.",
+    "checkProbQ": "Vérifier les questions",
+    "stopIteration": "Arrêter l'itération",
+    "burningMode": "Mode combustion",
+    "burningModeEnabled": "Mode combustion activé. Maintenant, il continuera indéfiniment sans s'arrêter.",
+    "burningModeDisabled": "Mode combustion désactivé. Maintenant, il s'arrêtera après le nombre défini de questions.",
+    "problem": "Question",
+    "answer": "Réponse"
+  },
+  "other": {
+    "warning": "Avertissement",
+    "onBurning": "En combustion"
+  }
+}

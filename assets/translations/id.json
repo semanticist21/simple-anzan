@@ -1,0 +1,70 @@
+{
+  "app": {
+    "name": "Abacus Simple Anzan"
+  },
+  "navigation": {
+    "homePlus": "penjumlahan",
+    "settingPlus": "+/-",
+    "homeMultiply": "perkalian",
+    "settingMultiply": " ×/÷"
+  },
+  "theme": {
+    "mode": "Ubah tema",
+    "sound": "Suara Hidup/Mati",
+    "fastSetting": "Pengaturan Cepat",
+    "preset": "Pra-atur",
+    "presetSave": "Simpan Pra-atur",
+    "language": "Bahasa"
+  },
+  "buttons": {
+    "ok": "Baik",
+    "cancel": "Batal",
+    "start": "Mulai !!",
+    "check": "Periksa Jawaban"
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "shuffle": "Acak",
+    "onlyPluses": "Hanya penjumlahan",
+    "speed": "Kecepatan",
+    "digit": "Digit",
+    "questions": "Pertanyaan",
+    "notify": "Beri tahu saat Mulai",
+    "separator": "Koma Ribuan"
+  },
+  "settingsMultiply": {
+    "title": "Pengaturan (perkalian)",
+    "isMultiply": "Ubah ke pembagian",
+    "speed": "Kecepatan",
+    "bigDigit": "Digit Besar",
+    "smallDigit": "Digit Kecil",
+    "questions": "Pertanyaan"
+  },
+  "customOptions": {
+    "setSpeedTitle": "Atur kecepatan khusus.",
+    "rangeWord": "Masukkan nilai antara 100 dan 30000. (1000 = 1 detik)",
+    "pleaseInsertValue": "Silakan masukkan nilai.",
+    "pleaseTooBigValue": "Nilai terlalu besar.",
+    "pleaseTooSmallValue": "Nilai terlalu kecil.",
+    "rangeMultiplyWord": "Masukkan nilai antara 100 dan 30000.",
+    "insertBigger": "Digit kecil harus kurang dari digit besar.",
+    "shuffleDesc": "acak angka dengan digit yang berbeda",
+    "shouldSoundOnDesc": "Opsi suara harus dihidupkan"
+  },
+  "problemList": {
+    "noProbExecuted": "Jalankan dulu.",
+    "checkProb": "Pertanyaan & Jawaban",
+    "checkProbDesc": "Tinjau semua masalah perhitungan dan jawaban dari sesi Anda.",
+    "checkProbQ": "Periksa Pertanyaan",
+    "stopIteration": "Hentikan Iterasi",
+    "burningMode": "Mode Terbakar",
+    "burningModeEnabled": "Mode terbakar diaktifkan. Sekarang akan berlanjut tanpa henti tanpa batas.",
+    "burningModeDisabled": "Mode terbakar dinonaktifkan. Sekarang akan berhenti setelah jumlah pertanyaan yang ditetapkan.",
+    "problem": "Pertanyaan",
+    "answer": "Jawaban"
+  },
+  "other": {
+    "warning": "Peringatan",
+    "onBurning": "Sedang Terbakar"
+  }
+}
