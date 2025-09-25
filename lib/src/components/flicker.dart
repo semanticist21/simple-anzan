@@ -12,7 +12,6 @@ import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 import 'package:universal_io/io.dart';
 import 'dart:async';
 
-import '../const/const.dart';
 import '../functions/functions.dart';
 import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
 import '../settings/plus_pref/prefs/digit_pref.dart';
@@ -41,7 +40,7 @@ class _FlickerState extends State<Flicker> {
     if (_stateProvider.state == ButtonState.iterationCompleted) {
       _cancelBurningModeTimer();
       setState(() {
-        _number = empty;
+        _number = '';
       });
     }
   }
@@ -196,7 +195,7 @@ class _FlickerState extends State<Flicker> {
     for (int i = 0; i < len; i++) {
       if (_stateProvider.state == ButtonState.iterationCompleted) {
         setState(() {
-          _number = empty;
+          _number = '';
         });
         break;
       }
@@ -222,13 +221,13 @@ class _FlickerState extends State<Flicker> {
 
       if (_stateProvider.state == ButtonState.iterationCompleted) {
         setState(() {
-          _number = empty;
+          _number = '';
         });
         break;
       }
 
       setState(() {
-        _number = empty;
+        _number = '';
       });
 
       // if it is the last iteration, then don't await.
@@ -238,7 +237,7 @@ class _FlickerState extends State<Flicker> {
 
       if (_stateProvider.state == ButtonState.iterationCompleted) {
         setState(() {
-          _number = empty;
+          _number = '';
         });
         break;
       }

@@ -1,7 +1,6 @@
 import 'package:abacus_simple_anzan/src/pages/home_page_multiply.dart';
 import 'package:abacus_simple_anzan/src/pages/settting_page_multiply.dart';
 import 'package:flutter/material.dart';
-import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:abacus_simple_anzan/src/pages/settting_page.dart';
 
 import 'custom_route.dart';
@@ -10,21 +9,21 @@ import 'src/pages/home_page.dart';
 
 Route<dynamic> generateRoutes(RouteSettings settings) {
   switch (settings.name) {
-    case mainPageAddress:
+    case '/':
       return CustomRoute(
         builder: (_) => const HomePage(),
       );
 
-    case settingsPageAddress:
+    case '/settings':
       return CustomRoute(builder: (_) => const SettingsPage());
 
-    case errorPageAddress:
+    case '/error':
       return CustomRoute(builder: (_) => const ErrorPage());
 
-    case multiplyPageAddress:
+    case '/multiply':
       return CustomRoute(builder: (_) => const HomeMultiplyPage());
 
-    case settingsmultiplyPageAddress:
+    case '/settings/multiply':
       return CustomRoute(builder: (_) => const SettingsMultiplyPage());
 
     default:
@@ -39,20 +38,20 @@ Route<dynamic> generateErrorPages(RouteSettings settings) {
 void onTapNavi(GlobalKey<NavigatorState> navigationKey, int index) {
   switch (index) {
     case 0:
-      navigationKey.currentState?.pushReplacementNamed(mainPageAddress);
+      navigationKey.currentState?.pushReplacementNamed('/');
       break;
     case 1:
-      navigationKey.currentState?.pushReplacementNamed(settingsPageAddress);
+      navigationKey.currentState?.pushReplacementNamed('/settings');
       break;
     case 2:
-      navigationKey.currentState?.pushReplacementNamed(multiplyPageAddress);
+      navigationKey.currentState?.pushReplacementNamed('/multiply');
       break;
     case 3:
       navigationKey.currentState
-          ?.pushReplacementNamed(settingsmultiplyPageAddress);
+          ?.pushReplacementNamed('/settings/multiply');
       break;
     default:
-      navigationKey.currentState?.pushReplacementNamed(errorPageAddress);
+      navigationKey.currentState?.pushReplacementNamed('/error');
       break;
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../const/const.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});
@@ -8,7 +7,7 @@ class ErrorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Text(
-      error,
+      'The page you requested does not exist.',
       style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
     ));
   }

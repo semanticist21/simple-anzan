@@ -4,7 +4,6 @@ import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/burning_mo
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 
 import '../functions/tuple.dart';
-import '../const/const.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class StateMultiplyProvider extends ChangeNotifier {
@@ -68,7 +67,7 @@ String getButtonStr(ButtonMultiplyState state) {
       if (mode == BurningModeMultiply.on) {
         return 'other.onBurning'.tr();
       }
-      return hidden;
+      return ' ';
     case ButtonMultiplyState.iterationCompleted:
       return 'buttons.check'.tr();
     default:

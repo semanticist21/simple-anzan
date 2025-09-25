@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 
-import '../const/const.dart';
 import '../functions/tuple.dart';
 
 class ProbMultiplyList extends StatefulWidget {
@@ -98,6 +98,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                             itemBuilder: (context, index) {
                               final isCurrentAnswer = index == widget.numList.length - 1;
                               final isMultiply = widget.mode[index];
+                              final formatter = NumberFormat('#,##0');
                               final question = isMultiply
                                   ? '${formatter.format(widget.numList[index].item1)} × ${formatter.format(widget.numList[index].item2)}'
                                   : '${formatter.format(widget.numList[index].item1)} ÷ ${formatter.format(widget.numList[index].item2)}';

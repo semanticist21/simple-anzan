@@ -22,7 +22,6 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
-import 'package:abacus_simple_anzan/src/const/const.dart';
 import 'package:abacus_simple_anzan/router.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 import 'package:universal_io/io.dart';
@@ -438,7 +437,7 @@ class _Home extends State<Home> {
         key: navigationKey,
         onGenerateRoute: generateRoutes,
         onUnknownRoute: generateErrorPages,
-        initialRoute: mainPageAddress,
+        initialRoute: '/',
       ),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(

@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-import '../const/const.dart';
+import 'package:intl/intl.dart';
 
 class ProbList extends StatefulWidget {
   const ProbList({super.key, required this.numList});
@@ -144,7 +143,7 @@ class _ProbListState extends State<ProbList> {
                                             color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                                           ),
                                           Text(
-                                            formatter.format(widget.numList[index]),
+                                            NumberFormat('#,##0').format(widget.numList[index]),
                                             style: TextStyle(
                                               fontSize: 18,
                                               fontWeight: isCurrentAnswer ? FontWeight.w600 : FontWeight.normal,

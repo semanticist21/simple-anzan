@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/burning_mode_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 
-import '../const/const.dart';
 
 class StateProvider extends ChangeNotifier {
   var state = ButtonState.iterationNotStarted;
@@ -64,7 +63,7 @@ String getButtonStr(ButtonState state) {
       if (mode == BurningMode.on) {
         return 'other.onBurning'.tr();
       }
-      return hidden;
+      return ' ';
     case ButtonState.iterationCompleted:
       return 'buttons.check'.tr();
     default:
