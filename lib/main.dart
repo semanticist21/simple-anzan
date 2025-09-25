@@ -576,81 +576,86 @@ class _Home extends State<Home> {
                       iconBuilder: (value) => value
                           ? _buildToggleIcon(
                               icon: Icons.volume_up_rounded,
-                              gradientColors: const [
-                                Color(0xFF9CA3AF),
-                                Color(0xFF6B7280)
-                              ],
-                              iconColor: const Color(0xFFFFFFFF),
+                              gradientColors: ThemeSelector.isDark
+                                  ? const [Color(0xFF111827), Color(0xFF111827)] // Match dark indicator when on
+                                  : const [Color(0xFFFFFFFF), Color(0xFFFFFFFF)], // Match white indicator when on
+                              iconColor: ThemeSelector.isDark
+                                  ? const Color(0xFFFFFFFF) // White icon on dark background
+                                  : const Color(0xFF374151), // Dark icon on light background
                             )
                           : _buildToggleIcon(
                               icon: Icons.volume_off_rounded,
-                              gradientColors: const [
-                                Color(0xFF9CA3AF),
-                                Color(0xFF6B7280)
-                              ],
-                              iconColor: const Color(0xFFFFFFFF),
+                              gradientColors: ThemeSelector.isDark
+                                  ? const [Color(0xFF1F2937), Color(0xFF1F2937)] // Match dark indicator when off
+                                  : const [Color(0xFFF9FAFB), Color(0xFFF9FAFB)], // Match light indicator when off
+                              iconColor: ThemeSelector.isDark
+                                  ? const Color(0xFF9CA3AF) // Gray icon on dark background
+                                  : const Color(0xFF6B7280), // Darker gray icon on light background
                             ),
                       textBuilder: (value) => const SizedBox.shrink(),
                     ),
                   ),
                 ]);
               }),
-          const SizedBox(width: 5),
-          Tooltip(
-            message: 'theme.mode'.tr(),
-            child: AnimatedToggleSwitch<bool>.dual(
-              current: ThemeSelector.isDark,
-              first: false,
-              second: true,
-              onChanged: (value) {
-                OptionManager().setThemeBool(value);
-                setState(() {});
-              },
-              spacing: 2.0,
-              height: 32.0,
-              borderWidth: 1.0,
-              indicatorSize: const Size.fromWidth(28.0),
-              animationDuration: const Duration(milliseconds: 300),
-              animationCurve: Curves.easeInOut,
-              style: ToggleStyle(
-                borderColor: Colors.grey.shade300,
-                backgroundColor: Colors.grey.shade100,
-                indicatorColor: Colors.white,
+          // Only show theme switch on settings pages (index 1 and 3)
+          if (_currentIndex == 1 || _currentIndex == 3) ...[
+            const SizedBox(width: 5),
+            Tooltip(
+              message: 'theme.mode'.tr(),
+              child: AnimatedToggleSwitch<bool>.dual(
+                current: ThemeSelector.isDark,
+                first: false,
+                second: true,
+                onChanged: (value) {
+                  OptionManager().setThemeBool(value);
+                  setState(() {});
+                },
+                spacing: 2.0,
+                height: 32.0,
+                borderWidth: 1.0,
+                indicatorSize: const Size.fromWidth(28.0),
+                animationDuration: const Duration(milliseconds: 300),
+                animationCurve: Curves.easeInOut,
+                style: ToggleStyle(
+                  borderColor: Colors.grey.shade300,
+                  backgroundColor: Colors.grey.shade100,
+                  indicatorColor: Colors.white,
+                ),
+                styleBuilder: (value) => ToggleStyle(
+                  backgroundColor: value
+                      ? const Color(0xFF0F172A) // Deep midnight blue
+                      : const Color(0xFFFFF8E7), // Warm cream for day
+                  borderColor: value
+                      ? const Color(0xFF374151) // More distinct border for night
+                      : const Color(0xFFD97706), // Distinct amber border for day
+                  indicatorColor: value
+                      ? const Color(0xFF1E2B3C) // Dark indicator for night
+                      : const Color(
+                          0xFFFFFAF0), // Pure warm white indicator for day
+                ),
+                iconBuilder: (value) => value
+                    ? _buildToggleIcon(
+                        icon: Icons.nightlight_round,
+                        gradientColors: const [
+                          Color(0xFF64748B),
+                          Color(0xFF94A3B8)
+                        ],
+                        iconColor: const Color(0xFFF1F5F9),
+                      )
+                    : _buildToggleIcon(
+                        icon: Icons.light_mode,
+                        gradientColors: const [
+                          Color(0xFFFCD34D),
+                          Color(0xFFF59E0B)
+                        ],
+                        iconColor: const Color(0xFFFFFFFF),
+                        isRadial: true,
+                      ),
+                textBuilder: (value) => const SizedBox.shrink(),
               ),
-              styleBuilder: (value) => ToggleStyle(
-                backgroundColor: value
-                    ? const Color(0xFF0F172A) // Deep midnight blue
-                    : const Color(0xFFFFF8E7), // Warm cream for day
-                borderColor: value
-                    ? const Color(0xFF374151) // More distinct border for night
-                    : const Color(0xFFD97706), // Distinct amber border for day
-                indicatorColor: value
-                    ? const Color(0xFF1E2B3C) // Dark indicator for night
-                    : const Color(
-                        0xFFFFFAF0), // Pure warm white indicator for day
-              ),
-              iconBuilder: (value) => value
-                  ? _buildToggleIcon(
-                      icon: Icons.nightlight_round,
-                      gradientColors: const [
-                        Color(0xFF64748B),
-                        Color(0xFF94A3B8)
-                      ],
-                      iconColor: const Color(0xFFF1F5F9),
-                    )
-                  : _buildToggleIcon(
-                      icon: Icons.light_mode,
-                      gradientColors: const [
-                        Color(0xFFFCD34D),
-                        Color(0xFFF59E0B)
-                      ],
-                      iconColor: const Color(0xFFFFFFFF),
-                      isRadial: true,
-                    ),
-              textBuilder: (value) => const SizedBox.shrink(),
             ),
-          ),
-          const SizedBox(width: 5),
+            const SizedBox(width: 5),
+          ],
         ],
       ),
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -837,8 +842,8 @@ class _Home extends State<Home> {
     bool isRadial = false,
   }) {
     return Container(
-      width: 22,
-      height: 22,
+      width: 24,
+      height: 24,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: isRadial
@@ -862,7 +867,7 @@ class _Home extends State<Home> {
       child: Icon(
         icon,
         color: iconColor,
-        size: 18.0,
+        size: 20.0,
       ),
     );
   }
