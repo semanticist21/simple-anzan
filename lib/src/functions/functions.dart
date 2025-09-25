@@ -235,7 +235,7 @@ List<Tuple<int, int>> getMultiplyNums(
   return list;
 }
 
-List<Tuple<int, int>> getDivdieNums(
+List<Tuple<int, int>> getDivideNums(
     int divideDigit, int bigDigit, int numOfNums, Tuple lastTuple) {
   var list = List<Tuple<int, int>>.empty(growable: true);
   var max = pow(10, bigDigit) - 1;

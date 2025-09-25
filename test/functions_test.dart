@@ -10,7 +10,7 @@ void main() {
       getMultiplyNums(2, 3, 1, tuple);
     }
     for (var i = 0; i < 10000; i++) {
-      getDivdieNums(1, 3, 1, tuple);
+      getDivideNums(1, 3, 1, tuple);
     }
   }, timeout: const Timeout(Duration(seconds: 5)));
 }

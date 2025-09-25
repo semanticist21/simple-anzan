@@ -1,7 +1,7 @@
 import 'package:abacus_simple_anzan/src/dialog/custom_alert_dialog.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/seperator_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/separator_multiply.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
@@ -30,7 +30,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
   late SmallDigit _smallDigit;
   late NumOfMultiplyProblems _numOfProblems;
   late CountDownMultiplyMode _countDownMode;
-  late SeperatorMultiplyMode _seperatorMode;
+  late SeparatorMultiplyMode _separatorMode;
 
   final _controller = ScrollController();
 
@@ -85,7 +85,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                 style: TextStyle(
                                   fontSize: MediaQuery.of(context).size.height *
                                       0.023,
-                                  color: Theme.of(context).colorScheme.onSurface,
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
                                 ),
                               )
                             ],
@@ -125,7 +126,9 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         'settingsMultiply.speed'.tr(),
                                         Icon(
                                           Icons.speed,
-                                          color: Theme.of(context).colorScheme.primary,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
                                         ),
                                         _manager.getItemStr<SpeedMultiply>(
                                             _speed.name),
@@ -137,7 +140,9 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         'settingsMultiply.smallDigit'.tr(),
                                         Icon(
                                           CupertinoIcons.number_square,
-                                          color: Theme.of(context).colorScheme.primary,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
                                         ),
                                         _manager.getItemStr<SmallDigit>(
                                             _smallDigit.name),
@@ -148,7 +153,9 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                         'settingsMultiply.bigDigit'.tr(),
                                         Icon(
                                           CupertinoIcons.number_square_fill,
-                                          color: Theme.of(context).colorScheme.primary,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
                                         ),
                                         _manager.getItemStr<BigDigit>(
                                             _bigDigit.name),
@@ -161,13 +168,13 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                                           'settings.separator'.tr(),
                                           Icons.one_k,
                                           _manager.enumToValue<
-                                              SeperatorMultiplyMode,
-                                              bool>(_seperatorMode),
-                                          toggleSeperatorModoeCallback),
+                                              SeparatorMultiplyMode,
+                                              bool>(_separatorMode),
+                                          toggleSeparatorModeCallback),
                                     ),
                                     Tooltip(
-                                      message:
-                                          'customOptions.shouldSoundOnDesc'.tr(),
+                                      message: 'customOptions.shouldSoundOnDesc'
+                                          .tr(),
                                       child: buildToggleOption(
                                           'settings.notify'.tr(),
                                           Icons.notifications,
@@ -222,13 +229,13 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
     initializeValues(_manager);
   }
 
-  void toggleSeperatorModoeCallback(bool newValue) {
+  void toggleSeparatorModeCallback(bool newValue) {
     setState(() {
-      _seperatorMode =
-          _manager.valueToEnum<bool, SeperatorMultiplyMode>(newValue);
+      _separatorMode =
+          _manager.valueToEnum<bool, SeparatorMultiplyMode>(newValue);
     });
 
-    _manager.saveSetting(_seperatorMode);
+    _manager.saveSetting(_separatorMode);
     initializeValues(_manager);
   }
 
@@ -286,7 +293,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.fromLTRB(15, 8, 10, 8),
                       border: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
                         borderSide: BorderSide(
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.grey.shade600
@@ -295,7 +303,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
                         borderSide: BorderSide(
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.grey.shade600
@@ -304,7 +313,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
                         borderSide: BorderSide(
                           color: Theme.of(context).colorScheme.primary,
                           width: 2.0,
@@ -312,7 +322,9 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                       ),
                       filled: true,
                       fillColor: Theme.of(context).brightness == Brightness.dark
-                          ? Theme.of(context).colorScheme.surfaceContainerHighest
+                          ? Theme.of(context)
+                              .colorScheme
+                              .surfaceContainerHighest
                           : Theme.of(context).colorScheme.surfaceContainer,
                       floatingLabelAlignment: FloatingLabelAlignment.center),
                   items: dropdownMenuItemList,
@@ -428,7 +440,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
       _smallDigit = manager.getCurrentEnum<SmallDigit>();
       _numOfProblems = manager.getCurrentEnum<NumOfMultiplyProblems>();
       _countDownMode = manager.getCurrentEnum<CountDownMultiplyMode>();
-      _seperatorMode = manager.getCurrentEnum<SeperatorMultiplyMode>();
+      _separatorMode = manager.getCurrentEnum<SeparatorMultiplyMode>();
     });
   }
 

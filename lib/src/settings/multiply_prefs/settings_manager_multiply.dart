@@ -5,7 +5,7 @@ import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/countdown_
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_big_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/num_of_problems_pref_multiply.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/seperator_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/separator_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,7 +20,7 @@ class SettingsMultiplyManager {
   late BigDigitPref _bigDigitPref;
   late SmallDigitPref _smallDigitPref;
   late NumOfProblemsMultiplyPref _numOfProblemsPref;
-  late SeperatorModeMultiplyPref _seperatorModePref;
+  late SeparatorModeMultiplyPref _separatorModePref;
 
   // constructor
   static final SettingsMultiplyManager _instance =
@@ -41,11 +41,12 @@ class SettingsMultiplyManager {
     _bigDigitPref = BigDigitPref(prefs);
     _smallDigitPref = SmallDigitPref(prefs);
     _numOfProblemsPref = NumOfProblemsMultiplyPref(prefs);
-    _seperatorModePref = SeperatorModeMultiplyPref(prefs);
+    _separatorModePref =
+        SeparatorModeMultiplyPref.separatorModeMultiplyPref(prefs);
   }
 
   // returns _instance when it is called.
-  //, which is already initialized in pivate constructor.
+  //, which is already initialized in private constructor.
   factory SettingsMultiplyManager() => _instance;
 
   // fields methods.
@@ -66,8 +67,8 @@ class SettingsMultiplyManager {
         return _smallDigitPref.getValue() as T;
       case const (NumOfMultiplyProblems):
         return _numOfProblemsPref.getValue() as T;
-      case const (SeperatorMultiplyMode):
-        return _seperatorModePref.getValue() as T;
+      case const (SeparatorMultiplyMode):
+        return _separatorModePref.getValue() as T;
       default:
         throw Error();
     }
@@ -89,8 +90,8 @@ class SettingsMultiplyManager {
         return _smallDigitPref.valueToEnum(value as int) as T;
       case const (NumOfMultiplyProblems):
         return _numOfProblemsPref.valueToEnum(value as int) as T;
-      case const (SeperatorMultiplyMode):
-        return _seperatorModePref.valueToEnum(value as bool) as T;
+      case const (SeparatorMultiplyMode):
+        return _separatorModePref.valueToEnum(value as bool) as T;
       default:
         throw Error();
     }
@@ -113,9 +114,9 @@ class SettingsMultiplyManager {
       case const (NumOfMultiplyProblems):
         return _numOfProblemsPref
             .enumToValue(enumValue as NumOfMultiplyProblems) as V;
-      case const (SeperatorMultiplyMode):
-        return _seperatorModePref
-            .enumToValue(enumValue as SeperatorMultiplyMode) as V;
+      case const (SeparatorMultiplyMode):
+        return _separatorModePref
+            .enumToValue(enumValue as SeparatorMultiplyMode) as V;
       default:
         throw Error();
     }
@@ -135,9 +136,9 @@ class SettingsMultiplyManager {
       case const (NumOfMultiplyProblems):
         return _numOfProblemsPref
             .enumToValue(getCurrentEnum<NumOfMultiplyProblems>()) as V;
-      case const (SeperatorMultiplyMode):
-        return _seperatorModePref
-            .enumToValue(getCurrentEnum<SeperatorMultiplyMode>()) as V;
+      case const (SeparatorMultiplyMode):
+        return _separatorModePref
+            .enumToValue(getCurrentEnum<SeparatorMultiplyMode>()) as V;
       default:
         throw Error();
     }
@@ -182,8 +183,8 @@ class SettingsMultiplyManager {
       case const (NumOfMultiplyProblems):
         _numOfProblemsPref.saveSetting(_prefs, value);
         break;
-      case const (SeperatorMultiplyMode):
-        _seperatorModePref.saveSetting(_prefs, value);
+      case const (SeparatorMultiplyMode):
+        _separatorModePref.saveSetting(_prefs, value);
         break;
       default:
         throw Error();

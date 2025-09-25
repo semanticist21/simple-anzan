@@ -2,7 +2,7 @@ import 'package:abacus_simple_anzan/src/provider/state_provider_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_small_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/d_big_digit_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/num_of_problems_pref_multiply.dart';
-import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/seperator_multiply.dart';
+import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/separator_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
@@ -123,7 +123,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       await doProcess(getMultiplyNums, manager);
 
   Future<void> _runDivide(SettingsMultiplyManager manager) async =>
-      await doProcess(getDivdieNums, manager);
+      await doProcess(getDivideNums, manager);
 
   // initially code was written for handling a number of problems,
   // but now it takes only one. (removed option)
@@ -170,7 +170,8 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   }
 
   bool _isBurningModeActive() {
-    return _manager.getCurrentEnum<BurningModeMultiply>() == BurningModeMultiply.on;
+    return _manager.getCurrentEnum<BurningModeMultiply>() ==
+        BurningModeMultiply.on;
   }
 
   bool _isIterationActive() {
@@ -198,7 +199,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         await Future.delayed(const Duration(milliseconds: 1000));
       }
 
-      bool isSeperator = manager.getCurrentValue<SeperatorMultiplyMode, bool>();
+      bool isSeparator = manager.getCurrentValue<SeparatorMultiplyMode, bool>();
 
       for (var i = 0; i < length; i++) {
         var item = questions[i];
@@ -206,7 +207,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         _optManager.soundOption.playSound();
         setState(() {
           _number =
-              '${isSeperator ? formatter.format(item.item1) : item.item1} × ${isSeperator ? formatter.format(item.item2) : item.item2}';
+              '${isSeparator ? formatter.format(item.item1) : item.item1} × ${isSeparator ? formatter.format(item.item2) : item.item2}';
         });
         await Future.delayed(duration);
 
@@ -214,7 +215,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
           _number = '';
         });
 
-        // make not to wait too long before answ
+        // make not to wait too long before answer
         if (duration >= const Duration(milliseconds: 500)) {
           await Future.delayed(const Duration(milliseconds: 500));
         } else {
@@ -241,7 +242,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         await Future.delayed(const Duration(milliseconds: 1000));
       }
 
-      bool isSeperator = manager.getCurrentValue<SeperatorMultiplyMode, bool>();
+      bool isSeparator = manager.getCurrentValue<SeparatorMultiplyMode, bool>();
 
       for (var i = 0; i < length; i++) {
         var item = questions[i];
@@ -249,7 +250,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         _optManager.soundOption.playSound();
         setState(() {
           _number =
-              '${isSeperator ? formatter.format(item.item1) : item.item1} ÷ ${isSeperator ? formatter.format(item.item2) : item.item2}';
+              '${isSeparator ? formatter.format(item.item1) : item.item1} ÷ ${isSeparator ? formatter.format(item.item2) : item.item2}';
         });
         await Future.delayed(duration);
 
@@ -257,7 +258,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
           _number = '';
         });
 
-        // make not to wait too long before answ
+        // make not to wait too long before answer
         if (duration >= const Duration(milliseconds: 500)) {
           await Future.delayed(const Duration(milliseconds: 500));
         } else {
@@ -313,7 +314,8 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   }
 
   bool _shouldContinueBurningMode() {
-    return _stateProvider.state == ButtonMultiplyState.iterationStarted && mounted;
+    return _stateProvider.state == ButtonMultiplyState.iterationStarted &&
+        mounted;
   }
 
   void _clearDisplay() {
@@ -326,24 +328,24 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   TextStyle _getMainNumberTextStyle() {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    var fontsize = 10.0;
+    var fontSize = 10.0;
 
     if (Platform.isWindows) {
-      fontsize = height * 0.075 + width * 0.075;
+      fontSize = height * 0.075 + width * 0.075;
     } else {
-      fontsize = height * 0.075 + width * 0.075;
+      fontSize = height * 0.075 + width * 0.075;
     }
 
     var titleLarge = Theme.of(context).textTheme.titleLarge;
 
     if (titleLarge == null) {
-      return TextStyle(fontSize: fontsize, fontStyle: FontStyle.italic);
+      return TextStyle(fontSize: fontSize, fontStyle: FontStyle.italic);
     }
 
     return Platform.isWindows
-        ? titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontsize)
+        ? titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontSize)
         : titleLarge.copyWith(
-            fontSize: fontsize,
+            fontSize: fontSize,
             fontStyle: FontStyle.italic,
           );
   }
