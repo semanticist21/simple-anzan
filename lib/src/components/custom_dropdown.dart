@@ -12,8 +12,8 @@ class CustomDropdown extends StatelessWidget {
     required this.initialValue,
     required this.items,
     required this.onChanged,
-    this.width = 120,
-    this.height = 40,
+    this.width = 140,
+    this.height = 52,
   });
 
   @override
@@ -27,7 +27,8 @@ class CustomDropdown extends StatelessWidget {
       child: DropdownButtonFormField(
         initialValue: initialValue,
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 0.0),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),
             borderSide: BorderSide.none,
@@ -44,28 +45,25 @@ class CustomDropdown extends StatelessWidget {
             ),
           ),
           filled: true,
-          fillColor: isDark
-              ? const Color(0xFF2A2A2A)
-              : Colors.grey.shade100,
+          fillColor: isDark ? const Color(0xFF2A2A2A) : Colors.grey.shade100,
         ),
         items: items,
         onChanged: onChanged,
-        isDense: true,
+        isDense: false,
         isExpanded: true,
-        dropdownColor: isDark
-            ? const Color(0xFF2A2A2A)
-            : Colors.grey.shade50,
+        itemHeight: 48.0,
+        dropdownColor: isDark ? const Color(0xFF2A2A2A) : Colors.grey.shade50,
         elevation: 8,
         style: TextStyle(
           color: isDark ? Colors.white : Colors.black87,
-          fontSize: 14.0,
+          fontSize: 16.0,
           fontWeight: FontWeight.w500,
-          height: 1.0,
+          height: 1.2,
         ),
         icon: Icon(
           Icons.keyboard_arrow_down_rounded,
           color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
-          size: 18.0,
+          size: 20.0,
         ),
       ),
     );

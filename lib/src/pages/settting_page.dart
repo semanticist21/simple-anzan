@@ -156,13 +156,13 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-
   Widget _buildToggleListTile(String title, IconData iconData, bool value,
       Function(bool) onChangeMethod) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 8.0),
+      margin: const EdgeInsets.only(bottom: 20.0),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
         leading: Icon(
           iconData,
           size: 24.0,
@@ -171,7 +171,7 @@ class _SettingsPageState extends State<SettingsPage> {
         title: Text(
           title,
           style: TextStyle(
-            fontSize: 16.0,
+            fontSize: 18.0,
             fontWeight: FontWeight.w500,
             color: Theme.of(context).colorScheme.onSurface,
           ),
@@ -241,9 +241,10 @@ class _SettingsPageState extends State<SettingsPage> {
       List<DropdownMenuItem<dynamic>> dropdownMenuItemList,
       Function(dynamic) onChangeMethod) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 8.0),
+      margin: const EdgeInsets.only(bottom: 20.0),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
         leading: Icon(
           iconData,
           size: 24.0,
@@ -252,7 +253,7 @@ class _SettingsPageState extends State<SettingsPage> {
         title: Text(
           title,
           style: TextStyle(
-            fontSize: 16.0,
+            fontSize: 18.0,
             fontWeight: FontWeight.w500,
             color: Theme.of(context).colorScheme.onSurface,
           ),
@@ -323,10 +324,10 @@ class _SettingsPageState extends State<SettingsPage> {
             element,
             style: TextStyle(
               color: Theme.of(context).colorScheme.onSurface,
-              fontSize: 14.0,
+              fontSize: 16.0,
               fontWeight: FontWeight.w500,
               letterSpacing: 0.1,
-              height: 1.0,
+              height: 1.2,
             ),
             textAlign: isNumber ? TextAlign.center : TextAlign.left,
           ));

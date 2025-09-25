@@ -271,7 +271,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                 const SizedBox(width: 10),
                 Text(title,
                     style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height * 0.020,
+                        fontSize: MediaQuery.of(context).size.height * 0.024,
                         fontWeight: FontWeight.w500,
                         color: Theme.of(context).colorScheme.primaryContainer))
               ],
@@ -288,12 +288,12 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                       Theme.of(context).colorScheme.tertiaryContainer,
                   elevation: 0,
                   isDense: true,
-                  itemHeight: 50,
+                  itemHeight: 54,
                   initialValue: initialValue,
                   iconSize: 25,
                   isExpanded: true,
                   decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
+                      contentPadding: const EdgeInsets.fromLTRB(15, 8, 10, 8),
                       border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         borderSide: BorderSide(),
@@ -387,8 +387,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
                         : 1,
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 fontSize: Platform.isWindows
-                    ? MediaQuery.of(context).size.height * 0.0175
-                    : MediaQuery.of(context).size.height * 0.0165,
+                    ? MediaQuery.of(context).size.height * 0.020
+                    : MediaQuery.of(context).size.height * 0.018,
                 fontWeight: FontWeight.w500),
           ));
       itemList.add(item);
@@ -400,7 +400,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
   Padding getPadding(Widget? widget) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.of(context).size.height * 0.02,
+        vertical: MediaQuery.of(context).size.height * 0.015,
         horizontal: MediaQuery.of(context).size.width * 0.02,
       ),
       child: widget,
