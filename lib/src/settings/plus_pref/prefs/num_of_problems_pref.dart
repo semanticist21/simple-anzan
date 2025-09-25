@@ -58,7 +58,7 @@ class NumOfProblemsPref
 
   String enumNameToItemString(String name) => name.split('_')[1];
 
-  List<String> getItemsListofEnum() {
+  List<String> getItemsListOfEnum() {
     List<String> result = List.empty(growable: true);
 
     for (var element in NumOfProblems.values) {

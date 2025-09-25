@@ -5,7 +5,7 @@ import '../../Interface/preference_interface_items.dart';
 
 class NumOfProblemsMultiplyPref
     implements PreferenceInterfaceItems<NumOfMultiplyProblems, int> {
-  final String _saveKey = 'multiplyNumprops';
+  final String _saveKey = 'multiplyNumProps';
   final int _defaultIndex = 0;
 
   late int _currentIndex;
@@ -63,7 +63,7 @@ class NumOfProblemsMultiplyPref
 
   String enumNameToItemString(String name) => name.split('_')[1];
 
-  List<String> getItemsListofEnum() {
+  List<String> getItemsListOfEnum() {
     List<String> result = List.empty(growable: true);
 
     for (var element in NumOfMultiplyProblems.values) {

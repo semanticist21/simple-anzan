@@ -47,7 +47,7 @@ class DigitPref implements PreferenceInterfaceItems<Digit, int> {
 
   String enumNameToItemString(String name) => name.split('_')[1];
 
-  List<String> getItemsListofEnum() {
+  List<String> getItemsListOfEnum() {
     List<String> result = List.empty(growable: true);
 
     for (var element in Digit.values) {

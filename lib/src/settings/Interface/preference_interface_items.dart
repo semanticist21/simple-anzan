@@ -18,5 +18,5 @@ abstract class PreferenceInterfaceItems<T, V>
   //   }
 
   //   return result;
-  List<String> getItemsListofEnum();
+  List<String> getItemsListOfEnum();
 }

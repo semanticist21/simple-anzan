@@ -28,7 +28,8 @@ class SettingsMultiplyManager {
   SettingsMultiplyManager._constructor();
 
   Future<void> initSettings() async {
-    _prefs = await SharedPreferencesWithCache.create(cacheOptions: const SharedPreferencesWithCacheOptions());
+    _prefs = await SharedPreferencesWithCache.create(
+        cacheOptions: const SharedPreferencesWithCacheOptions());
     refreshPrefValues(_prefs);
   }
 
@@ -200,13 +201,13 @@ class SettingsMultiplyManager {
   List<String> getItemsListOfEnum<T>() {
     switch (T) {
       case const (NumOfMultiplyProblems):
-        return _numOfProblemsPref.getItemsListofEnum();
+        return _numOfProblemsPref.getItemsListOfEnum();
       case const (SpeedMultiply):
-        return _speedPref.getItemsListofEnum();
+        return _speedPref.getItemsListOfEnum();
       case const (BigDigit):
-        return _bigDigitPref.getItemsListofEnum();
+        return _bigDigitPref.getItemsListOfEnum();
       case const (SmallDigit):
-        return _smallDigitPref.getItemsListofEnum();
+        return _smallDigitPref.getItemsListOfEnum();
       default:
         throw Error();
     }

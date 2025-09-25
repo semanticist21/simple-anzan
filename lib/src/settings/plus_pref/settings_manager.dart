@@ -197,11 +197,11 @@ class SettingsManager {
   List<String> getItemsListOfEnum<T>() {
     switch (T) {
       case const (NumOfProblems):
-        return _numOfProblemsPref.getItemsListofEnum();
+        return _numOfProblemsPref.getItemsListOfEnum();
       case const (Speed):
-        return _speedPref.getItemsListofEnum();
+        return _speedPref.getItemsListOfEnum();
       case const (Digit):
-        return _digitPref.getItemsListofEnum();
+        return _digitPref.getItemsListOfEnum();
       default:
         throw Error();
     }

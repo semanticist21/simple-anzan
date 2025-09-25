@@ -75,7 +75,7 @@ class SpeedPref implements PreferenceInterfaceItems<Speed, Duration> {
     return Speed.custom;
   }
 
-  List<String> getItemsListofEnum() {
+  List<String> getItemsListOfEnum() {
     List<String> result = List.empty(growable: true);
 
     for (var element in Speed.values) {

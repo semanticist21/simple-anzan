@@ -76,7 +76,7 @@ class SpeedMultiplyPref
     return SpeedMultiply.custom;
   }
 
-  List<String> getItemsListofEnum() {
+  List<String> getItemsListOfEnum() {
     List<String> result = List.empty(growable: true);
 
     for (var element in SpeedMultiply.values) {
