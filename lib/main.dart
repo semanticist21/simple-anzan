@@ -223,439 +223,471 @@ class _Home extends State<Home> {
               initialData: true,
               stream: SoundOptionHandler.isSoundOnStream.stream,
               builder: (context, snapshot) {
-                return Row(children: [
-                  Visibility(
-                    visible: !(_currentIndex != 0 && _currentIndex != 2),
-                    child: Container(
-                      width: 40,
-                      margin: const EdgeInsets.only(right: 16),
-                      child: Tooltip(
-                          message: 'problemList.burningMode'.tr(),
-                          child: _FlatCircularButton(
-                            onPressed: _toggleBurningMode,
-                            backgroundColor:
-                                _getBurningModeBackgroundColor(context),
-                            child: Icon(
-                              Icons.local_fire_department,
-                              color: _getBurningModeColor(context),
-                              size: Platform.isWindows
-                                  ? MediaQuery.of(context).size.height * 0.03
-                                  : 20,
-                            ),
-                          )),
-                    ),
-                  ),
-                  Visibility(
-                    visible: _currentIndex == 0,
-                    child: Container(
-                      width: 40,
-                      margin: const EdgeInsets.only(right: 16),
-                      child: Tooltip(
-                          message: 'problemList.stopIteration'.tr(),
-                          child: _FlatCircularButton(
-                            onPressed: requestButtonStopIteration,
-                            backgroundColor:
-                                Theme.of(context).colorScheme.error,
-                            child: Icon(
-                              CupertinoIcons.xmark,
-                              color: Colors.white70,
-                              size: 20,
-                            ),
-                          )),
-                    ),
-                  ),
-                  Visibility(
-                    visible: !(_currentIndex != 0 && _currentIndex != 2),
-                    child: Container(
-                      width: 40,
-                      margin: const EdgeInsets.only(right: 16),
-                      child: Tooltip(
-                          message: 'problemList.checkProb'.tr(),
-                          child: _FlatCircularButton(
-                            onPressed: () {
-                              if (_currentIndex != 0 && _currentIndex != 2) {
-                                return;
-                              }
-                              showProbDialog(_currentIndex == 0 ? true : false);
-                            },
-                            backgroundColor:
-                                Theme.of(context).colorScheme.onSurface,
-                            child: Icon(
-                              CupertinoIcons.question,
-                              color: Theme.of(context).colorScheme.secondary,
-                              size: 20,
-                            ),
-                          )),
-                    ),
-                  ),
-                  Visibility(
-                      visible: Platform.isWindows
-                          ? _currentIndex == 0 || _currentIndex == 2
-                              ? true
-                              : false
-                          : false,
-                      child: Row(children: [
-                        Tooltip(
-                            message: 'theme.preset'.tr(),
-                            child: _FlatIconButton(
-                              onPressed: () {
-                                if (_currentIndex == 0) {
-                                  showDialog(
-                                          context: context,
-                                          builder: (context) =>
-                                              const PresetAddList())
-                                      .then((value) => {
-                                            if (value is PresetAddModel)
-                                              {
-                                                PresetAddModel.saveItem(
-                                                    value, SettingsManager())
-                                              }
-                                          });
-                                } else if (_currentIndex == 2) {
-                                  showDialog(
-                                          context: context,
-                                          builder: (context) =>
-                                              const PresetMultiplyList())
-                                      .then((value) => {
-                                            if (value is PresetMultiplyModel)
-                                              {
-                                                PresetMultiplyModel.saveItem(
-                                                    value,
-                                                    SettingsMultiplyManager())
-                                              }
-                                          });
-                                }
-                              },
-                              icon: const Icon(CupertinoIcons.collections),
-                              color: Theme.of(context).colorScheme.onSurface,
-                              size: 20,
-                            )),
-                        Tooltip(
-                            message: 'theme.fastSetting'.tr(),
-                            child: _FlatIconButton(
-                              onPressed: () {
-                                if (_currentIndex == 0) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) =>
-                                          const WindowsAddOptionDialog());
-                                } else if (_currentIndex == 2) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) =>
-                                          const WindowsAddOptionMultiplyDialog());
-                                }
-                              },
-                              icon: const Icon(CupertinoIcons.settings),
-                              color: Theme.of(context).colorScheme.onSurface,
-                              size: 20,
-                            )),
-                      ])),
-                  const SizedBox(width: 12),
-                  // Language selector - only visible on settings pages
-                  Visibility(
-                    visible: _currentIndex == 1 || _currentIndex == 3,
-                    child: Tooltip(
-                      message: 'theme.language'.tr(),
+                return Container(
+                  margin: const EdgeInsets.only(right: 22.0),
+                  child: Row(children: [
+                    Visibility(
+                      visible: !(_currentIndex != 0 && _currentIndex != 2),
                       child: Container(
-                        height: 32.0,
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.0),
-                          border: Border.all(
+                        width: 40,
+                        margin: const EdgeInsets.only(right: 16),
+                        child: Tooltip(
+                            message: 'problemList.burningMode'.tr(),
+                            child: _FlatCircularButton(
+                              onPressed: _toggleBurningMode,
+                              backgroundColor:
+                                  _getBurningModeBackgroundColor(context),
+                              child: Icon(
+                                Icons.local_fire_department,
+                                color: _getBurningModeColor(context),
+                                size: Platform.isWindows
+                                    ? MediaQuery.of(context).size.height * 0.03
+                                    : 20,
+                              ),
+                            )),
+                      ),
+                    ),
+                    Visibility(
+                      visible: _currentIndex == 0,
+                      child: Container(
+                        width: 40,
+                        margin: const EdgeInsets.only(right: 16),
+                        child: Tooltip(
+                            message: 'problemList.stopIteration'.tr(),
+                            child: _FlatCircularButton(
+                              onPressed: requestButtonStopIteration,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.error,
+                              child: Icon(
+                                CupertinoIcons.xmark,
+                                color: Colors.white70,
+                                size: 20,
+                              ),
+                            )),
+                      ),
+                    ),
+                    Visibility(
+                      visible: !(_currentIndex != 0 && _currentIndex != 2),
+                      child: Container(
+                        width: 40,
+                        margin: const EdgeInsets.only(right: 16),
+                        child: Tooltip(
+                            message: 'problemList.checkProb'.tr(),
+                            child: _FlatCircularButton(
+                              onPressed: () {
+                                if (_currentIndex != 0 && _currentIndex != 2) {
+                                  return;
+                                }
+                                showProbDialog(
+                                    _currentIndex == 0 ? true : false);
+                              },
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.onSurface,
+                              child: Icon(
+                                CupertinoIcons.question,
+                                color: Theme.of(context).colorScheme.secondary,
+                                size: 20,
+                              ),
+                            )),
+                      ),
+                    ),
+                    Visibility(
+                        visible: Platform.isWindows
+                            ? _currentIndex == 0 || _currentIndex == 2
+                                ? true
+                                : false
+                            : false,
+                        child: Row(children: [
+                          Tooltip(
+                              message: 'theme.preset'.tr(),
+                              child: _FlatIconButton(
+                                onPressed: () {
+                                  if (_currentIndex == 0) {
+                                    showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                const PresetAddList())
+                                        .then((value) => {
+                                              if (value is PresetAddModel)
+                                                {
+                                                  PresetAddModel.saveItem(
+                                                      value, SettingsManager())
+                                                }
+                                            });
+                                  } else if (_currentIndex == 2) {
+                                    showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                const PresetMultiplyList())
+                                        .then((value) => {
+                                              if (value is PresetMultiplyModel)
+                                                {
+                                                  PresetMultiplyModel.saveItem(
+                                                      value,
+                                                      SettingsMultiplyManager())
+                                                }
+                                            });
+                                  }
+                                },
+                                icon: const Icon(CupertinoIcons.collections),
+                                color: Theme.of(context).colorScheme.onSurface,
+                                size: 20,
+                              )),
+                          Tooltip(
+                              message: 'theme.fastSetting'.tr(),
+                              child: _FlatIconButton(
+                                onPressed: () {
+                                  if (_currentIndex == 0) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) =>
+                                            const WindowsAddOptionDialog());
+                                  } else if (_currentIndex == 2) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) =>
+                                            const WindowsAddOptionMultiplyDialog());
+                                  }
+                                },
+                                icon: const Icon(CupertinoIcons.settings),
+                                color: Theme.of(context).colorScheme.onSurface,
+                                size: 20,
+                              )),
+                        ])),
+                    const SizedBox(width: 12),
+                    // Language selector - only visible on settings pages
+                    Visibility(
+                      visible: _currentIndex == 1 || _currentIndex == 3,
+                      child: Tooltip(
+                        message: 'theme.language'.tr(),
+                        child: Container(
+                          height: 32.0,
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.0),
+                            border: Border.all(
+                              color: ThemeSelector.isDark
+                                  ? const Color(0xFF4B5563)
+                                  : const Color(0xFFD1D5DB),
+                              width: 1.0,
+                            ),
                             color: ThemeSelector.isDark
-                                ? const Color(0xFF4B5563)
-                                : const Color(0xFFD1D5DB),
-                            width: 1.0,
-                          ),
-                          color: ThemeSelector.isDark
-                              ? const Color(0xFF1F2937)
-                              : const Color(0xFFF3F4F6),
-                        ),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            value: EasyLocalization.of(context)!
-                                .locale
-                                .languageCode,
-                            isDense: true,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: ThemeSelector.isDark
-                                  ? const Color(0xFFF9FAFB)
-                                  : const Color(0xFF111827),
-                            ),
-                            dropdownColor: ThemeSelector.isDark
                                 ? const Color(0xFF1F2937)
-                                : const Color(0xFFFFFFFF),
-                            icon: Icon(
-                              Icons.keyboard_arrow_down,
-                              size: 16,
-                              color: ThemeSelector.isDark
-                                  ? const Color(0xFF9CA3AF)
-                                  : const Color(0xFF6B7280),
+                                : const Color(0xFFF3F4F6),
+                          ),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              value: EasyLocalization.of(context)!
+                                  .locale
+                                  .languageCode,
+                              isDense: true,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: ThemeSelector.isDark
+                                    ? const Color(0xFFF9FAFB)
+                                    : const Color(0xFF111827),
+                              ),
+                              dropdownColor: ThemeSelector.isDark
+                                  ? const Color(0xFF1F2937)
+                                  : const Color(0xFFFFFFFF),
+                              icon: Icon(
+                                Icons.keyboard_arrow_down,
+                                size: 16,
+                                color: ThemeSelector.isDark
+                                    ? const Color(0xFF9CA3AF)
+                                    : const Color(0xFF6B7280),
+                              ),
+                              items: const [
+                                DropdownMenuItem(
+                                  value: 'en',
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('🇺🇸',
+                                          style: TextStyle(fontSize: 12)),
+                                      SizedBox(width: 4),
+                                      Text('EN',
+                                          style: TextStyle(fontSize: 12)),
+                                    ],
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'ko',
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('🇰🇷',
+                                          style: TextStyle(fontSize: 12)),
+                                      SizedBox(width: 4),
+                                      Text('KO',
+                                          style: TextStyle(fontSize: 12)),
+                                    ],
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'ja',
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('🇯🇵',
+                                          style: TextStyle(fontSize: 12)),
+                                      SizedBox(width: 4),
+                                      Text('JA',
+                                          style: TextStyle(fontSize: 12)),
+                                    ],
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'uz',
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('🇺🇿',
+                                          style: TextStyle(fontSize: 12)),
+                                      SizedBox(width: 4),
+                                      Text('UZ',
+                                          style: TextStyle(fontSize: 12)),
+                                    ],
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'my',
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('🇲🇲',
+                                          style: TextStyle(fontSize: 12)),
+                                      SizedBox(width: 4),
+                                      Text('MY',
+                                          style: TextStyle(fontSize: 12)),
+                                    ],
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'fr',
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('🇫🇷',
+                                          style: TextStyle(fontSize: 12)),
+                                      SizedBox(width: 4),
+                                      Text('FR',
+                                          style: TextStyle(fontSize: 12)),
+                                    ],
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'ar',
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('🇪🇬',
+                                          style: TextStyle(fontSize: 12)),
+                                      SizedBox(width: 4),
+                                      Text('AR',
+                                          style: TextStyle(fontSize: 12)),
+                                    ],
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'id',
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('🇮🇩',
+                                          style: TextStyle(fontSize: 12)),
+                                      SizedBox(width: 4),
+                                      Text('ID',
+                                          style: TextStyle(fontSize: 12)),
+                                    ],
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'zh',
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('🇨🇳',
+                                          style: TextStyle(fontSize: 12)),
+                                      SizedBox(width: 4),
+                                      Text('ZH',
+                                          style: TextStyle(fontSize: 12)),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                              onChanged: (String? newValue) {
+                                if (newValue != null) {
+                                  EasyLocalization.of(context)!
+                                      .setLocale(Locale(newValue));
+                                }
+                              },
                             ),
-                            items: const [
-                              DropdownMenuItem(
-                                value: 'en',
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('🇺🇸',
-                                        style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 4),
-                                    Text('EN', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 'ko',
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('🇰🇷',
-                                        style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 4),
-                                    Text('KO', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 'ja',
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('🇯🇵',
-                                        style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 4),
-                                    Text('JA', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 'uz',
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('🇺🇿',
-                                        style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 4),
-                                    Text('UZ', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 'my',
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('🇲🇲',
-                                        style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 4),
-                                    Text('MY', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 'fr',
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('🇫🇷',
-                                        style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 4),
-                                    Text('FR', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 'ar',
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('🇪🇬',
-                                        style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 4),
-                                    Text('AR', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 'id',
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('🇮🇩',
-                                        style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 4),
-                                    Text('ID', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 'zh',
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('🇨🇳',
-                                        style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 4),
-                                    Text('ZH', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-                            ],
-                            onChanged: (String? newValue) {
-                              if (newValue != null) {
-                                EasyLocalization.of(context)!
-                                    .setLocale(Locale(newValue));
-                              }
-                            },
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                      width: _currentIndex == 1 || _currentIndex == 3 ? 8 : 0),
-                  Tooltip(
-                    message: 'theme.sound'.tr(),
-                    child: AnimatedToggleSwitch<bool>.dual(
-                      current: SoundOptionHandler.isSoundOn,
-                      first: false,
-                      second: true,
-                      onChanged: (value) {
-                        OptionManager().setSoundBool(value);
-                        setState(() {});
-                      },
-                      spacing: 2.0,
-                      height: 32.0,
-                      borderWidth: 1.0,
-                      indicatorSize: const Size.fromWidth(26.0),
-                      animationDuration: const Duration(milliseconds: 300),
-                      animationCurve: Curves.easeInOut,
-                      style: ToggleStyle(
-                        borderColor: Colors.grey.shade300,
-                        backgroundColor: Colors.grey.shade100,
-                        indicatorColor: Colors.white,
+                    SizedBox(
+                        width:
+                            _currentIndex == 1 || _currentIndex == 3 ? 8 : 0),
+                    Tooltip(
+                      message: 'theme.sound'.tr(),
+                      child: AnimatedToggleSwitch<bool>.dual(
+                        current: SoundOptionHandler.isSoundOn,
+                        first: false,
+                        second: true,
+                        onChanged: (value) {
+                          OptionManager().setSoundBool(value);
+                          setState(() {});
+                        },
+                        spacing: 2.0,
+                        height: 32.0,
+                        borderWidth: 1.0,
+                        indicatorSize: const Size.fromWidth(26.0),
+                        animationDuration: const Duration(milliseconds: 300),
+                        animationCurve: Curves.easeInOut,
+                        style: ToggleStyle(
+                          borderColor: Colors.grey.shade300,
+                          backgroundColor: Colors.grey.shade100,
+                          indicatorColor: Colors.white,
+                        ),
+                        styleBuilder: (value) => ToggleStyle(
+                          backgroundColor: value
+                              ? ThemeSelector.isDark
+                                  ? const Color(
+                                      0xFF1F2937) // Dark background for sound on
+                                  : const Color(
+                                      0xFFF3F4F6) // Light background for sound on
+                              : ThemeSelector.isDark
+                                  ? const Color(
+                                      0xFF374151) // Dark background for sound off
+                                  : const Color(
+                                      0xFFE5E7EB), // Light background for sound off
+                          borderColor: value
+                              ? ThemeSelector.isDark
+                                  ? const Color(
+                                      0xFF4B5563) // Darker border when on (dark mode)
+                                  : const Color(
+                                      0xFFD1D5DB) // Lighter border when on (light mode)
+                              : ThemeSelector.isDark
+                                  ? const Color(
+                                      0xFF6B7280) // Border when off (dark mode)
+                                  : const Color(
+                                      0xFF9CA3AF), // Border when off (light mode)
+                          indicatorColor: value
+                              ? ThemeSelector.isDark
+                                  ? const Color(
+                                      0xFF111827) // Dark indicator when on
+                                  : const Color(
+                                      0xFFFFFFFF) // White indicator when on
+                              : ThemeSelector.isDark
+                                  ? const Color(
+                                      0xFF1F2937) // Dark indicator when off
+                                  : const Color(
+                                      0xFFF9FAFB), // Light indicator when off
+                        ),
+                        iconBuilder: (value) => value
+                            ? _buildToggleIcon(
+                                icon: Icons.volume_up_rounded,
+                                gradientColors: ThemeSelector.isDark
+                                    ? const [
+                                        Color(0xFF111827),
+                                        Color(0xFF111827)
+                                      ] // Match dark indicator when on
+                                    : const [
+                                        Color(0xFFFFFFFF),
+                                        Color(0xFFFFFFFF)
+                                      ], // Match white indicator when on
+                                iconColor: ThemeSelector.isDark
+                                    ? const Color(
+                                        0xFFFFFFFF) // White icon on dark background
+                                    : const Color(
+                                        0xFF374151), // Dark icon on light background
+                              )
+                            : _buildToggleIcon(
+                                icon: Icons.volume_off_rounded,
+                                gradientColors: ThemeSelector.isDark
+                                    ? const [
+                                        Color(0xFF1F2937),
+                                        Color(0xFF1F2937)
+                                      ] // Match dark indicator when off
+                                    : const [
+                                        Color(0xFFF9FAFB),
+                                        Color(0xFFF9FAFB)
+                                      ], // Match light indicator when off
+                                iconColor: ThemeSelector.isDark
+                                    ? const Color(
+                                        0xFF9CA3AF) // Gray icon on dark background
+                                    : const Color(
+                                        0xFF6B7280), // Darker gray icon on light background
+                              ),
+                        textBuilder: (value) => const SizedBox.shrink(),
                       ),
-                      styleBuilder: (value) => ToggleStyle(
-                        backgroundColor: value
-                            ? ThemeSelector.isDark
-                                ? const Color(
-                                    0xFF1F2937) // Dark background for sound on
-                                : const Color(
-                                    0xFFF3F4F6) // Light background for sound on
-                            : ThemeSelector.isDark
-                                ? const Color(
-                                    0xFF374151) // Dark background for sound off
-                                : const Color(
-                                    0xFFE5E7EB), // Light background for sound off
-                        borderColor: value
-                            ? ThemeSelector.isDark
-                                ? const Color(
-                                    0xFF4B5563) // Darker border when on (dark mode)
-                                : const Color(
-                                    0xFFD1D5DB) // Lighter border when on (light mode)
-                            : ThemeSelector.isDark
-                                ? const Color(
-                                    0xFF6B7280) // Border when off (dark mode)
-                                : const Color(
-                                    0xFF9CA3AF), // Border when off (light mode)
-                        indicatorColor: value
-                            ? ThemeSelector.isDark
-                                ? const Color(
-                                    0xFF111827) // Dark indicator when on
-                                : const Color(
-                                    0xFFFFFFFF) // White indicator when on
-                            : ThemeSelector.isDark
-                                ? const Color(
-                                    0xFF1F2937) // Dark indicator when off
-                                : const Color(
-                                    0xFFF9FAFB), // Light indicator when off
-                      ),
-                      iconBuilder: (value) => value
-                          ? _buildToggleIcon(
-                              icon: Icons.volume_up_rounded,
-                              gradientColors: ThemeSelector.isDark
-                                  ? const [Color(0xFF111827), Color(0xFF111827)] // Match dark indicator when on
-                                  : const [Color(0xFFFFFFFF), Color(0xFFFFFFFF)], // Match white indicator when on
-                              iconColor: ThemeSelector.isDark
-                                  ? const Color(0xFFFFFFFF) // White icon on dark background
-                                  : const Color(0xFF374151), // Dark icon on light background
-                            )
-                          : _buildToggleIcon(
-                              icon: Icons.volume_off_rounded,
-                              gradientColors: ThemeSelector.isDark
-                                  ? const [Color(0xFF1F2937), Color(0xFF1F2937)] // Match dark indicator when off
-                                  : const [Color(0xFFF9FAFB), Color(0xFFF9FAFB)], // Match light indicator when off
-                              iconColor: ThemeSelector.isDark
-                                  ? const Color(0xFF9CA3AF) // Gray icon on dark background
-                                  : const Color(0xFF6B7280), // Darker gray icon on light background
-                            ),
-                      textBuilder: (value) => const SizedBox.shrink(),
                     ),
-                  ),
-                ]);
-              }),
-          // Only show theme switch on settings pages (index 1 and 3)
-          if (_currentIndex == 1 || _currentIndex == 3) ...[
-            const SizedBox(width: 5),
-            Tooltip(
-              message: 'theme.mode'.tr(),
-              child: AnimatedToggleSwitch<bool>.dual(
-                current: ThemeSelector.isDark,
-                first: false,
-                second: true,
-                onChanged: (value) {
-                  OptionManager().setThemeBool(value);
-                  setState(() {});
-                },
-                spacing: 2.0,
-                height: 32.0,
-                borderWidth: 1.0,
-                indicatorSize: const Size.fromWidth(28.0),
-                animationDuration: const Duration(milliseconds: 300),
-                animationCurve: Curves.easeInOut,
-                style: ToggleStyle(
-                  borderColor: Colors.grey.shade300,
-                  backgroundColor: Colors.grey.shade100,
-                  indicatorColor: Colors.white,
-                ),
-                styleBuilder: (value) => ToggleStyle(
-                  backgroundColor: value
-                      ? const Color(0xFF0F172A) // Deep midnight blue
-                      : const Color(0xFFFFF8E7), // Warm cream for day
-                  borderColor: value
-                      ? const Color(0xFF374151) // More distinct border for night
-                      : const Color(0xFFD97706), // Distinct amber border for day
-                  indicatorColor: value
-                      ? const Color(0xFF1E2B3C) // Dark indicator for night
-                      : const Color(
-                          0xFFFFFAF0), // Pure warm white indicator for day
-                ),
-                iconBuilder: (value) => value
-                    ? _buildToggleIcon(
-                        icon: Icons.nightlight_round,
-                        gradientColors: const [
-                          Color(0xFF64748B),
-                          Color(0xFF94A3B8)
-                        ],
-                        iconColor: const Color(0xFFF1F5F9),
-                      )
-                    : _buildToggleIcon(
-                        icon: Icons.light_mode,
-                        gradientColors: const [
-                          Color(0xFFFCD34D),
-                          Color(0xFFF59E0B)
-                        ],
-                        iconColor: const Color(0xFFFFFFFF),
-                        isRadial: true,
+                    // Only show theme switch on settings pages (index 1 and 3)
+                    if (_currentIndex == 1 || _currentIndex == 3) ...[
+                      const SizedBox(width: 8),
+                      Tooltip(
+                        message: 'theme.mode'.tr(),
+                        child: AnimatedToggleSwitch<bool>.dual(
+                          current: ThemeSelector.isDark,
+                          first: false,
+                          second: true,
+                          onChanged: (value) {
+                            OptionManager().setThemeBool(value);
+                            setState(() {});
+                          },
+                          spacing: 2.0,
+                          height: 32.0,
+                          borderWidth: 1.0,
+                          indicatorSize: const Size.fromWidth(28.0),
+                          animationDuration: const Duration(milliseconds: 300),
+                          animationCurve: Curves.easeInOut,
+                          style: ToggleStyle(
+                            borderColor: Colors.grey.shade300,
+                            backgroundColor: Colors.grey.shade100,
+                            indicatorColor: Colors.white,
+                          ),
+                          styleBuilder: (value) => ToggleStyle(
+                            backgroundColor: value
+                                ? const Color(0xFF0F172A) // Deep midnight blue
+                                : const Color(0xFFFFF8E7), // Warm cream for day
+                            borderColor: value
+                                ? const Color(
+                                    0xFF374151) // More distinct border for night
+                                : const Color(
+                                    0xFFD97706), // Distinct amber border for day
+                            indicatorColor: value
+                                ? const Color(
+                                    0xFF1E2B3C) // Dark indicator for night
+                                : const Color(
+                                    0xFFFFFAF0), // Pure warm white indicator for day
+                          ),
+                          iconBuilder: (value) => value
+                              ? _buildToggleIcon(
+                                  icon: Icons.nightlight_round,
+                                  gradientColors: const [
+                                    Color(0xFF64748B),
+                                    Color(0xFF94A3B8)
+                                  ],
+                                  iconColor: const Color(0xFFF1F5F9),
+                                )
+                              : _buildToggleIcon(
+                                  icon: Icons.light_mode,
+                                  gradientColors: const [
+                                    Color(0xFFFCD34D),
+                                    Color(0xFFF59E0B)
+                                  ],
+                                  iconColor: const Color(0xFFFFFFFF),
+                                  isRadial: true,
+                                ),
+                          textBuilder: (value) => const SizedBox.shrink(),
+                        ),
                       ),
-                textBuilder: (value) => const SizedBox.shrink(),
-              ),
-            ),
-            const SizedBox(width: 5),
-          ],
+                    ],
+                  ]),
+                );
+              }),
         ],
       ),
       backgroundColor: Theme.of(context).colorScheme.surface,

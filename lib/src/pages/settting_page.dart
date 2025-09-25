@@ -74,11 +74,15 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildHeader(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Icon(
-          Icons.tune,
-          size: 28.0,
-          color: Colors.grey.shade600,
+        Container(
+          padding: const EdgeInsets.only(left: 0.0),
+          child: Icon(
+            Icons.tune,
+            size: 24.0,
+            color: Colors.grey.shade600,
+          ),
         ),
         const SizedBox(width: 16.0),
         Expanded(
@@ -99,7 +103,10 @@ class _SettingsPageState extends State<SettingsPage> {
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                color: Theme.of(context)
+                    .colorScheme
+                    .primary
+                    .withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Icon(
@@ -282,54 +289,56 @@ class _SettingsPageState extends State<SettingsPage> {
           constraints: const BoxConstraints(maxWidth: 140),
           child: SizedBox(
             width: 140,
-              child: DropdownButtonFormField(
-                dropdownColor: Theme.of(context).brightness == Brightness.dark
-                    ? Theme.of(context).colorScheme.surfaceContainerHighest
-                    : Theme.of(context).colorScheme.surface,
-                elevation: 0,
-                isDense: true,
-                itemHeight: 54,
-                initialValue: initialValue,
-                iconSize: 25,
-                isExpanded: true,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.fromLTRB(15, 8, 10, 8),
-                  border: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? const Color(0xFF6B7280)  // Lighter gray for dark theme
-                          : const Color(0xFF9CA3AF),  // Darker gray for light theme
-                      width: 1.5,
-                    ),
+            child: DropdownButtonFormField(
+              dropdownColor: Theme.of(context).brightness == Brightness.dark
+                  ? Theme.of(context).colorScheme.surfaceContainerHighest
+                  : Theme.of(context).colorScheme.surface,
+              elevation: 0,
+              isDense: true,
+              itemHeight: 54,
+              initialValue: initialValue,
+              iconSize: 25,
+              isExpanded: true,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.fromLTRB(15, 8, 10, 8),
+                border: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? const Color(0xFF6B7280) // Lighter gray for dark theme
+                        : const Color(
+                            0xFF9CA3AF), // Darker gray for light theme
+                    width: 1.5,
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? const Color(0xFF6B7280)  // Lighter gray for dark theme
-                          : const Color(0xFF9CA3AF),  // Darker gray for light theme
-                      width: 1.5,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).colorScheme.primary,
-                      width: 2.0,
-                    ),
-                  ),
-                  filled: true,
-                  fillColor: Theme.of(context).brightness == Brightness.dark
-                      ? Theme.of(context).colorScheme.surfaceContainerHighest
-                      : Theme.of(context).colorScheme.surfaceContainer,
-                  floatingLabelAlignment: FloatingLabelAlignment.center,
                 ),
-                items: dropdownMenuItemList,
-                onChanged: onChangeMethod,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? const Color(0xFF6B7280) // Lighter gray for dark theme
+                        : const Color(
+                            0xFF9CA3AF), // Darker gray for light theme
+                    width: 1.5,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 2.0,
+                  ),
+                ),
+                filled: true,
+                fillColor: Theme.of(context).brightness == Brightness.dark
+                    ? Theme.of(context).colorScheme.surfaceContainerHighest
+                    : Theme.of(context).colorScheme.surfaceContainer,
+                floatingLabelAlignment: FloatingLabelAlignment.center,
               ),
+              items: dropdownMenuItemList,
+              onChanged: onChangeMethod,
             ),
           ),
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
@@ -422,7 +431,10 @@ class _SettingsPageState extends State<SettingsPage> {
               color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                color: Theme.of(context)
+                    .colorScheme
+                    .outline
+                    .withValues(alpha: 0.1),
                 width: 1,
               ),
             ),
@@ -434,7 +446,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
-                        color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .outline
+                            .withValues(alpha: 0.1),
                         width: 1,
                       ),
                     ),
@@ -460,7 +475,10 @@ class _SettingsPageState extends State<SettingsPage> {
                               width: 32,
                               height: 32,
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .outline
+                                    .withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Icon(
@@ -477,7 +495,10 @@ class _SettingsPageState extends State<SettingsPage> {
                         'settings.explanationDesc'.tr(),
                         style: TextStyle(
                           fontSize: 14,
-                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withValues(alpha: 0.7),
                         ),
                       ),
                     ],
@@ -565,7 +586,8 @@ class _SettingsPageState extends State<SettingsPage> {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+              color:
+                  Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
@@ -592,7 +614,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   explanation,
                   style: TextStyle(
                     fontSize: 14,
-                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withValues(alpha: 0.7),
                   ),
                 ),
               ],
