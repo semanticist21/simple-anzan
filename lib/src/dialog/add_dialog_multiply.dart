@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 
 class AddDialogMultiply extends StatefulWidget {
   const AddDialogMultiply({super.key, required this.defaultValue});
@@ -22,92 +23,259 @@ class _AddDialogMultiplyState extends State<AddDialogMultiply> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      surfaceTintColor: Theme.of(context).colorScheme.surface,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15.0))),
-      title: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(children: [
-          Icon(Icons.forward_sharp,
-              size: MediaQuery.of(context).size.height * 0.0190,
-              color: Theme.of(context).colorScheme.onPrimaryContainer),
-          SizedBox(width: MediaQuery.of(context).size.width * 0.015),
-          Container(
-              constraints: const BoxConstraints(maxWidth: 300),
-              width: MediaQuery.of(context).size.width * 0.6,
-              child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: Text('customOptions.setSpeedTitle'.tr(),
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: MediaQuery.of(context).size.height * 0.0190,
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onPrimaryContainer))))
-        ]),
-      ),
-      content: Form(
-          key: _formKey,
-          child: TextFormField(
-            controller: _textController,
-            style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimaryContainer),
-            decoration: InputDecoration(
-              helperText: 'customOptions.rangeMultiplyWord'.tr(),
-              helperStyle: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimaryContainer),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Theme.of(context).colorScheme.primaryContainer)),
-              enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Theme.of(context).colorScheme.primaryContainer)),
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 400),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+              width: 1,
             ),
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*$'))
-            ],
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'customOptions.pleaseInsertValue'.tr();
-              }
-
-              var valueInt = int.tryParse(value);
-              if (valueInt == null) {
-                return null;
-              }
-
-              if (valueInt > 30000) {
-                return 'customOptions.pleaseTooBigValue'.tr();
-              }
-
-              if (valueInt < 100) {
-                return 'customOptions.pleaseTooSmallValue'.tr();
-              }
-
-              return null;
-            },
-          )),
-      actions: [
-        Padding(
-            padding: const EdgeInsets.all(5),
-            child: TextButton(
-              onPressed: () {
-                var result = _formKey.currentState?.validate();
-
-                if (result != null && result) {
-                  Navigator.of(context).pop(_textController.text);
-                }
-              },
-              child: Text(
-                'buttons.ok'.tr(),
-                style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.height * 0.02,
-                    color: Theme.of(context).colorScheme.onPrimaryContainer),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Fixed Header
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                      width: 1,
+                    ),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Icon(
+                            Icons.speed_outlined,
+                            size: 24.0,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                        const SizedBox(width: 16.0),
+                        Expanded(
+                          child: Text(
+                            'customOptions.setSpeedTitle'.tr(),
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).pop(),
+                          child: Container(
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              CupertinoIcons.xmark,
+                              size: 16,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'customOptions.rangeMultiplyWord'.tr(),
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ))
-      ],
+              // Content
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextFormField(
+                          controller: _textController,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: widget.defaultValue,
+                            hintStyle: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
+                            ),
+                            filled: true,
+                            fillColor: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.outline,
+                                width: 1.0,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.outline,
+                                width: 1.0,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.outline,
+                                width: 1.5,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.error,
+                                width: 1.5,
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.error,
+                                width: 1.5,
+                              ),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                              vertical: 16.0,
+                            ),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 12.0),
+                              child: Text(
+                                'ms',
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            suffixIconConstraints: const BoxConstraints(
+                              minWidth: 0,
+                              minHeight: 0,
+                            ),
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*$'))
+                          ],
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'customOptions.pleaseInsertValue'.tr();
+                            }
+
+                            var valueInt = int.tryParse(value);
+                            if (valueInt == null) {
+                              return null;
+                            }
+
+                            if (valueInt > 30000) {
+                              return 'customOptions.pleaseTooBigValue'.tr();
+                            }
+
+                            if (valueInt < 100) {
+                              return 'customOptions.pleaseTooSmallValue'.tr();
+                            }
+
+                            return null;
+                          },
+                        ),
+
+                        const SizedBox(height: 32.0),
+
+                        // Actions
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              style: TextButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                splashFactory: NoSplash.splashFactory,
+                                overlayColor: Colors.transparent,
+                              ),
+                              child: Text(
+                                'buttons.cancel'.tr(),
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w500,
+                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                                ),
+                              ),
+                            ),
+
+                            const SizedBox(width: 12.0),
+
+                            ElevatedButton(
+                              onPressed: () {
+                                var result = _formKey.currentState?.validate();
+                                if (result != null && result) {
+                                  Navigator.of(context).pop(_textController.text);
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Theme.of(context).colorScheme.primary,
+                                foregroundColor: Colors.white,
+                                elevation: 0,
+                                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                splashFactory: NoSplash.splashFactory,
+                                overlayColor: Colors.transparent,
+                              ),
+                              child: Text(
+                                'buttons.ok'.tr(),
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

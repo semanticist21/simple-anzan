@@ -32,6 +32,7 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
         width: double.infinity,
         height: double.infinity,
         child: Container(
+          color: Theme.of(context).colorScheme.surface,
           alignment: Alignment.topCenter,
           child: Column(children: [
             Expanded(
@@ -86,15 +87,23 @@ class _HomeMultiplyPageState extends State<HomeMultiplyPage> {
             Expanded(
               flex: 8,
               child: Center(
-                  child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 1,
+                  child: Container(
+                width: MediaQuery.of(context).size.width * 0.85,
+                height: MediaQuery.of(context).size.height * 0.6,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.15),
+                    width: 1
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: Stack(children: [
                   flashingContainer,
                   Center(
                     child: FractionallySizedBox(
-                        widthFactor: 0.9,
-                        heightFactor: 0.9,
+                        widthFactor: 0.95,
+                        heightFactor: 0.95,
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Center(child: _flicker),
