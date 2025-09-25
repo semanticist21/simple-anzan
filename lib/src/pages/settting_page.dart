@@ -81,12 +81,33 @@ class _SettingsPageState extends State<SettingsPage> {
           color: Colors.grey.shade600,
         ),
         const SizedBox(width: 16.0),
-        Text(
-          'settings.title'.tr(),
-          style: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.w600,
-            color: Theme.of(context).colorScheme.onSurface,
+        Expanded(
+          child: Text(
+            'settings.title'.tr(),
+            style: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+          ),
+        ),
+        Tooltip(
+          message: 'settings.explanationTooltip'.tr(),
+          child: GestureDetector(
+            onTap: () => _showSettingsExplanationModal(context),
+            child: Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Icon(
+                Icons.help_outline,
+                size: 20,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
           ),
         ),
       ],
@@ -386,5 +407,199 @@ class _SettingsPageState extends State<SettingsPage> {
       _countDownMode = manager.getCurrentEnum<CountDownMode>();
       _separatorMode = manager.getCurrentEnum<SeparatorMode>();
     });
+  }
+
+  void _showSettingsExplanationModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600, maxHeight: 550),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                width: 1,
+              ),
+            ),
+            child: Column(
+              children: [
+                // Fixed Header
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'settings.explanationTitle'.tr(),
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context).colorScheme.onSurface,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).pop(),
+                            child: Container(
+                              width: 32,
+                              height: 32,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Icon(
+                                CupertinoIcons.xmark,
+                                size: 16,
+                                color: Theme.of(context).colorScheme.onSurface,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'settings.explanationDesc'.tr(),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Scrollable Content
+                Expanded(
+                  child: ListView(
+                    padding: const EdgeInsets.all(16),
+                    children: [
+                      _buildExplanationItem(
+                        context,
+                        'settings.onlyPluses'.tr(),
+                        'settings.onlyPlusesExplanation'.tr(),
+                        Icons.functions,
+                      ),
+                      _buildExplanationItem(
+                        context,
+                        'settings.shuffle'.tr(),
+                        'settings.shuffleExplanation'.tr(),
+                        Icons.casino_outlined,
+                      ),
+                      _buildExplanationItem(
+                        context,
+                        'settings.speed'.tr(),
+                        'settings.speedExplanation'.tr(),
+                        Icons.timer_outlined,
+                      ),
+                      _buildExplanationItem(
+                        context,
+                        'settings.digit'.tr(),
+                        'settings.digitExplanation'.tr(),
+                        Icons.pin,
+                      ),
+                      _buildExplanationItem(
+                        context,
+                        'settings.questions'.tr(),
+                        'settings.questionsExplanation'.tr(),
+                        Icons.quiz_outlined,
+                      ),
+                      _buildExplanationItem(
+                        context,
+                        'settings.separator'.tr(),
+                        'settings.separatorExplanation'.tr(),
+                        Icons.looks_one,
+                      ),
+                      _buildExplanationItem(
+                        context,
+                        'settings.notify'.tr(),
+                        'settings.notifyExplanation'.tr(),
+                        Icons.volume_up_outlined,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildExplanationItem(
+    BuildContext context,
+    String title,
+    String explanation,
+    IconData icon,
+  ) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(
+              icon,
+              size: 20,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  explanation,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

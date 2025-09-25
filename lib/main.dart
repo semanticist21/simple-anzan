@@ -66,7 +66,17 @@ void main() async {
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ko'), Locale('ja'), Locale('uz'), Locale('my'), Locale('fr'), Locale('ar'), Locale('id')],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ko'),
+        Locale('ja'),
+        Locale('uz'),
+        Locale('my'),
+        Locale('fr'),
+        Locale('ar'),
+        Locale('id'),
+        Locale('zh')
+      ],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
       child:
@@ -169,7 +179,7 @@ class _Home extends State<Home> {
       return;
     }
 
-    onTapNavi(navigationKey, newIndex);
+    onTapNav(navigationKey, newIndex);
     setState(() {
       _currentIndex = newIndex;
     });
@@ -348,143 +358,165 @@ class _Home extends State<Home> {
                     child: Tooltip(
                       message: 'theme.language'.tr(),
                       child: Container(
-                      height: 32.0,
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.0),
-                        border: Border.all(
+                        height: 32.0,
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.0),
+                          border: Border.all(
+                            color: ThemeSelector.isDark
+                                ? const Color(0xFF4B5563)
+                                : const Color(0xFFD1D5DB),
+                            width: 1.0,
+                          ),
                           color: ThemeSelector.isDark
-                              ? const Color(0xFF4B5563)
-                              : const Color(0xFFD1D5DB),
-                          width: 1.0,
-                        ),
-                        color: ThemeSelector.isDark
-                            ? const Color(0xFF1F2937)
-                            : const Color(0xFFF3F4F6),
-                      ),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          value: EasyLocalization.of(context)!.locale.languageCode,
-                          isDense: true,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: ThemeSelector.isDark
-                                ? const Color(0xFFF9FAFB)
-                                : const Color(0xFF111827),
-                          ),
-                          dropdownColor: ThemeSelector.isDark
                               ? const Color(0xFF1F2937)
-                              : const Color(0xFFFFFFFF),
-                          icon: Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 16,
-                            color: ThemeSelector.isDark
-                                ? const Color(0xFF9CA3AF)
-                                : const Color(0xFF6B7280),
+                              : const Color(0xFFF3F4F6),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: EasyLocalization.of(context)!
+                                .locale
+                                .languageCode,
+                            isDense: true,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: ThemeSelector.isDark
+                                  ? const Color(0xFFF9FAFB)
+                                  : const Color(0xFF111827),
+                            ),
+                            dropdownColor: ThemeSelector.isDark
+                                ? const Color(0xFF1F2937)
+                                : const Color(0xFFFFFFFF),
+                            icon: Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 16,
+                              color: ThemeSelector.isDark
+                                  ? const Color(0xFF9CA3AF)
+                                  : const Color(0xFF6B7280),
+                            ),
+                            items: const [
+                              DropdownMenuItem(
+                                value: 'en',
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text('🇺🇸',
+                                        style: TextStyle(fontSize: 12)),
+                                    SizedBox(width: 4),
+                                    Text('EN', style: TextStyle(fontSize: 12)),
+                                  ],
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'ko',
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text('🇰🇷',
+                                        style: TextStyle(fontSize: 12)),
+                                    SizedBox(width: 4),
+                                    Text('KO', style: TextStyle(fontSize: 12)),
+                                  ],
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'ja',
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text('🇯🇵',
+                                        style: TextStyle(fontSize: 12)),
+                                    SizedBox(width: 4),
+                                    Text('JA', style: TextStyle(fontSize: 12)),
+                                  ],
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'uz',
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text('🇺🇿',
+                                        style: TextStyle(fontSize: 12)),
+                                    SizedBox(width: 4),
+                                    Text('UZ', style: TextStyle(fontSize: 12)),
+                                  ],
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'my',
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text('🇲🇲',
+                                        style: TextStyle(fontSize: 12)),
+                                    SizedBox(width: 4),
+                                    Text('MY', style: TextStyle(fontSize: 12)),
+                                  ],
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'fr',
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text('🇫🇷',
+                                        style: TextStyle(fontSize: 12)),
+                                    SizedBox(width: 4),
+                                    Text('FR', style: TextStyle(fontSize: 12)),
+                                  ],
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'ar',
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text('🇪🇬',
+                                        style: TextStyle(fontSize: 12)),
+                                    SizedBox(width: 4),
+                                    Text('AR', style: TextStyle(fontSize: 12)),
+                                  ],
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'id',
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text('🇮🇩',
+                                        style: TextStyle(fontSize: 12)),
+                                    SizedBox(width: 4),
+                                    Text('ID', style: TextStyle(fontSize: 12)),
+                                  ],
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'zh',
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text('🇨🇳',
+                                        style: TextStyle(fontSize: 12)),
+                                    SizedBox(width: 4),
+                                    Text('ZH', style: TextStyle(fontSize: 12)),
+                                  ],
+                                ),
+                              ),
+                            ],
+                            onChanged: (String? newValue) {
+                              if (newValue != null) {
+                                EasyLocalization.of(context)!
+                                    .setLocale(Locale(newValue));
+                              }
+                            },
                           ),
-                          items: const [
-                            DropdownMenuItem(
-                              value: 'en',
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('🇺🇸', style: TextStyle(fontSize: 12)),
-                                  SizedBox(width: 4),
-                                  Text('EN', style: TextStyle(fontSize: 12)),
-                                ],
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: 'ko',
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('🇰🇷', style: TextStyle(fontSize: 12)),
-                                  SizedBox(width: 4),
-                                  Text('KO', style: TextStyle(fontSize: 12)),
-                                ],
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: 'ja',
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('🇯🇵', style: TextStyle(fontSize: 12)),
-                                  SizedBox(width: 4),
-                                  Text('JA', style: TextStyle(fontSize: 12)),
-                                ],
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: 'uz',
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('🇺🇿', style: TextStyle(fontSize: 12)),
-                                  SizedBox(width: 4),
-                                  Text('UZ', style: TextStyle(fontSize: 12)),
-                                ],
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: 'my',
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('🇲🇲', style: TextStyle(fontSize: 12)),
-                                  SizedBox(width: 4),
-                                  Text('MY', style: TextStyle(fontSize: 12)),
-                                ],
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: 'fr',
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('🇫🇷', style: TextStyle(fontSize: 12)),
-                                  SizedBox(width: 4),
-                                  Text('FR', style: TextStyle(fontSize: 12)),
-                                ],
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: 'ar',
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('🇪🇬', style: TextStyle(fontSize: 12)),
-                                  SizedBox(width: 4),
-                                  Text('AR', style: TextStyle(fontSize: 12)),
-                                ],
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: 'id',
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text('🇮🇩', style: TextStyle(fontSize: 12)),
-                                  SizedBox(width: 4),
-                                  Text('ID', style: TextStyle(fontSize: 12)),
-                                ],
-                              ),
-                            ),
-                          ],
-                          onChanged: (String? newValue) {
-                            if (newValue != null) {
-                              EasyLocalization.of(context)!.setLocale(
-                                Locale(newValue)
-                              );
-                            }
-                          },
                         ),
                       ),
                     ),
                   ),
-                  ),
-                  SizedBox(width: _currentIndex == 1 || _currentIndex == 3 ? 8 : 0),
+                  SizedBox(
+                      width: _currentIndex == 1 || _currentIndex == 3 ? 8 : 0),
                   Tooltip(
                     message: 'theme.sound'.tr(),
                     child: AnimatedToggleSwitch<bool>.dual(
@@ -498,7 +530,7 @@ class _Home extends State<Home> {
                       spacing: 2.0,
                       height: 32.0,
                       borderWidth: 1.0,
-                      indicatorSize: const Size.fromWidth(28.0),
+                      indicatorSize: const Size.fromWidth(26.0),
                       animationDuration: const Duration(milliseconds: 300),
                       animationCurve: Curves.easeInOut,
                       style: ToggleStyle(
@@ -704,13 +736,17 @@ class _Home extends State<Home> {
       if (_currentIndex == 0) {
         BurningMode mode = SettingsManager().getCurrentEnum<BurningMode>();
         return mode == BurningMode.on
-            ? (isDark ? const Color(0xFF8B4513) : Colors.orange.shade300)  // Dark: saddle brown, Light: orange
+            ? (isDark
+                ? const Color(0xFF8B4513)
+                : Colors.orange.shade300) // Dark: saddle brown, Light: orange
             : (isDark ? const Color(0xFF4A4A4A) : Colors.grey);
       } else if (_currentIndex == 2) {
         BurningModeMultiply mode =
             SettingsMultiplyManager().getCurrentEnum<BurningModeMultiply>();
         return mode == BurningModeMultiply.on
-            ? (isDark ? const Color(0xFF8B4513) : Colors.orange.shade300)  // Dark: saddle brown, Light: orange
+            ? (isDark
+                ? const Color(0xFF8B4513)
+                : Colors.orange.shade300) // Dark: saddle brown, Light: orange
             : (isDark ? const Color(0xFF4A4A4A) : Colors.grey);
       }
     } catch (e) {
@@ -801,8 +837,8 @@ class _Home extends State<Home> {
     bool isRadial = false,
   }) {
     return Container(
-      width: 24,
-      height: 24,
+      width: 22,
+      height: 22,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: isRadial
@@ -826,7 +862,7 @@ class _Home extends State<Home> {
       child: Icon(
         icon,
         color: iconColor,
-        size: 22.0,
+        size: 18.0,
       ),
     );
   }

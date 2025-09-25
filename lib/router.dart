@@ -35,7 +35,7 @@ Route<dynamic> generateErrorPages(RouteSettings settings) {
   return CustomRoute(builder: (_) => const ErrorPage());
 }
 
-void onTapNavi(GlobalKey<NavigatorState> navigationKey, int index) {
+void onTapNav(GlobalKey<NavigatorState> navigationKey, int index) {
   switch (index) {
     case 0:
       navigationKey.currentState?.pushReplacementNamed('/');
@@ -47,8 +47,7 @@ void onTapNavi(GlobalKey<NavigatorState> navigationKey, int index) {
       navigationKey.currentState?.pushReplacementNamed('/multiply');
       break;
     case 3:
-      navigationKey.currentState
-          ?.pushReplacementNamed('/settings/multiply');
+      navigationKey.currentState?.pushReplacementNamed('/settings/multiply');
       break;
     default:
       navigationKey.currentState?.pushReplacementNamed('/error');

@@ -30,7 +30,17 @@
     "digit": "Raqam",
     "questions": "Savollar",
     "notify": "Boshlanishda xabardor qilish",
-    "separator": "Minglar verguli"
+    "separator": "Minglar verguli",
+    "explanationTooltip": "Sozlamalar tushuntirishi",
+    "explanationTitle": "Sozlamalar qo'llanmasi",
+    "explanationDesc": "Quyida har bir sozlama opsiyasi haqida o'rganing",
+    "onlyPlusesExplanation": "Yoqilganda, faqat qo'shish masalalari yaratiladi. O'chirilganda, qo'shish va ayirish masalalari kiritiladi.",
+    "shuffleExplanation": "Har bir masaladagi raqamlar tartibini tasodifiy o'zgartirib, qiyinchilikni oshiradi va namuna eslab qolishni oldini oladi.",
+    "speedExplanation": "Takrorlanish oqimi davomida har bir raqam ko'rinish tezligini boshqaradi. Sekin tezlik har bir raqamni qayta ishlash uchun ko'proq vaqt beradi.",
+    "digitExplanation": "Masalalardagi har bir raqamning maksimal raqamlar sonini belgilaydi (masalan, 3 raqam = 999 gacha raqamlar).",
+    "questionsExplanation": "Har bir mashq seansida paydo bo'ladigan raqamlar sonini aniqlaydi.",
+    "separatorExplanation": "Yoqilganda, raqamlarda minglar ajratuvchisini ko'rsatadi (masalan, 1234 ni 1,234 ga aylantiradi) o'qish osonroq bo'ladi.",
+    "notifyExplanation": "Yoqilganda, har bir seans boshlanishidan oldin 2 marta signal ovozini chiqarib, tayyorgarlik va diqqatni jamlashga yordam beradi."
   },
   "settingsMultiply": {
     "title": "Sozlamalar (ko'paytirish)",

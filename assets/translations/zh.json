@@ -1,0 +1,80 @@
+{
+  "app": {
+    "name": "珠算简易暗算"
+  },
+  "navigation": {
+    "homePlus": "加法",
+    "settingPlus": "+/-",
+    "homeMultiply": "乘法",
+    "settingMultiply": " ×/÷"
+  },
+  "theme": {
+    "mode": "切换主题",
+    "sound": "声音开关",
+    "fastSetting": "快速设置",
+    "preset": "预设",
+    "presetSave": "保存预设",
+    "language": "语言"
+  },
+  "buttons": {
+    "ok": "确定",
+    "cancel": "取消",
+    "start": "开始 !!",
+    "check": "检查答案"
+  },
+  "settings": {
+    "title": "设置",
+    "shuffle": "随机排列",
+    "onlyPluses": "仅加法",
+    "speed": "速度",
+    "digit": "位数",
+    "questions": "题目数",
+    "notify": "开始前提醒",
+    "separator": "千位逗号",
+    "explanationTooltip": "设置说明",
+    "explanationTitle": "设置指南",
+    "explanationDesc": "了解下面每个设置选项",
+    "onlyPlusesExplanation": "启用时，只生成加法题目。禁用时，加法和减法题目都会包含在内。",
+    "shuffleExplanation": "随机改变每道题目中数字的顺序，增加难度并防止模式记忆。",
+    "speedExplanation": "控制迭代流程中每个数字出现的速度。较慢的速度给处理每个数字更多时间。",
+    "digitExplanation": "设置题目中每个数字的最大位数（例如：3位数 = 最大999的数字）。",
+    "questionsExplanation": "确定每次练习会话中将出现多少个数字。",
+    "separatorExplanation": "启用时，在数字中显示千位分隔符（例如：1234变成1,234）便于阅读。",
+    "notifyExplanation": "启用时，在每次会话开始前播放2次蜂鸣声，帮助您准备和集中注意力。"
+  },
+  "settingsMultiply": {
+    "title": "设置（乘法）",
+    "isMultiply": "切换到除法",
+    "speed": "速度",
+    "bigDigit": "大位数",
+    "smallDigit": "小位数",
+    "questions": "题目数"
+  },
+  "customOptions": {
+    "setSpeedTitle": "设置自定义速度",
+    "rangeWord": "输入100到30000之间的值。（1000 = 1秒）",
+    "pleaseInsertValue": "请输入数值。",
+    "pleaseTooBigValue": "数值太大。",
+    "pleaseTooSmallValue": "数值太小。",
+    "rangeMultiplyWord": "输入100到30000之间的值。",
+    "insertBigger": "小位数必须小于大位数。",
+    "shuffleDesc": "用不同位数的数字进行混合计算",
+    "shouldSoundOnDesc": "声音选项应该开启"
+  },
+  "problemList": {
+    "noProbExecuted": "请先运行。",
+    "checkProb": "题目与答案",
+    "checkProbDesc": "查看您会话中的所有计算题目和答案。",
+    "checkProbQ": "检查题目",
+    "stopIteration": "停止迭代",
+    "burningMode": "燃烧模式",
+    "burningModeEnabled": "燃烧模式已启用。现在将无限继续下去。",
+    "burningModeDisabled": "燃烧模式已禁用。现在将在设定的题目数后停止。",
+    "problem": "题目",
+    "answer": "答案"
+  },
+  "other": {
+    "warning": "警告",
+    "onBurning": "燃烧中"
+  }
+}

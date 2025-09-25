@@ -30,7 +30,17 @@
     "digit": "자리 수",
     "questions": "문제 수",
     "notify": "시작 전 알림",
-    "separator": "쉼표 생성"
+    "separator": "쉼표 생성",
+    "explanationTooltip": "설정 설명",
+    "explanationTitle": "설정 가이드",
+    "explanationDesc": "아래에서 각 설정 옵션에 대해 알아보세요",
+    "onlyPlusesExplanation": "활성화하면 덧셈 문제만 생성됩니다. 비활성화하면 덧셈과 뺄셈 문제가 모두 포함됩니다.",
+    "shuffleExplanation": "각 문제의 숫자 순서를 무작위로 변경하여 난이도를 높이고 패턴 암기를 방지합니다.",
+    "speedExplanation": "반복 흐름 중 각 숫자가 나타나는 속도를 제어합니다. 느린 속도는 각 숫자를 처리할 시간을 더 많이 줍니다.",
+    "digitExplanation": "문제에서 각 숫자의 최대 자릿수를 설정합니다 (예: 3자리 = 999까지의 숫자).",
+    "questionsExplanation": "각 연습 세션에 나타날 숫자의 개수를 결정합니다.",
+    "separatorExplanation": "활성화하면 숫자에 천의 자리 구분 기호를 표시합니다 (예: 1234가 1,234로 표시) 읽기 쉬워집니다.",
+    "notifyExplanation": "활성화하면 각 세션 시작 전에 2번의 비프음을 재생하여 준비와 집중을 도와줍니다."
   },
   "settingsMultiply": {
     "title": "설정 (곱셈)",

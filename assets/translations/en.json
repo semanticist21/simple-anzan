@@ -30,7 +30,17 @@
     "digit": "Digit",
     "questions": "Questions",
     "notify": "Notify at Start",
-    "separator": "Thousands Comma"
+    "separator": "Thousands Comma",
+    "explanationTooltip": "Settings explanation",
+    "explanationTitle": "Settings Guide",
+    "explanationDesc": "Learn about each setting option below",
+    "onlyPlusesExplanation": "When enabled, only addition problems will be generated. When disabled, both addition and subtraction problems are included.",
+    "shuffleExplanation": "Randomly changes the order of digits in each problem to increase difficulty and prevent pattern memorization.",
+    "speedExplanation": "Controls how fast each number appears during the iteration flow. Slower speeds give more time to process each number.",
+    "digitExplanation": "Sets the maximum number of digits for each number in the problems (e.g., 3 digits = numbers up to 999).",
+    "questionsExplanation": "Determines how many numbers will appear in each practice session.",
+    "separatorExplanation": "When enabled, displays thousands separators in numbers (e.g., 1234 becomes 1,234) for easier reading.",
+    "notifyExplanation": "When enabled, plays 2 beep sounds before starting each session to help you prepare and focus."
   },
   "settingsMultiply": {
     "title": "Settings (multiplication)",

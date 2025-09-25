@@ -57,6 +57,7 @@ dependencies:
   # UI components
   flutter_colorpicker: ^1.1.0
   animated_toggle_switch: ^0.8.3
+  responsive_builder: ^0.7.0
   
   # Audio playback
   flutter_soloud: ^3.3.6

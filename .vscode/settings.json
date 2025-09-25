@@ -4,6 +4,9 @@
     "cmake.sourceDirectory": "${workspaceFolder}/linux",
     "git.ignoreLimitWarning": true,
     "cSpell.words": [
+        "anzan",
+        "Maximizable",
+        "Minimizable",
         "prefs",
         "soloud"
     ]

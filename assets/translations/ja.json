@@ -30,7 +30,17 @@
     "digit": "桁数",
     "questions": "問題数",
     "notify": "事前通知",
-    "separator": "コンマ生成"
+    "separator": "コンマ生成",
+    "explanationTooltip": "設定説明",
+    "explanationTitle": "設定ガイド",
+    "explanationDesc": "以下で各設定オプションについて学ぶ",
+    "onlyPlusesExplanation": "有効にすると、足し算の問題のみが生成されます。無効にすると、足し算と引き算の両方の問題が含まれます。",
+    "shuffleExplanation": "各問題の数字の順序をランダムに変更し、難易度を上げてパターンの記憶化を防ぎます。",
+    "speedExplanation": "反復フロー中に各数字が表示される速度を制御します。遅い速度では、各数字を処理する時間が長くなります。",
+    "digitExplanation": "問題の各数字の最大桁数を設定します（例：3桁 = 999までの数字）。",
+    "questionsExplanation": "各練習セッションに表示される数字の数を決定します。",
+    "separatorExplanation": "有効にすると、数字に千の位区切り記号を表示します（例：1234が1,234になる）読みやすくなります。",
+    "notifyExplanation": "有効にすると、各セッション開始前に2回のビープ音を鳴らして準備と集中を助けます。"
   },
   "settingsMultiply": {
     "title": "設定(掛け算)",
