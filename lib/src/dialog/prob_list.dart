@@ -88,12 +88,10 @@ class _ProbListState extends State<ProbList> {
                   Expanded(
                     child: widget.numList.isNotEmpty
                         ? ListView.builder(
-                            padding: const EdgeInsets.all(16),
                             itemCount: widget.numList.length,
                             itemBuilder: (context, index) {
                               final isCurrentAnswer = index == widget.numList.length - 1;
                               return Container(
-                                margin: const EdgeInsets.only(bottom: 12),
                                 padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
                                   color: isCurrentAnswer
@@ -105,7 +103,7 @@ class _ProbListState extends State<ProbList> {
                                         : Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
                                     width: 1,
                                   ),
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(0),
                                 ),
                                 child: Row(
                                   children: [

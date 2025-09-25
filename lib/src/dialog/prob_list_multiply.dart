@@ -92,7 +92,6 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                   Expanded(
                     child: widget.numList.isNotEmpty
                         ? ListView.builder(
-                            padding: const EdgeInsets.all(16),
                             itemCount: widget.numList.length,
                             itemBuilder: (context, index) {
                               final isCurrentAnswer = index == widget.numList.length - 1;
@@ -106,7 +105,6 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                   : formatter.format(widget.numList[index].item1 / widget.numList[index].item2);
 
                               return Container(
-                                margin: const EdgeInsets.only(bottom: 12),
                                 padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
                                   color: isCurrentAnswer
@@ -118,7 +116,7 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                         : Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
                                     width: 1,
                                   ),
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(0),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
