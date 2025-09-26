@@ -71,17 +71,23 @@ class _FlickerState extends State<Flicker> {
     return _number.length > 6
         ? FittedBox(
             fit: BoxFit.contain,
-            child: Text(
-              _number,
-              style: _getMainNumberTextStyle(),
-              textAlign: TextAlign.left,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Text(
+                _number,
+                style: _getMainNumberTextStyle(),
+                textAlign: TextAlign.left,
+              ),
             ))
         : FittedBox(
             fit: BoxFit.contain,
-            child: Text(
-              _number,
-              style: _getMainNumberTextStyle(),
-              textAlign: TextAlign.left,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Text(
+                _number,
+                style: _getMainNumberTextStyle(),
+                textAlign: TextAlign.left,
+              ),
             ),
           );
   }
@@ -311,23 +317,35 @@ class _FlickerState extends State<Flicker> {
   TextStyle _getMainNumberTextStyle() {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    var fontsize = 10.0;
+    var digits = _manager.getCurrentValue<Digit, int>();
+    var fontSize = 10.0;
 
-    if (Platform.isWindows) {
-      fontsize = height * 0.085 + width * 0.085;
+    // Static font size for 1-5 digits, dynamic for 6-9 digits
+    if (digits <= 5) {
+      // Static font size for 1-5 digits
+      if (Platform.isWindows) {
+        fontSize = height * 0.085 + width * 0.085;
+      } else {
+        fontSize = height * 0.085 + width * 0.085;
+      }
     } else {
-      fontsize = height * 0.085 + width * 0.085;
+      // Dynamic font size for 6-9 digits to prevent overflow
+      var baseFontSize = height * 0.085 + width * 0.085;
+      // Scale down font size based on digit count (6-9 digits)
+      // Maximum 9 digits as specified
+      var scaleFactor = 5.0 / digits.clamp(6, 9);
+      fontSize = baseFontSize * scaleFactor;
     }
 
     var titleLarge = Theme.of(context).textTheme.titleLarge;
 
     if (titleLarge == null) {
-      return TextStyle(fontSize: fontsize, fontStyle: FontStyle.italic);
+      return TextStyle(fontSize: fontSize, fontStyle: FontStyle.italic);
     }
 
     return Platform.isWindows
-        ? titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontsize)
-        : titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontsize);
+        ? titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontSize)
+        : titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontSize);
   }
 
   Future<void> _doCountDown() async {
