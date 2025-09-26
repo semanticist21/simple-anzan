@@ -36,7 +36,7 @@
     "explanationDesc": "아래에서 각 설정 옵션에 대해 알아보세요",
     "onlyPlusesExplanation": "활성화하면 덧셈 문제만 생성됩니다. 비활성화하면 덧셈과 뺄셈 문제가 모두 포함됩니다.",
     "shuffleExplanation": "각 문제의 숫자 순서를 무작위로 변경하여 난이도를 높이고 패턴 암기를 방지합니다.",
-    "speedExplanation": "반복 흐름 중 각 숫자가 나타나는 속도를 제어합니다. 느린 속도는 각 숫자를 처리할 시간을 더 많이 줍니다.",
+    "speedExplanation": "반복 흐름 중 각 숫자가 나타나는 속도를 제어합니다. 느린 속도는 각 숫자를 처리할 시간을 더 많이 줍니다. 150ms 미만의 속도는 사운드 지연 문제를 일으킬 수 있습니다.",
     "digitExplanation": "문제에서 각 숫자의 최대 자릿수를 설정합니다 (예: 3자리 = 999까지의 숫자).",
     "questionsExplanation": "각 연습 세션에 나타날 숫자의 개수를 결정합니다.",
     "separatorExplanation": "활성화하면 숫자에 천의 자리 구분 기호를 표시합니다 (예: 1234가 1,234로 표시) 읽기 쉬워집니다.",
@@ -53,7 +53,7 @@
     "explanationTitle": "설정 가이드",
     "explanationDesc": "아래에서 각 설정 옵션에 대해 알아보세요",
     "isMultiplyExplanation": "활성화하면 곱셈 문제가 생성됩니다. 비활성화하면 나눗셈 문제가 대신 포함됩니다.",
-    "speedExplanation": "곱셈 반복 흐름 중 각 숫자가 나타나는 속도를 제어합니다. 느린 속도는 각 숫자를 처리할 시간을 더 많이 줍니다.",
+    "speedExplanation": "곱셈 반복 흐름 중 각 숫자가 나타나는 속도를 제어합니다. 느린 속도는 각 숫자를 처리할 시간을 더 많이 줍니다. 150ms 미만의 속도는 사운드 지연 문제를 일으킬 수 있습니다.",
     "bigDigitExplanation": "곱셈 문제에서 더 큰 숫자의 최대 자릿수를 설정합니다 (예: 3자리 = 999까지의 숫자).",
     "smallDigitExplanation": "곱셈 문제에서 더 작은 숫자의 최대 자릿수를 설정합니다 (예: 2자리 = 99까지의 숫자).",
     "questionsExplanation": "각 연습 세션에 나타날 곱셈 문제의 개수를 결정합니다."
@@ -67,7 +67,8 @@
     "rangeMultiplyWord": "100~30000 사이의 값을 입력하세요.",
     "insertBigger": "작은 자리 수가 큰 자리 수보다 작아야 합니다.",
     "shuffleDesc": "다른 자릿수와 섞어 계산합니다.",
-    "shouldSoundOnDesc": "사운드 옵션이 켜져 있어야 합니다."
+    "shouldSoundOnDesc": "사운드 옵션이 켜져 있어야 합니다.",
+    "speedWarning": "150ms 미만의 속도는 사운드 지연 문제를 일으킬 수 있습니다"
   },
   "problemList": {
     "noProbExecuted": "실행된 문제가 없습니다.",

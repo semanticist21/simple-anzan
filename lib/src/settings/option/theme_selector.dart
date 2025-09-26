@@ -14,8 +14,26 @@ class ThemeSelector {
   ThemeSelector({required this.prefs});
 
   Future<void> initSettings() async {
-    isDark = prefs.getBool(themeKey) ?? false;
+    // Check if we have a saved preference first
+    bool? savedTheme = prefs.getBool(themeKey);
+
+    if (savedTheme != null) {
+      // Use saved preference if available
+      isDark = savedTheme;
+    } else {
+      // No saved preference, use system preference
+      isDark = _getSystemThemePreference();
+    }
+
     ThemeSelector.isDarkStream.add(ThemeSelector.isDark);
+  }
+
+  /// Get the system's current theme preference
+  /// Returns true if system is in dark mode, false for light mode
+  bool _getSystemThemePreference() {
+    // Get the current platform brightness from the system
+    final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    return brightness == Brightness.dark;
   }
 
   static ThemeData getBlackTheme() {

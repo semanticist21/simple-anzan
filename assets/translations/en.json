@@ -36,7 +36,7 @@
     "explanationDesc": "Learn about each setting option below",
     "onlyPlusesExplanation": "When enabled, only addition problems will be generated. When disabled, both addition and subtraction problems are included.",
     "shuffleExplanation": "Randomly changes the order of digits in each problem to increase difficulty and prevent pattern memorization.",
-    "speedExplanation": "Controls how fast each number appears during the iteration flow. Slower speeds give more time to process each number.",
+    "speedExplanation": "Controls how fast each number appears during the iteration flow. Slower speeds give more time to process each number. Speeds under 150ms may cause sound lag issues.",
     "digitExplanation": "Sets the maximum number of digits for each number in the problems (e.g., 3 digits = numbers up to 999).",
     "questionsExplanation": "Determines how many numbers will appear in each practice session.",
     "separatorExplanation": "When enabled, displays thousands separators in numbers (e.g., 1234 becomes 1,234) for easier reading.",
@@ -53,7 +53,7 @@
     "explanationTitle": "Settings Guide",
     "explanationDesc": "Learn about each setting option below",
     "isMultiplyExplanation": "When enabled, multiplication problems will be generated. When disabled, division problems are included instead.",
-    "speedExplanation": "Controls how fast each number appears during the multiplication iteration flow. Slower speeds give more time to process each number.",
+    "speedExplanation": "Controls how fast each number appears during the multiplication iteration flow. Slower speeds give more time to process each number. Speeds under 150ms may cause sound lag issues.",
     "bigDigitExplanation": "Sets the maximum number of digits for the larger number in multiplication problems (e.g., 3 digits = numbers up to 999).",
     "smallDigitExplanation": "Sets the maximum number of digits for the smaller number in multiplication problems (e.g., 2 digits = numbers up to 99).",
     "questionsExplanation": "Determines how many multiplication problems will appear in each practice session."
@@ -67,7 +67,8 @@
     "rangeMultiplyWord": "Enter a value between 100 and 30000.",
     "insertBigger": "Small digit must be less than big digit.",
     "shuffleDesc": "shuffle numbers with different digits",
-    "shouldSoundOnDesc": "Sound option should be on"
+    "shouldSoundOnDesc": "Sound option should be on",
+    "speedWarning": "Speeds under 150ms may cause sound lag issues"
   },
   "problemList": {
     "noProbExecuted": "Run first.",

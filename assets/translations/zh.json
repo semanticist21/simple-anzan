@@ -36,7 +36,7 @@
     "explanationDesc": "了解下面每个设置选项",
     "onlyPlusesExplanation": "启用时，只生成加法题目。禁用时，加法和减法题目都会包含在内。",
     "shuffleExplanation": "随机改变每道题目中数字的顺序，增加难度并防止模式记忆。",
-    "speedExplanation": "控制迭代流程中每个数字出现的速度。较慢的速度给处理每个数字更多时间。",
+    "speedExplanation": "控制迭代流程中每个数字出现的速度。较慢的速度给处理每个数字更多时间。低于150毫秒的速度可能导致声音延迟问题。",
     "digitExplanation": "设置题目中每个数字的最大位数（例如：3位数 = 最大999的数字）。",
     "questionsExplanation": "确定每次练习会话中将出现多少个数字。",
     "separatorExplanation": "启用时，在数字中显示千位分隔符（例如：1234变成1,234）便于阅读。",
@@ -53,7 +53,7 @@
     "explanationTitle": "设置指南",
     "explanationDesc": "了解下面每个设置选项",
     "isMultiplyExplanation": "启用时，将生成乘法题目。禁用时，除法题目将被包含在内。",
-    "speedExplanation": "控制乘法迭代流程中每个数字出现的速度。较慢的速度给处理每个数字更多时间。",
+    "speedExplanation": "控制乘法迭代流程中每个数字出现的速度。较慢的速度给处理每个数字更多时间。低于150毫秒的速度可能导致声音延迟问题。",
     "bigDigitExplanation": "设置乘法题目中较大数字的最大位数（例如：3位数 = 最大999的数字）。",
     "smallDigitExplanation": "设置乘法题目中较小数字的最大位数（例如：2位数 = 最大99的数字）。",
     "questionsExplanation": "确定每次练习会话中将出现多少乘法题目。"
@@ -67,7 +67,8 @@
     "rangeMultiplyWord": "输入100到30000之间的值。",
     "insertBigger": "小位数必须小于大位数。",
     "shuffleDesc": "用不同位数的数字进行混合计算",
-    "shouldSoundOnDesc": "声音选项应该开启"
+    "shouldSoundOnDesc": "声音选项应该开启",
+    "speedWarning": "低于150毫秒的速度可能导致声音延迟问题"
   },
   "problemList": {
     "noProbExecuted": "请先运行。",

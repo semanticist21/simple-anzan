@@ -36,7 +36,7 @@
     "explanationDesc": "Apprenez à propos de chaque option de paramètre ci-dessous",
     "onlyPlusesExplanation": "Lorsqu'activé, seuls les problèmes d'addition seront générés. Lorsque désactivé, les problèmes d'addition et de soustraction sont inclus.",
     "shuffleExplanation": "Change aléatoirement l'ordre des chiffres dans chaque problème pour augmenter la difficulté et éviter la mémorisation de motifs.",
-    "speedExplanation": "Contrôle la vitesse d'apparition de chaque nombre pendant le flux d'itération. Les vitesses plus lentes donnent plus de temps pour traiter chaque nombre.",
+    "speedExplanation": "Contrôle la vitesse d'apparition de chaque nombre pendant le flux d'itération. Les vitesses plus lentes donnent plus de temps pour traiter chaque nombre. Les vitesses inférieures à 150ms peuvent causer des problèmes de latence audio.",
     "digitExplanation": "Définit le nombre maximum de chiffres pour chaque nombre dans les problèmes (par ex., 3 chiffres = nombres jusqu'à 999).",
     "questionsExplanation": "Détermine combien de nombres apparaîtront dans chaque session de pratique.",
     "separatorExplanation": "Lorsqu'activé, affiche les séparateurs de milliers dans les nombres (par ex., 1234 devient 1,234) pour faciliter la lecture.",
@@ -53,7 +53,7 @@
     "explanationTitle": "Guide des paramètres",
     "explanationDesc": "Apprenez à propos de chaque option de paramètre ci-dessous",
     "isMultiplyExplanation": "Lorsqu'activé, des problèmes de multiplication seront générés. Lorsque désactivé, des problèmes de division sont inclus à la place.",
-    "speedExplanation": "Contrôle la vitesse d'apparition de chaque nombre pendant le flux d'itération de multiplication. Les vitesses plus lentes donnent plus de temps pour traiter chaque nombre.",
+    "speedExplanation": "Contrôle la vitesse d'apparition de chaque nombre pendant le flux d'itération de multiplication. Les vitesses plus lentes donnent plus de temps pour traiter chaque nombre. Les vitesses inférieures à 150ms peuvent causer des problèmes de latence audio.",
     "bigDigitExplanation": "Définit le nombre maximum de chiffres pour le plus grand nombre dans les problèmes de multiplication (par ex., 3 chiffres = nombres jusqu'à 999).",
     "smallDigitExplanation": "Définit le nombre maximum de chiffres pour le plus petit nombre dans les problèmes de multiplication (par ex., 2 chiffres = nombres jusqu'à 99).",
     "questionsExplanation": "Détermine combien de problèmes de multiplication apparaîtront dans chaque session de pratique."
@@ -67,7 +67,8 @@
     "rangeMultiplyWord": "Entrez une valeur entre 100 et 30000.",
     "insertBigger": "Le petit chiffre doit être inférieur au grand chiffre.",
     "shuffleDesc": "mélanger les nombres avec des chiffres différents",
-    "shouldSoundOnDesc": "L'option son doit être activée"
+    "shouldSoundOnDesc": "L'option son doit être activée",
+    "speedWarning": "Les vitesses inférieures à 150ms peuvent causer des problèmes de latence audio"
   },
   "problemList": {
     "noProbExecuted": "Exécutez d'abord.",

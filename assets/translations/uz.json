@@ -36,7 +36,7 @@
     "explanationDesc": "Quyida har bir sozlama opsiyasi haqida o'rganing",
     "onlyPlusesExplanation": "Yoqilganda, faqat qo'shish masalalari yaratiladi. O'chirilganda, qo'shish va ayirish masalalari kiritiladi.",
     "shuffleExplanation": "Har bir masaladagi raqamlar tartibini tasodifiy o'zgartirib, qiyinchilikni oshiradi va namuna eslab qolishni oldini oladi.",
-    "speedExplanation": "Takrorlanish oqimi davomida har bir raqam ko'rinish tezligini boshqaradi. Sekin tezlik har bir raqamni qayta ishlash uchun ko'proq vaqt beradi.",
+    "speedExplanation": "Takrorlanish oqimi davomida har bir raqam ko'rinish tezligini boshqaradi. Sekin tezlik har bir raqamni qayta ishlash uchun ko'proq vaqt beradi. 150ms dan past tezlik ovoz kechikish muammolariga olib kelishi mumkin.",
     "digitExplanation": "Masalalardagi har bir raqamning maksimal raqamlar sonini belgilaydi (masalan, 3 raqam = 999 gacha raqamlar).",
     "questionsExplanation": "Har bir mashq seansida paydo bo'ladigan raqamlar sonini aniqlaydi.",
     "separatorExplanation": "Yoqilganda, raqamlarda minglar ajratuvchisini ko'rsatadi (masalan, 1234 ni 1,234 ga aylantiradi) o'qish osonroq bo'ladi.",
@@ -53,7 +53,7 @@
     "explanationTitle": "Sozlamalar qo'llanmasi",
     "explanationDesc": "Quyida har bir sozlama opsiyasi haqida o'rganing",
     "isMultiplyExplanation": "Yoqilganda, ko'paytirish masalalari yaratiladi. O'chirilganda, bo'lish masalalari o'rniga kiritiladi.",
-    "speedExplanation": "Ko'paytirish takrorlanish oqimi davomida har bir raqam ko'rinish tezligini boshqaradi. Sekin tezlik har bir raqamni qayta ishlash uchun ko'proq vaqt beradi.",
+    "speedExplanation": "Ko'paytirish takrorlanish oqimi davomida har bir raqam ko'rinish tezligini boshqaradi. Sekin tezlik har bir raqamni qayta ishlash uchun ko'proq vaqt beradi. 150ms dan past tezlik ovoz kechikish muammolariga olib kelishi mumkin.",
     "bigDigitExplanation": "Ko'paytirish masalalarida katta raqam uchun maksimal raqamlar sonini belgilaydi (masalan, 3 raqam = 999 gacha raqamlar).",
     "smallDigitExplanation": "Ko'paytirish masalalarida kichik raqam uchun maksimal raqamlar sonini belgilaydi (masalan, 2 raqam = 99 gacha raqamlar).",
     "questionsExplanation": "Har bir mashq seansida paydo bo'ladigan ko'paytirish masalalari sonini aniqlaydi."
@@ -67,7 +67,8 @@
     "rangeMultiplyWord": "100 dan 30000 gacha qiymat kiriting.",
     "insertBigger": "Kichik raqam katta raqamdan kichik bo'lishi kerak.",
     "shuffleDesc": "turli raqamlar bilan sonlarni aralashtirish",
-    "shouldSoundOnDesc": "Ovoz parametri yoqilgan bo'lishi kerak"
+    "shouldSoundOnDesc": "Ovoz parametri yoqilgan bo'lishi kerak",
+    "speedWarning": "150ms dan past tezlik ovoz kechikish muammolariga olib kelishi mumkin"
   },
   "problemList": {
     "noProbExecuted": "Avval ishga tushiring.",
