@@ -48,7 +48,15 @@
     "speed": "문제 속도",
     "bigDigit": "큰 자리 수",
     "smallDigit": "작은 자리 수",
-    "questions": "문제 수"
+    "questions": "문제 수",
+    "explanationTooltip": "설정 설명",
+    "explanationTitle": "설정 가이드",
+    "explanationDesc": "아래에서 각 설정 옵션에 대해 알아보세요",
+    "isMultiplyExplanation": "활성화하면 곱셈 문제가 생성됩니다. 비활성화하면 나눗셈 문제가 대신 포함됩니다.",
+    "speedExplanation": "곱셈 반복 흐름 중 각 숫자가 나타나는 속도를 제어합니다. 느린 속도는 각 숫자를 처리할 시간을 더 많이 줍니다.",
+    "bigDigitExplanation": "곱셈 문제에서 더 큰 숫자의 최대 자릿수를 설정합니다 (예: 3자리 = 999까지의 숫자).",
+    "smallDigitExplanation": "곱셈 문제에서 더 작은 숫자의 최대 자릿수를 설정합니다 (예: 2자리 = 99까지의 숫자).",
+    "questionsExplanation": "각 연습 세션에 나타날 곱셈 문제의 개수를 결정합니다."
   },
   "customOptions": {
     "setSpeedTitle": "속도를 설정합니다.",

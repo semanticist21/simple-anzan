@@ -30,7 +30,17 @@
     "digit": "Chiffre",
     "questions": "Questions",
     "notify": "Notifier au démarrage",
-    "separator": "Virgule des milliers"
+    "separator": "Virgule des milliers",
+    "explanationTooltip": "Explication des paramètres",
+    "explanationTitle": "Guide des paramètres",
+    "explanationDesc": "Apprenez à propos de chaque option de paramètre ci-dessous",
+    "onlyPlusesExplanation": "Lorsqu'activé, seuls les problèmes d'addition seront générés. Lorsque désactivé, les problèmes d'addition et de soustraction sont inclus.",
+    "shuffleExplanation": "Change aléatoirement l'ordre des chiffres dans chaque problème pour augmenter la difficulté et éviter la mémorisation de motifs.",
+    "speedExplanation": "Contrôle la vitesse d'apparition de chaque nombre pendant le flux d'itération. Les vitesses plus lentes donnent plus de temps pour traiter chaque nombre.",
+    "digitExplanation": "Définit le nombre maximum de chiffres pour chaque nombre dans les problèmes (par ex., 3 chiffres = nombres jusqu'à 999).",
+    "questionsExplanation": "Détermine combien de nombres apparaîtront dans chaque session de pratique.",
+    "separatorExplanation": "Lorsqu'activé, affiche les séparateurs de milliers dans les nombres (par ex., 1234 devient 1,234) pour faciliter la lecture.",
+    "notifyExplanation": "Lorsqu'activé, joue 2 bips sonores avant de commencer chaque session pour vous aider à vous préparer et à vous concentrer."
   },
   "settingsMultiply": {
     "title": "Paramètres (multiplication)",
@@ -38,7 +48,15 @@
     "speed": "Vitesse",
     "bigDigit": "Grand chiffre",
     "smallDigit": "Petit chiffre",
-    "questions": "Questions"
+    "questions": "Questions",
+    "explanationTooltip": "Explication des paramètres",
+    "explanationTitle": "Guide des paramètres",
+    "explanationDesc": "Apprenez à propos de chaque option de paramètre ci-dessous",
+    "isMultiplyExplanation": "Lorsqu'activé, des problèmes de multiplication seront générés. Lorsque désactivé, des problèmes de division sont inclus à la place.",
+    "speedExplanation": "Contrôle la vitesse d'apparition de chaque nombre pendant le flux d'itération de multiplication. Les vitesses plus lentes donnent plus de temps pour traiter chaque nombre.",
+    "bigDigitExplanation": "Définit le nombre maximum de chiffres pour le plus grand nombre dans les problèmes de multiplication (par ex., 3 chiffres = nombres jusqu'à 999).",
+    "smallDigitExplanation": "Définit le nombre maximum de chiffres pour le plus petit nombre dans les problèmes de multiplication (par ex., 2 chiffres = nombres jusqu'à 99).",
+    "questionsExplanation": "Détermine combien de problèmes de multiplication apparaîtront dans chaque session de pratique."
   },
   "customOptions": {
     "setSpeedTitle": "Définir une vitesse personnalisée.",

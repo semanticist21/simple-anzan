@@ -48,7 +48,15 @@
     "speed": "Tezlik",
     "bigDigit": "Katta raqam",
     "smallDigit": "Kichik raqam",
-    "questions": "Savollar"
+    "questions": "Savollar",
+    "explanationTooltip": "Sozlamalar tushuntirishi",
+    "explanationTitle": "Sozlamalar qo'llanmasi",
+    "explanationDesc": "Quyida har bir sozlama opsiyasi haqida o'rganing",
+    "isMultiplyExplanation": "Yoqilganda, ko'paytirish masalalari yaratiladi. O'chirilganda, bo'lish masalalari o'rniga kiritiladi.",
+    "speedExplanation": "Ko'paytirish takrorlanish oqimi davomida har bir raqam ko'rinish tezligini boshqaradi. Sekin tezlik har bir raqamni qayta ishlash uchun ko'proq vaqt beradi.",
+    "bigDigitExplanation": "Ko'paytirish masalalarida katta raqam uchun maksimal raqamlar sonini belgilaydi (masalan, 3 raqam = 999 gacha raqamlar).",
+    "smallDigitExplanation": "Ko'paytirish masalalarida kichik raqam uchun maksimal raqamlar sonini belgilaydi (masalan, 2 raqam = 99 gacha raqamlar).",
+    "questionsExplanation": "Har bir mashq seansida paydo bo'ladigan ko'paytirish masalalari sonini aniqlaydi."
   },
   "customOptions": {
     "setSpeedTitle": "Maxsus tezlikni belgilang.",

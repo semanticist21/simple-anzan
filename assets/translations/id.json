@@ -30,7 +30,17 @@
     "digit": "Digit",
     "questions": "Pertanyaan",
     "notify": "Beri tahu saat Mulai",
-    "separator": "Koma Ribuan"
+    "separator": "Koma Ribuan",
+    "explanationTooltip": "Penjelasan pengaturan",
+    "explanationTitle": "Panduan Pengaturan",
+    "explanationDesc": "Pelajari tentang setiap opsi pengaturan di bawah ini",
+    "onlyPlusesExplanation": "Ketika diaktifkan, hanya masalah penjumlahan yang akan dibuat. Ketika dinonaktifkan, masalah penjumlahan dan pengurangan akan disertakan.",
+    "shuffleExplanation": "Secara acak mengubah urutan digit dalam setiap masalah untuk meningkatkan kesulitan dan mencegah hafalan pola.",
+    "speedExplanation": "Mengontrol seberapa cepat setiap angka muncul selama alur iterasi. Kecepatan yang lebih lambat memberikan lebih banyak waktu untuk memproses setiap angka.",
+    "digitExplanation": "Menetapkan jumlah maksimum digit untuk setiap angka dalam masalah (mis., 3 digit = angka hingga 999).",
+    "questionsExplanation": "Menentukan berapa banyak angka yang akan muncul dalam setiap sesi latihan.",
+    "separatorExplanation": "Ketika diaktifkan, menampilkan pemisah ribuan dalam angka (mis., 1234 menjadi 1,234) untuk memudahkan pembacaan.",
+    "notifyExplanation": "Ketika diaktifkan, memainkan 2 suara bip sebelum memulai setiap sesi untuk membantu Anda bersiap dan fokus."
   },
   "settingsMultiply": {
     "title": "Pengaturan (perkalian)",
@@ -38,7 +48,15 @@
     "speed": "Kecepatan",
     "bigDigit": "Digit Besar",
     "smallDigit": "Digit Kecil",
-    "questions": "Pertanyaan"
+    "questions": "Pertanyaan",
+    "explanationTooltip": "Penjelasan pengaturan",
+    "explanationTitle": "Panduan Pengaturan",
+    "explanationDesc": "Pelajari tentang setiap opsi pengaturan di bawah ini",
+    "isMultiplyExplanation": "Ketika diaktifkan, masalah perkalian akan dibuat. Ketika dinonaktifkan, masalah pembagian akan disertakan sebagai gantinya.",
+    "speedExplanation": "Mengontrol seberapa cepat setiap angka muncul selama alur iterasi perkalian. Kecepatan yang lebih lambat memberikan lebih banyak waktu untuk memproses setiap angka.",
+    "bigDigitExplanation": "Menetapkan jumlah maksimum digit untuk angka yang lebih besar dalam masalah perkalian (mis., 3 digit = angka hingga 999).",
+    "smallDigitExplanation": "Menetapkan jumlah maksimum digit untuk angka yang lebih kecil dalam masalah perkalian (mis., 2 digit = angka hingga 99).",
+    "questionsExplanation": "Menentukan berapa banyak masalah perkalian yang akan muncul dalam setiap sesi latihan."
   },
   "customOptions": {
     "setSpeedTitle": "Atur kecepatan khusus.",
