@@ -225,6 +225,7 @@ class _Home extends State<Home> {
               builder: (context, snapshot) {
                 return Container(
                   margin: const EdgeInsets.only(right: 22.0),
+                  padding: const EdgeInsets.only(top: 15.0),
                   child: Row(children: [
                     Visibility(
                       visible: !(_currentIndex != 0 && _currentIndex != 2),
