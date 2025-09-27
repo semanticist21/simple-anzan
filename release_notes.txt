@@ -3,6 +3,7 @@
 - Language change functionality has been added.
 - The sound execution module has been updated for improved performance.
 - Detailed descriptions have been added to the options screen.
+- Android 15 edge-to-edge display compatibility improved.
 </en-US>
 
 <af>
@@ -10,6 +11,7 @@
 - Taalveranderingsfunksie is bygevoeg.
 - Die klankmodule is opgedateer vir beter prestasie.
 - Gedetailleerde beskrywings is by die opsieskerm gevoeg.
+- Android 15 kant-tot-kant-vertoonversoenbaarheid verbeter.
 </af>
 
 <am>
@@ -17,6 +19,7 @@
 - የቋንቋ መቀየሪያ ተግባር ተጨምሯል።
 - የድምጽ ሞዱል ለተሻለ አፈጻጸም ተሻሽሏል።
 - በአማራጭ ማያ ገጽ ላይ ዝርዝር መግለጫዎች ተጨምረዋል።
+- Android 15 edge-to-edge display ተኳኋኝነት ተሻሽሏል።
 </am>
 
 <ar>
@@ -24,6 +27,7 @@
 - تمت إضافة وظيفة تغيير اللغة.
 - تم تحديث وحدة الصوت لتحسين الأداء.
 - تمت إضافة أوصاف تفصيلية إلى شاشة الخيارات.
+- تم تحسين توافق عرض Android 15 من الحافة إلى الحافة.
 </ar>
 
 <bg>
@@ -31,6 +35,7 @@
 - Добавена е функция за смяна на езика.
 - Звуковият модул е актуализиран за по-добра производителност.
 - Добавени са подробни описания към екрана с опции.
+- Подобрена е съвместимостта с edge-to-edge дисплея на Android 15.
 </bg>
 
 <ca>
@@ -38,6 +43,7 @@
 - S'ha afegit la funció de canvi d'idioma.
 - El mòdul de so s'ha actualitzat per millorar el rendiment.
 - S'han afegit descripcions detallades a la pantalla d'opcions.
+- S'ha millorat la compatibilitat de pantalla edge-to-edge d'Android 15.
 </ca>
 
 <cs-CZ>
@@ -45,6 +51,7 @@
 - Byla přidána funkce změny jazyka.
 - Zvukový modul byl aktualizován pro lepší výkon.
 - Na obrazovku nastavení byly přidány podrobné popisy.
+- Zlepšena kompatibilita edge-to-edge displeje pro Android 15.
 </cs-CZ>
 
 <da-DK>
@@ -52,6 +59,7 @@
 - Sprogskiftefunktion er blevet tilføjet.
 - Lydmodulet er blevet opdateret for forbedret ydeevne.
 - Detaljerede beskrivelser er blevet tilføjet til indstillingsskærmen.
+- Android 15 edge-to-edge skærmkompatibilitet forbedret.
 </da-DK>
 
 <de-DE>
@@ -59,6 +67,7 @@
 - Eine Funktion zum Sprachwechsel wurde hinzugefügt.
 - Das Sound-Modul wurde für bessere Leistung aktualisiert.
 - Detaillierte Beschreibungen wurden dem Optionsbildschirm hinzugefügt.
+- Android 15 Edge-to-Edge-Display-Kompatibilität verbessert.
 </de-DE>
 
 <el-GR>
@@ -66,6 +75,7 @@
 - Προστέθηκε λειτουργία αλλαγής γλώσσας.
 - Η μονάδα ήχου έχει ενημερωθεί για βελτιωμένη απόδοση.
 - Προστέθηκαν λεπτομερείς περιγραφές στην οθόνη επιλογών.
+- Βελτιώθηκε η συμβατότητα edge-to-edge οθόνης Android 15.
 </el-GR>
 
 <en-GB>
@@ -73,6 +83,7 @@
 - Language change functionality has been added.
 - The sound execution module has been updated for improved performance.
 - Detailed descriptions have been added to the options screen.
+- Android 15 edge-to-edge display compatibility improved.
 </en-GB>
 
 <es-419>
@@ -80,6 +91,7 @@
 - Se ha agregado la función de cambio de idioma.
 - El módulo de sonido se ha actualizado para mejorar el rendimiento.
 - Se han agregado descripciones detalladas a la pantalla de opciones.
+- Se ha mejorado la compatibilidad de pantalla edge-to-edge de Android 15.
 </es-419>
 
 <es-ES>
@@ -87,6 +99,7 @@
 - Se ha añadido la función de cambio de idioma.
 - El módulo de sonido se ha actualizado para mejorar el rendimiento.
 - Se han añadido descripciones detalladas a la pantalla de opciones.
+- Se ha mejorado la compatibilidad de pantalla edge-to-edge de Android 15.
 </es-ES>
 
 <et>
@@ -94,6 +107,7 @@
 - Lisatud on keele vahetamise funktsioon.
 - Helimoodul on täiustatud parema jõudluse saavutamiseks.
 - Valikute ekraanile on lisatud üksikasjalikud kirjeldused.
+- Android 15 serv-serva ekraani ühilduvus parandatud.
 </et>
 
 <fa>
@@ -101,6 +115,7 @@
 - قابلیت تغییر زبان اضافه شده است.
 - ماژول صدا برای بهبود عملکرد به‌روزرسانی شده است.
 - توضیحات تفصیلی به صفحه تنظیمات اضافه شده است.
+- سازگاری نمایش edge-to-edge Android 15 بهبود یافته است.
 </fa>
 
 <fi-FI>
@@ -108,6 +123,7 @@
 - Kielen vaihtotoiminto on lisätty.
 - Äänimoduuli on päivitetty suorituskyvyn parantamiseksi.
 - Asetusruutuun on lisätty yksityiskohtaiset kuvaukset.
+- Android 15 reunasta reunaan -näytön yhteensopivuus parannettu.
 </fi-FI>
 
 <fr-CA>
@@ -115,6 +131,7 @@
 - Une fonction de changement de langue a été ajoutée.
 - Le module audio a été mis à jour pour de meilleures performances.
 - Des descriptions détaillées ont été ajoutées à l'écran des options.
+- Compatibilité d'affichage edge-to-edge Android 15 améliorée.
 </fr-CA>
 
 <fr-FR>
@@ -122,6 +139,7 @@
 - Une fonction de changement de langue a été ajoutée.
 - Le module audio a été mis à jour pour de meilleures performances.
 - Des descriptions détaillées ont été ajoutées à l'écran des options.
+- Compatibilité d'affichage edge-to-edge Android 15 améliorée.
 </fr-FR>
 
 <hi-IN>
@@ -129,6 +147,7 @@
 - भाषा परिवर्तन कार्यक्षमता जोड़ी गई है।
 - बेहतर प्रदर्शन के लिए ध्वनि मॉड्यूल को अपडेट किया गया है।
 - विकल्प स्क्रीन में विस्तृत विवरण जोड़े गए हैं।
+- Android 15 edge-to-edge डिस्प्ले संगतता में सुधार।
 </hi-IN>
 
 <hr>
@@ -136,6 +155,7 @@
 - Dodana je funkcija promjene jezika.
 - Zvučni modul je ažuriran za poboljšane performanse.
 - Dodani su detaljni opisi na zaslon opcija.
+- Poboljšana je kompatibilnost edge-to-edge zaslona za Android 15.
 </hr>
 
 <hu-HU>
@@ -143,6 +163,7 @@
 - Nyelvváltási funkció került hozzáadásra.
 - A hangmodul frissítve lett a jobb teljesítmény érdekében.
 - Részletes leírások kerültek a beállítások képernyőre.
+- Android 15 edge-to-edge kijelző kompatibilitás javítva.
 </hu-HU>
 
 <id>
@@ -150,6 +171,7 @@
 - Fungsi perubahan bahasa telah ditambahkan.
 - Modul suara telah diperbarui untuk kinerja yang lebih baik.
 - Deskripsi terperinci telah ditambahkan ke layar opsi.
+- Kompatibilitas tampilan edge-to-edge Android 15 ditingkatkan.
 </id>
 
 <it-IT>
@@ -157,6 +179,7 @@
 - È stata aggiunta la funzione di cambio lingua.
 - Il modulo audio è stato aggiornato per prestazioni migliori.
 - Sono state aggiunte descrizioni dettagliate alla schermata delle opzioni.
+- Migliorata la compatibilità del display edge-to-edge di Android 15.
 </it-IT>
 
 <iw-IL>
@@ -164,6 +187,7 @@
 - נוספה פונקציית החלפת שפה.
 - מודול הקול עודכן לביצועים משופרים.
 - נוספו תיאורים מפורטים למסך האפשרויות.
+- שופרה תאימות תצוגה edge-to-edge של Android 15.
 </iw-IL>
 
 <ja-JP>
@@ -171,6 +195,7 @@
 - 言語変更機能が追加されました。
 - サウンドモジュールが更新され、パフォーマンスが向上しました。
 - オプション画面に詳細な説明が追加されました。
+- Android 15エッジツーエッジディスプレイの互換性が改善されました。
 </ja-JP>
 
 <ko-KR>
@@ -178,6 +203,7 @@
 - 언어 변경 기능이 추가되었습니다.
 - 사운드 실행 모듈이 변경되어 기존보다 성능이 개선되었습니다.
 - 옵션 화면에 자세한 설명이 추가됩니다.
+- Android 15 전체 화면 디스플레이 호환성이 개선되었습니다.
 </ko-KR>
 
 <lt>
@@ -185,6 +211,7 @@
 - Pridėta kalbos keitimo funkcija.
 - Garso modulis atnaujintas geresniam našumui.
 - Į parinkčių ekraną pridėti detalūs aprašymai.
+- Pagerinta Android 15 edge-to-edge ekrano suderinamumas.
 </lt>
 
 <lv>
@@ -192,6 +219,7 @@
 - Pievienota valodas maiņas funkcija.
 - Skaņas modulis ir atjaunināts uzlabotai veiktspējai.
 - Opciju ekrānam pievienoti detalizēti apraksti.
+- Uzlabota Android 15 edge-to-edge displeja savietojamība.
 </lv>
 
 <ms>
@@ -199,6 +227,7 @@
 - Fungsi pertukaran bahasa telah ditambah.
 - Modul bunyi telah dikemas kini untuk prestasi yang lebih baik.
 - Penerangan terperinci telah ditambahkan pada skrin pilihan.
+- Keserasian paparan edge-to-edge Android 15 telah dipertingkat.
 </ms>
 
 <nl-NL>
@@ -206,6 +235,7 @@
 - Taalwijzigingsfunctie is toegevoegd.
 - De geluidsmodule is bijgewerkt voor betere prestaties.
 - Gedetailleerde beschrijvingen zijn toegevoegd aan het optiescherm.
+- Android 15 edge-to-edge schermcompatibiliteit verbeterd.
 </nl-NL>
 
 <no-NO>
@@ -213,6 +243,7 @@
 - Språkendringsfunksjon har blitt lagt til.
 - Lydmodulen har blitt oppdatert for forbedret ytelse.
 - Detaljerte beskrivelser har blitt lagt til på innstillingsskjermen.
+- Android 15 edge-to-edge skjermkompatibilitet forbedret.
 </no-NO>
 
 <pl-PL>
@@ -220,6 +251,7 @@
 - Dodano funkcję zmiany języka.
 - Moduł dźwięku został zaktualizowany w celu poprawy wydajności.
 - Do ekranu opcji dodano szczegółowe opisy.
+- Ulepszono kompatybilność wyświetlacza edge-to-edge Android 15.
 </pl-PL>
 
 <pt-BR>
@@ -227,6 +259,7 @@
 - Foi adicionada a função de mudança de idioma.
 - O módulo de som foi atualizado para melhor desempenho.
 - Descrições detalhadas foram adicionadas à tela de opções.
+- Compatibilidade de exibição edge-to-edge do Android 15 melhorada.
 </pt-BR>
 
 <pt-PT>
@@ -234,6 +267,7 @@
 - Foi adicionada a função de mudança de idioma.
 - O módulo de som foi atualizado para melhor desempenho.
 - Descrições detalhadas foram adicionadas ao ecrã de opções.
+- Compatibilidade de exibição edge-to-edge do Android 15 melhorada.
 </pt-PT>
 
 <ro>
@@ -241,6 +275,7 @@
 - A fost adăugată funcția de schimbare a limbii.
 - Modulul de sunet a fost actualizat pentru performanță îmbunătățită.
 - Au fost adăugate descrieri detaliate la ecranul de opțiuni.
+- Compatibilitatea afișajului edge-to-edge Android 15 îmbunătățită.
 </ro>
 
 <ru-RU>
@@ -248,6 +283,7 @@
 - Добавлена функция смены языка.
 - Звуковой модуль обновлён для улучшения производительности.
 - В экран настроек добавлены подробные описания.
+- Улучшена совместимость edge-to-edge дисплея Android 15.
 </ru-RU>
 
 <sk>
@@ -255,6 +291,7 @@
 - Bola pridaná funkcia zmeny jazyka.
 - Zvukový modul bol aktualizovaný pre lepší výkon.
 - Na obrazovku nastavení boli pridané podrobné popisy.
+- Zlepšená kompatibilita edge-to-edge displeja pre Android 15.
 </sk>
 
 <sl>
@@ -262,6 +299,7 @@
 - Dodana je bila funkcija spremembe jezika.
 - Zvočni modul je bil posodobljen za izboljšano zmogljivost.
 - Na zaslon z možnostmi so bili dodani podrobni opisi.
+- Izboljšana kompatibilnost edge-to-edge zaslona za Android 15.
 </sl>
 
 <sr>
@@ -269,6 +307,7 @@
 - Додата је функција промене језика.
 - Звучни модул је ажуриран за побољшане перформансе.
 - Додати су детаљни описи на екран опција.
+- Побољшана компатибилност edge-to-edge дисплеја за Android 15.
 </sr>
 
 <sv-SE>
@@ -276,6 +315,7 @@
 - Språkändringsfunktion har lagts till.
 - Ljudmodulen har uppdaterats för förbättrad prestanda.
 - Detaljerade beskrivningar har lagts till på inställningsskärmen.
+- Android 15 edge-to-edge skärmkompatibilitet förbättrad.
 </sv-SE>
 
 <sw>
@@ -283,6 +323,7 @@
 - Utendaji wa kubadilisha lugha umeongezwa.
 - Moduli ya sauti imesasishwa kwa utendaji bora zaidi.
 - Maelezo ya kina yameongezwa kwenye skrini ya chaguzi.
+- Upatanifu wa mwongozo wa edge-to-edge wa Android 15 umeboreshwa.
 </sw>
 
 <th>
@@ -290,6 +331,7 @@
 - เพิ่มฟังก์ชันการเปลี่ยนภาษา
 - โมดูลเสียงได้รับการอัปเดตเพื่อประสิทธิภาพที่ดีขึ้น
 - เพิ่มคำอธิบายโดยละเอียดในหน้าจอตัวเลือก
+- ปรับปรุงความเข้ากันได้ของการแสดงผล edge-to-edge ของ Android 15
 </th>
 
 <tr-TR>
@@ -297,6 +339,7 @@
 - Dil değiştirme özelliği eklendi.
 - Ses modülü daha iyi performans için güncellendi.
 - Seçenekler ekranına ayrıntılı açıklamalar eklendi.
+- Android 15 edge-to-edge ekran uyumluluğu geliştirildi.
 </tr-TR>
 
 <uk>
@@ -304,6 +347,7 @@
 - Додано функцію зміни мови.
 - Звуковий модуль оновлено для покращення продуктивності.
 - До екрану налаштувань додано детальні описи.
+- Покращено сумісність edge-to-edge дисплея Android 15.
 </uk>
 
 <vi>
@@ -311,6 +355,7 @@
 - Đã thêm chức năng thay đổi ngôn ngữ.
 - Mô-đun âm thanh đã được cập nhật để cải thiện hiệu suất.
 - Đã thêm mô tả chi tiết vào màn hình tùy chọn.
+- Cải thiện tính tương thích hiển thị edge-to-edge của Android 15.
 </vi>
 
 <zh-CN>
@@ -318,6 +363,7 @@
 - 添加了语言切换功能。
 - 音频模块已更新以提高性能。
 - 在选项界面添加了详细说明。
+- 改进了Android 15边到边显示兼容性。
 </zh-CN>
 
 <zh-HK>
@@ -325,6 +371,7 @@
 - 添加了語言切換功能。
 - 音效模組已更新以提高效能。
 - 在選項畫面添加了詳細說明。
+- 改善了Android 15邊到邊顯示相容性。
 </zh-HK>
 
 <zh-TW>
@@ -332,6 +379,7 @@
 - 新增了語言切換功能。
 - 音效模組已更新以提高效能。
 - 在選項畫面新增了詳細說明。
+- 改善了Android 15邊到邊顯示相容性。
 </zh-TW>
 
 <zu>
@@ -339,4 +387,5 @@
 - Kufakwe umsebenzi wokushintsha ulimi.
 - Imojuli yomsindo ibuyekezwe ukuze isebenze kangcono.
 - Izincazelo ezinemininingwane zengezwe esikrinini sezinketho.
+- Ukuhambisana nokubonisa edge-to-edge kwe-Android 15 kuthuthukisiwe.
 </zu>
