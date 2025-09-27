@@ -84,18 +84,19 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
-            
+
             // Add debug symbol generation for native code crash diagnostics
+            // FULL includes all debug symbols in the AAB (increases size but prevents Play Console warnings)
             ndk {
-                debugSymbolLevel 'SYMBOL_TABLE' // Changed from FULL to fix bundling issues
+                debugSymbolLevel 'FULL' // Use FULL to ensure symbols are included in AAB
             }
 
             minifyEnabled true
             shrinkResources true
 
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            }
         }
+    }
     }
 
 flutter {

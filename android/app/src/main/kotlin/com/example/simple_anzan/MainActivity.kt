@@ -10,11 +10,10 @@ import io.flutter.embedding.engine.FlutterEngine
 class MainActivity: FlutterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
-        // Enable edge-to-edge display for Android 15+ (SDK 35+)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            WindowCompat.setDecorFitsSystemWindows(window, false)
-        }
+
+        // Enable edge-to-edge display for all Android versions
+        // This ensures proper inset handling for Android 15+ (SDK 35+)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {

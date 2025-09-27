@@ -1,0 +1,342 @@
+<en-US>
+- The design has been renewed.
+- Language change functionality has been added.
+- The sound execution module has been updated for improved performance.
+- Detailed descriptions have been added to the options screen.
+</en-US>
+
+<af>
+- Die ontwerp is hernuwe.
+- Taalveranderingsfunksie is bygevoeg.
+- Die klankmodule is opgedateer vir beter prestasie.
+- Gedetailleerde beskrywings is by die opsieskerm gevoeg.
+</af>
+
+<am>
+- ዲዛይኑ ሙሉ በሙሉ ታድሷል።
+- የቋንቋ መቀየሪያ ተግባር ተጨምሯል።
+- የድምጽ ሞዱል ለተሻለ አፈጻጸም ተሻሽሏል።
+- በአማራጭ ማያ ገጽ ላይ ዝርዝር መግለጫዎች ተጨምረዋል።
+</am>
+
+<ar>
+- تم تجديد التصميم بالكامل.
+- تمت إضافة وظيفة تغيير اللغة.
+- تم تحديث وحدة الصوت لتحسين الأداء.
+- تمت إضافة أوصاف تفصيلية إلى شاشة الخيارات.
+</ar>
+
+<bg>
+- Дизайнът е напълно обновен.
+- Добавена е функция за смяна на езика.
+- Звуковият модул е актуализиран за по-добра производителност.
+- Добавени са подробни описания към екрана с опции.
+</bg>
+
+<ca>
+- El disseny s'ha renovat completament.
+- S'ha afegit la funció de canvi d'idioma.
+- El mòdul de so s'ha actualitzat per millorar el rendiment.
+- S'han afegit descripcions detallades a la pantalla d'opcions.
+</ca>
+
+<cs-CZ>
+- Design byl kompletně obnoven.
+- Byla přidána funkce změny jazyka.
+- Zvukový modul byl aktualizován pro lepší výkon.
+- Na obrazovku nastavení byly přidány podrobné popisy.
+</cs-CZ>
+
+<da-DK>
+- Designet er blevet fuldstændigt fornyet.
+- Sprogskiftefunktion er blevet tilføjet.
+- Lydmodulet er blevet opdateret for forbedret ydeevne.
+- Detaljerede beskrivelser er blevet tilføjet til indstillingsskærmen.
+</da-DK>
+
+<de-DE>
+- Das Design wurde komplett erneuert.
+- Eine Funktion zum Sprachwechsel wurde hinzugefügt.
+- Das Sound-Modul wurde für bessere Leistung aktualisiert.
+- Detaillierte Beschreibungen wurden dem Optionsbildschirm hinzugefügt.
+</de-DE>
+
+<el-GR>
+- Η σχεδίαση έχει ανανεωθεί πλήρως.
+- Προστέθηκε λειτουργία αλλαγής γλώσσας.
+- Η μονάδα ήχου έχει ενημερωθεί για βελτιωμένη απόδοση.
+- Προστέθηκαν λεπτομερείς περιγραφές στην οθόνη επιλογών.
+</el-GR>
+
+<en-GB>
+- The design has been renewed.
+- Language change functionality has been added.
+- The sound execution module has been updated for improved performance.
+- Detailed descriptions have been added to the options screen.
+</en-GB>
+
+<es-419>
+- El diseño se ha renovado completamente.
+- Se ha agregado la función de cambio de idioma.
+- El módulo de sonido se ha actualizado para mejorar el rendimiento.
+- Se han agregado descripciones detalladas a la pantalla de opciones.
+</es-419>
+
+<es-ES>
+- El diseño se ha renovado completamente.
+- Se ha añadido la función de cambio de idioma.
+- El módulo de sonido se ha actualizado para mejorar el rendimiento.
+- Se han añadido descripciones detalladas a la pantalla de opciones.
+</es-ES>
+
+<et>
+- Disain on täielikult uuendatud.
+- Lisatud on keele vahetamise funktsioon.
+- Helimoodul on täiustatud parema jõudluse saavutamiseks.
+- Valikute ekraanile on lisatud üksikasjalikud kirjeldused.
+</et>
+
+<fa>
+- طراحی به طور کامل نوسازی شده است.
+- قابلیت تغییر زبان اضافه شده است.
+- ماژول صدا برای بهبود عملکرد به‌روزرسانی شده است.
+- توضیحات تفصیلی به صفحه تنظیمات اضافه شده است.
+</fa>
+
+<fi-FI>
+- Ulkoasu on täysin uudistettu.
+- Kielen vaihtotoiminto on lisätty.
+- Äänimoduuli on päivitetty suorituskyvyn parantamiseksi.
+- Asetusruutuun on lisätty yksityiskohtaiset kuvaukset.
+</fi-FI>
+
+<fr-CA>
+- Le design a été renouvelé.
+- Une fonction de changement de langue a été ajoutée.
+- Le module audio a été mis à jour pour de meilleures performances.
+- Des descriptions détaillées ont été ajoutées à l'écran des options.
+</fr-CA>
+
+<fr-FR>
+- Le design a été renouvelé.
+- Une fonction de changement de langue a été ajoutée.
+- Le module audio a été mis à jour pour de meilleures performances.
+- Des descriptions détaillées ont été ajoutées à l'écran des options.
+</fr-FR>
+
+<hi-IN>
+- डिज़ाइन को पूर्ण रूप से नवीनीकृत किया गया है।
+- भाषा परिवर्तन कार्यक्षमता जोड़ी गई है।
+- बेहतर प्रदर्शन के लिए ध्वनि मॉड्यूल को अपडेट किया गया है।
+- विकल्प स्क्रीन में विस्तृत विवरण जोड़े गए हैं।
+</hi-IN>
+
+<hr>
+- Dizajn je potpuno osvježen.
+- Dodana je funkcija promjene jezika.
+- Zvučni modul je ažuriran za poboljšane performanse.
+- Dodani su detaljni opisi na zaslon opcija.
+</hr>
+
+<hu-HU>
+- A dizájn teljesen megújult.
+- Nyelvváltási funkció került hozzáadásra.
+- A hangmodul frissítve lett a jobb teljesítmény érdekében.
+- Részletes leírások kerültek a beállítások képernyőre.
+</hu-HU>
+
+<id>
+- Desain telah sepenuhnya diperbarui.
+- Fungsi perubahan bahasa telah ditambahkan.
+- Modul suara telah diperbarui untuk kinerja yang lebih baik.
+- Deskripsi terperinci telah ditambahkan ke layar opsi.
+</id>
+
+<it-IT>
+- Il design è stato completamente rinnovato.
+- È stata aggiunta la funzione di cambio lingua.
+- Il modulo audio è stato aggiornato per prestazioni migliori.
+- Sono state aggiunte descrizioni dettagliate alla schermata delle opzioni.
+</it-IT>
+
+<iw-IL>
+- העיצוב חודש לחלוטין.
+- נוספה פונקציית החלפת שפה.
+- מודול הקול עודכן לביצועים משופרים.
+- נוספו תיאורים מפורטים למסך האפשרויות.
+</iw-IL>
+
+<ja-JP>
+- デザインが全面的にリニューアルされました。
+- 言語変更機能が追加されました。
+- サウンドモジュールが更新され、パフォーマンスが向上しました。
+- オプション画面に詳細な説明が追加されました。
+</ja-JP>
+
+<ko-KR>
+- 디자인이 리뉴얼 됏습니다.
+- 언어 변경 기능이 추가되었습니다.
+- 사운드 실행 모듈이 변경되어 기존보다 성능이 개선되었습니다.
+- 옵션 화면에 자세한 설명이 추가됩니다.
+</ko-KR>
+
+<lt>
+- Dizainas visiškai atnaujintas.
+- Pridėta kalbos keitimo funkcija.
+- Garso modulis atnaujintas geresniam našumui.
+- Į parinkčių ekraną pridėti detalūs aprašymai.
+</lt>
+
+<lv>
+- Dizains ir pilnībā atjaunināts.
+- Pievienota valodas maiņas funkcija.
+- Skaņas modulis ir atjaunināts uzlabotai veiktspējai.
+- Opciju ekrānam pievienoti detalizēti apraksti.
+</lv>
+
+<ms>
+- Reka bentuk telah diperbaharui sepenuhnya.
+- Fungsi pertukaran bahasa telah ditambah.
+- Modul bunyi telah dikemas kini untuk prestasi yang lebih baik.
+- Penerangan terperinci telah ditambahkan pada skrin pilihan.
+</ms>
+
+<nl-NL>
+- Het ontwerp is volledig vernieuwd.
+- Taalwijzigingsfunctie is toegevoegd.
+- De geluidsmodule is bijgewerkt voor betere prestaties.
+- Gedetailleerde beschrijvingen zijn toegevoegd aan het optiescherm.
+</nl-NL>
+
+<no-NO>
+- Designet har blitt fullstendig fornyet.
+- Språkendringsfunksjon har blitt lagt til.
+- Lydmodulen har blitt oppdatert for forbedret ytelse.
+- Detaljerte beskrivelser har blitt lagt til på innstillingsskjermen.
+</no-NO>
+
+<pl-PL>
+- Projekt został całkowicie odnowiony.
+- Dodano funkcję zmiany języka.
+- Moduł dźwięku został zaktualizowany w celu poprawy wydajności.
+- Do ekranu opcji dodano szczegółowe opisy.
+</pl-PL>
+
+<pt-BR>
+- O design foi completamente renovado.
+- Foi adicionada a função de mudança de idioma.
+- O módulo de som foi atualizado para melhor desempenho.
+- Descrições detalhadas foram adicionadas à tela de opções.
+</pt-BR>
+
+<pt-PT>
+- O design foi completamente renovado.
+- Foi adicionada a função de mudança de idioma.
+- O módulo de som foi atualizado para melhor desempenho.
+- Descrições detalhadas foram adicionadas ao ecrã de opções.
+</pt-PT>
+
+<ro>
+- Designul a fost complet reînnoit.
+- A fost adăugată funcția de schimbare a limbii.
+- Modulul de sunet a fost actualizat pentru performanță îmbunătățită.
+- Au fost adăugate descrieri detaliate la ecranul de opțiuni.
+</ro>
+
+<ru-RU>
+- Дизайн полностью обновлён.
+- Добавлена функция смены языка.
+- Звуковой модуль обновлён для улучшения производительности.
+- В экран настроек добавлены подробные описания.
+</ru-RU>
+
+<sk>
+- Dizajn bol kompletne obnovený.
+- Bola pridaná funkcia zmeny jazyka.
+- Zvukový modul bol aktualizovaný pre lepší výkon.
+- Na obrazovku nastavení boli pridané podrobné popisy.
+</sk>
+
+<sl>
+- Oblikovanje je bilo popolnoma posodobljeno.
+- Dodana je bila funkcija spremembe jezika.
+- Zvočni modul je bil posodobljen za izboljšano zmogljivost.
+- Na zaslon z možnostmi so bili dodani podrobni opisi.
+</sl>
+
+<sr>
+- Дизајн је потпуно освежен.
+- Додата је функција промене језика.
+- Звучни модул је ажуриран за побољшане перформансе.
+- Додати су детаљни описи на екран опција.
+</sr>
+
+<sv-SE>
+- Designen har helt förnyats.
+- Språkändringsfunktion har lagts till.
+- Ljudmodulen har uppdaterats för förbättrad prestanda.
+- Detaljerade beskrivningar har lagts till på inställningsskärmen.
+</sv-SE>
+
+<sw>
+- Muundo umeboreshwa kabisa.
+- Utendaji wa kubadilisha lugha umeongezwa.
+- Moduli ya sauti imesasishwa kwa utendaji bora zaidi.
+- Maelezo ya kina yameongezwa kwenye skrini ya chaguzi.
+</sw>
+
+<th>
+- การออกแบบได้รับการปรับปรุงใหม่ทั้งหมด
+- เพิ่มฟังก์ชันการเปลี่ยนภาษา
+- โมดูลเสียงได้รับการอัปเดตเพื่อประสิทธิภาพที่ดีขึ้น
+- เพิ่มคำอธิบายโดยละเอียดในหน้าจอตัวเลือก
+</th>
+
+<tr-TR>
+- Tasarım tamamen yenilendi.
+- Dil değiştirme özelliği eklendi.
+- Ses modülü daha iyi performans için güncellendi.
+- Seçenekler ekranına ayrıntılı açıklamalar eklendi.
+</tr-TR>
+
+<uk>
+- Дизайн повністю оновлено.
+- Додано функцію зміни мови.
+- Звуковий модуль оновлено для покращення продуктивності.
+- До екрану налаштувань додано детальні описи.
+</uk>
+
+<vi>
+- Thiết kế đã được làm mới hoàn toàn.
+- Đã thêm chức năng thay đổi ngôn ngữ.
+- Mô-đun âm thanh đã được cập nhật để cải thiện hiệu suất.
+- Đã thêm mô tả chi tiết vào màn hình tùy chọn.
+</vi>
+
+<zh-CN>
+- 设计已全面更新。
+- 添加了语言切换功能。
+- 音频模块已更新以提高性能。
+- 在选项界面添加了详细说明。
+</zh-CN>
+
+<zh-HK>
+- 設計已全面更新。
+- 添加了語言切換功能。
+- 音效模組已更新以提高效能。
+- 在選項畫面添加了詳細說明。
+</zh-HK>
+
+<zh-TW>
+- 設計已全面更新。
+- 新增了語言切換功能。
+- 音效模組已更新以提高效能。
+- 在選項畫面新增了詳細說明。
+</zh-TW>
+
+<zu>
+- Idizayini ivuselelwe ngokuphelele.
+- Kufakwe umsebenzi wokushintsha ulimi.
+- Imojuli yomsindo ibuyekezwe ukuze isebenze kangcono.
+- Izincazelo ezinemininingwane zengezwe esikrinini sezinketho.
+</zu>
