@@ -77,7 +77,7 @@ class _SettingsPageState extends State<SettingsPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          padding: const EdgeInsets.only(left: 0.0),
+          padding: const EdgeInsets.only(top: 5),
           child: Icon(
             Icons.tune,
             size: 24.0,

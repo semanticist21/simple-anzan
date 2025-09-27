@@ -22,6 +22,8 @@ class SettingsMultiplyPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsMultiplyPage> {
   final _manager = SettingsMultiplyManager();
+  final GlobalKey<FormFieldState> _bigDigitKey = GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> _smallDigitKey = GlobalKey<FormFieldState>();
 
   late CalCulationMultiplyMode _isMultiply;
   late SpeedMultiply _speed;
@@ -78,7 +80,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          padding: const EdgeInsets.only(left: 0.0),
+          padding: const EdgeInsets.only(top: 5.0),
           child: Icon(
             Icons.tune,
             size: 24.0,
@@ -145,6 +147,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           _manager.getItemStr<SmallDigit>(_smallDigit.name),
           getDropdownMenuItemList<SmallDigit>(_manager),
           changeOptionCallback<SmallDigit>,
+          formKey: _smallDigitKey,
         ),
         _buildDropdownListTile(
           'settingsMultiply.bigDigit'.tr(),
@@ -152,6 +155,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           _manager.getItemStr<BigDigit>(_bigDigit.name),
           getDropdownMenuItemList<BigDigit>(_manager),
           changeOptionCallback<BigDigit>,
+          formKey: _bigDigitKey,
         ),
         Tooltip(
           message: 'settings.separator'.tr(),
@@ -219,7 +223,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
       IconData iconData,
       String initialValue,
       List<DropdownMenuItem<dynamic>> dropdownMenuItemList,
-      Function(dynamic) onChangeMethod) {
+      Function(dynamic) onChangeMethod,
+      {GlobalKey<FormFieldState>? formKey}) {
     return Container(
       margin: const EdgeInsets.only(bottom: 20.0),
       child: ListTile(
@@ -243,6 +248,7 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           child: SizedBox(
             width: 140,
             child: DropdownButtonFormField(
+              key: formKey,
               dropdownColor: Theme.of(context).brightness == Brightness.dark
                   ? Theme.of(context).colorScheme.surfaceContainerHighest
                   : Theme.of(context).colorScheme.surface,
@@ -472,6 +478,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           showDialog(
               context: context,
               builder: (context) => getAlertWarningDialog(context));
+          // Reset dropdown to original value using FormField key
+          _bigDigitKey.currentState?.reset();
           return;
         }
 
@@ -483,6 +491,8 @@ class _SettingsPageState extends State<SettingsMultiplyPage> {
           showDialog(
               context: context,
               builder: (context) => getAlertWarningDialog(context));
+          // Reset dropdown to original value using FormField key
+          _smallDigitKey.currentState?.reset();
           return;
         }
 

@@ -29,6 +29,8 @@ class WindowsAddOptionMultiplyDialog extends StatefulWidget {
 class _WindowsAddOptionMultiplyDialogState
     extends State<WindowsAddOptionMultiplyDialog> {
   final _manager = SettingsMultiplyManager();
+  final GlobalKey<FormFieldState> _bigDigitKey = GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> _smallDigitKey = GlobalKey<FormFieldState>();
 
   late CalCulationMultiplyMode _isMultiply;
   late SpeedMultiply _speed;
@@ -145,7 +147,8 @@ class _WindowsAddOptionMultiplyDialogState
                                                 _smallDigit.name),
                                             getDropdownMenuItemList<SmallDigit>(
                                                 _manager),
-                                            changeOptionCallback<SmallDigit>),
+                                            changeOptionCallback<SmallDigit>,
+                                            formKey: _smallDigitKey),
                                         buildDropdownButton(
                                             'settingsMultiply.bigDigit'.tr(),
                                             Icon(
@@ -158,7 +161,8 @@ class _WindowsAddOptionMultiplyDialogState
                                                 _bigDigit.name),
                                             getDropdownMenuItemList<BigDigit>(
                                                 _manager),
-                                            changeOptionCallback<BigDigit>),
+                                            changeOptionCallback<BigDigit>,
+                                            formKey: _bigDigitKey),
                                         buildToggleOption(
                                             'settings.notify'.tr(),
                                             Icons.notifications,
@@ -356,7 +360,8 @@ class _WindowsAddOptionMultiplyDialogState
       Icon icon,
       String initialValue,
       List<DropdownMenuItem<dynamic>> dropdownMenuItemList,
-      Function(dynamic) onChangeMethod) {
+      Function(dynamic) onChangeMethod,
+      {GlobalKey<FormFieldState>? formKey}) {
     return getPadding(
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Flexible(
@@ -379,6 +384,7 @@ class _WindowsAddOptionMultiplyDialogState
               child: FractionallySizedBox(
                 widthFactor: 0.8,
                 child: DropdownButtonFormField(
+                  key: formKey,
                   dropdownColor:
                       Theme.of(context).colorScheme.tertiaryContainer,
                   elevation: 0,
@@ -429,6 +435,8 @@ class _WindowsAddOptionMultiplyDialogState
               builder: (context) {
                 return getAlertWarningDialog(context);
               });
+          // Reset dropdown to original value using FormField key
+          _bigDigitKey.currentState?.reset();
           return;
         }
 
@@ -442,6 +450,8 @@ class _WindowsAddOptionMultiplyDialogState
               builder: (context) {
                 return getAlertWarningDialog(context);
               });
+          // Reset dropdown to original value using FormField key
+          _smallDigitKey.currentState?.reset();
           return;
         }
 
