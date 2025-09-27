@@ -72,7 +72,7 @@ class _FlickerState extends State<Flicker> {
         ? FittedBox(
             fit: BoxFit.contain,
             child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 15.0),
               child: Text(
                 _number,
                 style: _getMainNumberTextStyle(),
@@ -82,7 +82,7 @@ class _FlickerState extends State<Flicker> {
         : FittedBox(
             fit: BoxFit.contain,
             child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 15.0),
               child: Text(
                 _number,
                 style: _getMainNumberTextStyle(),

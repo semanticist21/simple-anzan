@@ -76,7 +76,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         ? FittedBox(
             fit: BoxFit.contain,
             child: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsets.only(right: 15.0),
                 child: Text(
                   _number,
                   style: _getMainNumberTextStyle(),
@@ -85,7 +85,7 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         : FittedBox(
             fit: BoxFit.contain,
             child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 15.0),
               child: Text(
                 _number,
                 style: _getMainNumberTextStyle(),
