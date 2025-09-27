@@ -4,6 +4,7 @@
 - The sound execution module has been updated for improved performance.
 - Detailed descriptions have been added to the options screen.
 - Android 15 edge-to-edge display compatibility improved.
+- Fixed dropdown UI not resetting to original value when validation fails.
 </en-US>
 
 <af>
@@ -12,6 +13,7 @@
 - Die klankmodule is opgedateer vir beter prestasie.
 - Gedetailleerde beskrywings is by die opsieskerm gevoeg.
 - Android 15 kant-tot-kant-vertoonversoenbaarheid verbeter.
+- Dropdown UI wat nie na oorspronklike waarde herstel wanneer validering faal nie, is reggestel.
 </af>
 
 <am>
@@ -20,6 +22,7 @@
 - የድምጽ ሞዱል ለተሻለ አፈጻጸም ተሻሽሏል።
 - በአማራጭ ማያ ገጽ ላይ ዝርዝር መግለጫዎች ተጨምረዋል።
 - Android 15 edge-to-edge display ተኳኋኝነት ተሻሽሏል።
+- ማረጋገጫ ሲወድቅ dropdown UI ወደ ዋናው እሴት እንዳይመለስ የነበረው ችግር ተስተካክሏል።
 </am>
 
 <ar>
@@ -28,6 +31,7 @@
 - تم تحديث وحدة الصوت لتحسين الأداء.
 - تمت إضافة أوصاف تفصيلية إلى شاشة الخيارات.
 - تم تحسين توافق عرض Android 15 من الحافة إلى الحافة.
+- تم إصلاح مشكلة عدم إعادة تعيين واجهة القائمة المنسدلة إلى القيمة الأصلية عند فشل التحقق.
 </ar>
 
 <bg>
@@ -36,6 +40,7 @@
 - Звуковият модул е актуализиран за по-добра производителност.
 - Добавени са подробни описания към екрана с опции.
 - Подобрена е съвместимостта с edge-to-edge дисплея на Android 15.
+- Отстранен е проблем с dropdown UI, който не се връща към оригиналната стойност при неуспешна валидация.
 </bg>
 
 <ca>
@@ -44,6 +49,7 @@
 - El mòdul de so s'ha actualitzat per millorar el rendiment.
 - S'han afegit descripcions detallades a la pantalla d'opcions.
 - S'ha millorat la compatibilitat de pantalla edge-to-edge d'Android 15.
+- S'ha solucionat el problema de la interfície desplegable que no es restablia al valor original quan fallava la validació.
 </ca>
 
 <cs-CZ>
@@ -52,6 +58,7 @@
 - Zvukový modul byl aktualizován pro lepší výkon.
 - Na obrazovku nastavení byly přidány podrobné popisy.
 - Zlepšena kompatibilita edge-to-edge displeje pro Android 15.
+- Opraven problém s dropdown UI, které se nevrátilo na původní hodnotu při selhání validace.
 </cs-CZ>
 
 <da-DK>
@@ -60,6 +67,7 @@
 - Lydmodulet er blevet opdateret for forbedret ydeevne.
 - Detaljerede beskrivelser er blevet tilføjet til indstillingsskærmen.
 - Android 15 edge-to-edge skærmkompatibilitet forbedret.
+- Rettet dropdown UI problem hvor den ikke gik tilbage til den oprindelige værdi når validering fejlede.
 </da-DK>
 
 <de-DE>
@@ -68,6 +76,7 @@
 - Das Sound-Modul wurde für bessere Leistung aktualisiert.
 - Detaillierte Beschreibungen wurden dem Optionsbildschirm hinzugefügt.
 - Android 15 Edge-to-Edge-Display-Kompatibilität verbessert.
+- Problem behoben, bei dem die Dropdown-UI nicht zum ursprünglichen Wert zurückkehrte, wenn die Validierung fehlschlug.
 </de-DE>
 
 <el-GR>
@@ -76,6 +85,7 @@
 - Η μονάδα ήχου έχει ενημερωθεί για βελτιωμένη απόδοση.
 - Προστέθηκαν λεπτομερείς περιγραφές στην οθόνη επιλογών.
 - Βελτιώθηκε η συμβατότητα edge-to-edge οθόνης Android 15.
+- Διορθώθηκε το πρόβλημα με το dropdown UI που δεν επανερχόταν στην αρχική τιμή όταν η επικύρωση αποτύγχανε.
 </el-GR>
 
 <en-GB>
@@ -84,6 +94,7 @@
 - The sound execution module has been updated for improved performance.
 - Detailed descriptions have been added to the options screen.
 - Android 15 edge-to-edge display compatibility improved.
+- Fixed dropdown UI not resetting to original value when validation fails.
 </en-GB>
 
 <es-419>
@@ -92,6 +103,7 @@
 - El módulo de sonido se ha actualizado para mejorar el rendimiento.
 - Se han agregado descripciones detalladas a la pantalla de opciones.
 - Se ha mejorado la compatibilidad de pantalla edge-to-edge de Android 15.
+- Se solucionó el problema de la interfaz desplegable que no se restablecía al valor original cuando fallaba la validación.
 </es-419>
 
 <es-ES>
@@ -100,6 +112,7 @@
 - El módulo de sonido se ha actualizado para mejorar el rendimiento.
 - Se han añadido descripciones detalladas a la pantalla de opciones.
 - Se ha mejorado la compatibilidad de pantalla edge-to-edge de Android 15.
+- Se ha solucionado el problema de la interfaz desplegable que no se restablecía al valor original cuando fallaba la validación.
 </es-ES>
 
 <et>
@@ -108,6 +121,7 @@
 - Helimoodul on täiustatud parema jõudluse saavutamiseks.
 - Valikute ekraanile on lisatud üksikasjalikud kirjeldused.
 - Android 15 serv-serva ekraani ühilduvus parandatud.
+- Parandatud rippmenüü kasutajaliidese probleem, kus see ei läinud tagasi algsele väärtusele, kui valideerimine ebaõnnestus.
 </et>
 
 <fa>
@@ -116,6 +130,7 @@
 - ماژول صدا برای بهبود عملکرد به‌روزرسانی شده است.
 - توضیحات تفصیلی به صفحه تنظیمات اضافه شده است.
 - سازگاری نمایش edge-to-edge Android 15 بهبود یافته است.
+- مشکل رابط کاربری dropdown که هنگام شکست اعتبارسنجی به مقدار اصلی بازنمی‌گردد برطرف شد.
 </fa>
 
 <fi-FI>
@@ -124,6 +139,7 @@
 - Äänimoduuli on päivitetty suorituskyvyn parantamiseksi.
 - Asetusruutuun on lisätty yksityiskohtaiset kuvaukset.
 - Android 15 reunasta reunaan -näytön yhteensopivuus parannettu.
+- Korjattu pudotusvalikon käyttöliittymän ongelma, jossa se ei palautunut alkuperäiseen arvoon validoinnin epäonnistuessa.
 </fi-FI>
 
 <fr-CA>
@@ -132,6 +148,7 @@
 - Le module audio a été mis à jour pour de meilleures performances.
 - Des descriptions détaillées ont été ajoutées à l'écran des options.
 - Compatibilité d'affichage edge-to-edge Android 15 améliorée.
+- Corrigé le problème d'interface dropdown qui ne revenait pas à la valeur originale lors d'échec de validation.
 </fr-CA>
 
 <fr-FR>
@@ -140,6 +157,7 @@
 - Le module audio a été mis à jour pour de meilleures performances.
 - Des descriptions détaillées ont été ajoutées à l'écran des options.
 - Compatibilité d'affichage edge-to-edge Android 15 améliorée.
+- Corrigé le problème d'interface déroulante qui ne revenait pas à la valeur originale lors d'échec de validation.
 </fr-FR>
 
 <hi-IN>
@@ -148,6 +166,7 @@
 - बेहतर प्रदर्शन के लिए ध्वनि मॉड्यूल को अपडेट किया गया है।
 - विकल्प स्क्रीन में विस्तृत विवरण जोड़े गए हैं।
 - Android 15 edge-to-edge डिस्प्ले संगतता में सुधार।
+- ड्रॉपडाउन UI की समस्या ठीक की गई जो validation विफल होने पर मूल मान पर वापस नहीं जा रही थी।
 </hi-IN>
 
 <hr>
@@ -156,6 +175,7 @@
 - Zvučni modul je ažuriran za poboljšane performanse.
 - Dodani su detaljni opisi na zaslon opcija.
 - Poboljšana je kompatibilnost edge-to-edge zaslona za Android 15.
+- Ispravljen je problem s dropdown sučeljem koje se nije vratilo na originalnu vrijednost kada je validacija neuspješna.
 </hr>
 
 <hu-HU>
@@ -164,6 +184,7 @@
 - A hangmodul frissítve lett a jobb teljesítmény érdekében.
 - Részletes leírások kerültek a beállítások képernyőre.
 - Android 15 edge-to-edge kijelző kompatibilitás javítva.
+- Javítva a legördülő menü felület problémája, amely nem állt vissza az eredeti értékre, amikor az érvényesítés meghiúsult.
 </hu-HU>
 
 <id>
@@ -172,6 +193,7 @@
 - Modul suara telah diperbarui untuk kinerja yang lebih baik.
 - Deskripsi terperinci telah ditambahkan ke layar opsi.
 - Kompatibilitas tampilan edge-to-edge Android 15 ditingkatkan.
+- Diperbaiki masalah UI dropdown yang tidak kembali ke nilai asli saat validasi gagal.
 </id>
 
 <it-IT>
@@ -180,6 +202,7 @@
 - Il modulo audio è stato aggiornato per prestazioni migliori.
 - Sono state aggiunte descrizioni dettagliate alla schermata delle opzioni.
 - Migliorata la compatibilità del display edge-to-edge di Android 15.
+- Risolto il problema dell'interfaccia dropdown che non tornava al valore originale quando la validazione falliva.
 </it-IT>
 
 <iw-IL>
@@ -188,6 +211,7 @@
 - מודול הקול עודכן לביצועים משופרים.
 - נוספו תיאורים מפורטים למסך האפשרויות.
 - שופרה תאימות תצוגה edge-to-edge של Android 15.
+- תוקן בעיית בינק המשתמש של התפריט הנפתח שלא חזר לערך המקורי כאשר האימות נכשל.
 </iw-IL>
 
 <ja-JP>
@@ -196,6 +220,7 @@
 - サウンドモジュールが更新され、パフォーマンスが向上しました。
 - オプション画面に詳細な説明が追加されました。
 - Android 15エッジツーエッジディスプレイの互換性が改善されました。
+- 検証失敗時にドロップダウンが元の値に戻らない問題を修正しました。
 </ja-JP>
 
 <ko-KR>
@@ -204,6 +229,7 @@
 - 사운드 실행 모듈이 변경되어 기존보다 성능이 개선되었습니다.
 - 옵션 화면에 자세한 설명이 추가됩니다.
 - Android 15 전체 화면 디스플레이 호환성이 개선되었습니다.
+- 유효성 검사 실패시 드롭다운이 원래 값으로 복원되지 않는 문제를 수정했습니다.
 </ko-KR>
 
 <lt>
@@ -212,6 +238,7 @@
 - Garso modulis atnaujintas geresniam našumui.
 - Į parinkčių ekraną pridėti detalūs aprašymai.
 - Pagerinta Android 15 edge-to-edge ekrano suderinamumas.
+- Ištaisyta išskleidžiamo meniu sąsajos problema, kai ji negrįždavo į pradinius nustatymus nepavykus patikrinimui.
 </lt>
 
 <lv>
@@ -220,6 +247,7 @@
 - Skaņas modulis ir atjaunināts uzlabotai veiktspējai.
 - Opciju ekrānam pievienoti detalizēti apraksti.
 - Uzlabota Android 15 edge-to-edge displeja savietojamība.
+- Izlabōta nokarāšanās izvēlnes lietotāja interfeisa problēma, kad tā neatgriezās sākotnējā vērtībā, ja validācija neizdevās.
 </lv>
 
 <ms>
@@ -228,6 +256,7 @@
 - Modul bunyi telah dikemas kini untuk prestasi yang lebih baik.
 - Penerangan terperinci telah ditambahkan pada skrin pilihan.
 - Keserasian paparan edge-to-edge Android 15 telah dipertingkat.
+- Diperbaiki masalah antara muka dropdown yang tidak kembali ke nilai asal apabila pengesahan gagal.
 </ms>
 
 <nl-NL>
@@ -236,6 +265,7 @@
 - De geluidsmodule is bijgewerkt voor betere prestaties.
 - Gedetailleerde beschrijvingen zijn toegevoegd aan het optiescherm.
 - Android 15 edge-to-edge schermcompatibiliteit verbeterd.
+- Opgelost: dropdown UI probleem waarbij het niet terugkeerde naar de oorspronkelijke waarde bij validatiefout.
 </nl-NL>
 
 <no-NO>
@@ -244,6 +274,7 @@
 - Lydmodulen har blitt oppdatert for forbedret ytelse.
 - Detaljerte beskrivelser har blitt lagt til på innstillingsskjermen.
 - Android 15 edge-to-edge skjermkompatibilitet forbedret.
+- Fikset dropdown UI-problem hvor den ikke gikk tilbake til opprinnelig verdi når validering feilet.
 </no-NO>
 
 <pl-PL>
@@ -252,6 +283,7 @@
 - Moduł dźwięku został zaktualizowany w celu poprawy wydajności.
 - Do ekranu opcji dodano szczegółowe opisy.
 - Ulepszono kompatybilność wyświetlacza edge-to-edge Android 15.
+- Naprawiono problem z interfejsem dropdown, który nie powracał do pierwotnej wartości przy niepowodzeniu walidacji.
 </pl-PL>
 
 <pt-BR>
@@ -260,6 +292,7 @@
 - O módulo de som foi atualizado para melhor desempenho.
 - Descrições detalhadas foram adicionadas à tela de opções.
 - Compatibilidade de exibição edge-to-edge do Android 15 melhorada.
+- Corrigido problema da interface dropdown que não retornava ao valor original quando a validação falhava.
 </pt-BR>
 
 <pt-PT>
@@ -268,6 +301,7 @@
 - O módulo de som foi atualizado para melhor desempenho.
 - Descrições detalhadas foram adicionadas ao ecrã de opções.
 - Compatibilidade de exibição edge-to-edge do Android 15 melhorada.
+- Corrigido problema da interface dropdown que não retornava ao valor original quando a validação falhava.
 </pt-PT>
 
 <ro>
@@ -276,6 +310,7 @@
 - Modulul de sunet a fost actualizat pentru performanță îmbunătățită.
 - Au fost adăugate descrieri detaliate la ecranul de opțiuni.
 - Compatibilitatea afișajului edge-to-edge Android 15 îmbunătățită.
+- Rezolvată problema cu interfața dropdown care nu se întorcea la valoarea originală când validarea eșua.
 </ro>
 
 <ru-RU>
@@ -284,6 +319,7 @@
 - Звуковой модуль обновлён для улучшения производительности.
 - В экран настроек добавлены подробные описания.
 - Улучшена совместимость edge-to-edge дисплея Android 15.
+- Исправлена проблема с интерфейсом dropdown, который не возвращался к исходному значению при ошибке валидации.
 </ru-RU>
 
 <sk>
@@ -292,6 +328,7 @@
 - Zvukový modul bol aktualizovaný pre lepší výkon.
 - Na obrazovku nastavení boli pridané podrobné popisy.
 - Zlepšená kompatibilita edge-to-edge displeja pre Android 15.
+- Opravený problém s rozbaľovacím rozhraním, ktoré sa nevrátilo na pôvodnú hodnotu pri neúspešnej validácii.
 </sk>
 
 <sl>
@@ -300,6 +337,7 @@
 - Zvočni modul je bil posodobljen za izboljšano zmogljivost.
 - Na zaslon z možnostmi so bili dodani podrobni opisi.
 - Izboljšana kompatibilnost edge-to-edge zaslona za Android 15.
+- Odpravljena težava z vmesnikom dropdown, ki se ni vrnil na prvotno vrednost ob neuspešni validaciji.
 </sl>
 
 <sr>
@@ -308,6 +346,7 @@
 - Звучни модул је ажуриран за побољшане перформансе.
 - Додати су детаљни описи на екран опција.
 - Побољшана компатибилност edge-to-edge дисплеја за Android 15.
+- Исправљен проблем с dropdown сучељем које се није вратило на оригиналну вредност када је валидација неуспешна.
 </sr>
 
 <sv-SE>
@@ -316,6 +355,7 @@
 - Ljudmodulen har uppdaterats för förbättrad prestanda.
 - Detaljerade beskrivningar har lagts till på inställningsskärmen.
 - Android 15 edge-to-edge skärmkompatibilitet förbättrad.
+- Åtgärdat dropdown UI-problem där det inte återgick till ursprungsvärdet när validering misslyckades.
 </sv-SE>
 
 <sw>
@@ -324,6 +364,7 @@
 - Moduli ya sauti imesasishwa kwa utendaji bora zaidi.
 - Maelezo ya kina yameongezwa kwenye skrini ya chaguzi.
 - Upatanifu wa mwongozo wa edge-to-edge wa Android 15 umeboreshwa.
+- Imetatuliwa tatizo la kiolesura cha dropdown ambacho halikurudi kwa thamani ya asili wakati uthibitisho ulishindwa.
 </sw>
 
 <th>
@@ -332,6 +373,7 @@
 - โมดูลเสียงได้รับการอัปเดตเพื่อประสิทธิภาพที่ดีขึ้น
 - เพิ่มคำอธิบายโดยละเอียดในหน้าจอตัวเลือก
 - ปรับปรุงความเข้ากันได้ของการแสดงผล edge-to-edge ของ Android 15
+- แก้ไขปัญหา UI dropdown ที่ไม่กลับไปยังค่าเดิมเมื่อการตรวจสอบล้มเหลว
 </th>
 
 <tr-TR>
@@ -340,6 +382,7 @@
 - Ses modülü daha iyi performans için güncellendi.
 - Seçenekler ekranına ayrıntılı açıklamalar eklendi.
 - Android 15 edge-to-edge ekran uyumluluğu geliştirildi.
+- Doğrulama başarısız olduğunda dropdown UI'nin orijinal değere geri dönmemesi sorunu çözüldü.
 </tr-TR>
 
 <uk>
@@ -348,6 +391,7 @@
 - Звуковий модуль оновлено для покращення продуктивності.
 - До екрану налаштувань додано детальні описи.
 - Покращено сумісність edge-to-edge дисплея Android 15.
+- Виправлено проблему з інтерфейсом dropdown, який не повертався до початкового значення при невдалій перевірці.
 </uk>
 
 <vi>
@@ -356,6 +400,7 @@
 - Mô-đun âm thanh đã được cập nhật để cải thiện hiệu suất.
 - Đã thêm mô tả chi tiết vào màn hình tùy chọn.
 - Cải thiện tính tương thích hiển thị edge-to-edge của Android 15.
+- Đã sửa lỗi giao diện dropdown không trở về giá trị ban đầu khi xác thực thất bại.
 </vi>
 
 <zh-CN>
@@ -364,6 +409,7 @@
 - 音频模块已更新以提高性能。
 - 在选项界面添加了详细说明。
 - 改进了Android 15边到边显示兼容性。
+- 修复了验证失败时下拉菜单UI不能重置为原始值的问题。
 </zh-CN>
 
 <zh-HK>
@@ -372,6 +418,7 @@
 - 音效模組已更新以提高效能。
 - 在選項畫面添加了詳細說明。
 - 改善了Android 15邊到邊顯示相容性。
+- 修正了驗證失敗時下拉選單 UI不能重設為原始值的問題。
 </zh-HK>
 
 <zh-TW>
@@ -380,6 +427,7 @@
 - 音效模組已更新以提高效能。
 - 在選項畫面新增了詳細說明。
 - 改善了Android 15邊到邊顯示相容性。
+- 修正了驗證失敗時下拉選單 UI不能重設為原始值的問題。
 </zh-TW>
 
 <zu>
@@ -388,4 +436,5 @@
 - Imojuli yomsindo ibuyekezwe ukuze isebenze kangcono.
 - Izincazelo ezinemininingwane zengezwe esikrinini sezinketho.
 - Ukuhambisana nokubonisa edge-to-edge kwe-Android 15 kuthuthukisiwe.
+- Kulungisiwe inkinga ye-dropdown UI engabuyeli kumalungu aqala lapho ukuqinisekisa kuhluleka.
 </zu>
