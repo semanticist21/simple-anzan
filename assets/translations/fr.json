@@ -24,7 +24,7 @@
   },
   "settings": {
     "title": "Paramètres",
-    "shuffle": "Mélanger",
+    "shuffle": "Chiffres",
     "onlyPluses": "Additions uniquement",
     "speed": "Vitesse",
     "digit": "Chiffre",
@@ -35,7 +35,7 @@
     "explanationTitle": "Guide des paramètres",
     "explanationDesc": "Apprenez à propos de chaque option de paramètre ci-dessous",
     "onlyPlusesExplanation": "Lorsqu'activé, seuls les problèmes d'addition seront générés. Lorsque désactivé, les problèmes d'addition et de soustraction sont inclus.",
-    "shuffleExplanation": "Change aléatoirement l'ordre des chiffres dans chaque problème pour augmenter la difficulté et éviter la mémorisation de motifs.",
+    "shuffleExplanation": "Mélange aléatoirement les positions des chiffres dans chaque nombre. Des nombres avec moins de chiffres que le réglage maximum apparaissent également, avec une fréquence plus élevée pour les nombres proches du réglage maximum.",
     "speedExplanation": "Contrôle la vitesse d'apparition de chaque nombre pendant le flux d'itération. Les vitesses plus lentes donnent plus de temps pour traiter chaque nombre. Les vitesses inférieures à 150ms peuvent causer des problèmes de latence audio.",
     "digitExplanation": "Définit le nombre maximum de chiffres pour chaque nombre dans les problèmes (par ex., 3 chiffres = nombres jusqu'à 999).",
     "questionsExplanation": "Détermine combien de nombres apparaîtront dans chaque session de pratique.",

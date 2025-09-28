@@ -24,7 +24,7 @@
   },
   "settings": {
     "title": "Pengaturan",
-    "shuffle": "Acak",
+    "shuffle": "Acak Digit",
     "onlyPluses": "Hanya penjumlahan",
     "speed": "Kecepatan",
     "digit": "Digit",
@@ -35,7 +35,7 @@
     "explanationTitle": "Panduan Pengaturan",
     "explanationDesc": "Pelajari tentang setiap opsi pengaturan di bawah ini",
     "onlyPlusesExplanation": "Ketika diaktifkan, hanya masalah penjumlahan yang akan dibuat. Ketika dinonaktifkan, masalah penjumlahan dan pengurangan akan disertakan.",
-    "shuffleExplanation": "Secara acak mengubah urutan digit dalam setiap masalah untuk meningkatkan kesulitan dan mencegah hafalan pola.",
+    "shuffleExplanation": "Mengacak posisi digit secara acak dalam setiap angka. Angka dengan digit lebih sedikit dari pengaturan maksimum juga akan muncul, dengan frekuensi lebih tinggi untuk angka yang mendekati pengaturan digit maksimum.",
     "speedExplanation": "Mengontrol seberapa cepat setiap angka muncul selama alur iterasi. Kecepatan yang lebih lambat memberikan lebih banyak waktu untuk memproses setiap angka. Kecepatan di bawah 150ms dapat menyebabkan masalah lag suara.",
     "digitExplanation": "Menetapkan jumlah maksimum digit untuk setiap angka dalam masalah (mis., 3 digit = angka hingga 999).",
     "questionsExplanation": "Menentukan berapa banyak angka yang akan muncul dalam setiap sesi latihan.",

@@ -24,7 +24,7 @@
   },
   "settings": {
     "title": "Sozlamalar",
-    "shuffle": "Aralashtirish",
+    "shuffle": "Raqam",
     "onlyPluses": "Faqat qo'shish",
     "speed": "Tezlik",
     "digit": "Raqam",
@@ -35,7 +35,7 @@
     "explanationTitle": "Sozlamalar qo'llanmasi",
     "explanationDesc": "Quyida har bir sozlama opsiyasi haqida o'rganing",
     "onlyPlusesExplanation": "Yoqilganda, faqat qo'shish masalalari yaratiladi. O'chirilganda, qo'shish va ayirish masalalari kiritiladi.",
-    "shuffleExplanation": "Har bir masaladagi raqamlar tartibini tasodifiy o'zgartirib, qiyinchilikni oshiradi va namuna eslab qolishni oldini oladi.",
+    "shuffleExplanation": "Har bir raqamda xona pozitsiyalarini tasodifiy aralashtiradi. Maksimal sozlamadan kamroq xonali raqamlar ham paydo bo'ladi, maksimal xonaga yaqinroq raqamlar ko'proq chiqadi.",
     "speedExplanation": "Takrorlanish oqimi davomida har bir raqam ko'rinish tezligini boshqaradi. Sekin tezlik har bir raqamni qayta ishlash uchun ko'proq vaqt beradi. 150ms dan past tezlik ovoz kechikish muammolariga olib kelishi mumkin.",
     "digitExplanation": "Masalalardagi har bir raqamning maksimal raqamlar sonini belgilaydi (masalan, 3 raqam = 999 gacha raqamlar).",
     "questionsExplanation": "Har bir mashq seansida paydo bo'ladigan raqamlar sonini aniqlaydi.",

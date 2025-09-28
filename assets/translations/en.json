@@ -24,7 +24,7 @@
   },
   "settings": {
     "title": "Settings",
-    "shuffle": "Shuffle",
+    "shuffle": "Digits",
     "onlyPluses": "Only pluses",
     "speed": "Speed",
     "digit": "Digit",
@@ -35,7 +35,7 @@
     "explanationTitle": "Settings Guide",
     "explanationDesc": "Learn about each setting option below",
     "onlyPlusesExplanation": "When enabled, only addition problems will be generated. When disabled, both addition and subtraction problems are included.",
-    "shuffleExplanation": "Randomly changes the order of digits in each problem to increase difficulty and prevent pattern memorization.",
+    "shuffleExplanation": "Randomly mixes the digit positions within each number. Numbers with fewer digits than the maximum setting will also appear, with higher frequency for numbers closer to the maximum digit setting.",
     "speedExplanation": "Controls how fast each number appears during the iteration flow. Slower speeds give more time to process each number. Speeds under 150ms may cause sound lag issues.",
     "digitExplanation": "Sets the maximum number of digits for each number in the problems (e.g., 3 digits = numbers up to 999).",
     "questionsExplanation": "Determines how many numbers will appear in each practice session.",

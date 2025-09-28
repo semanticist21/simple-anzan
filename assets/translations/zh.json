@@ -24,7 +24,7 @@
   },
   "settings": {
     "title": "设置",
-    "shuffle": "随机排列",
+    "shuffle": "位数混合",
     "onlyPluses": "仅加法",
     "speed": "速度",
     "digit": "位数",
@@ -35,7 +35,7 @@
     "explanationTitle": "设置指南",
     "explanationDesc": "了解下面每个设置选项",
     "onlyPlusesExplanation": "启用时，只生成加法题目。禁用时，加法和减法题目都会包含在内。",
-    "shuffleExplanation": "随机改变每道题目中数字的顺序，增加难度并防止模式记忆。",
+    "shuffleExplanation": "随机混合每个数字内的位数位置。位数少于最大设置的数字也会出现，接近最大位数设置的数字出现频率更高。",
     "speedExplanation": "控制迭代流程中每个数字出现的速度。较慢的速度给处理每个数字更多时间。低于150毫秒的速度可能导致声音延迟问题。",
     "digitExplanation": "设置题目中每个数字的最大位数（例如：3位数 = 最大999的数字）。",
     "questionsExplanation": "确定每次练习会话中将出现多少个数字。",
