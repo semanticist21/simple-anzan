@@ -104,17 +104,21 @@ class _ProbMultiplyListState extends State<ProbMultiplyList> {
                                   ? formatter.format(widget.numList[index].item1 * widget.numList[index].item2)
                                   : formatter.format(widget.numList[index].item1 / widget.numList[index].item2);
 
+                              final borderColor = isCurrentAnswer
+                                  ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.2)
+                                  : Theme.of(context).colorScheme.outline.withValues(alpha: 0.1);
+
                               return Container(
                                 padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
                                   color: isCurrentAnswer
                                       ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.08)
                                       : Theme.of(context).colorScheme.surface,
-                                  border: Border.all(
-                                    color: isCurrentAnswer
-                                        ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.2)
-                                        : Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
-                                    width: 1,
+                                  border: Border(
+                                    top: index == 0 ? BorderSide(color: borderColor, width: 1) : BorderSide.none,
+                                    left: BorderSide(color: borderColor, width: 1),
+                                    right: BorderSide(color: borderColor, width: 1),
+                                    bottom: BorderSide(color: borderColor, width: 1),
                                   ),
                                   borderRadius: BorderRadius.circular(0),
                                 ),
