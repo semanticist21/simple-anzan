@@ -107,9 +107,13 @@ class SpecificPref extends PreferenceInterface<EnumType, ValueType> {
 **Android Platform**:
 
 - Targets Android 15 (API 35) with 16KB page size compliance
-- Package: com.kobbokkom.abacus_simple_anzan
+- Package: com.kobbokkom.abacus_simple_anzan (Android - 이미 출시됨)
 - Kotlin-based MainActivity integration
 - ProGuard enabled for release builds
+
+**iOS Platform**:
+
+- Bundle ID: com.kobbokkom.abacussimpleanzan (iOS - 새로 출시 예정)
 
 ### Theme System
 
