@@ -33,8 +33,8 @@ class SoundOptionHandler {
       // Android uses OGG files
       beepAsset = 'assets/beep_new.ogg';
     } else if (Platform.isIOS) {
-      // iOS uses M4A files
-      beepAsset = 'assets/beep_new.m4a';
+      // iOS uses WAV files
+      beepAsset = 'assets/beep_new.wav';
     } else {
       // Fallback to WAV
       beepAsset = 'assets/beep_new.wav';
