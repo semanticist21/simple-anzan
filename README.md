@@ -1,7 +1,7 @@
 # abacus_simple_anzan
 
 Simple flash anzan app.
-version 3.0.6.
+version 4.0.0.
 
 App market url: [https://play.google.com/store/apps/details?id=com.kobbokkom.abacussimpleanzan](https://play.google.com/store/apps/details?id=com.kobbokkom.abacus_simple_anzan)
 
