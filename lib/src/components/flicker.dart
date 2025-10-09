@@ -70,26 +70,48 @@ class _FlickerState extends State<Flicker> {
       );
     }
 
-    return _number.length > 6
+    // Split number into sign and digits for alignment
+    String displayNumber = _number.trim();
+    bool isNegative = displayNumber.startsWith('-');
+    String signText = isNegative ? '-' : '';
+    String numberText = isNegative ? displayNumber.substring(1) : displayNumber;
+
+    Widget numberWidget = Transform.translate(
+      offset: const Offset(-25, 0), // Move left by half of sign box width (50/2 = 25)
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Fixed width sign box - ensures consistent alignment
+          SizedBox(
+            width: 50,
+            child: Text(
+              signText,
+              style: _getMainNumberTextStyle(),
+              textAlign: TextAlign.right,
+            ),
+          ),
+          // Number text (without sign)
+          Text(
+            numberText,
+            style: _getMainNumberTextStyle(),
+          ),
+        ],
+      ),
+    );
+
+    return _number.length > 5
         ? FittedBox(
             fit: BoxFit.contain,
             child: Padding(
               padding: const EdgeInsets.only(right: 15.0),
-              child: Text(
-                _number,
-                style: _getMainNumberTextStyle(),
-                textAlign: TextAlign.left,
-              ),
+              child: numberWidget,
             ))
-        : FittedBox(
-            fit: BoxFit.contain,
+        : Container(
+            alignment: Alignment.center,
             child: Padding(
               padding: const EdgeInsets.only(right: 15.0),
-              child: Text(
-                _number,
-                style: _getMainNumberTextStyle(),
-                textAlign: TextAlign.left,
-              ),
+              child: numberWidget,
             ),
           );
   }
@@ -208,14 +230,7 @@ class _FlickerState extends State<Flicker> {
         break;
       }
 
-      var str = '';
-
-      if (questions[i] > 0) {
-        var parsedStr = questions[i].toString();
-        str = '\t$parsedStr\t';
-      } else {
-        str = '${questions[i].toString()}\t';
-      }
+      var str = questions[i].toString();
 
       _optManager.soundOption.playSound();
       if (_stateProvider.state == ButtonState.iterationCompleted) {
@@ -260,8 +275,7 @@ class _FlickerState extends State<Flicker> {
 
   void _showAnswer() {
     setState(() {
-      _number =
-          _answer == '' ? '' : '\t${formatter.format(int.parse(_answer))}\t';
+      _number = _answer == '' ? '' : formatter.format(int.parse(_answer));
     });
   }
 

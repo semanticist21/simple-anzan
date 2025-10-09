@@ -71,7 +71,7 @@ Implements a sophisticated preference interface system:
 
 - `SettingsManager` - Manages addition mode preferences (digit, speed, questions, etc.)
 - `SettingsMultiplyManager` - Manages multiplication mode preferences
-- `OptionManager` - Manages global app options (theme, sound)
+- `OptionManager` - Manages global app options (theme, sound, color palette)
 
 **Preference Classes** follow pattern:
 
@@ -81,20 +81,70 @@ class SpecificPref extends PreferenceInterface<EnumType, ValueType> {
 }
 ```
 
+### Theme System Architecture
+
+**Color Palette System** (`lib/src/settings/option/`):
+
+The app uses a shadcn-inspired color palette system with 6 themes:
+- Blue (default) - Material blue
+- Green - shadcn green-600 (darker green for better visibility)
+- Sky - shadcn sky-500
+- Yellow - shadcn yellow-500
+- Violet - shadcn violet-500
+- Slate - shadcn slate-500 (grey tone)
+
+**Theme Management**:
+- `ThemeSelector` - Manages theme state with reactive stream-based updates
+- Supports light/dark mode switching via `isDark` boolean and `isDarkStream`
+- Color palette switching via `currentPalette` and `colorPaletteStream`
+- `getFlickerTextColor(BuildContext)` utility - Returns black text for default theme in light mode, primary color otherwise (special handling for number display readability)
+
+**Theme Picker** (`lib/src/dialog/theme_color_picker.dart`):
+- Uses flutter_colorpicker's BlockPicker for color selection
+- Shows "기본" (default) badge on blue theme with check icon overlay
+- Immediate color application without confirm dialog
+- Supports all 9 languages for theme picker labels
+
+### Flicker Component Architecture
+
+The `Flicker` and `FlickerMultiply` components are the core number display widgets:
+
+**Responsibilities**:
+- Display numbers during iteration with timed intervals
+- Handle countdown notifications before starting
+- Manage burning mode cycles (infinite iteration)
+- Apply dynamic font sizing based on digit count (1-5 static, 6-9 scaled)
+- Integrate with sound system for audio feedback
+
+**State Integration**:
+- Listens to StateProvider for button state changes
+- Uses Timer for burning mode scheduling (2s answer display, 3s before next)
+- Properly cleans up listeners and timers in dispose()
+
+**Styling**:
+- Uses Google Fonts (Gamja Flower) for handwritten feel
+- Dynamic font sizing prevents overflow for large numbers
+- Theme-aware text color via `ThemeSelector.getFlickerTextColor()`
+
 ### Internationalization Architecture
 
 - Uses easy_localization with JSON translation files in `assets/translations/`
 - Supports 9 languages: English (en), Korean (ko), Japanese (ja), Uzbek (uz), Burmese (my), French (fr), Arabic (ar), Indonesian (id), Chinese (zh)
 - Fallback locale is English
-- Translation keys follow hierarchical structure (e.g., `settings.speed`, `buttons.start`)
+- Translation keys follow hierarchical structure (e.g., `settings.speed`, `buttons.start`, `themePicker.default`)
 - Language selector available in settings pages (tabs 1 and 3) with flag icons
+
+**Important**: When adding or modifying UI text, ALL 9 language translations must be updated simultaneously. The Korean note at the end of this file emphasizes this requirement.
 
 ### Audio System Architecture
 
 - Uses flutter_soloud for high-performance, low-latency audio playback
 - Managed through `SoundOptionHandler` with reactive streams
-- Platform-optimized audio formats (OGG/M4A/WAV)
-- Global sound toggle with persistence
+- Platform-optimized audio formats:
+  - Desktop/iOS: `beep_new.wav`
+  - Android: `beep_new.ogg`
+  - Countdown: `notify_compress.mp3`
+- Global sound toggle with persistence via `OptionManager.setSoundBool()`
 
 ### Platform-Specific Features
 
@@ -120,13 +170,6 @@ class SpecificPref extends PreferenceInterface<EnumType, ValueType> {
 
 - Bundle ID: com.kobbokkom.abacussimpleanzan (iOS - 새로 출시 예정)
 
-### Theme System
-
-- Dual theme support (light/dark) via `ThemeSelector`
-- Reactive theme switching with stream-based updates
-- Platform-appropriate styling with Material Design 3
-- Custom toggle switches with gradient animations
-
 ## Key Directories
 
 ### Core Structure
@@ -144,7 +187,7 @@ class SpecificPref extends PreferenceInterface<EnumType, ValueType> {
   - `Interface/` - Generic preference interfaces
   - `plus_pref/` - Addition mode preferences
   - `multiply_prefs/` - Multiplication mode preferences
-  - `option/` - Global app options
+  - `option/` - Global app options (theme, sound, color palette)
 - `lib/src/components/` - Reusable UI components (flickers, containers, dropdowns)
 - `lib/src/dialog/` - Modal dialogs and popups
 - `lib/src/model/` - Data models for presets and save data
@@ -186,8 +229,8 @@ class SpecificPref extends PreferenceInterface<EnumType, ValueType> {
 
 - `flutter_soloud: ^3.3.6` - High-performance audio system
 - `animated_toggle_switch: ^0.8.3` - Custom toggle controls
-- `flutter_colorpicker: ^1.1.0` - Color selection widgets
-- `google_fonts: ^6.2.1` - Typography system
+- `flutter_colorpicker: ^1.1.0` - Color selection widgets (BlockPicker for theme picker)
+- `google_fonts: ^6.2.1` - Typography system (uses Gamja Flower for numbers)
 
 ### Platform Support
 
@@ -201,7 +244,7 @@ class SpecificPref extends PreferenceInterface<EnumType, ValueType> {
 
 Both calculation modes use finite state machines:
 
-```mermaid
+```
 iterationNotStarted → iterationStarted → iterationCompleted → iterationNotStarted
 ```
 
@@ -211,7 +254,8 @@ State changes trigger UI updates for button visibility, text, and available acti
 
 - Special infinite iteration mode that bypasses normal completion
 - Mode-specific implementation in both addition and multiplication providers
-- Visual indicators and different button behaviors when active
+- Automatic cycling with timers: 2s answer display → 3s delay → next problem
+- Visual indicators (fire icon) and different button behaviors when active
 
 ### Preset System
 
@@ -227,5 +271,14 @@ State changes trigger UI updates for button visibility, text, and available acti
 - Automatic state reset to iterationNotStarted when switching tabs after completion
 - 500ms delay after tab navigation for smooth transitions
 - State checking occurs in `_onTap` method to prevent mid-calculation interruptions
+
+### Theme Color Integration
+
+When modifying theme-related features:
+
+1. Color definitions go in `ThemeSelector.getPrimaryColor()` with separate light/dark values
+2. Theme picker colors must match exactly in `theme_color_picker.dart` availableColors
+3. Color-to-palette mapping in `main.dart` _updateThemeColor() must be synchronized
+4. Special text color handling for flicker components uses `ThemeSelector.getFlickerTextColor()`
 
 문구 수정 시 반드시 모든 언어 번역에 대해 진행할 것.

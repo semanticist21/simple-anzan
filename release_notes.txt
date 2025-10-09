@@ -1,195 +1,342 @@
 <en-US>
-- Fixed shuffle feature translations across all supported languages to correctly describe digit position shuffling.
+- Fixed number container font
+- Added theme selection
+- Improved Android 15 compatibility
+- Improved text alignment for negative values
 </en-US>
 
 <af>
-- Skudding-funksie vertalings regoor alle ondersteunde tale geregmaak om syferposisie-skudding korrek te beskryf.
+- Nommer houerlettertipe reggestel
+- Tema-keuse bygevoeg
+- Android 15 verenigbaarheid verbeter
+- Teksbelyning vir negatiewe waardes verbeter
 </af>
 
 <am>
-- የደቂቃ ቦታ ወርወራ አሳላ አግባብ ለማስጌድ በሁሉም የሚደገፉ ቋንቋዎች የወርወራ ተግባር ትርጉሞች ተስተካክለዋል።
+- የቁጥር ማሳያ ቅርጸ-ቁምፊ ተስተካክሏል
+- የገጽታ ምርጫ ታክሏል
+- Android 15 ተኳኋኝነት ተሻሽሏል
+- ለአሉታዊ እሴቶች የጽሑፍ አሰላለፍ ተሻሽሏል
 </am>
 
 <ar>
-- تم إصلاح ترجمات ميزة الخلط في جميع اللغات المدعومة لوصف خلط مواضع الأرقام بشكل صحيح.
+- تم إصلاح خط حاوية الأرقام
+- تمت إضافة اختيار السمة
+- تحسين التوافق مع Android 15
+- تحسين محاذاة النص للقيم السالبة
 </ar>
 
 <bg>
-- Поправени са преводите на функцията за разбъркване във всички поддържани езици, за да описват правилно разбъркването на цифрови позиции.
+- Поправен шрифт на контейнера за числа
+- Добавен избор на тема
+- Подобрена съвместимост с Android 15
+- Подобрено подравняване на текста за отрицателни стойности
 </bg>
 
 <ca>
-- S'han corregit les traduccions de la funció de barreig en tots els idiomes compatibles per descriure correctament el barreig de posicions de dígits.
+- S'ha corregit la font del contenidor de números
+- S'ha afegit selecció de tema
+- S'ha millorat la compatibilitat amb Android 15
+- S'ha millorat l'alineació del text per a valors negatius
 </ca>
 
 <cs-CZ>
-- Opraveny překlady funkce míchání ve všech podporovaných jazycích pro správný popis míchání pozic číslic.
+- Opraven font kontejneru čísel
+- Přidán výběr motivu
+- Vylepšena kompatibilita s Android 15
+- Vylepšeno zarovnání textu pro záporné hodnoty
 </cs-CZ>
 
 <da-DK>
-- Rettet blandingsfunktions oversættelser på tværs af alle understøttede sprog for korrekt at beskrive cifferpositionsblanding.
+- Rettet nummerbeholder-skrifttype
+- Tilføjet temavalg
+- Forbedret Android 15 kompatibilitet
+- Forbedret tekstjustering for negative værdier
 </da-DK>
 
 <de-DE>
-- Mischfunktionsübersetzungen in allen unterstützten Sprachen korrigiert, um Ziffernpositions-Mischung korrekt zu beschreiben.
+- Schriftart des Zahlencontainers korrigiert
+- Themenauswahl hinzugefügt
+- Android 15 Kompatibilität verbessert
+- Textausrichtung für negative Werte verbessert
 </de-DE>
 
 <el-GR>
-- Διορθώθηκαν οι μεταφράσεις της λειτουργίας ανακάτεμα σε όλες τις υποστηριζόμενες γλώσσες για σωστή περιγραφή του ανακατέματος θέσεων ψηφίων.
+- Διορθώθηκε η γραμματοσειρά του δοχείου αριθμών
+- Προστέθηκε επιλογή θέματος
+- Βελτιώθηκε η συμβατότητα με Android 15
+- Βελτιώθηκε η στοίχιση κειμένου για αρνητικές τιμές
 </el-GR>
 
 <en-GB>
-- Fixed shuffle feature translations across all supported languages to correctly describe digit position shuffling.
+- Fixed number container font
+- Added theme selection
+- Improved Android 15 compatibility
+- Improved text alignment for negative values
 </en-GB>
 
 <es-419>
-- Se corrigieron las traducciones de la función de mezcla en todos los idiomas compatibles para describir correctamente la mezcla de posiciones de dígitos.
+- Se corrigió la fuente del contenedor de números
+- Se agregó selección de tema
+- Se mejoró la compatibilidad con Android 15
+- Se mejoró la alineación del texto para valores negativos
 </es-419>
 
 <es-ES>
-- Se han corregido las traducciones de la función de mezcla en todos los idiomas compatibles para describir correctamente la mezcla de posiciones de dígitos.
+- Se ha corregido la fuente del contenedor de números
+- Se ha añadido selección de tema
+- Se ha mejorado la compatibilidad con Android 15
+- Se ha mejorado la alineación del texto para valores negativos
 </es-ES>
 
 <et>
-- Segamisfunktsiooni tõlked on parandatud kõigis toetatud keeltes, et kirjeldada numbrikohtade segamist õigesti.
+- Numbrite konteineri font parandatud
+- Teema valik lisatud
+- Android 15 ühilduvus täiustatud
+- Teksti joondus negatiivsete väärtuste jaoks täiustatud
 </et>
 
 <fa>
-- ترجمه‌های ویژگی اختلاط در تمام زبان‌های پشتیبانی شده برای توصیف صحیح اختلاط موقعیت ارقام اصلاح شد.
+- فونت ظرف اعداد اصلاح شد
+- انتخاب پوسته اضافه شد
+- سازگاری با Android 15 بهبود یافت
+- تراز متن برای مقادیر منفی بهبود یافت
 </fa>
 
 <fi-FI>
-- Sekoitustoiminnon käännökset korjattu kaikilla tuetuilla kielillä kuvaamaan numero-asemien sekoitusta oikein.
+- Numeroiden säiliön fontti korjattu
+- Teemavalinta lisätty
+- Android 15 yhteensopivuus parannettu
+- Tekstin tasaus negatiivisille arvoille parannettu
 </fi-FI>
 
 <fr-CA>
-- Corrigé les traductions de la fonction de mélange dans toutes les langues supportées pour décrire correctement le mélange des positions de chiffres.
+- Corrigé la police du conteneur de nombres
+- Ajouté la sélection de thème
+- Amélioré la compatibilité avec Android 15
+- Amélioré l'alignement du texte pour les valeurs négatives
 </fr-CA>
 
 <fr-FR>
-- Corrigé les traductions de la fonction de mélange dans toutes les langues supportées pour décrire correctement le mélange des positions de chiffres.
+- Corrigé la police du conteneur de nombres
+- Ajouté la sélection de thème
+- Amélioré la compatibilité avec Android 15
+- Amélioré l'alignement du texte pour les valeurs négatives
 </fr-FR>
 
 <hi-IN>
-- सभी समर्थित भाषाओं में शफल फीचर के अनुवाद को अंक स्थिति के शफल को सही वर्णन करने के लिए ठीक किया गया।
+- संख्या कंटेनर फ़ॉन्ट को ठीक किया गया
+- थीम चयन जोड़ा गया
+- Android 15 संगतता में सुधार किया गया
+- ऋणात्मक मानों के लिए पाठ संरेखण में सुधार किया गया
 </hi-IN>
 
 <hr>
-- Ispravke prijevoda funkcije mišanja u svim podržanim jezicima za ispravno opisivanje mišanja pozicija znamenaka.
+- Ispravljeno pismo kontejnera brojeva
+- Dodan odabir teme
+- Poboljšana kompatibilnost s Android 15
+- Poboljšano poravnanje teksta za negativne vrijednosti
 </hr>
 
 <hu-HU>
-- Keverési funkció fordításainak javítása minden támogatott nyelven a számjegy-pozíciók keverésének helyes leírása érdekében.
+- Javítva a számmegjelenítő betűtípus
+- Hozzáadva a témaválasztás
+- Javítva az Android 15 kompatibilitás
+- Javítva a szöveg igazítása negatív értékek esetén
 </hu-HU>
 
 <id>
-- Diperbaiki terjemahan fitur pengacakan di semua bahasa yang didukung untuk mendeskripsikan pengacakan posisi digit dengan benar.
+- Diperbaiki font wadah angka
+- Ditambahkan pemilihan tema
+- Ditingkatkan kompatibilitas Android 15
+- Ditingkatkan perataan teks untuk nilai negatif
 </id>
 
 <it-IT>
-- Corrette le traduzioni della funzione di mescolamento in tutte le lingue supportate per descrivere correttamente il mescolamento delle posizioni delle cifre.
+- Corretto il font del contenitore dei numeri
+- Aggiunta selezione del tema
+- Migliorata la compatibilità con Android 15
+- Migliorato l'allineamento del testo per i valori negativi
 </it-IT>
 
 <iw-IL>
-- תוקנו תרגומי תכונת הערבוב בכל השפות הנתמכות כדי לתאר נכון ערבוב מיקומי ספרות.
+- תוקן גופן מיכל המספרים
+- נוספה בחירת ערכת נושא
+- שופר התאימות ל-Android 15
+- שופר יישור הטקסט עבור מספרים שליליים
 </iw-IL>
 
 <ja-JP>
-- 全ての対応言語でシャッフル機能の翻訳を修正し、桁位置のシャッフルを正確に記述するようにしました。
+- 数字コンテナのフォントを修正
+- テーマ選択を追加
+- Android 15の互換性を向上
+- 負の値のテキスト配置を改善
 </ja-JP>
 
 <ko-KR>
-- 모든 지원 언어에서 자릿수 섞기 기능의 번역을 수정하여 자릿수 위치 섞기를 정확히 설명하도록 했습니다.
+- 숫자 컨테이너 폰트 수정
+- 테마 선택 추가
+- 안드로이드15 호환성 향상
+- 음수 값 표출시 글자 위치 개선
 </ko-KR>
 
 <lt>
-- Išmaišymo funkcijos vertimai ištaisyti visose palaikomose kalbose, kad teisingai aprašytų skaitmenų pozicijų išmaišymą.
+- Pataisytas skaičių konteinerio šriftas
+- Pridėtas temos pasirinkimas
+- Pagerintas Android 15 suderinamumas
+- Pagerintas teksto lygiavimas neigiamoms reikšmėms
 </lt>
 
 <lv>
-- Sajaukšanas funkcijas tulkojumi ir izlaboti visās atbalstītajās valodās, lai pareizi aprakstītu ciparu pozīciju sajaukšanu.
+- Izlabots skaitļu konteinera fonts
+- Pievienota tēmas izvēle
+- Uzlabota Android 15 saderība
+- Uzlabota teksta izlīdzināšana negatīvām vērtībām
 </lv>
 
 <ms>
-- Diperbaiki terjemahan ciri pengacakan dalam semua bahasa yang disokong untuk menerangkan pengacakan kedudukan digit dengan betul.
+- Diperbaiki fon bekas nombor
+- Ditambahkan pemilihan tema
+- Ditingkatkan keserasian Android 15
+- Ditingkatkan penjajaran teks untuk nilai negatif
 </ms>
 
 <nl-NL>
-- Vertalingen van de schuffelfunctie gecorrigeerd in alle ondersteunde talen om cijferpositie-schuffeling correct te beschrijven.
+- Lettertype van nummercontainer gecorrigeerd
+- Themaselectie toegevoegd
+- Android 15 compatibiliteit verbeterd
+- Tekstuitlijning voor negatieve waarden verbeterd
 </nl-NL>
 
 <no-NO>
-- Rettet blandingsfunksjons oversettelser på tvers av alle støttede språk for riktig å beskrive sifferposisjonsblanding.
+- Rettet tallbeholder-skrift
+- Lagt til temavalg
+- Forbedret Android 15 kompatibilitet
+- Forbedret tekstjustering for negative verdier
 </no-NO>
 
 <pl-PL>
-- Naprawiono tłumaczenia funkcji mieszania we wszystkich obsługiwanych językach, aby poprawnie opisywać mieszanie pozycji cyfr.
+- Naprawiono czcionkę kontenera liczb
+- Dodano wybór motywu
+- Poprawiono kompatybilność z Android 15
+- Poprawiono wyrównanie tekstu dla wartości ujemnych
 </pl-PL>
 
 <pt-BR>
-- Corrigidas as traduções da função de embaralhamento em todos os idiomas suportados para descrever corretamente o embaralhamento de posições de dígitos.
+- Corrigida a fonte do contêiner de números
+- Adicionada seleção de tema
+- Melhorada a compatibilidade com Android 15
+- Melhorado o alinhamento de texto para valores negativos
 </pt-BR>
 
 <pt-PT>
-- Corrigidas as traduções da função de embaralhamento em todos os idiomas suportados para descrever corretamente o embaralhamento de posições de dígitos.
+- Corrigido o tipo de letra do contentor de números
+- Adicionada seleção de tema
+- Melhorada a compatibilidade com Android 15
+- Melhorado o alinhamento de texto para valores negativos
 </pt-PT>
 
 <ro>
-- Corectat traducările funcției de amestec în toate limbile suportate pentru a descrie corect amestecul pozițiilor cifrelor.
+- Corectat fontul containerului de numere
+- Adăugată selecția temei
+- Îmbunătățită compatibilitatea cu Android 15
+- Îmbunătățită alinierea textului pentru valori negative
 </ro>
 
 <ru-RU>
-- Исправлены переводы функции перемешивания во всех поддерживаемых языках для правильного описания перемешивания позиций цифр.
+- Исправлен шрифт контейнера чисел
+- Добавлен выбор темы
+- Улучшена совместимость с Android 15
+- Улучшено выравнивание текста для отрицательных значений
 </ru-RU>
 
 <sk>
-- Opravené preklady funkcie miešania vo všetkých podporovaných jazykoch pre správny opis miešania pozícií číslic.
+- Opravené písmo kontajnera čísel
+- Pridaný výber motívu
+- Vylepšená kompatibilita s Android 15
+- Vylepšené zarovnanie textu pre záporné hodnoty
 </sk>
 
 <sl>
-- Popravljeni prevodi funkcije mešanja v vseh podprtih jezikih za pravilno opisovanje mešanja pozicij številk.
+- Popravljena pisava vsebnika številk
+- Dodana izbira teme
+- Izboljšana združljivost z Android 15
+- Izboljšana poravnava besedila za negativne vrednosti
 </sl>
 
 <sr>
-- Исправљени преводи функције мешања у свим подржаним језицима за правилан опис мешања позиција цифара.
+- Исправљен фонт контејнера бројева
+- Додат избор теме
+- Побољшана компатибилност са Android 15
+- Побољшано поравнање текста за негативне вредности
 </sr>
 
 <sv-SE>
-- Korrigerat blandningsfunktions översättningar i alla stödda språk för att korrekt beskriva sifferpositioning.
+- Korrigerat nummerbehållarens typsnitt
+- Lagt till temaval
+- Förbättrad Android 15 kompatibilitet
+- Förbättrad textjustering för negativa värden
 </sv-SE>
 
 <sw>
-- Imetatuliwa tafsiri za kipengele cha kuchanganya katika lugha zote zinazotumika ili kuelezea kwa usahihi mchanganyiko wa nafasi za nambari.
+- Imetengenezwa fonti ya chombo cha nambari
+- Imeongezwa uchaguzi wa mandhari
+- Imeboreshwa uendanishaji wa Android 15
+- Imeboreshwa upangaji wa maandishi kwa thamani hasi
 </sw>
 
 <th>
-- แก้ไขการแปลฟีเจอร์สับเปลี่ยนในทุกภาษาที่รองรับเพื่ออธิบายการสับเปลี่ยนตำแหน่งตัวเลขอย่างถูกต้อง
+- แก้ไขฟอนต์ของกล่องตัวเลข
+- เพิ่มการเลือกธีม
+- ปรับปรุงความเข้ากันได้กับ Android 15
+- ปรับปรุงการจัดตำแหน่งข้อความสำหรับค่าลบ
 </th>
 
 <tr-TR>
-- Rakam konumu karıştırmasını doğru tanımlamak için desteklenen tüm dillerde karıştırma özelliği çevirileri düzeltildi.
+- Sayı kapsayıcı yazı tipi düzeltildi
+- Tema seçimi eklendi
+- Android 15 uyumluluğu iyileştirildi
+- Negatif değerler için metin hizalaması iyileştirildi
 </tr-TR>
 
 <uk>
-- Виправлено переклади функції перемішування в усіх підтримуваних мовах для правильного опису перемішування позицій цифр.
+- Виправлено шрифт контейнера чисел
+- Додано вибір теми
+- Покращено сумісність з Android 15
+- Покращено вирівнювання тексту для від'ємних значень
 </uk>
 
 <vi>
-- Đã sửa lỗi bản dịch tính năng xáo trộn trong tất cả các ngôn ngữ được hỗ trợ để mô tả đúng cách xáo trộn vị trí chữ số.
+- Đã sửa phông chữ vùng chứa số
+- Đã thêm lựa chọn chủ đề
+- Cải thiện khả năng tương thích Android 15
+- Cải thiện căn chỉnh văn bản cho giá trị âm
 </vi>
 
 <zh-CN>
-- 修复了所有支持语言中随机打乱功能的翻译，以正确描述数字位置的打乱。
+- 修复数字容器字体
+- 添加主题选择
+- 改进Android 15兼容性
+- 改进负数值的文本对齐
 </zh-CN>
 
 <zh-HK>
-- 修正了所有支援語言中亂數功能的翻譯，以正確描述數字位置的亂數。
+- 修正數字容器字型
+- 新增主題選擇
+- 改善Android 15相容性
+- 改善負數值的文字對齊
 </zh-HK>
 
 <zh-TW>
-- 修正了所有支援語言中亂數功能的翻譯，以正確描述數字位置的亂數。
+- 修正數字容器字型
+- 新增主題選擇
+- 改善Android 15相容性
+- 改善負數值的文字對齊
 </zh-TW>
 
 <zu>
-- Kululungisiwe ukuhumusha kwesici sokuxubangana kuzo zonke izilimi ezisekelwayo ukuze kuchazwe kahle ukuxubangana kwezindawo zezinombolo.
+- Kulungiswe ifonti yesiqukathi sezinombolo
+- Kwengezwe ukukhetha itimu
+- Kwenziwe ngcono ukuhambisana ne-Android 15
+- Kwenziwe ngcono ukulungiswa kombhalo wezinombolo ezingaphansi kuka-zero
 </zu>
