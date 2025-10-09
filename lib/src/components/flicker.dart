@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 import 'package:universal_io/io.dart';
 import 'dart:async';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../functions/functions.dart';
 import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
@@ -338,14 +339,15 @@ class _FlickerState extends State<Flicker> {
     }
 
     var titleLarge = Theme.of(context).textTheme.titleLarge;
+    var color = titleLarge?.color ?? Theme.of(context).colorScheme.onSurface;
 
-    if (titleLarge == null) {
-      return TextStyle(fontSize: fontSize, fontStyle: FontStyle.italic);
-    }
-
-    return Platform.isWindows
-        ? titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontSize)
-        : titleLarge.copyWith(fontStyle: FontStyle.italic, fontSize: fontSize);
+    // Use Gamja Flower font for natural handwritten feel
+    return GoogleFonts.gamjaFlower(
+      fontSize: fontSize,
+      fontWeight: FontWeight.normal,
+      fontStyle: FontStyle.italic,
+      color: color,
+    );
   }
 
   Future<void> _doCountDown() async {

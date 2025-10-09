@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Simple Anzan App - A Flutter-based mental math training application for practicing addition and multiplication calculations (abacus-style). The app supports multiple platforms: Android, iOS, Windows, macOS, Linux, and Web.
 
-Current version: 4.0.0+61
+Current version: 4.0.7+67
 
 ## Development Commands
 
@@ -84,9 +84,10 @@ class SpecificPref extends PreferenceInterface<EnumType, ValueType> {
 ### Internationalization Architecture
 
 - Uses easy_localization with JSON translation files in `assets/translations/`
-- Supports English, Korean, and Japanese (`en.json`, `ko.json`, `ja.json`)
+- Supports 9 languages: English (en), Korean (ko), Japanese (ja), Uzbek (uz), Burmese (my), French (fr), Arabic (ar), Indonesian (id), Chinese (zh)
 - Fallback locale is English
 - Translation keys follow hierarchical structure (e.g., `settings.speed`, `buttons.start`)
+- Language selector available in settings pages (tabs 1 and 3) with flag icons
 
 ### Audio System Architecture
 
@@ -100,16 +101,20 @@ class SpecificPref extends PreferenceInterface<EnumType, ValueType> {
 **Windows Platform**:
 
 - Window management via window_manager (minimum 1024x768, default 400x600)
-- Custom error logging to `errors.txt` file
+- Custom error logging to `errors.txt` in current directory via FlutterError.onError handler
 - ExitWatcher wrapper for proper app lifecycle management
 - Windows-specific toolbar options (preset management, fast settings)
+- SQLite database initialization required (sqflite_common_ffi)
 
 **Android Platform**:
 
-- Targets Android 15 (API 35) with 16KB page size compliance
-- Package: com.kobbokkom.abacus_simple_anzan (Android - 이미 출시됨)
-- Kotlin-based MainActivity integration
-- ProGuard enabled for release builds
+- Targets Android 15 (API 35, compileSDK 36) with 16KB page size compliance
+- Package: com.kobbokkom.abacus_simple_anzan
+- Kotlin-based MainActivity integration (Java 11 target)
+- ProGuard enabled for release builds with resource shrinking
+- MultiDex enabled
+- Debug symbols: FULL level for Play Console crash diagnostics
+- NDK filters: armeabi-v7a, arm64-v8a, x86_64
 
 **iOS Platform**:
 
@@ -150,14 +155,18 @@ class SpecificPref extends PreferenceInterface<EnumType, ValueType> {
 
 ### Configuration
 
-- `pubspec.yaml` - Dependencies and app metadata (version 4.0.0+61)
+- `pubspec.yaml` - Dependencies and app metadata (version 4.0.7+67)
 - `analysis_options.yaml` - Flutter linting configuration using flutter_lints
 - `android/app/build.gradle` - Android build settings (API 35, 16KB page support)
 
 ### Assets & Localization
 
 - `assets/icon.png` - Source icon for multi-platform generation
-- `assets/translations/` - JSON translation files (en/ko/ja)
+- `assets/icon_48.png` - Windows-specific icon (48x48)
+- `assets/translations/` - JSON translation files (9 languages: en/ko/ja/uz/my/fr/ar/id/zh)
+- `assets/beep_new.wav` - Desktop/iOS beep sound
+- `assets/beep_new.ogg` - Android beep sound
+- `assets/notify_compress.mp3` - Countdown notification sound
 - Flutter app icons configured for all platforms via flutter_launcher_icons
 
 ### Database
@@ -192,7 +201,7 @@ class SpecificPref extends PreferenceInterface<EnumType, ValueType> {
 
 Both calculation modes use finite state machines:
 
-```
+```mermaid
 iterationNotStarted → iterationStarted → iterationCompleted → iterationNotStarted
 ```
 
@@ -209,3 +218,12 @@ State changes trigger UI updates for button visibility, text, and available acti
 - JSON serialization for preset configurations
 - Cross-mode preset management with dedicated list dialogs
 - Platform-specific fast-setting dialogs for quick configuration
+- SQLite storage for Windows platform (preset.db in save/ directory)
+- Two separate tables: `add_presets` for addition, `multiply_presets` for multiplication
+
+### Navigation State Management
+
+- Tab switching is blocked during active iterations (iterationStarted state)
+- Automatic state reset to iterationNotStarted when switching tabs after completion
+- 500ms delay after tab navigation for smooth transitions
+- State checking occurs in `_onTap` method to prevent mid-calculation interruptions

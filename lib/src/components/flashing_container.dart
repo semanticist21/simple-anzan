@@ -33,7 +33,7 @@ class FlashingContainerState extends State<FlashingContainer> {
       duration: const Duration(milliseconds: 150),
       decoration: BoxDecoration(
         color: _isFlashing
-            ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.08)
+            ? Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3)
             : Colors.transparent,
         borderRadius: BorderRadius.circular(12),
       ),
