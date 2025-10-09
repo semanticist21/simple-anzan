@@ -59,6 +59,16 @@ class _FlickerState extends State<Flicker> {
     });
   }
 
+  // Calculate "-" sign width using TextPainter before rendering
+  double _calculateSignWidth(TextStyle style, BuildContext context) {
+    final textPainter = TextPainter(
+      text: TextSpan(text: '-', style: style),
+      textDirection: Directionality.of(context),
+    );
+    textPainter.layout();
+    return textPainter.width;
+  }
+
   @override
   Widget build(BuildContext context) {
     _stateProvider = Provider.of(context, listen: true);
@@ -73,28 +83,33 @@ class _FlickerState extends State<Flicker> {
     // Split number into sign and digits for alignment
     String displayNumber = _number.trim();
     bool isNegative = displayNumber.startsWith('-');
-    String signText = isNegative ? '-' : '';
     String numberText = isNegative ? displayNumber.substring(1) : displayNumber;
 
+    // Pre-calculate sign width to avoid layout shift
+    final textStyle = _getMainNumberTextStyle();
+    final signWidth = _calculateSignWidth(textStyle, context);
+
+    // Calculate offset dynamically based on calculated sign width
+    double offsetX = -signWidth / 2;
+
     Widget numberWidget = Transform.translate(
-      offset: const Offset(-25, 0), // Move left by half of sign box width (50/2 = 25)
+      offset: Offset(offsetX, 0), // Move left by half of sign width
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Fixed width sign box - ensures consistent alignment
-          SizedBox(
-            width: 50,
+          // Always render "-" sign, hide with opacity for positive numbers
+          Opacity(
+            opacity: isNegative ? 1.0 : 0.0,
             child: Text(
-              signText,
-              style: _getMainNumberTextStyle(),
-              textAlign: TextAlign.right,
+              '-',
+              style: textStyle,
             ),
           ),
           // Number text (without sign)
           Text(
             numberText,
-            style: _getMainNumberTextStyle(),
+            style: textStyle,
           ),
         ],
       ),
