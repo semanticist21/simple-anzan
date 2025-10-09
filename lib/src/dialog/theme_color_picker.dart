@@ -96,7 +96,7 @@ class _ThemeColorPickerState extends State<ThemeColorPicker> {
                     },
                     availableColors: const [
                       Color(0xFF2196F3), // Blue - default
-                      Color(0xFF22C55E), // Green (shadcn green-500)
+                      Color(0xFF16A34A), // Green (shadcn green-600)
                       Color(0xFF0EA5E9), // Sky (shadcn sky-500)
                       Color(0xFFEAB308), // Yellow (shadcn yellow-500)
                       Color(0xFF8B5CF6), // Violet (shadcn violet-500)

@@ -933,7 +933,7 @@ class _Home extends State<Home> {
     // Map selected color to palette (shadcn-inspired)
     final colorMap = {
       const Color(0xFF2196F3): ColorPalette.blue,
-      const Color(0xFF22C55E): ColorPalette.green,
+      const Color(0xFF16A34A): ColorPalette.green,
       const Color(0xFF0EA5E9): ColorPalette.sky,
       const Color(0xFFEAB308): ColorPalette.yellow,
       const Color(0xFF8B5CF6): ColorPalette.violet,

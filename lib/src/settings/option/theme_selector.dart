@@ -52,7 +52,7 @@ class ThemeSelector {
       case ColorPalette.blue:
         return isDark ? const Color(0xFF6DB4FF) : const Color(0xFF2196F3);
       case ColorPalette.green:
-        return isDark ? const Color(0xFF4ADE80) : const Color(0xFF22C55E); // green-400/500
+        return isDark ? const Color(0xFF22C55E) : const Color(0xFF16A34A); // green-500/600
       case ColorPalette.sky:
         return isDark ? const Color(0xFF38BDF8) : const Color(0xFF0EA5E9); // sky-400/500
       case ColorPalette.yellow:
