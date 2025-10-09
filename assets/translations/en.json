@@ -82,8 +82,24 @@
     "problem": "Question",
     "answer": "Answer"
   },
+  "colorPalette": {
+    "title": "Color Palette",
+    "tooltip": "Change color palette",
+    "blue": "Blue",
+    "green": "Green",
+    "purple": "Purple",
+    "teal": "Teal"
+  },
+  "themePicker": {
+    "title": "Change Theme Color",
+    "description": "Select your app's main theme color",
+    "tooltip": "Select theme color",
+    "default": "Default"
+  },
   "other": {
     "warning": "Warning",
-    "onBurning": "On Burning"
+    "onBurning": "On Burning",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
   }
 }

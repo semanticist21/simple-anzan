@@ -82,8 +82,24 @@
     "problem": "Savol",
     "answer": "Javob"
   },
+  "colorPalette": {
+    "title": "Rang palitra",
+    "tooltip": "Rang palitrasini o'zgartirish",
+    "blue": "Ko'k",
+    "green": "Yashil",
+    "purple": "Binafsha",
+    "teal": "Turkuaz"
+  },
+  "themePicker": {
+    "title": "Mavzu rangini o'zgartirish",
+    "description": "Ilovangizning asosiy mavzu rangini tanlang",
+    "tooltip": "Mavzu rangini tanlash",
+    "default": "Standart"
+  },
   "other": {
     "warning": "Ogohlantirish",
-    "onBurning": "Yonish holatida"
+    "onBurning": "Yonish holatida",
+    "confirm": "Tasdiqlash",
+    "cancel": "Bekor qilish"
   }
 }

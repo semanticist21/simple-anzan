@@ -82,8 +82,24 @@
     "problem": "Pertanyaan",
     "answer": "Jawaban"
   },
+  "colorPalette": {
+    "title": "Palet Warna",
+    "tooltip": "Ubah palet warna",
+    "blue": "Biru",
+    "green": "Hijau",
+    "purple": "Ungu",
+    "teal": "Biru kehijauan"
+  },
+  "themePicker": {
+    "title": "Ubah Warna Tema",
+    "description": "Pilih warna tema utama aplikasi Anda",
+    "tooltip": "Pilih warna tema",
+    "default": "Bawaan"
+  },
   "other": {
     "warning": "Peringatan",
-    "onBurning": "Sedang Terbakar"
+    "onBurning": "Sedang Terbakar",
+    "confirm": "Konfirmasi",
+    "cancel": "Batal"
   }
 }

@@ -227,3 +227,5 @@ State changes trigger UI updates for button visibility, text, and available acti
 - Automatic state reset to iterationNotStarted when switching tabs after completion
 - 500ms delay after tab navigation for smooth transitions
 - State checking occurs in `_onTap` method to prevent mid-calculation interruptions
+
+문구 수정 시 반드시 모든 언어 번역에 대해 진행할 것.

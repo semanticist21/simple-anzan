@@ -16,6 +16,7 @@ import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/burning_mode_pr
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/burning_mode_multiply_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/settings_manager.dart';
 import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
+import 'package:abacus_simple_anzan/src/settings/option/color_palette_pref.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
@@ -32,6 +33,7 @@ import 'dart:async';
 import 'src/dialog/prob_list.dart';
 import 'src/dialog/prob_list_multiply.dart';
 import 'src/dialog/windows_add_option.dart';
+import 'src/dialog/theme_color_picker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -91,49 +93,53 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     _init();
 
+    // Listen to both theme mode and color palette changes
     return StreamBuilder<bool>(
         initialData: true,
         stream: ThemeSelector.isDarkStream.stream,
-        builder: (context, snapshot) => AnimatedTheme(
-              data: ThemeSelector.isDark
-                  ? ThemeSelector.getBlackTheme()
-                  : ThemeSelector.getWhiteTheme(),
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              child: MaterialApp(
-                localizationsDelegates: [
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                  EasyLocalization.of(context)!.delegate,
-                ],
-                supportedLocales:
-                    EasyLocalization.of(context)!.supportedLocales,
-                locale: EasyLocalization.of(context)!.locale,
-                scrollBehavior: const MaterialScrollBehavior().copyWith(
-                    dragDevices: {
-                      PointerDeviceKind.mouse,
-                      PointerDeviceKind.touch,
-                      PointerDeviceKind.stylus,
-                      PointerDeviceKind.unknown
-                    },
-                    physics: const AlwaysScrollableScrollPhysics(
-                        parent: BouncingScrollPhysics())),
-                debugShowCheckedModeBanner: false,
-                theme: ThemeSelector.isDark
+        builder: (context, themeSnapshot) => StreamBuilder(
+              stream: ThemeSelector.colorPaletteStream.stream,
+              builder: (context, paletteSnapshot) => AnimatedTheme(
+                data: ThemeSelector.isDark
                     ? ThemeSelector.getBlackTheme()
                     : ThemeSelector.getWhiteTheme(),
-                title: 'app.name'.tr(),
-                home: PopScope(
-                  onPopInvokedWithResult: (didPop, result) async {
-                    // Audio players are automatically disposed
-                  },
-                  child: MultiProvider(providers: [
-                    ChangeNotifierProvider<StateProvider>(
-                        create: (_) => StateProvider()),
-                    ChangeNotifierProvider<StateMultiplyProvider>(
-                        create: (_) => StateMultiplyProvider())
-                  ], child: const Home()),
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child: MaterialApp(
+                  localizationsDelegates: [
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                    EasyLocalization.of(context)!.delegate,
+                  ],
+                  supportedLocales:
+                      EasyLocalization.of(context)!.supportedLocales,
+                  locale: EasyLocalization.of(context)!.locale,
+                  scrollBehavior: const MaterialScrollBehavior().copyWith(
+                      dragDevices: {
+                        PointerDeviceKind.mouse,
+                        PointerDeviceKind.touch,
+                        PointerDeviceKind.stylus,
+                        PointerDeviceKind.unknown
+                      },
+                      physics: const AlwaysScrollableScrollPhysics(
+                          parent: BouncingScrollPhysics())),
+                  debugShowCheckedModeBanner: false,
+                  theme: ThemeSelector.isDark
+                      ? ThemeSelector.getBlackTheme()
+                      : ThemeSelector.getWhiteTheme(),
+                  title: 'app.name'.tr(),
+                  home: PopScope(
+                    onPopInvokedWithResult: (didPop, result) async {
+                      // Audio players are automatically disposed
+                    },
+                    child: MultiProvider(providers: [
+                      ChangeNotifierProvider<StateProvider>(
+                          create: (_) => StateProvider()),
+                      ChangeNotifierProvider<StateMultiplyProvider>(
+                          create: (_) => StateMultiplyProvider())
+                    ], child: const Home()),
+                  ),
                 ),
               ),
             ));
@@ -356,6 +362,42 @@ class _Home extends State<Home> {
                               )),
                         ])),
                     const SizedBox(width: 12),
+                    // Color palette picker - only visible on settings pages
+                    Visibility(
+                      visible: _currentIndex == 1 || _currentIndex == 3,
+                      child: Tooltip(
+                        message: 'themePicker.tooltip'.tr(),
+                        child: GestureDetector(
+                          onTap: () => _showThemeColorPicker(context),
+                          child: Container(
+                            width: 40,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.0),
+                              border: Border.all(
+                                color: ThemeSelector.isDark
+                                    ? const Color(0xFF4B5563)
+                                    : const Color(0xFFD1D5DB),
+                                width: 1.0,
+                              ),
+                              color: ThemeSelector.isDark
+                                  ? const Color(0xFF1F2937)
+                                  : const Color(0xFFF3F4F6),
+                            ),
+                            child: Icon(
+                              Icons.palette_outlined,
+                              size: 18,
+                              color: ThemeSelector.isDark
+                                  ? const Color(0xFFF9FAFB)
+                                  : const Color(0xFF111827),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                        width:
+                            _currentIndex == 1 || _currentIndex == 3 ? 8 : 0),
                     // Language selector - only visible on settings pages
                     Visibility(
                       visible: _currentIndex == 1 || _currentIndex == 3,
@@ -866,6 +908,45 @@ class _Home extends State<Home> {
                 mode: _stateMultiplyProvider.isMultiplies,
               ));
     }
+  }
+
+  void _showThemeColorPicker(BuildContext context) {
+    final isDark = ThemeSelector.isDark;
+    final currentPrimaryColor = ThemeSelector.getPrimaryColor(
+      ThemeSelector.currentPalette,
+      isDark,
+    );
+
+    showDialog(
+      context: context,
+      builder: (context) => ThemeColorPicker(
+        currentColor: currentPrimaryColor,
+        onColorSelected: (color) {
+          // Find closest matching palette or update current palette
+          _updateThemeColor(color);
+        },
+      ),
+    );
+  }
+
+  void _updateThemeColor(Color color) {
+    // Map selected color to palette (shadcn-inspired)
+    final colorMap = {
+      const Color(0xFF2196F3): ColorPalette.blue,
+      const Color(0xFF22C55E): ColorPalette.green,
+      const Color(0xFF0EA5E9): ColorPalette.sky,
+      const Color(0xFFEAB308): ColorPalette.yellow,
+      const Color(0xFF8B5CF6): ColorPalette.violet,
+      const Color(0xFF64748B): ColorPalette.slate,
+    };
+
+    final newPalette = colorMap[color] ?? ThemeSelector.currentPalette;
+
+    // Save to SharedPreferences through ColorPalettePref
+    final prefs = OptionManager();
+    prefs.setColorPalette(newPalette);
+
+    setState(() {});
   }
 
   Widget _buildToggleIcon({

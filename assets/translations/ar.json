@@ -82,8 +82,24 @@
     "problem": "السؤال",
     "answer": "الجواب"
   },
+  "colorPalette": {
+    "title": "لوحة الألوان",
+    "tooltip": "تغيير لوحة الألوان",
+    "blue": "أزرق",
+    "green": "أخضر",
+    "purple": "أرجواني",
+    "teal": "أزرق مخضر"
+  },
+  "themePicker": {
+    "title": "تغيير لون المظهر",
+    "description": "اختر لون المظهر الرئيسي للتطبيق",
+    "tooltip": "اختيار لون المظهر",
+    "default": "افتراضي"
+  },
   "other": {
     "warning": "تحذير",
-    "onBurning": "في الاحتراق"
+    "onBurning": "في الاحتراق",
+    "confirm": "تأكيد",
+    "cancel": "إلغاء"
   }
 }

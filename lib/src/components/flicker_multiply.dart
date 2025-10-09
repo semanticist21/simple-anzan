@@ -6,6 +6,7 @@ import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/separator_
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/prefs/speed_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/multiply_prefs/settings_manager_multiply.dart';
 import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
+import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -340,8 +341,8 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       fontSize = height * 0.075 + width * 0.075;
     }
 
-    var titleLarge = Theme.of(context).textTheme.titleLarge;
-    var color = titleLarge?.color ?? Theme.of(context).colorScheme.onSurface;
+    // Use flicker text color - black for default theme in light mode, primary otherwise
+    var color = ThemeSelector.getFlickerTextColor(context);
 
     // Use Gamja Flower font for natural handwritten feel
     return GoogleFonts.gamjaFlower(

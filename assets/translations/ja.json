@@ -82,8 +82,24 @@
     "problem": "問題",
     "answer": "正答"
   },
+  "colorPalette": {
+    "title": "カラーパレット",
+    "tooltip": "カラーパレットを変更",
+    "blue": "青",
+    "green": "緑",
+    "purple": "紫",
+    "teal": "ティール"
+  },
+  "themePicker": {
+    "title": "テーマカラーを変更",
+    "description": "アプリのメインテーマカラーを選択してください",
+    "tooltip": "テーマカラーを選択",
+    "default": "デフォルト"
+  },
   "other": {
     "warning": "警告",
-    "onBurning": "連続モード"
+    "onBurning": "連続モード",
+    "confirm": "確認",
+    "cancel": "キャンセル"
   }
 }

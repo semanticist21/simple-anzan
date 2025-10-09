@@ -3,12 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'color_palette_pref.dart';
 
 
 class ThemeSelector {
   static var themeKey = 'isDark';
   static var isDark = false;
   static StreamController<bool> isDarkStream = StreamController();
+
+  static ColorPalette currentPalette = ColorPalette.blue;
+  static StreamController<ColorPalette> colorPaletteStream = StreamController();
+
   SharedPreferencesWithCache prefs;
 
   ThemeSelector({required this.prefs});
@@ -25,7 +30,12 @@ class ThemeSelector {
       isDark = _getSystemThemePreference();
     }
 
+    // Load color palette preference
+    ColorPalettePref palettePref = ColorPalettePref(prefs);
+    currentPalette = palettePref.getValue();
+
     ThemeSelector.isDarkStream.add(ThemeSelector.isDark);
+    ThemeSelector.colorPaletteStream.add(ThemeSelector.currentPalette);
   }
 
   /// Get the system's current theme preference
@@ -36,13 +46,52 @@ class ThemeSelector {
     return brightness == Brightness.dark;
   }
 
+  /// Get primary colors for each palette (shadcn-inspired)
+  static Color getPrimaryColor(ColorPalette palette, bool isDark) {
+    switch (palette) {
+      case ColorPalette.blue:
+        return isDark ? const Color(0xFF6DB4FF) : const Color(0xFF2196F3);
+      case ColorPalette.green:
+        return isDark ? const Color(0xFF4ADE80) : const Color(0xFF22C55E); // green-400/500
+      case ColorPalette.sky:
+        return isDark ? const Color(0xFF38BDF8) : const Color(0xFF0EA5E9); // sky-400/500
+      case ColorPalette.yellow:
+        return isDark ? const Color(0xFFFBBF24) : const Color(0xFFEAB308); // yellow-400/500
+      case ColorPalette.violet:
+        return isDark ? const Color(0xFFA78BFA) : const Color(0xFF8B5CF6); // violet-400/500
+      case ColorPalette.slate:
+        return isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B); // slate-400/500
+    }
+  }
+
+  /// Get surface tint colors for each palette
+  static Color getSurfaceTint(ColorPalette palette, bool isDark) {
+    return getPrimaryColor(palette, isDark);
+  }
+
+  /// Get flicker text color - black for default theme in light mode, primary otherwise
+  static Color getFlickerTextColor(BuildContext context) {
+    final isDark = ThemeSelector.isDark;
+    final isDefaultTheme = currentPalette == ColorPalette.blue;
+
+    // Default theme + light mode = black text
+    if (isDefaultTheme && !isDark) {
+      return Colors.black87;
+    }
+
+    // All other cases = primary color
+    return Theme.of(context).colorScheme.primary;
+  }
+
   static ThemeData getBlackTheme() {
+    final primaryColor = getPrimaryColor(currentPalette, true);
+
     return ThemeData.from(
             // toggle active color
             colorScheme: ThemeData().colorScheme.copyWith(
                   // surface color (was background) - softer dark instead of pure black
                   surface: const Color(0xFF121212),
-                  primary: const Color(0xFF6DB4FF), // brighter blue for better contrast
+                  primary: primaryColor, // dynamic primary color based on palette
 
                   // secondary surface like ..dropdown button / scaffold background
                   surfaceContainer: const Color(0xFF1E1E1E), // elevated surface
@@ -77,21 +126,21 @@ class ThemeSelector {
 
                   // toggle track, active color (for switches)
                   onPrimary: const Color(0xFF404040), // inactive track
-                  onSecondary: const Color(0xFF6DB4FF), // active track with opacity
+                  onSecondary: primaryColor, // active track with opacity (dynamic)
 
                   // button color and text
                   onSurface: const Color(0xFFF0F0F0), // brighter warm white for better readability
                   onSurfaceVariant: const Color(0xFF4AE54A), // brighter iOS green
 
-                  surfaceTint: const Color(0xFF6DB4FF),
+                  surfaceTint: primaryColor, // dynamic surface tint
                   surfaceContainerHighest: const Color(0xFF2A2A2A),
                 ),
             textTheme: GoogleFonts.openSansTextTheme(
-              const TextTheme(
+              TextTheme(
                 // option style
 
                 // button text style
-                bodyLarge: TextStyle(
+                bodyLarge: const TextStyle(
                   color: Color(0xFFF0F0F0), // brighter warm white for better readability
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1.0,
@@ -101,7 +150,7 @@ class ThemeSelector {
                 titleLarge: TextStyle(
                   fontWeight: FontWeight.w700,
                   letterSpacing: 2.0,
-                  color: Color(0xFF6DB4FF), // use brighter primary blue for better consistency
+                  color: primaryColor, // dynamic primary color for consistency
                 ),
               ),
             ))
@@ -112,12 +161,14 @@ class ThemeSelector {
 
   // name tangled strangely...
   static ThemeData getWhiteTheme() {
+    final primaryColor = getPrimaryColor(currentPalette, false);
+
     return ThemeData.from(
             // toggle active color
             colorScheme: ThemeData().colorScheme.copyWith(
                   // surface color (was background)
                   surface: const Color(0xFFFAFAFA),
-                  primary: const Color(0xFF2196F3),
+                  primary: primaryColor, // dynamic primary color based on palette
 
                   // secondary surface like ..dropdown button / scaffold background
                   surfaceContainer: const Color(0xFFF5F5F5),
@@ -158,10 +209,10 @@ class ThemeSelector {
 
                   // button color
                   onSurface: Colors.grey[700],
-                  onSurfaceVariant: Colors.blueAccent,
+                  onSurfaceVariant: primaryColor.withValues(alpha: 0.7), // dynamic accent color
 
-                  surfaceTint: const Color(0xFF2196F3), // Use primary blue instead of orange
-                  surfaceContainerHighest: const Color(0xFFE3F2FD), // Light blue container
+                  surfaceTint: primaryColor, // dynamic surface tint
+                  surfaceContainerHighest: primaryColor.withValues(alpha: 0.1), // dynamic light container
                 ),
             textTheme: GoogleFonts.openSansTextTheme(
               const TextTheme(

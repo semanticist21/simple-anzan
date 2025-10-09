@@ -82,8 +82,24 @@
     "problem": "Question",
     "answer": "Réponse"
   },
+  "colorPalette": {
+    "title": "Palette de couleurs",
+    "tooltip": "Changer la palette de couleurs",
+    "blue": "Bleu",
+    "green": "Vert",
+    "purple": "Violet",
+    "teal": "Bleu sarcelle"
+  },
+  "themePicker": {
+    "title": "Changer la couleur du thème",
+    "description": "Sélectionnez la couleur de thème principale de votre application",
+    "tooltip": "Sélectionner la couleur du thème",
+    "default": "Par défaut"
+  },
   "other": {
     "warning": "Avertissement",
-    "onBurning": "En combustion"
+    "onBurning": "En combustion",
+    "confirm": "Confirmer",
+    "cancel": "Annuler"
   }
 }

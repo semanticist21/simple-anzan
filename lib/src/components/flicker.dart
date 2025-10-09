@@ -1,5 +1,6 @@
 import 'package:abacus_simple_anzan/src/settings/option/option_manager.dart';
 import 'package:abacus_simple_anzan/src/settings/option/sound_option.dart';
+import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/countdown.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/num_of_problems_pref.dart';
 import 'package:abacus_simple_anzan/src/settings/plus_pref/prefs/separator.dart';
@@ -338,8 +339,8 @@ class _FlickerState extends State<Flicker> {
       fontSize = baseFontSize * scaleFactor;
     }
 
-    var titleLarge = Theme.of(context).textTheme.titleLarge;
-    var color = titleLarge?.color ?? Theme.of(context).colorScheme.onSurface;
+    // Use flicker text color - black for default theme in light mode, primary otherwise
+    var color = ThemeSelector.getFlickerTextColor(context);
 
     // Use Gamja Flower font for natural handwritten feel
     return GoogleFonts.gamjaFlower(

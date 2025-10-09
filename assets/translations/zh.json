@@ -82,8 +82,24 @@
     "problem": "题目",
     "answer": "答案"
   },
+  "colorPalette": {
+    "title": "调色板",
+    "tooltip": "更改调色板",
+    "blue": "蓝色",
+    "green": "绿色",
+    "purple": "紫色",
+    "teal": "青色"
+  },
+  "themePicker": {
+    "title": "更改主题颜色",
+    "description": "选择您应用的主题色",
+    "tooltip": "选择主题颜色",
+    "default": "默认"
+  },
   "other": {
     "warning": "警告",
-    "onBurning": "燃烧中"
+    "onBurning": "燃烧中",
+    "confirm": "确认",
+    "cancel": "取消"
   }
 }

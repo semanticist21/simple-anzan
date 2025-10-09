@@ -82,8 +82,24 @@
     "problem": "문제",
     "answer": "정답"
   },
+  "colorPalette": {
+    "title": "색상 팔레트",
+    "tooltip": "색상 팔레트 변경",
+    "blue": "파란색",
+    "green": "초록색",
+    "purple": "보라색",
+    "teal": "청록색"
+  },
+  "themePicker": {
+    "title": "테마 색상 변경",
+    "description": "앱의 메인 테마 색상을 선택하세요",
+    "tooltip": "테마 색상 선택",
+    "default": "기본"
+  },
   "other": {
     "warning": "경고",
-    "onBurning": "연속 모드"
+    "onBurning": "연속 모드",
+    "confirm": "확인",
+    "cancel": "취소"
   }
 }
