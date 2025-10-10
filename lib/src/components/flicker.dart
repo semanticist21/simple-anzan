@@ -114,20 +114,13 @@ class _FlickerState extends State<Flicker> {
       ),
     );
 
-    return _number.length > 5
-        ? FittedBox(
-            fit: BoxFit.contain,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: numberWidget,
-            ))
-        : Container(
-            alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: numberWidget,
-            ),
-          );
+    return FittedBox(
+      fit: BoxFit.contain,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 15.0),
+        child: numberWidget,
+      ),
+    );
   }
 
   // start iteration.
