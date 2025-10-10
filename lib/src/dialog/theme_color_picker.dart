@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../settings/option/theme_selector.dart';
+import '../settings/option/color_palette_pref.dart';
 
 class ThemeColorPicker extends StatefulWidget {
   final Color currentColor;
@@ -115,17 +116,35 @@ class _ThemeColorPickerState extends State<ThemeColorPicker> {
                       );
                     },
                     itemBuilder: (color, isCurrentColor, changeColor) {
-                      final isDefaultBlue = color == const Color(0xFF2196F3);
+                      // Map color to ColorPalette
+                      ColorPalette? palette;
+                      if (color == const Color(0xFF2196F3)) {
+                        palette = ColorPalette.blue;
+                      } else if (color == const Color(0xFF16A34A)) {
+                        palette = ColorPalette.green;
+                      } else if (color == const Color(0xFF0EA5E9)) {
+                        palette = ColorPalette.sky;
+                      } else if (color == const Color(0xFFEAB308)) {
+                        palette = ColorPalette.yellow;
+                      } else if (color == const Color(0xFF8B5CF6)) {
+                        palette = ColorPalette.violet;
+                      } else if (color == const Color(0xFF64748B)) {
+                        palette = ColorPalette.slate;
+                      }
+
+                      // Check if this palette is currently selected
+                      final isSelected = palette == ThemeSelector.currentPalette;
+                      final isDefaultBlue = palette == ColorPalette.blue;
 
                       return Container(
                         decoration: BoxDecoration(
                           color: color,
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
-                            color: isCurrentColor
-                                ? (isDark ? Colors.white70 : Colors.grey.shade400)
+                            color: isSelected
+                                ? (isDark ? Colors.white : Colors.black)
                                 : Colors.transparent,
-                            width: 3,
+                            width: 2,
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -142,39 +161,26 @@ class _ThemeColorPickerState extends State<ThemeColorPicker> {
                             borderRadius: BorderRadius.circular(8),
                             child: Stack(
                               children: [
-                                // "기본" badge for default blue - covers entire block (behind check icon)
+                                // "기본" badge for default blue
                                 if (isDefaultBlue)
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.black.withValues(alpha: 0.25),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        'themePicker.default'.tr(),
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                  Center(
+                                    child: Text(
+                                      'themePicker.default'.tr(),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
-                                // Check icon for selected color (always show on top)
-                                if (isCurrentColor)
-                                  Center(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.black.withValues(alpha: 0.5),
-                                        shape: BoxShape.circle,
-                                      ),
-                                      padding: const EdgeInsets.all(4),
-                                      child: const Icon(
-                                        Icons.check,
-                                        color: Colors.white,
-                                        size: 20,
-                                      ),
+                                // Check icon for selected color (don't show for default blue)
+                                if (isSelected && !isDefaultBlue)
+                                  const Center(
+                                    child: Icon(
+                                      Icons.check,
+                                      color: Colors.white,
+                                      size: 24,
                                     ),
                                   ),
                               ],

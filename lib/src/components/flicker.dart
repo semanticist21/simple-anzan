@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 import 'package:abacus_simple_anzan/src/provider/state_provider.dart';
 import 'package:universal_io/io.dart';
 import 'dart:async';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../functions/functions.dart';
 import '../settings/plus_pref/prefs/calculation_mode_pref.dart';
@@ -372,7 +371,8 @@ class _FlickerState extends State<Flicker> {
     var color = ThemeSelector.getFlickerTextColor(context);
 
     // Use Gamja Flower font for natural handwritten feel
-    return GoogleFonts.gamjaFlower(
+    return TextStyle(
+      fontFamily: 'GamjaFlower',
       fontSize: fontSize,
       fontWeight: FontWeight.normal,
       fontStyle: FontStyle.italic,

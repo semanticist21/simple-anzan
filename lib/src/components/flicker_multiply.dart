@@ -12,7 +12,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 import 'dart:async';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../functions/tuple.dart';
 import '../settings/multiply_prefs/prefs/calculation_mode_multiply.dart';
@@ -345,7 +344,8 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
     var color = ThemeSelector.getFlickerTextColor(context);
 
     // Use Gamja Flower font for natural handwritten feel
-    return GoogleFonts.gamjaFlower(
+    return TextStyle(
+      fontFamily: 'GamjaFlower',
       fontSize: fontSize,
       fontWeight: FontWeight.normal,
       fontStyle: FontStyle.italic,
