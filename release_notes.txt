@@ -1,293 +1,195 @@
 <en-US>
-- Fixed number display overflow in landscape mode
-- Fixed font not displaying correctly in release builds
-- Bundled GamjaFlower font directly into the app for reliable display
+- Improved header icon alignment on settings pages for consistent display across all devices
 </en-US>
 
 <af>
-- Nommer vertoning oorloop in landskap modus reggestel
-- Lettertipe wat nie korrek in vrystelling weergee nie, reggestel
-- GamjaFlower-lettertipe direk in die app gebondel vir betroubare vertoning
+- Verbeterde kopikon-belyning op instellingspaginas vir konsekwente vertoning op alle toestelle
 </af>
 
 <am>
-- በመሬት አቀማመጥ ውስጥ የቁጥር ማሳያ ትርፎት ተስተካክሏል
-- በመልቀቂያ ግንባታዎች ውስጥ ቅርጸ-ቁምፊ በትክክል ያለመታየቱን ተስተካክሏል
-- ለታማኝ ማሳያ GamjaFlower ቅርጸ-ቁምፊ በቀጥታ ወደ መተግበሪያው ተጨምሯል
+- በሁሉም መሣሪያዎች ላይ ወጥነት ያለው ማሳያ ለማግኘት በቅንብሮች ገጾች ላይ የራስጌ አዶ ማስተካከያ ተሻሽሏል
 </am>
 
 <ar>
-- تم إصلاح تجاوز عرض الأرقام في الوضع الأفقي
-- تم إصلاح عدم عرض الخط بشكل صحيح في إصدارات الإطلاق
-- تم تضمين خط GamjaFlower مباشرة في التطبيق لعرض موثوق
+- تحسين محاذاة أيقونات الرأس في صفحات الإعدادات لعرض متسق عبر جميع الأجهزة
 </ar>
 
 <bg>
-- Коригиран препълване на показване на числа в пейзажен режим
-- Поправен шрифт, който не се показва правилно в окончателни версии
-- Шрифтът GamjaFlower е включен директно в приложението за надеждно показване
+- Подобрено подравняване на икони в заглавието на страниците с настройки за последователно показване на всички устройства
 </bg>
 
 <ca>
-- S'ha corregit el desbordament de visualització de números en mode horitzontal
-- S'ha corregit que la font no es mostrés correctament en versions de llançament
-- S'ha incorporat la font GamjaFlower directament a l'aplicació per a una visualització fiable
+- Millora de l'alineació de les icones de capçalera a les pàgines de configuració per a una visualització coherent a tots els dispositius
 </ca>
 
 <cs-CZ>
-- Opraveno přetečení zobrazení čísel v režimu na šířku
-- Opraven font, který se v release verzích nezobrazoval správně
-- Font GamjaFlower přímo zahrnut do aplikace pro spolehlivé zobrazení
+- Vylepšeno zarovnání ikon záhlaví na stránkách nastavení pro konzistentní zobrazení na všech zařízeních
 </cs-CZ>
 
 <da-DK>
-- Rettet nummervisning overflow i liggende tilstand
-- Rettet skrifttype, der ikke vises korrekt i release builds
-- GamjaFlower-skrifttype bundtet direkte ind i appen for pålidelig visning
+- Forbedret justering af headerikon på indstillingssider for ensartet visning på alle enheder
 </da-DK>
 
 <de-DE>
-- Zahlenanzeige-Überlauf im Querformat behoben
-- Schriftart wurde korrigiert, die in Release-Builds nicht korrekt angezeigt wurde
-- GamjaFlower-Schriftart direkt in die App integriert für zuverlässige Anzeige
+- Verbesserte Ausrichtung der Kopfzeilensymbole auf den Einstellungsseiten für eine konsistente Anzeige auf allen Geräten
 </de-DE>
 
 <el-GR>
-- Διορθώθηκε η υπερχείλιση εμφάνισης αριθμών σε λειτουργία τοπίου
-- Διορθώθηκε η γραμματοσειρά που δεν εμφανιζόταν σωστά σε εκδόσεις παραγωγής
-- Η γραμματοσειρά GamjaFlower ενσωματώθηκε απευθείας στην εφαρμογή για αξιόπιστη εμφάνιση
+- Βελτιωμένη στοίχιση εικονιδίων κεφαλίδας στις σελίδες ρυθμίσεων για συνεπή εμφάνιση σε όλες τις συσκευές
 </el-GR>
 
 <en-GB>
-- Fixed number display overflow in landscape mode
-- Fixed font not displaying correctly in release builds
-- Bundled GamjaFlower font directly into the app for reliable display
+- Improved header icon alignment on settings pages for consistent display across all devices
 </en-GB>
 
 <es-419>
-- Se corrigió el desbordamiento de visualización de números en modo horizontal
-- Se corrigió la fuente que no se mostraba correctamente en versiones de lanzamiento
-- Se incluyó la fuente GamjaFlower directamente en la aplicación para una visualización confiable
+- Alineación mejorada de los íconos del encabezado en las páginas de configuración para una visualización consistente en todos los dispositivos
 </es-419>
 
 <es-ES>
-- Se ha corregido el desbordamiento de visualización de números en modo horizontal
-- Se ha corregido la fuente que no se mostraba correctamente en versiones de lanzamiento
-- Se ha incluido la fuente GamjaFlower directamente en la aplicación para una visualización fiable
+- Alineación mejorada de los iconos del encabezado en las páginas de configuración para una visualización coherente en todos los dispositivos
 </es-ES>
 
 <et>
-- Parandatud numbrite kuvamise ületäitumine horisontaalrežiimis
-- Parandatud font, mis ei kuvatud väljaande versioonides õigesti
-- GamjaFlower font lisatud otse rakendusse usaldusväärseks kuvamiseks
+- Parandatud päiseikoonide joondamine seadete lehekülgedel järjepideva kuvamise tagamiseks kõigil seadmetel
 </et>
 
 <fa>
-- سرریز نمایش اعداد در حالت افقی اصلاح شد
-- فونتی که در نسخه‌های انتشار به درستی نمایش داده نمی‌شد اصلاح شد
-- فونت GamjaFlower مستقیماً در برنامه برای نمایش قابل اعتماد گنجانده شد
+- بهبود تراز نمادهای سرصفحه در صفحات تنظیمات برای نمایش یکنواخت در همه دستگاه‌ها
 </fa>
 
 <fi-FI>
-- Korjattu numeroiden näytön ylivuoto vaakasuuntaisessa tilassa
-- Korjattu fontti, joka ei näkynyt oikein julkaisuversioissa
-- GamjaFlower-fontti sisällytetty suoraan sovellukseen luotettavaa näyttöä varten
+- Parannettu otsikon kuvakkeiden kohdistusta asetussivuilla yhtenäisen näytön varmistamiseksi kaikilla laitteilla
 </fi-FI>
 
 <fr-CA>
-- Corrigé le débordement d'affichage des nombres en mode paysage
-- Corrigé la police qui ne s'affichait pas correctement dans les versions de production
-- Police GamjaFlower intégrée directement dans l'application pour un affichage fiable
+- Amélioration de l'alignement des icônes d'en-tête sur les pages de paramètres pour un affichage cohérent sur tous les appareils
 </fr-CA>
 
 <fr-FR>
-- Corrigé le débordement d'affichage des nombres en mode paysage
-- Corrigé la police qui ne s'affichait pas correctement dans les versions de production
-- Police GamjaFlower intégrée directement dans l'application pour un affichage fiable
+- Amélioration de l'alignement des icônes d'en-tête sur les pages de paramètres pour un affichage cohérent sur tous les appareils
 </fr-FR>
 
 <hi-IN>
-- लैंडस्केप मोड में नंबर डिस्प्ले ओवरफ्लो ठीक किया गया
-- रिलीज़ बिल्ड में फ़ॉन्ट सही तरीके से प्रदर्शित न होने की समस्या ठीक की गई
-- विश्वसनीय प्रदर्शन के लिए GamjaFlower फ़ॉन्ट सीधे ऐप में शामिल किया गया
+- सभी उपकरणों पर सुसंगत प्रदर्शन के लिए सेटिंग्स पृष्ठों पर हेडर आइकन संरेखण में सुधार
 </hi-IN>
 
 <hr>
-- Popravljen prelijevanje prikaza brojeva u pejzažnom načinu
-- Popravljen font koji se nije pravilno prikazivao u release verzijama
-- GamjaFlower font direktno uključen u aplikaciju za pouzdani prikaz
+- Poboljšano poravnanje ikona zaglavlja na stranicama postavki za dosljedan prikaz na svim uređajima
 </hr>
 
 <hu-HU>
-- Javítva a számkijelzés túlcsordulása fekvő módban
-- Javítva a betűtípus, amely nem jelent meg helyesen a kiadási verziókban
-- GamjaFlower betűtípus közvetlenül az alkalmazásba csomagolva a megbízható megjelenítés érdekében
+- Javított fejléc ikon igazítás a beállítások oldalakon az összes eszközön való következetes megjelenítés érdekében
 </hu-HU>
 
 <id>
-- Diperbaiki overflow tampilan angka dalam mode lanskap
-- Diperbaiki font yang tidak ditampilkan dengan benar di build rilis
-- Font GamjaFlower dibundel langsung ke dalam aplikasi untuk tampilan yang andal
+- Peningkatan perataan ikon header pada halaman pengaturan untuk tampilan yang konsisten di semua perangkat
 </id>
 
 <it-IT>
-- Corretto l'overflow della visualizzazione dei numeri in modalità orizzontale
-- Corretto il font che non veniva visualizzato correttamente nelle build di rilascio
-- Font GamjaFlower integrato direttamente nell'app per una visualizzazione affidabile
+- Migliorato l'allineamento delle icone dell'intestazione nelle pagine delle impostazioni per una visualizzazione coerente su tutti i dispositivi
 </it-IT>
 
 <iw-IL>
-- תוקן גלישת תצוגת מספרים במצב אופקי
-- תוקן גופן שלא הוצג כראוי בגרסאות שחרור
-- גופן GamjaFlower נכלל ישירות באפליקציה לתצוגה אמינה
+- שיפור יישור סמלי הכותרת בדפי ההגדרות לתצוגה עקבית בכל המכשירים
 </iw-IL>
 
 <ja-JP>
-- 横向きモードで数字表示がオーバーフローする問題を修正
-- リリースビルドでフォントが正しく表示されない問題を修正
-- 信頼性の高い表示のためにGamjaFlowerフォントを直接アプリに組み込み
+- すべてのデバイスで一貫した表示のために設定ページのヘッダーアイコンの配置を改善
 </ja-JP>
 
 <ko-KR>
-- 가로모드에서 숫자 표시 오버플로우 수정
-- 릴리즈 빌드에서 폰트가 제대로 표시되지 않는 문제 수정
-- 안정적인 표시를 위해 GamjaFlower 폰트를 앱에 직접 포함
+- 모든 기기에서 일관된 표시를 위해 설정 페이지 헤더 아이콘 정렬 개선
 </ko-KR>
 
 <lt>
-- Pataisytas skaičių rodymo perpildymas gulsčiame režime
-- Pataisytas šriftas, kuris nebuvo teisingai rodomas leidimo versijose
-- GamjaFlower šriftas tiesiogiai įtrauktas į programą patikimam rodymui
+- Pagerintas antraščių piktogramų lygiavimas nustatymų puslapiuose, kad būtų nuoseklus rodymas visuose įrenginiuose
 </lt>
 
 <lv>
-- Labots skaitļu attēlojuma pārpilde ainavu režīmā
-- Labots fonts, kas netika pareizi attēlots laidienā
-- GamjaFlower fonts tieši iekļauts lietotnē uzticamam attēlojumam
+- Uzlabota galvenes ikonas izlīdzināšana iestatījumu lapās konsekventa attēlojuma nodrošināšanai visās ierīcēs
 </lv>
 
 <ms>
-- Diperbaiki limpahan paparan nombor dalam mod landskap
-- Diperbaiki fon yang tidak dipaparkan dengan betul dalam binaan keluaran
-- Fon GamjaFlower dibungkus terus ke dalam aplikasi untuk paparan yang boleh dipercayai
+- Peningkatan penjajaran ikon pengepala pada halaman tetapan untuk paparan yang konsisten di semua peranti
 </ms>
 
 <nl-NL>
-- Overloopprobleem van cijferweergave in liggend formaat gecorrigeerd
-- Lettertype dat niet correct werd weergegeven in release builds gecorrigeerd
-- GamjaFlower-lettertype direct in de app gebundeld voor betrouwbare weergave
+- Verbeterde uitlijning van koptekstpictogrammen op instellingenpagina's voor consistente weergave op alle apparaten
 </nl-NL>
 
 <no-NO>
-- Rettet tall visning overflyt i liggende modus
-- Rettet skrift som ikke vises riktig i utgivelsesversjoner
-- GamjaFlower-skrift pakket direkte inn i appen for pålitelig visning
+- Forbedret justering av topptekstikoner på innstillingssider for konsekvent visning på alle enheter
 </no-NO>
 
 <pl-PL>
-- Naprawiono przepełnienie wyświetlania liczb w trybie poziomym
-- Naprawiono czcionkę, która nie wyświetlała się poprawnie w wersjach wydania
-- Czcionka GamjaFlower dołączona bezpośrednio do aplikacji dla niezawodnego wyświetlania
+- Poprawiono wyrównanie ikon nagłówka na stronach ustawień w celu zapewnienia spójnego wyświetlania na wszystkich urządzeniach
 </pl-PL>
 
 <pt-BR>
-- Corrigido overflow de exibição de números no modo paisagem
-- Corrigida fonte que não era exibida corretamente em builds de lançamento
-- Fonte GamjaFlower incorporada diretamente no aplicativo para exibição confiável
+- Alinhamento aprimorado dos ícones de cabeçalho nas páginas de configurações para exibição consistente em todos os dispositivos
 </pt-BR>
 
 <pt-PT>
-- Corrigido transbordamento de exibição de números no modo paisagem
-- Corrigido tipo de letra que não era exibido corretamente em builds de lançamento
-- Tipo de letra GamjaFlower incorporado diretamente na aplicação para exibição fiável
+- Alinhamento melhorado dos ícones de cabeçalho nas páginas de definições para exibição consistente em todos os dispositivos
 </pt-PT>
 
 <ro>
-- Corectat depășirea afișării numerelor în modul peisaj
-- Corectat fontul care nu se afișa corect în versiunile de lansare
-- Fontul GamjaFlower inclus direct în aplicație pentru afișare fiabilă
+- Aliniere îmbunătățită a pictogramelor antetului în paginile de setări pentru afișare consecventă pe toate dispozitivele
 </ro>
 
 <ru-RU>
-- Исправлено переполнение отображения чисел в альбомном режиме
-- Исправлен шрифт, который некорректно отображался в релизных сборках
-- Шрифт GamjaFlower встроен непосредственно в приложение для надежного отображения
+- Улучшено выравнивание значков заголовка на страницах настроек для согласованного отображения на всех устройствах
 </ru-RU>
 
 <sk>
-- Opravené pretečenie zobrazenia čísiel v režime na šírku
-- Opravené písmo, ktoré sa nezobrazovalo správne vo vydaniach
-- Písmo GamjaFlower priamo zahrnuté do aplikácie pre spoľahlivé zobrazenie
+- Vylepšené zarovnanie ikon hlavičky na stránkach nastavení pre konzistentné zobrazenie na všetkých zariadeniach
 </sk>
 
 <sl>
-- Popravljen prekoračitev prikaza števil v ležečem načinu
-- Popravljena pisava, ki se ni pravilno prikazovala v izdajnih različicah
-- Pisava GamjaFlower neposredno vključena v aplikacijo za zanesljiv prikaz
+- Izboljšana poravnava ikon glave na straneh z nastavitvami za dosledno prikazovanje na vseh napravah
 </sl>
 
 <sr>
-- Исправљено прекорачење приказа бројева у пејзажном режиму
-- Исправљен фонт који се није правилно приказивао у издањима
-- Фонт GamjaFlower директно укључен у апликацију за поуздан приказ
+- Побољшано поравнање икона заглавља на страницама подешавања за доследан приказ на свим уређајима
 </sr>
 
 <sv-SE>
-- Korrigerat talvisningsöverskott i liggande läge
-- Korrigerat typsnitt som inte visades korrekt i release-byggen
-- GamjaFlower-typsnitt paketerat direkt i appen för tillförlitlig visning
+- Förbättrad justering av rubriksikoner på inställningssidor för konsekvent visning på alla enheter
 </sv-SE>
 
 <sw>
-- Imetengenezwa kufurika kwa uonyeshaji wa namba katika hali ya mandhari
-- Imetengenezwa fonti ambayo haikuonyeshwa kwa usahihi katika matoleo ya kutolewa
-- Fonti ya GamjaFlower imejumuishwa moja kwa moja kwenye programu kwa uonyeshaji wa kuaminika
+- Uboreshaji wa usawazishaji wa ikoni za kichwa kwenye kurasa za mipangilio kwa uonyeshaji thabiti kwenye vifaa vyote
 </sw>
 
 <th>
-- แก้ไขปัญหาการล้นของการแสดงตัวเลขในโหมดแนวนอน
-- แก้ไขฟอนต์ที่ไม่แสดงอย่างถูกต้องในบิลด์รีลีส
-- รวมฟอนต์ GamjaFlower โดยตรงในแอปเพื่อการแสดงผลที่เชื่อถือได้
+- ปรับปรุงการจัดเรียงไอคอนส่วนหัวในหน้าการตั้งค่าเพื่อการแสดงผลที่สอดคล้องกันในทุกอุปกรณ์
 </th>
 
 <tr-TR>
-- Yatay modda sayı görüntüsü taşması düzeltildi
-- Yayın derlemelerinde düzgün görüntülenmeyen yazı tipi düzeltildi
-- Güvenilir görüntüleme için GamjaFlower yazı tipi doğrudan uygulamaya dahil edildi
+- Tüm cihazlarda tutarlı görüntüleme için ayarlar sayfalarında başlık simgesi hizalaması iyileştirildi
 </tr-TR>
 
 <uk>
-- Виправлено переповнення відображення чисел в альбомному режимі
-- Виправлено шрифт, який некоректно відображався у релізних збірках
-- Шрифт GamjaFlower вбудовано безпосередньо в додаток для надійного відображення
+- Покращено вирівнювання значків заголовка на сторінках налаштувань для узгодженого відображення на всіх пристроях
 </uk>
 
 <vi>
-- Đã sửa lỗi tràn hiển thị số trong chế độ ngang
-- Đã sửa phông chữ không hiển thị đúng trong bản phát hành
-- Đã tích hợp phông chữ GamjaFlower trực tiếp vào ứng dụng để hiển thị đáng tin cậy
+- Cải thiện căn chỉnh biểu tượng tiêu đề trên các trang cài đặt để hiển thị nhất quán trên tất cả các thiết bị
 </vi>
 
 <zh-CN>
-- 修复横屏模式下数字显示溢出问题
-- 修复发布版本中字体无法正确显示的问题
-- 将GamjaFlower字体直接打包到应用中以确保可靠显示
+- 改进设置页面标题图标对齐，在所有设备上显示一致
 </zh-CN>
 
 <zh-HK>
-- 修正橫向模式下數字顯示溢位問題
-- 修正發佈版本中字型無法正確顯示的問題
-- 將GamjaFlower字型直接打包到應用程式中以確保可靠顯示
+- 改進設定頁面標題圖示對齊，在所有裝置上顯示一致
 </zh-HK>
 
 <zh-TW>
-- 修正橫向模式下數字顯示溢位問題
-- 修正發布版本中字型無法正確顯示的問題
-- 將GamjaFlower字型直接打包到應用程式中以確保可靠顯示
+- 改進設定頁面標題圖示對齊，在所有裝置上顯示一致
 </zh-TW>
 
 <zu>
-- Kulungiswe ukugcwala kokuboniswa kwezinombolo kumodi ye-landscape
-- Kulungiswe ifonti engabonakali kahle ezakhiweni zokukhishwa
-- Ifonti ye-GamjaFlower ifakwe ngqo kuhlelo lokusebenza ukuze ibonakale ngokuthembeka
+- Ukuthuthukiswa kokuqondanisa kwezithonjana zesihloko emakhasini wamasethingi ukuze kubonakale ngokufanayo kuwo wonke amadivayisi
 </zu>

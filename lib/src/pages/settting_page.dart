@@ -73,51 +73,43 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget _buildHeader(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          padding: const EdgeInsets.only(top: 5),
-          child: Icon(
-            Icons.tune,
-            size: 24.0,
-            color: Colors.grey.shade600,
-          ),
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(
+        Icons.tune,
+        size: 24.0,
+        color: Colors.grey.shade600,
+      ),
+      title: Text(
+        'settings.title'.tr(),
+        style: TextStyle(
+          fontSize: 24.0,
+          fontWeight: FontWeight.w600,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
-        const SizedBox(width: 16.0),
-        Expanded(
-          child: Text(
-            'settings.title'.tr(),
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.onSurface,
+      ),
+      trailing: Tooltip(
+        message: 'settings.explanationTooltip'.tr(),
+        child: GestureDetector(
+          onTap: () => _showSettingsExplanationModal(context),
+          child: Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: Theme.of(context)
+                  .colorScheme
+                  .primary
+                  .withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Icon(
+              Icons.help_outline,
+              size: 20,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
         ),
-        Tooltip(
-          message: 'settings.explanationTooltip'.tr(),
-          child: GestureDetector(
-            onTap: () => _showSettingsExplanationModal(context),
-            child: Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: Theme.of(context)
-                    .colorScheme
-                    .primary
-                    .withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Icon(
-                Icons.help_outline,
-                size: 20,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 
