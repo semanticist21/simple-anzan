@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Simple Anzan App - A Flutter-based mental math training application for practicing addition and multiplication calculations (abacus-style). The app supports multiple platforms: Android, iOS, Windows, macOS, Linux, and Web.
 
-Current version: 4.1.2+70
+Current version: 4.1.5+73
 
 ## Development Commands
 
@@ -158,9 +158,10 @@ Six shadcn-inspired themes with separate light/dark variants:
 - Properly cleans up listeners and timers in dispose() to prevent memory leaks
 
 **Styling**:
-- Google Fonts "Gamja Flower" for handwritten aesthetic
+- Google Fonts "Gamja Flower" for handwritten aesthetic (bundled in `assets/google_fonts/GamjaFlower-Regular.ttf` for release builds)
 - Dynamic font sizing based on digit count
 - Theme-aware text color via `ThemeSelector.getFlickerTextColor()`
+- Number alignment handling with pre-calculated sign width to prevent layout shift
 
 ### Internationalization Architecture
 
@@ -235,7 +236,7 @@ Six shadcn-inspired themes with separate light/dark variants:
 
 ### Configuration
 
-- `pubspec.yaml` - Dependencies and app metadata (version 4.1.2+70)
+- `pubspec.yaml` - Dependencies and app metadata (version 4.1.5+73)
 - `analysis_options.yaml` - Flutter linting configuration using flutter_lints
 - `android/app/build.gradle` - Android build settings (API 35, 16KB page support, ProGuard config)
 
