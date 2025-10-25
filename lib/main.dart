@@ -48,6 +48,14 @@ void main() async {
     await windowManager.setSize(const Size(400, 600));
   }
 
+  if (Platform.isMacOS) {
+    await windowManager.ensureInitialized();
+    await windowManager.setMinimumSize(const Size(800, 600));
+    await windowManager.setMaximizable(true);
+    await windowManager.setMinimizable(true);
+    await windowManager.setSize(const Size(1280, 800)); // App Store screenshot size
+  }
+
   FlutterError.onError = (FlutterErrorDetails details) async {
     FlutterError.presentError(details);
     if (Platform.isWindows) {
