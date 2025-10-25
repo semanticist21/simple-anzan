@@ -37,12 +37,23 @@ class _FlickerState extends State<Flicker> {
   var _answer = '';
   Timer? _burningModeTimer;
 
+  // Iteration ID system to prevent race conditions
+  int _currentIterationId = 0;
+  bool _isIterating = false;
+
   void _handleResetText() {
     if (_stateProvider.state == ButtonState.iterationCompleted) {
       _cancelBurningModeTimer();
-      setState(() {
-        _number = '';
-      });
+
+      // Cancel any ongoing iteration
+      _currentIterationId++;
+      _isIterating = false;
+
+      if (mounted) {
+        setState(() {
+          _number = '';
+        });
+      }
     }
   }
 
@@ -125,6 +136,11 @@ class _FlickerState extends State<Flicker> {
 
   // start iteration.
   Future<void> _callbackOnButtonClick() async {
+    // Prevent multiple simultaneous iterations
+    if (_isIterating) {
+      return;
+    }
+
     switch (_stateProvider.state) {
       case ButtonState.iterationNotStarted:
         _showAnswer();
@@ -140,43 +156,60 @@ class _FlickerState extends State<Flicker> {
   }
 
   Future<void> _initiateIteration(SettingsManager manager) async {
+    // Mark as iterating and increment iteration ID
+    _isIterating = true;
+    _currentIterationId++;
+    final iterationId = _currentIterationId;
+
     _answer = '';
 
-    switch (manager.getCurrentEnum<CalculationMode>()) {
-      case CalculationMode.onlyPlus:
-        var isShuffle = manager.getCurrentValue<ShuffleMode, bool>();
-        if (isShuffle) {
-          _runShuffleAdd(manager);
-        } else {
-          _runAdd(manager);
-        }
+    try {
+      switch (manager.getCurrentEnum<CalculationMode>()) {
+        case CalculationMode.onlyPlus:
+          var isShuffle = manager.getCurrentValue<ShuffleMode, bool>();
+          if (isShuffle) {
+            await _runShuffleAdd(manager, iterationId);
+          } else {
+            await _runAdd(manager, iterationId);
+          }
 
-        break;
-      case CalculationMode.plusMinus:
-        var isShuffle = manager.getCurrentValue<ShuffleMode, bool>();
-        if (isShuffle) {
-          _runShuffleAddMinus(manager);
-        } else {
-          _runAddMinus(manager);
-        }
-        break;
+          break;
+        case CalculationMode.plusMinus:
+          var isShuffle = manager.getCurrentValue<ShuffleMode, bool>();
+          if (isShuffle) {
+            await _runShuffleAddMinus(manager, iterationId);
+          } else {
+            await _runAddMinus(manager, iterationId);
+          }
+          break;
+      }
+    } finally {
+      // Only clear iterating flag if this is still the current iteration
+      if (iterationId == _currentIterationId) {
+        _isIterating = false;
+      }
     }
   }
 
-  Future<void> _runAdd(SettingsManager manager) async =>
-      await doProcess(getPlusNums, manager);
+  Future<void> _runAdd(SettingsManager manager, int iterationId) async =>
+      await doProcess(getPlusNums, manager, iterationId);
 
-  Future<void> _runAddMinus(SettingsManager manager) async =>
-      await doProcess(getPlusMinusNums, manager);
+  Future<void> _runAddMinus(SettingsManager manager, int iterationId) async =>
+      await doProcess(getPlusMinusNums, manager, iterationId);
 
-  Future<void> _runShuffleAdd(SettingsManager manager) async =>
-      await doProcess(getPlusShuffleNums, manager);
+  Future<void> _runShuffleAdd(SettingsManager manager, int iterationId) async =>
+      await doProcess(getPlusShuffleNums, manager, iterationId);
 
-  Future<void> _runShuffleAddMinus(SettingsManager manager) async =>
-      await doProcess(getPlusMinusShuffleNums, manager);
+  Future<void> _runShuffleAddMinus(SettingsManager manager, int iterationId) async =>
+      await doProcess(getPlusMinusShuffleNums, manager, iterationId);
 
   Future<void> doProcess(
-      List<int> Function(int, int) func, SettingsManager manager) async {
+      List<int> Function(int, int) func, SettingsManager manager, int iterationId) async {
+    // Check if this iteration is still valid
+    if (iterationId != _currentIterationId || !mounted) {
+      return;
+    }
+
     var nums = func(manager.getCurrentValue<Digit, int>(),
         manager.getCurrentValue<NumOfProblems, int>());
 
@@ -189,13 +222,26 @@ class _FlickerState extends State<Flicker> {
     var questions = nums.sublist(0, len - 1);
     _answer = nums.last.toString();
 
-    await iterNums(manager, questions, _stateProvider);
+    await iterNums(manager, questions, _stateProvider, iterationId);
+
+    // Check again before handling completion
+    if (iterationId != _currentIterationId || !mounted) {
+      return;
+    }
+
+    // For burning mode, clear the flag before scheduling next cycle
+    // This ensures the timer can start a new iteration
+    if (_isBurningModeActive() && _isIterationActive()) {
+      _isIterating = false;
+    }
 
     _handleProblemCompletion(manager);
   }
 
   void _handleProblemCompletion(SettingsManager manager) {
     if (_isBurningModeActive() && _isIterationActive()) {
+      // In burning mode, keep _isIterating as false to allow next cycle
+      // The flag will be set to true again when next iteration starts
       _startBurningModeCycle(manager);
     } else {
       _stateProvider.changeState(desiredState: ButtonState.iterationCompleted);
@@ -211,9 +257,11 @@ class _FlickerState extends State<Flicker> {
   }
 
   Future<void> iterNums(SettingsManager manager, List<int> questions,
-      StateProvider stateProvider) async {
+      StateProvider stateProvider, int iterationId) async {
     var duration = manager.getCurrentValue<Speed, Duration>();
     var len = questions.length;
+
+    if (!mounted || iterationId != _currentIterationId) return;
 
     setState(() {
       _number = '';
@@ -227,48 +275,80 @@ class _FlickerState extends State<Flicker> {
       await Future.delayed(const Duration(milliseconds: 1000));
     }
 
+    // Check if iteration is still valid after delay
+    if (!mounted || iterationId != _currentIterationId) return;
+
     bool isSeparator = manager.getCurrentValue<SeparatorMode, bool>();
 
     for (int i = 0; i < len; i++) {
+      // Check iteration validity
+      if (!mounted || iterationId != _currentIterationId) {
+        break;
+      }
+
       if (_stateProvider.state == ButtonState.iterationCompleted) {
-        setState(() {
-          _number = '';
-        });
+        if (mounted) {
+          setState(() {
+            _number = '';
+          });
+        }
         break;
       }
 
       var str = questions[i].toString();
 
       _optManager.soundOption.playSound();
+
+      if (!mounted || iterationId != _currentIterationId) {
+        break;
+      }
+
       if (_stateProvider.state == ButtonState.iterationCompleted) {
         break;
       }
-      setState(() {
-        _number = isSeparator ? formatter.format(int.parse(str)) : str;
-      });
+
+      if (mounted) {
+        setState(() {
+          _number = isSeparator ? formatter.format(int.parse(str)) : str;
+        });
+      }
 
       await Future.delayed(duration);
 
-      if (_stateProvider.state == ButtonState.iterationCompleted) {
-        setState(() {
-          _number = '';
-        });
+      if (!mounted || iterationId != _currentIterationId) {
         break;
       }
 
-      setState(() {
-        _number = '';
-      });
+      if (_stateProvider.state == ButtonState.iterationCompleted) {
+        if (mounted) {
+          setState(() {
+            _number = '';
+          });
+        }
+        break;
+      }
+
+      if (mounted) {
+        setState(() {
+          _number = '';
+        });
+      }
 
       // if it is the last iteration, then don't await.
       if (i == len - 1) {
         break;
       }
 
+      if (!mounted || iterationId != _currentIterationId) {
+        break;
+      }
+
       if (_stateProvider.state == ButtonState.iterationCompleted) {
-        setState(() {
-          _number = '';
-        });
+        if (mounted) {
+          setState(() {
+            _number = '';
+          });
+        }
         break;
       }
 
@@ -281,6 +361,8 @@ class _FlickerState extends State<Flicker> {
   }
 
   void _showAnswer() {
+    if (!mounted) return;
+
     setState(() {
       _number = _answer == '' ? '' : formatter.format(int.parse(_answer));
     });
@@ -300,6 +382,8 @@ class _FlickerState extends State<Flicker> {
     const answerDisplayDelay = Duration(seconds: 2);
 
     _burningModeTimer = Timer(answerDisplayDelay, () {
+      if (!mounted) return;
+
       if (_shouldContinueBurningMode()) {
         _showAnswer();
         onAnswerShown();
@@ -311,8 +395,11 @@ class _FlickerState extends State<Flicker> {
     const nextProblemDelay = Duration(seconds: 3);
 
     _burningModeTimer = Timer(nextProblemDelay, () {
+      if (!mounted) return;
+
       if (_shouldContinueBurningMode()) {
         _clearDisplay();
+        // Flag was already cleared in doProcess for burning mode
         _initiateIteration(manager);
       }
     });
@@ -323,6 +410,8 @@ class _FlickerState extends State<Flicker> {
   }
 
   void _clearDisplay() {
+    if (!mounted) return;
+
     setState(() {
       _number = '';
     });
@@ -330,6 +419,10 @@ class _FlickerState extends State<Flicker> {
 
   @override
   void dispose() {
+    // Cancel any ongoing iteration
+    _currentIterationId++;
+    _isIterating = false;
+
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.removeListener(_handleResetText);
     _cancelBurningModeTimer();

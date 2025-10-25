@@ -1,0 +1,30 @@
+<영어>
+- Fixed issue where rapid clicking in burning mode caused multiple calculations to run simultaneously
+- Fixed memory leak and crash when switching tabs during calculation
+- Improved burning mode continuous execution stability
+</영어>
+
+
+<한국어>
+- 버닝모드에서 빠른 클릭 시 여러 계산이 동시에 실행되는 문제 수정
+- 계산 중 탭 전환 시 발생하는 메모리 누수 및 크래시 수정
+- 버닝모드 자동 반복 실행 안정성 개선
+</한국어>
+
+<읿본어>
+- バーニングモードで連続クリック時に複数の計算が同時実行される問題を修正
+- 計算中のタブ切り替え時に発生するメモリリークとクラッシュを修正
+- バーニングモードの連続実行の安定性を改善
+</읿본어>
+
+<중국어(간체)>
+- 修复燃烧模式下快速点击导致多个计算同时运行的问题
+- 修复计算过程中切换标签页时的内存泄漏和崩溃问题
+- 改进燃烧模式连续执行的稳定性
+</중국어(간체)>
+
+<중국어(번체)>
+- 修復燃燒模式下快速點擊導致多個計算同時運行的問題
+- 修復計算過程中切換標籤頁時的記憶體洩漏和崩潰問題
+- 改進燃燒模式連續執行的穩定性
+</중국어(번체)>

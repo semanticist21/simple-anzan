@@ -255,6 +255,58 @@ Six shadcn-inspired themes with separate light/dark variants:
 - Two tables: `add_presets` for addition, `multiply_presets` for multiplication
 - Preset models with JSON serialization for configuration export/import
 
+## Release Notes Management
+
+### Release Notes Files
+
+- `release_notes-ios.xml` - iOS App Store release notes (supports 5 languages)
+- `release_notes.xml` - Android Play Store release notes (supports 57 languages)
+
+### iOS App Store Languages (release_notes-ios.xml)
+
+When updating iOS release notes, translations must be provided for these 5 languages:
+1. 영어 (English)
+2. 한국어 (Korean)
+3. 읿본어 (Japanese)
+4. 중국어(간체) (Chinese Simplified)
+5. 중국어(번체) (Chinese Traditional)
+
+### Android Play Store Languages (release_notes.xml)
+
+When updating Android release notes, translations must be provided for ALL 57 supported languages:
+
+**Primary Languages**:
+- en-US (English US), en-GB (English GB)
+- ko-KR (Korean)
+- ja-JP (Japanese)
+- zh-CN (Chinese Simplified), zh-HK (Chinese Hong Kong), zh-TW (Chinese Traditional)
+
+**European Languages**:
+- de-DE (German), fr-FR (French), fr-CA (French Canada)
+- es-ES (Spanish Spain), es-419 (Spanish Latin America)
+- it-IT (Italian), pt-PT (Portuguese Portugal), pt-BR (Portuguese Brazil)
+- nl-NL (Dutch), pl-PL (Polish), ru-RU (Russian), uk (Ukrainian)
+- cs-CZ (Czech), sk (Slovak), sl (Slovenian), hr (Croatian), sr (Serbian)
+- bg (Bulgarian), ro (Romanian), hu-HU (Hungarian)
+- da-DK (Danish), no-NO (Norwegian), sv-SE (Swedish), fi-FI (Finnish)
+- el-GR (Greek), et (Estonian), lt (Lithuanian), lv (Latvian)
+
+**Middle Eastern & Asian Languages**:
+- ar (Arabic), iw-IL (Hebrew), fa (Persian), tr-TR (Turkish)
+- hi-IN (Hindi), th (Thai), vi (Vietnamese), id (Indonesian), ms (Malay)
+
+**African Languages**:
+- af (Afrikaans), am (Amharic), sw (Swahili), zu (Zulu)
+
+**CRITICAL**: When modifying release notes for either platform:
+1. **iOS**: Update ALL 5 language tags in `release_notes-ios.xml`
+2. **Android**: Update ALL 57 language tags in `release_notes.xml`
+3. Never publish with missing or incomplete translations
+4. Maintain consistent messaging across all language variants
+5. Test XML validity before committing changes
+
+This requirement is emphasized in the Korean note at the end of this file: "문구 수정 시 반드시 모든 언어 번역에 대해 진행할 것" (When modifying text, translations must be updated for ALL languages).
+
 ## Key Dependencies
 
 ### Core Framework

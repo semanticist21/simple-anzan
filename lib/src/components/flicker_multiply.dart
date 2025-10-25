@@ -39,6 +39,10 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   var _answer = '';
   Timer? _burningModeTimer;
 
+  // Iteration ID system to prevent race conditions
+  int _currentIterationId = 0;
+  bool _isIterating = false;
+
   @override
   void initState() {
     super.initState();
@@ -47,11 +51,25 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   void _handleStateChange() {
     if (_stateProvider.state == ButtonMultiplyState.iterationCompleted) {
       _cancelBurningModeTimer();
+
+      // Cancel any ongoing iteration
+      _currentIterationId++;
+      _isIterating = false;
+
+      if (mounted) {
+        setState(() {
+          _number = '';
+        });
+      }
     }
   }
 
   @override
   void dispose() {
+    // Cancel any ongoing iteration
+    _currentIterationId++;
+    _isIterating = false;
+
     _stateProvider.removeListener(_callbackOnButtonClick);
     _stateProvider.removeListener(_handleStateChange);
     _cancelBurningModeTimer();
@@ -98,6 +116,11 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
 
   // start iteration.
   Future<void> _callbackOnButtonClick() async {
+    // Prevent multiple simultaneous iterations
+    if (_isIterating) {
+      return;
+    }
+
     switch (_stateProvider.state) {
       case ButtonMultiplyState.iterationNotStarted:
         _showAnswer();
@@ -113,27 +136,45 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   }
 
   Future<void> _initiateIteration(SettingsMultiplyManager manager) async {
-    switch (manager.getCurrentEnum<CalCulationMultiplyMode>()) {
-      case CalCulationMultiplyMode.multiply:
-        _runMultiply(_manager);
-        break;
-      case CalCulationMultiplyMode.divide:
-        _runDivide(_manager);
-        break;
+    // Mark as iterating and increment iteration ID
+    _isIterating = true;
+    _currentIterationId++;
+    final iterationId = _currentIterationId;
+
+    try {
+      switch (manager.getCurrentEnum<CalCulationMultiplyMode>()) {
+        case CalCulationMultiplyMode.multiply:
+          await _runMultiply(_manager, iterationId);
+          break;
+        case CalCulationMultiplyMode.divide:
+          await _runDivide(_manager, iterationId);
+          break;
+      }
+    } finally {
+      // Only clear iterating flag if this is still the current iteration
+      if (iterationId == _currentIterationId) {
+        _isIterating = false;
+      }
     }
   }
 
-  Future<void> _runMultiply(SettingsMultiplyManager manager) async =>
-      await doProcess(getMultiplyNums, manager);
+  Future<void> _runMultiply(SettingsMultiplyManager manager, int iterationId) async =>
+      await doProcess(getMultiplyNums, manager, iterationId);
 
-  Future<void> _runDivide(SettingsMultiplyManager manager) async =>
-      await doProcess(getDivideNums, manager);
+  Future<void> _runDivide(SettingsMultiplyManager manager, int iterationId) async =>
+      await doProcess(getDivideNums, manager, iterationId);
 
   // initially code was written for handling a number of problems,
   // but now it takes only one. (removed option)
   Future<void> doProcess(
       List<Tuple<int, int>> Function(int, int, int, Tuple) func,
-      SettingsMultiplyManager manager) async {
+      SettingsMultiplyManager manager,
+      int iterationId) async {
+    // Check if this iteration is still valid
+    if (iterationId != _currentIterationId || !mounted) {
+      return;
+    }
+
     var questions = func(
         manager.getCurrentValue<SmallDigit, int>(),
         manager.getCurrentValue<BigDigit, int>(),
@@ -159,13 +200,26 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       }
     }
 
-    await iterNums(manager, questions);
+    await iterNums(manager, questions, iterationId);
+
+    // Check again before handling completion
+    if (iterationId != _currentIterationId || !mounted) {
+      return;
+    }
+
+    // For burning mode, clear the flag before scheduling next cycle
+    // This ensures the timer can start a new iteration
+    if (_isBurningModeActive() && _isIterationActive()) {
+      _isIterating = false;
+    }
 
     _handleProblemCompletion(manager);
   }
 
   void _handleProblemCompletion(SettingsMultiplyManager manager) {
     if (_isBurningModeActive() && _isIterationActive()) {
+      // In burning mode, keep _isIterating as false to allow next cycle
+      // The flag will be set to true again when next iteration starts
       _startBurningModeCycle(manager);
     } else {
       _stateProvider.changeState(
@@ -185,15 +239,20 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   Future<void> iterNums(
     SettingsMultiplyManager manager,
     List<Tuple<int, int>> questions,
+    int iterationId,
   ) async {
     var duration = manager.getCurrentValue<SpeedMultiply, Duration>();
     var isMultiply = manager.getCurrentEnum<CalCulationMultiplyMode>();
     var length = questions.length;
 
+    if (!mounted || iterationId != _currentIterationId) return;
+
     if (isMultiply == CalCulationMultiplyMode.multiply) {
-      setState(() {
-        _number = '';
-      });
+      if (mounted) {
+        setState(() {
+          _number = '';
+        });
+      }
 
       // wait before start
       var isNotify = manager.getCurrentValue<CountDownMultiplyMode, bool>();
@@ -203,27 +262,52 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         await Future.delayed(const Duration(milliseconds: 1000));
       }
 
+      // Check if iteration is still valid after delay
+      if (!mounted || iterationId != _currentIterationId) return;
+
       bool isSeparator = manager.getCurrentValue<SeparatorMultiplyMode, bool>();
 
       for (var i = 0; i < length; i++) {
+        // Check iteration validity
+        if (!mounted || iterationId != _currentIterationId) {
+          break;
+        }
+
         var item = questions[i];
 
         _optManager.soundOption.playSound();
-        setState(() {
-          _number =
-              '${isSeparator ? formatter.format(item.item1) : item.item1} × ${isSeparator ? formatter.format(item.item2) : item.item2}';
-        });
+
+        if (!mounted || iterationId != _currentIterationId) {
+          break;
+        }
+
+        if (mounted) {
+          setState(() {
+            _number =
+                '${isSeparator ? formatter.format(item.item1) : item.item1} × ${isSeparator ? formatter.format(item.item2) : item.item2}';
+          });
+        }
         await Future.delayed(duration);
 
-        setState(() {
-          _number = '';
-        });
+        if (!mounted || iterationId != _currentIterationId) {
+          break;
+        }
+
+        if (mounted) {
+          setState(() {
+            _number = '';
+          });
+        }
 
         // make not to wait too long before answer
         if (duration >= const Duration(milliseconds: 500)) {
           await Future.delayed(const Duration(milliseconds: 500));
         } else {
           await Future.delayed(duration);
+        }
+
+        if (!mounted || iterationId != _currentIterationId) {
+          break;
         }
 
         //set answer
@@ -234,9 +318,11 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
       }
       //when divide
     } else {
-      setState(() {
-        _number = '';
-      });
+      if (mounted) {
+        setState(() {
+          _number = '';
+        });
+      }
 
       // wait before start
       var isNotify = manager.getCurrentValue<CountDownMultiplyMode, bool>();
@@ -246,27 +332,52 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
         await Future.delayed(const Duration(milliseconds: 1000));
       }
 
+      // Check if iteration is still valid after delay
+      if (!mounted || iterationId != _currentIterationId) return;
+
       bool isSeparator = manager.getCurrentValue<SeparatorMultiplyMode, bool>();
 
       for (var i = 0; i < length; i++) {
+        // Check iteration validity
+        if (!mounted || iterationId != _currentIterationId) {
+          break;
+        }
+
         var item = questions[i];
 
         _optManager.soundOption.playSound();
-        setState(() {
-          _number =
-              '${isSeparator ? formatter.format(item.item1) : item.item1} ÷ ${isSeparator ? formatter.format(item.item2) : item.item2}';
-        });
+
+        if (!mounted || iterationId != _currentIterationId) {
+          break;
+        }
+
+        if (mounted) {
+          setState(() {
+            _number =
+                '${isSeparator ? formatter.format(item.item1) : item.item1} ÷ ${isSeparator ? formatter.format(item.item2) : item.item2}';
+          });
+        }
         await Future.delayed(duration);
 
-        setState(() {
-          _number = '';
-        });
+        if (!mounted || iterationId != _currentIterationId) {
+          break;
+        }
+
+        if (mounted) {
+          setState(() {
+            _number = '';
+          });
+        }
 
         // make not to wait too long before answer
         if (duration >= const Duration(milliseconds: 500)) {
           await Future.delayed(const Duration(milliseconds: 500));
         } else {
           await Future.delayed(duration);
+        }
+
+        if (!mounted || iterationId != _currentIterationId) {
+          break;
         }
 
         //set answer
@@ -280,6 +391,8 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   }
 
   void _showAnswer() {
+    if (!mounted) return;
+
     setState(() {
       _number = _answer;
     });
@@ -299,6 +412,8 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
     const answerDisplayDelay = Duration(seconds: 2);
 
     _burningModeTimer = Timer(answerDisplayDelay, () {
+      if (!mounted) return;
+
       if (_shouldContinueBurningMode()) {
         _showAnswer();
         onAnswerShown();
@@ -310,8 +425,11 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
     const nextProblemDelay = Duration(seconds: 3);
 
     _burningModeTimer = Timer(nextProblemDelay, () {
+      if (!mounted) return;
+
       if (_shouldContinueBurningMode()) {
         _clearDisplay();
+        // Flag was already cleared in doProcess for burning mode
         _initiateIteration(manager);
       }
     });
@@ -323,6 +441,8 @@ class _FlickerMultiplyState extends State<FlickerMultiply> {
   }
 
   void _clearDisplay() {
+    if (!mounted) return;
+
     setState(() {
       _number = '';
     });
