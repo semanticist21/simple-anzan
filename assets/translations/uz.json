@@ -101,5 +101,13 @@
     "onBurning": "Yonish holatida",
     "confirm": "Tasdiqlash",
     "cancel": "Bekor qilish"
+  },
+  "appInfo": {
+    "title": "Ilova haqida",
+    "tooltip": "Ilova haqida",
+    "version": "Versiya",
+    "company": "Kompaniya",
+    "support": "Xato hisoboti va so'rovlar",
+    "supportLink": "Forumga tashrif"
   }
 }

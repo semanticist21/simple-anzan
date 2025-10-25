@@ -101,5 +101,13 @@
     "onBurning": "Sedang Terbakar",
     "confirm": "Konfirmasi",
     "cancel": "Batal"
+  },
+  "appInfo": {
+    "title": "Informasi Aplikasi",
+    "tooltip": "Info aplikasi",
+    "version": "Versi",
+    "company": "Perusahaan",
+    "support": "Laporan Bug & Pertanyaan",
+    "supportLink": "Kunjungi Forum"
   }
 }

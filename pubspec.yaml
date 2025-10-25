@@ -68,6 +68,12 @@ dependencies:
   # Fonts
   google_fonts: ^6.2.1
 
+  # URL launcher
+  url_launcher: ^6.3.1
+
+  # Package info
+  package_info_plus: ^8.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

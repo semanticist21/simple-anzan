@@ -101,5 +101,13 @@
     "onBurning": "連続モード",
     "confirm": "確認",
     "cancel": "キャンセル"
+  },
+  "appInfo": {
+    "title": "アプリ情報",
+    "tooltip": "アプリ情報",
+    "version": "バージョン",
+    "company": "会社",
+    "support": "バグ報告とお問い合わせ",
+    "supportLink": "フォーラムへ"
   }
 }

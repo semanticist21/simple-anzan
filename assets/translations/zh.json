@@ -101,5 +101,13 @@
     "onBurning": "燃烧中",
     "confirm": "确认",
     "cancel": "取消"
+  },
+  "appInfo": {
+    "title": "应用信息",
+    "tooltip": "应用信息",
+    "version": "版本",
+    "company": "公司",
+    "support": "错误报告与咨询",
+    "supportLink": "访问论坛"
   }
 }

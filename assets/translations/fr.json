@@ -101,5 +101,13 @@
     "onBurning": "En combustion",
     "confirm": "Confirmer",
     "cancel": "Annuler"
+  },
+  "appInfo": {
+    "title": "Informations sur l'application",
+    "tooltip": "Info de l'application",
+    "version": "Version",
+    "company": "Entreprise",
+    "support": "Rapports de bugs et demandes",
+    "supportLink": "Visiter le forum"
   }
 }

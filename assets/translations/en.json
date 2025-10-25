@@ -101,5 +101,13 @@
     "onBurning": "On Burning",
     "confirm": "Confirm",
     "cancel": "Cancel"
+  },
+  "appInfo": {
+    "title": "App Information",
+    "tooltip": "App info",
+    "version": "Version",
+    "company": "Company",
+    "support": "Bug Reports & Inquiries",
+    "supportLink": "Visit Forum"
   }
 }

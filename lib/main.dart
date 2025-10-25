@@ -34,6 +34,7 @@ import 'src/dialog/prob_list.dart';
 import 'src/dialog/prob_list_multiply.dart';
 import 'src/dialog/windows_add_option.dart';
 import 'src/dialog/theme_color_picker.dart';
+import 'src/dialog/app_info_dialog.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -362,6 +363,40 @@ class _Home extends State<Home> {
                               )),
                         ])),
                     const SizedBox(width: 12),
+                    // Info button - only visible on settings pages
+                    Visibility(
+                      visible: _currentIndex == 1 || _currentIndex == 3,
+                      child: Tooltip(
+                        message: 'appInfo.tooltip'.tr(),
+                        child: GestureDetector(
+                          onTap: () => _showAppInfoDialog(context),
+                          child: Container(
+                            width: 40,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.0),
+                              border: Border.all(
+                                color: ThemeSelector.isDark
+                                    ? const Color(0xFF4B5563)
+                                    : const Color(0xFFD1D5DB),
+                                width: 1.0,
+                              ),
+                              color: ThemeSelector.isDark
+                                  ? const Color(0xFF1F2937)
+                                  : const Color(0xFFF3F4F6),
+                            ),
+                            child: Icon(
+                              Icons.info_outline,
+                              size: 18,
+                              color: ThemeSelector.isDark
+                                  ? const Color(0xFFF9FAFB)
+                                  : const Color(0xFF111827),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
                     // Color palette picker - only visible on settings pages
                     Visibility(
                       visible: _currentIndex == 1 || _currentIndex == 3,
@@ -908,6 +943,13 @@ class _Home extends State<Home> {
                 mode: _stateMultiplyProvider.isMultiplies,
               ));
     }
+  }
+
+  void _showAppInfoDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => const AppInfoDialog(),
+    );
   }
 
   void _showThemeColorPicker(BuildContext context) {

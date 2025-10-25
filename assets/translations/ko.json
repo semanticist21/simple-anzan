@@ -101,5 +101,13 @@
     "onBurning": "연속 모드",
     "confirm": "확인",
     "cancel": "취소"
+  },
+  "appInfo": {
+    "title": "앱 정보",
+    "tooltip": "앱 정보",
+    "version": "버전",
+    "company": "회사",
+    "support": "버그 신고 및 문의",
+    "supportLink": "포럼 방문"
   }
 }
