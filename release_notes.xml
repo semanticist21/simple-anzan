@@ -1,342 +1,195 @@
 <en-US>
-- Fixed issue where rapid clicking in burning mode caused multiple calculations to run simultaneously
-- Fixed memory leak and crash when switching tabs during calculation
-- Improved burning mode continuous execution stability
-- Added app info button in settings to view version and support information
+- Fixed button labels not updating in real-time when changing language
 </en-US>
 
 <af>
-- Reggestel probleem waar vinnige klik in brandmodus veroorsaak het dat verskeie berekeninge gelyktydig uitgevoer word
-- Reggestel geheue-lek en ongeluk wanneer oortjies tydens berekening oorgeskakel word
-- Verbeterde brandmodus deurlopende uitvoering stabiliteit
-- Bygevoeg program-inligtingsknoppie in instellings om weergawe en ondersteuningsinligting te bekyk
+- Reggestel knoppie-etikette wat nie in reële tyd opdateer wanneer taal verander word nie
 </af>
 
 <am>
-- በማቃጠያ ሁነታ ውስጥ ፈጣን ጠቅ ማድረግ በአንድ ጊዜ በርካታ ስሌቶች እንዲሰሩ የሚያደርግ ችግር ተስተካክሏል
-- በስሌት ወቅት ትሮችን በሚቀይሩበት ጊዜ የሚከሰት የማስታወሻ ፍሰት እና ችግር ተስተካክሏል
-- የማቃጠያ ሁነታ ቀጣይ አፈፃፀም መረጋጋት ተሻሽሏል
-- ስሪት እና የድጋፍ መረጃ ለማየት በቅንብሮች ውስጥ የመተግበሪያ መረጃ ቁልፍ ታክሏል
+- ቋንቋ በሚቀየርበት ጊዜ የአዝራር መለያዎች በእውነተኛ ጊዜ ሳይዘመኑ የቆዩ ችግር ተስተካክሏል
 </am>
 
 <ar>
-- إصلاح مشكلة النقر السريع في وضع الحرق التي تسببت في تشغيل عمليات حسابية متعددة في وقت واحد
-- إصلاح تسرب الذاكرة والتعطل عند التبديل بين علامات التبويب أثناء الحساب
-- تحسين استقرار التنفيذ المستمر لوضع الحرق
-- تمت إضافة زر معلومات التطبيق في الإعدادات لعرض معلومات الإصدار والدعم
+- إصلاح عدم تحديث تسميات الأزرار في الوقت الفعلي عند تغيير اللغة
 </ar>
 
 <bg>
-- Коригиран проблем, при който бързото кликване в режим на изгаряне причинява едновременно изпълнение на множество изчисления
-- Коригиран изтичане на памет и срив при превключване на раздели по време на изчисление
-- Подобрена стабилност на непрекъснатото изпълнение в режим на изгаряне
-- Добавен бутон за информация за приложението в настройките за преглед на версия и информация за поддръжка
+- Коригирано неактуализиране на етикетите на бутоните в реално време при смяна на езика
 </bg>
 
 <ca>
-- S'ha solucionat el problema on fer clic ràpid en mode de combustió provocava que diverses càlculs s'executessin simultàniament
-- S'ha solucionat la fuita de memòria i el bloqueig quan es canviaven pestanyes durant el càlcul
-- S'ha millorat l'estabilitat de l'execució contínua del mode de combustió
-- S'ha afegit el botó d'informació de l'aplicació a la configuració per veure la versió i la informació de suport
+- S'ha solucionat que les etiquetes dels botons no s'actualitzin en temps real en canviar d'idioma
 </ca>
 
 <cs-CZ>
-- Opraven problém, kdy rychlé klikání v režimu spalování způsobilo současné spuštění více výpočtů
-- Opravena únik paměti a pád při přepínání karet během výpočtu
-- Vylepšena stabilita nepřetržitého provádění režimu spalování
-- Přidáno tlačítko informací o aplikaci v nastavení pro zobrazení verze a informací o podpoře
+- Opraveno neaktualizování popisků tlačítek v reálném čase při změně jazyka
 </cs-CZ>
 
 <da-DK>
-- Rettet problem, hvor hurtig klik i forbrændingstilstand forårsagede, at flere beregninger kørte samtidigt
-- Rettet hukommelseslæk og nedbrud ved skift af faner under beregning
-- Forbedret stabilitet af kontinuerlig udførelse i forbrændingstilstand
-- Tilføjet app-info-knap i indstillinger for at se version og supportinformation
+- Rettet knap-etiketter, der ikke opdateres i realtid, når sproget ændres
 </da-DK>
 
 <de-DE>
-- Problem behoben, bei dem schnelles Klicken im Brennmodus dazu führte, dass mehrere Berechnungen gleichzeitig ausgeführt wurden
-- Speicherleck und Absturz beim Wechseln von Tabs während der Berechnung behoben
-- Verbesserte Stabilität der kontinuierlichen Ausführung im Brennmodus
-- App-Info-Button in den Einstellungen hinzugefügt, um Version und Support-Informationen anzuzeigen
+- Fehler behoben, bei dem Schaltflächenbeschriftungen beim Sprachwechsel nicht in Echtzeit aktualisiert wurden
 </de-DE>
 
 <el-GR>
-- Διορθώθηκε το πρόβλημα όπου το γρήγορο κλικ σε λειτουργία καύσης προκαλούσε την ταυτόχρονη εκτέλεση πολλαπλών υπολογισμών
-- Διορθώθηκε η διαρροή μνήμης και η κατάρρευση κατά την εναλλαγή καρτελών κατά τη διάρκεια του υπολογισμού
-- Βελτιωμένη σταθερότητα συνεχούς εκτέλεσης λειτουργίας καύσης
-- Προστέθηκε κουμπί πληροφοριών εφαρμογής στις ρυθμίσεις για προβολή πληροφοριών έκδοσης και υποστήριξης
+- Διορθώθηκε το πρόβλημα όπου οι ετικέτες κουμπιών δεν ενημερώνονταν σε πραγματικό χρόνο κατά την αλλαγή γλώσσας
 </el-GR>
 
 <en-GB>
-- Fixed issue where rapid clicking in burning mode caused multiple calculations to run simultaneously
-- Fixed memory leak and crash when switching tabs during calculation
-- Improved burning mode continuous execution stability
-- Added app info button in settings to view version and support information
+- Fixed button labels not updating in real-time when changing language
 </en-GB>
 
 <es-419>
-- Se corrigió el problema donde hacer clic rápidamente en modo de combustión causaba que múltiples cálculos se ejecutaran simultáneamente
-- Se corrigió la fuga de memoria y el bloqueo al cambiar pestañas durante el cálculo
-- Se mejoró la estabilidad de la ejecución continua del modo de combustión
-- Se agregó el botón de información de la aplicación en la configuración para ver la versión y la información de soporte
+- Se corrigió el problema de que las etiquetas de los botones no se actualizaran en tiempo real al cambiar el idioma
 </es-419>
 
 <es-ES>
-- Se ha corregido el problema donde hacer clic rápidamente en modo de combustión causaba que múltiples cálculos se ejecutaran simultáneamente
-- Se ha corregido la fuga de memoria y el bloqueo al cambiar pestañas durante el cálculo
-- Se ha mejorado la estabilidad de la ejecución continua del modo de combustión
-- Se ha añadido el botón de información de la aplicación en la configuración para ver la versión y la información de soporte
+- Se ha corregido que las etiquetas de los botones no se actualicen en tiempo real al cambiar el idioma
 </es-ES>
 
 <et>
-- Parandatud probleem, kus kiire klõpsamine põletusrežiimis põhjustas mitme arvutuse samaaegse käivitamise
-- Parandatud mäluleke ja krahh vahekaartide vahetamisel arvutuse ajal
-- Parandatud põletusrežiimi pidev täitmise stabiilsus
-- Lisatud rakenduse teabe nupp seadetesse versiooni ja toe teabe vaatamiseks
+- Parandatud nupu sildid, mis ei uuenenud reaalajas keele muutmisel
 </et>
 
 <fa>
-- مشکلی که کلیک سریع در حالت سوزاندن باعث اجرای همزمان چندین محاسبه می‌شد، برطرف شد
-- نشت حافظه و خرابی هنگام تعویض برگه‌ها در حین محاسبه برطرف شد
-- پایداری اجرای مداوم حالت سوزاندن بهبود یافت
-- دکمه اطلاعات برنامه در تنظیمات برای مشاهده اطلاعات نسخه و پشتیبانی اضافه شد
+- برطرف شدن مشکل به‌روزرسانی نشدن برچسب‌های دکمه در زمان واقعی هنگام تغییر زبان
 </fa>
 
 <fi-FI>
-- Korjattu ongelma, jossa nopea napsautus polttotilassa aiheutti useiden laskelmien samanaikaisen suorituksen
-- Korjattu muistivuoto ja kaatuminen välilehtien vaihtamisessa laskelman aikana
-- Parannettu polttotilan jatkuvan suorituksen vakautta
-- Lisätty sovellustietojen painike asetuksiin version ja tukitietojen katselemiseksi
+- Korjattu painikkeiden otsikoiden päivittymättömyys reaaliajassa kieltä vaihdettaessa
 </fi-FI>
 
 <fr-CA>
-- Correction du problème où les clics rapides en mode combustion entraînaient l'exécution simultanée de plusieurs calculs
-- Correction de la fuite de mémoire et du plantage lors du changement d'onglets pendant le calcul
-- Amélioration de la stabilité de l'exécution continue du mode combustion
-- Ajout du bouton d'informations sur l'application dans les paramètres pour afficher la version et les informations d'assistance
+- Correction du problème où les étiquettes des boutons ne se mettaient pas à jour en temps réel lors du changement de langue
 </fr-CA>
 
 <fr-FR>
-- Correction du problème où les clics rapides en mode combustion entraînaient l'exécution simultanée de plusieurs calculs
-- Correction de la fuite de mémoire et du plantage lors du changement d'onglets pendant le calcul
-- Amélioration de la stabilité de l'exécution continue du mode combustion
-- Ajout du bouton d'informations sur l'application dans les paramètres pour afficher la version et les informations d'assistance
+- Correction du problème où les étiquettes des boutons ne se mettaient pas à jour en temps réel lors du changement de langue
 </fr-FR>
 
 <hi-IN>
-- बर्निंग मोड में तेजी से क्लिक करने पर एक साथ कई गणनाओं के चलने की समस्या को ठीक किया गया
-- गणना के दौरान टैब स्विच करते समय मेमोरी लीक और क्रैश को ठीक किया गया
-- बर्निंग मोड निरंतर निष्पादन स्थिरता में सुधार
-- संस्करण और सहायता जानकारी देखने के लिए सेटिंग्स में ऐप जानकारी बटन जोड़ा गया
+- भाषा बदलते समय बटन लेबल रीयल-टाइम में अपडेट नहीं होने की समस्या को ठीक किया गया
 </hi-IN>
 
 <hr>
-- Ispravljen problem gdje brzo klikanje u načinu izgaranja uzrokuje istovremeno izvršavanje više izračuna
-- Ispravljen propust memorije i pad pri prebacivanju kartica tijekom izračuna
-- Poboljšana stabilnost kontinuiranog izvršavanja načina izgaranja
-- Dodan gumb s informacijama o aplikaciji u postavkama za pregled verzije i informacija o podršci
+- Ispravljeno neažuriranje oznaka gumba u stvarnom vremenu prilikom promjene jezika
 </hr>
 
 <hu-HU>
-- Kijavítva a probléma, ahol a gyors kattintás égési módban több számítás egyidejű futását okozta
-- Kijavítva a memóriaszivárgás és összeomlás a fülek váltásakor számítás közben
-- Javított égési mód folyamatos végrehajtási stabilitás
-- Alkalmazásinformációs gomb hozzáadva a beállításokhoz a verzió és támogatási információk megtekintéséhez
+- Kijavítva a gombfeliratok valós idejű frissítésének hiánya nyelvváltáskor
 </hu-HU>
 
 <id>
-- Perbaikan masalah di mana klik cepat dalam mode pembakaran menyebabkan beberapa perhitungan berjalan secara bersamaan
-- Perbaikan kebocoran memori dan crash saat beralih tab selama perhitungan
-- Peningkatan stabilitas eksekusi berkelanjutan mode pembakaran
-- Menambahkan tombol info aplikasi di pengaturan untuk melihat versi dan informasi dukungan
+- Perbaikan label tombol yang tidak diperbarui secara real-time saat mengganti bahasa
 </id>
 
 <it-IT>
-- Risolto il problema in cui i clic rapidi in modalità combustione causavano l'esecuzione simultanea di più calcoli
-- Risolto il memory leak e il crash durante il cambio di schede durante il calcolo
-- Migliorata la stabilità dell'esecuzione continua della modalità combustione
-- Aggiunto il pulsante delle informazioni sull'app nelle impostazioni per visualizzare la versione e le informazioni di supporto
+- Risolto il problema delle etichette dei pulsanti che non si aggiornano in tempo reale quando si cambia lingua
 </it-IT>
 
 <iw-IL>
-- תוקנה בעיה שבה לחיצה מהירה במצב שריפה גרמה למספר חישובים לפעול במקביל
-- תוקנה דליפת זיכרון וקריסה בעת החלפת כרטיסיות במהלך חישוב
-- שופר יציבות ביצוע רציף של מצב שריפה
-- נוסף כפתור מידע על האפליקציה בהגדרות לצפייה במידע על גרסה ותמיכה
+- תוקנה בעיה שבה תוויות הכפתורים לא התעדכנו בזמן אמת בעת שינוי השפה
 </iw-IL>
 
 <ja-JP>
-- バーニングモードで連続クリック時に複数の計算が同時実行される問題を修正
-- 計算中のタブ切り替え時に発生するメモリリークとクラッシュを修正
-- バーニングモードの連続実行の安定性を改善
-- 設定にバージョンとサポート情報を確認できるアプリ情報ボタンを追加
+- 言語変更時にボタンラベルがリアルタイムで更新されない問題を修正
 </ja-JP>
 
 <ko-KR>
-- 버닝모드에서 빠른 클릭 시 여러 계산이 동시에 실행되는 문제 수정
-- 계산 중 탭 전환 시 발생하는 메모리 누수 및 크래시 수정
-- 버닝모드 자동 반복 실행 안정성 개선
-- 설정에서 버전 및 지원 정보를 확인할 수 있는 앱 정보 버튼 추가
+- 언어 변경 시 버튼 라벨이 실시간으로 업데이트되지 않던 문제 수정
 </ko-KR>
 
 <lt>
-- Ištaisyta problema, kai greitas paspaudimas degimo režime sukeldavo kelių skaičiavimų vykdymą vienu metu
-- Ištaisytas atminties nutekėjimas ir strigtis perjungiant skirtukus skaičiavimo metu
-- Pagerintas degimo režimo nuolatinio vykdymo stabilumas
-- Pridėtas programos informacijos mygtukas nustatymuose, kad būtų galima peržiūrėti versijos ir palaikymo informaciją
+- Ištaisyta problema, kai mygtukų etiketės neatsinaujindavo realiuoju laiku keičiant kalbą
 </lt>
 
 <lv>
-- Novērsta problēma, kad ātra klikšķināšana degšanas režīmā izraisīja vairāku aprēķinu vienlaicīgu izpildi
-- Novērsta atmiņas noplūde un avārija, pārslēdzoties uz cilnēm aprēķina laikā
-- Uzlabota degšanas režīma nepārtrauktas izpildes stabilitāte
-- Pievienota lietotnes informācijas poga iestatījumos, lai skatītu versijas un atbalsta informāciju
+- Novērsta problēma, kad pogu etiķetes neatjauninājas reāllaikā, mainot valodu
 </lv>
 
 <ms>
-- Membetulkan masalah di mana klik pantas dalam mod pembakaran menyebabkan beberapa pengiraan berjalan serentak
-- Membetulkan kebocoran memori dan kerosakan semasa menukar tab semasa pengiraan
-- Peningkatan kestabilan pelaksanaan berterusan mod pembakaran
-- Menambah butang maklumat aplikasi dalam tetapan untuk melihat versi dan maklumat sokongan
+- Membetulkan label butang yang tidak dikemas kini secara masa nyata semasa menukar bahasa
 </ms>
 
 <nl-NL>
-- Probleem opgelost waarbij snel klikken in verbrandingsmodus ervoor zorgde dat meerdere berekeningen tegelijkertijd werden uitgevoerd
-- Geheugenlek en crash bij het wisselen van tabbladen tijdens berekening opgelost
-- Verbeterde stabiliteit van continue uitvoering in verbrandingsmodus
-- App-infoknop toegevoegd in instellingen om versie- en ondersteuningsinformatie te bekijken
+- Probleem opgelost waarbij knoplabels niet in realtime werden bijgewerkt bij het wijzigen van de taal
 </nl-NL>
 
 <no-NO>
-- Rettet problem der rask klikking i brenningsmodus forårsaket at flere beregninger kjørte samtidig
-- Rettet minnelekkasje og krasj ved bytte av faner under beregning
-- Forbedret stabilitet for kontinuerlig kjøring i brenningsmodus
-- Lagt til app-infoknapp i innstillinger for å se versjon og støtteinformasjon
+- Rettet knappetiketter som ikke oppdateres i sanntid ved språkendring
 </no-NO>
 
 <pl-PL>
-- Naprawiono problem, w którym szybkie klikanie w trybie spalania powodowało jednoczesne uruchamianie wielu obliczeń
-- Naprawiono wyciek pamięci i awarię podczas przełączania kart podczas obliczeń
-- Poprawiono stabilność ciągłego wykonywania trybu spalania
-- Dodano przycisk informacji o aplikacji w ustawieniach, aby wyświetlić wersję i informacje o wsparciu
+- Naprawiono nieaktualizowanie się etykiet przycisków w czasie rzeczywistym podczas zmiany języka
 </pl-PL>
 
 <pt-BR>
-- Corrigido problema onde cliques rápidos no modo de combustão causavam a execução simultânea de múltiplos cálculos
-- Corrigido vazamento de memória e travamento ao trocar abas durante o cálculo
-- Melhorada a estabilidade da execução contínua do modo de combustão
-- Adicionado botão de informações do aplicativo nas configurações para visualizar versão e informações de suporte
+- Corrigido problema onde rótulos de botões não atualizavam em tempo real ao mudar idioma
 </pt-BR>
 
 <pt-PT>
-- Corrigido problema onde cliques rápidos no modo de combustão causavam a execução simultânea de múltiplos cálculos
-- Corrigido vazamento de memória e falha ao trocar separadores durante o cálculo
-- Melhorada a estabilidade da execução contínua do modo de combustão
-- Adicionado botão de informações da aplicação nas definições para visualizar versão e informações de suporte
+- Corrigido problema onde rótulos de botões não atualizavam em tempo real ao mudar idioma
 </pt-PT>
 
 <ro>
-- Rezolvată problema în care clicurile rapide în modul de ardere au cauzat rularea simultană a mai multor calcule
-- Rezolvată scurgerea de memorie și blocarea la schimbarea filelor în timpul calculului
-- Îmbunătățită stabilitatea execuției continue a modului de ardere
-- Adăugat buton de informații despre aplicație în setări pentru a vizualiza versiunea și informațiile de asistență
+- Rezolvată problema în care etichetele butoanelor nu se actualizau în timp real la schimbarea limbii
 </ro>
 
 <ru-RU>
-- Исправлена проблема, когда быстрые клики в режиме горения вызывали одновременное выполнение нескольких вычислений
-- Исправлена утечка памяти и сбой при переключении вкладок во время вычисления
-- Улучшена стабильность непрерывного выполнения режима горения
-- Добавлена кнопка информации о приложении в настройках для просмотра версии и информации о поддержке
+- Исправлена проблема с неактуализацией меток кнопок в реальном времени при смене языка
 </ru-RU>
 
 <sk>
-- Opravený problém, kde rýchle klikanie v režime spaľovania spôsobilo súčasné spustenie viacerých výpočtov
-- Opravená únik pamäte a pád pri prepínaní kariet počas výpočtu
-- Vylepšená stabilita nepretržitého vykonávania režimu spaľovania
-- Pridané tlačidlo informácií o aplikácii v nastaveniach na zobrazenie verzie a informácií o podpore
+- Opravené neaktualizovanie popisov tlačidiel v reálnom čase pri zmene jazyka
 </sk>
 
 <sl>
-- Odpravljena težava, kjer je hitro klikanje v načinu gorenja povzročilo hkratno izvajanje več izračunov
-- Odpravljena uhajanje pomnilnika in zrušitev pri preklopu zavihkov med izračunom
-- Izboljšana stabilnost neprekinjene izvršitve načina gorenja
-- Dodana gumb z informacijami o aplikaciji v nastavitvah za ogled različice in informacij o podpori
+- Odpravljena težava, ko se oznake gumbov niso posodabljale v realnem času ob spremembi jezika
 </sl>
 
 <sr>
-- Ispravljeno pitanje gde je brzo klikanje u režimu sagorevanja uzrokovalo istovremeno pokretanje više proračuna
-- Ispravljen propust memorije i pad pri prebacivanju kartica tokom proračuna
-- Poboljšana stabilnost kontinuiranog izvršavanja režima sagorevanja
-- Dodato dugme sa informacijama o aplikaciji u postavkama za pregled verzije i informacija o podršci
+- Ispravljeno neažuriranje oznaka dugmadi u realnom vremenu prilikom promene jezika
 </sr>
 
 <sv-SE>
-- Åtgärdat problem där snabba klick i förbränningsläge orsakade att flera beräkningar kördes samtidigt
-- Åtgärdat minnesläckage och krasch vid byte av flikar under beräkning
-- Förbättrad stabilitet för kontinuerlig körning i förbränningsläge
-- Lagt till appinfoknapp i inställningar för att visa version och supportinformation
+- Åtgärdat problem där knappetiketter inte uppdaterades i realtid vid språkbyte
 </sv-SE>
 
 <sw>
-- Imekamilisha tatizo ambapo kubofya haraka katika hali ya kuchoma kulisababisha hesabu nyingi kufanya kazi wakati mmoja
-- Imekamilisha uvujaji wa kumbukumbu na mgongano wakati wa kubadili vichupo wakati wa mahesabu
-- Imeboreshwa uthabiti wa utekelezaji unaoendelea wa hali ya kuchoma
-- Imeongezwa kitufe cha taarifa za programu katika mipangilio ili kuona toleo na taarifa za msaada
+- Imekamilisha lebo za kitufe ambazo hazikuwa zinasasishwa kwa wakati halisi wakati wa kubadili lugha
 </sw>
 
 <th>
-- แก้ไขปัญหาที่การคลิกอย่างรวดเร็วในโหมดเบิร์นทำให้มีการคำนวณหลายอันทำงานพร้อมกัน
-- แก้ไขการรั่วไหลของหน่วยความจำและการขัดข้องเมื่อสลับแท็บระหว่างการคำนวณ
-- ปรับปรุงความเสถียรของการดำเนินการต่อเนื่องในโหมดเบิร์น
-- เพิ่มปุ่มข้อมูลแอปในการตั้งค่าเพื่อดูข้อมูลเวอร์ชันและการสนับสนุน
+- แก้ไขป้ายกำกับปุ่มที่ไม่อัปเดตแบบเรียลไทม์เมื่อเปลี่ยนภาษา
 </th>
 
 <tr-TR>
-- Yanma modunda hızlı tıklamanın aynı anda birden fazla hesaplamanın çalışmasına neden olduğu sorun düzeltildi
-- Hesaplama sırasında sekmeler arasında geçiş yaparken bellek sızıntısı ve çökme düzeltildi
-- Yanma modu sürekli yürütme kararlılığı iyileştirildi
-- Sürüm ve destek bilgilerini görüntülemek için ayarlara uygulama bilgisi düğmesi eklendi
+- Dil değiştirildiğinde düğme etiketlerinin gerçek zamanlı olarak güncellenmemesi sorunu düzeltildi
 </tr-TR>
 
 <uk>
-- Виправлено проблему, коли швидкі кліки в режимі горіння спричиняли одночасне виконання кількох обчислень
-- Виправлено витік пам'яті та збій при перемиканні вкладок під час обчислення
-- Покращено стабільність безперервного виконання режиму горіння
-- Додано кнопку інформації про програму в налаштуваннях для перегляду версії та інформації про підтримку
+- Виправлено проблему з неоновленням міток кнопок у реальному часі при зміні мови
 </uk>
 
 <vi>
-- Đã khắc phục sự cố nhấp chuột nhanh ở chế độ đốt khiến nhiều phép tính chạy đồng thời
-- Đã khắc phục rò rỉ bộ nhớ và sự cố khi chuyển tab trong khi tính toán
-- Cải thiện tính ổn định thực thi liên tục của chế độ đốt
-- Đã thêm nút thông tin ứng dụng trong cài đặt để xem phiên bản và thông tin hỗ trợ
+- Đã khắc phục nhãn nút không cập nhật theo thời gian thực khi thay đổi ngôn ngữ
 </vi>
 
 <zh-CN>
-- 修复燃烧模式下快速点击导致多个计算同时运行的问题
-- 修复计算过程中切换标签页时的内存泄漏和崩溃问题
-- 改进燃烧模式连续执行的稳定性
-- 在设置中添加应用信息按钮以查看版本和支持信息
+- 修复切换语言时按钮标签未实时更新的问题
 </zh-CN>
 
 <zh-HK>
-- 修復燃燒模式下快速點擊導致多個計算同時運行的問題
-- 修復計算過程中切換標籤頁時的記憶體洩漏和崩潰問題
-- 改進燃燒模式連續執行的穩定性
-- 在設定中新增應用程式資訊按鈕以檢視版本和支援資訊
+- 修復切換語言時按鈕標籤未即時更新的問題
 </zh-HK>
 
 <zh-TW>
-- 修復燃燒模式下快速點擊導致多個計算同時運行的問題
-- 修復計算過程中切換標籤頁時的記憶體洩漏和崩潰問題
-- 改進燃燒模式連續執行的穩定性
-- 在設定中新增應用程式資訊按鈕以檢視版本和支援資訊
+- 修復切換語言時按鈕標籤未即時更新的問題
 </zh-TW>
 
 <zu>
-- Kulungiswe inkinga lapho ukuchofoza ngokushesha kwimo yokushisa kubangele ukuthi izibalwa eziningi zisebenze ngesikhathi esifanayo
-- Kulungiswe ukuvuza kwememori nokuphahlazeka lapho ushintsha amathebhu ngesikhathi sezibalwa
-- Kuthuthukiswe ukuzinza kokuqhubeka kwesimo sokushisa
-- Kwengezwe inkinobho yolwazi lohlelo ezilungiselelweni ukuze ubuke inguqulo nolwazi lokweseka
+- Kulungiswe amalebula wezinkinobho angabuyekezwa ngesikhathi sangempela lapho ushintsha ulimi
 </zu>
