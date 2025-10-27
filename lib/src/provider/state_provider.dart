@@ -11,7 +11,7 @@ class StateProvider extends ChangeNotifier {
 
   var isButtonVisible = true;
   var isQuestionListButtonVisible = false;
-  var buttonText = 'buttons.start'.tr();
+  String get buttonText => getButtonStr(state);
   var nums = List<int>.empty(growable: true);
 
   void changeState({ButtonState desiredState = ButtonState.autoState}) {
@@ -39,7 +39,6 @@ class StateProvider extends ChangeNotifier {
       }
     }
 
-    buttonText = getButtonStr(state);
     isButtonVisible = getButtonVisibility(state);
     isQuestionListButtonVisible = getQuestionListButtonVisibility(state);
     notifyListeners();

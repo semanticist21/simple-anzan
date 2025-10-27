@@ -13,7 +13,7 @@ class StateMultiplyProvider extends ChangeNotifier {
   var isButtonVisible = true;
   var isQuestionListButtonVisible = false;
 
-  var buttonText = 'buttons.start'.tr();
+  String get buttonText => getButtonStr(state);
   var nums = List<Tuple<int, int>>.empty(growable: true);
   var isMultiplies = List<bool>.empty(growable: true);
 
@@ -43,7 +43,6 @@ class StateMultiplyProvider extends ChangeNotifier {
       }
     }
 
-    buttonText = getButtonStr(state);
     isButtonVisible = getButtonVisibility(state);
     isQuestionListButtonVisible = getQuestionListButtonVisibility(state);
     notifyListeners();
