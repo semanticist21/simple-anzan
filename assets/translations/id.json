@@ -52,11 +52,11 @@
     "explanationTooltip": "Penjelasan pengaturan",
     "explanationTitle": "Panduan Pengaturan",
     "explanationDesc": "Pelajari tentang setiap opsi pengaturan di bawah ini",
-    "isMultiplyExplanation": "Ketika diaktifkan, masalah perkalian akan dibuat. Ketika dinonaktifkan, masalah pembagian akan disertakan sebagai gantinya.",
-    "speedExplanation": "Mengontrol seberapa cepat setiap angka muncul selama alur iterasi perkalian. Kecepatan yang lebih lambat memberikan lebih banyak waktu untuk memproses setiap angka. Kecepatan di bawah 150ms dapat menyebabkan masalah lag suara.",
-    "bigDigitExplanation": "Menetapkan jumlah maksimum digit untuk angka yang lebih besar dalam masalah perkalian (mis., 3 digit = angka hingga 999).",
-    "smallDigitExplanation": "Menetapkan jumlah maksimum digit untuk angka yang lebih kecil dalam masalah perkalian (mis., 2 digit = angka hingga 99).",
-    "questionsExplanation": "Menentukan berapa banyak masalah perkalian yang akan muncul dalam setiap sesi latihan."
+    "isMultiplyExplanation": "Ketika diaktifkan, masalah pembagian akan dibuat. Ketika dinonaktifkan, masalah perkalian akan dibuat.",
+    "speedExplanation": "Mengontrol seberapa cepat setiap angka muncul selama alur iterasi perhitungan. Kecepatan yang lebih lambat memberikan lebih banyak waktu untuk memproses setiap angka. Kecepatan di bawah 150ms dapat menyebabkan masalah lag suara.",
+    "bigDigitExplanation": "Menetapkan jumlah maksimum digit untuk angka yang lebih besar dalam masalah (mis., 3 digit = angka hingga 999).",
+    "smallDigitExplanation": "Menetapkan jumlah maksimum digit untuk angka yang lebih kecil dalam masalah (mis., 2 digit = angka hingga 99).",
+    "questionsExplanation": "Menentukan berapa banyak masalah yang akan muncul dalam setiap sesi latihan."
   },
   "customOptions": {
     "setSpeedTitle": "Atur kecepatan khusus.",

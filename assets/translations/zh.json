@@ -52,11 +52,11 @@
     "explanationTooltip": "设置说明",
     "explanationTitle": "设置指南",
     "explanationDesc": "了解下面每个设置选项",
-    "isMultiplyExplanation": "启用时，将生成乘法题目。禁用时，除法题目将被包含在内。",
-    "speedExplanation": "控制乘法迭代流程中每个数字出现的速度。较慢的速度给处理每个数字更多时间。低于150毫秒的速度可能导致声音延迟问题。",
-    "bigDigitExplanation": "设置乘法题目中较大数字的最大位数（例如：3位数 = 最大999的数字）。",
-    "smallDigitExplanation": "设置乘法题目中较小数字的最大位数（例如：2位数 = 最大99的数字）。",
-    "questionsExplanation": "确定每次练习会话中将出现多少乘法题目。"
+    "isMultiplyExplanation": "启用时，将生成除法题目。禁用时，将生成乘法题目。",
+    "speedExplanation": "控制计算迭代流程中每个数字出现的速度。较慢的速度给处理每个数字更多时间。低于150毫秒的速度可能导致声音延迟问题。",
+    "bigDigitExplanation": "设置题目中较大数字的最大位数（例如：3位数 = 最大999的数字）。",
+    "smallDigitExplanation": "设置题目中较小数字的最大位数（例如：2位数 = 最大99的数字）。",
+    "questionsExplanation": "确定每次练习会话中将出现多少题目。"
   },
   "customOptions": {
     "setSpeedTitle": "设置自定义速度",

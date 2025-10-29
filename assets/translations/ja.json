@@ -52,11 +52,11 @@
     "explanationTooltip": "設定説明",
     "explanationTitle": "設定ガイド",
     "explanationDesc": "以下で各設定オプションについて学ぶ",
-    "isMultiplyExplanation": "有効にすると、掛け算の問題が生成されます。無効にすると、割り算の問題が代わりに含まれます。",
-    "speedExplanation": "掛け算の反復フロー中に各数字が表示される速度を制御します。遅い速度では、各数字を処理する時間が長くなります。150ms未満の速度では、音声の遅延問題が発生する可能性があります。",
-    "bigDigitExplanation": "掛け算問題のより大きな数字の最大桁数を設定します（例：3桁 = 999までの数字）。",
-    "smallDigitExplanation": "掛け算問題のより小さな数字の最大桁数を設定します（例：2桁 = 99までの数字）。",
-    "questionsExplanation": "各練習セッションに表示される掛け算問題の数を決定します。"
+    "isMultiplyExplanation": "有効にすると、割り算の問題が生成されます。無効にすると、掛け算の問題が生成されます。",
+    "speedExplanation": "計算の反復フロー中に各数字が表示される速度を制御します。遅い速度では、各数字を処理する時間が長くなります。150ms未満の速度では、音声の遅延問題が発生する可能性があります。",
+    "bigDigitExplanation": "問題のより大きな数字の最大桁数を設定します（例：3桁 = 999までの数字）。",
+    "smallDigitExplanation": "問題のより小さな数字の最大桁数を設定します（例：2桁 = 99までの数字）。",
+    "questionsExplanation": "各練習セッションに表示される問題の数を決定します。"
   },
   "customOptions": {
     "setSpeedTitle": "速度を設定します。",

@@ -1,195 +1,195 @@
 <en-US>
-- Fixed button labels not updating in real-time when changing language
+- Fixed incorrect setting descriptions in multiplication/division mode
 </en-US>
 
 <af>
-- Reggestel knoppie-etikette wat nie in reële tyd opdateer wanneer taal verander word nie
+- Reggestel verkeerde instellingsbeskrywings in vermenigvuldiging/deling-modus
 </af>
 
 <am>
-- ቋንቋ በሚቀየርበት ጊዜ የአዝራር መለያዎች በእውነተኛ ጊዜ ሳይዘመኑ የቆዩ ችግር ተስተካክሏል
+- በማባዛት/መከፋፈል ሁነታ ውስጥ ትክክል ያልሆኑ የቅንብር መግለጫዎችን አስተካክሏል
 </am>
 
 <ar>
-- إصلاح عدم تحديث تسميات الأزرار في الوقت الفعلي عند تغيير اللغة
+- إصلاح أوصاف الإعدادات غير الصحيحة في وضع الضرب/القسمة
 </ar>
 
 <bg>
-- Коригирано неактуализиране на етикетите на бутоните в реално време при смяна на езика
+- Коригирани неправилни описания на настройки в режим умножение/деление
 </bg>
 
 <ca>
-- S'ha solucionat que les etiquetes dels botons no s'actualitzin en temps real en canviar d'idioma
+- S'han corregit les descripcions de configuració incorrectes en el mode multiplicació/divisió
 </ca>
 
 <cs-CZ>
-- Opraveno neaktualizování popisků tlačítek v reálném čase při změně jazyka
+- Opraveny nesprávné popisy nastavení v režimu násobení/dělení
 </cs-CZ>
 
 <da-DK>
-- Rettet knap-etiketter, der ikke opdateres i realtid, når sproget ændres
+- Rettet forkerte indstillingsbeskrivelser i multiplikations-/divisionsmodus
 </da-DK>
 
 <de-DE>
-- Fehler behoben, bei dem Schaltflächenbeschriftungen beim Sprachwechsel nicht in Echtzeit aktualisiert wurden
+- Fehlerhafte Einstellungsbeschreibungen im Multiplikations-/Divisionsmodus korrigiert
 </de-DE>
 
 <el-GR>
-- Διορθώθηκε το πρόβλημα όπου οι ετικέτες κουμπιών δεν ενημερώνονταν σε πραγματικό χρόνο κατά την αλλαγή γλώσσας
+- Διορθώθηκαν οι λανθασμένες περιγραφές ρυθμίσεων στη λειτουργία πολλαπλασιασμού/διαίρεσης
 </el-GR>
 
 <en-GB>
-- Fixed button labels not updating in real-time when changing language
+- Fixed incorrect setting descriptions in multiplication/division mode
 </en-GB>
 
 <es-419>
-- Se corrigió el problema de que las etiquetas de los botones no se actualizaran en tiempo real al cambiar el idioma
+- Se corrigieron descripciones de configuración incorrectas en el modo multiplicación/división
 </es-419>
 
 <es-ES>
-- Se ha corregido que las etiquetas de los botones no se actualicen en tiempo real al cambiar el idioma
+- Se han corregido las descripciones de configuración incorrectas en el modo multiplicación/división
 </es-ES>
 
 <et>
-- Parandatud nupu sildid, mis ei uuenenud reaalajas keele muutmisel
+- Parandatud valed seadete kirjeldused korrutamise/jagamise režiimis
 </et>
 
 <fa>
-- برطرف شدن مشکل به‌روزرسانی نشدن برچسب‌های دکمه در زمان واقعی هنگام تغییر زبان
+- توضیحات نادرست تنظیمات در حالت ضرب/تقسیم اصلاح شد
 </fa>
 
 <fi-FI>
-- Korjattu painikkeiden otsikoiden päivittymättömyys reaaliajassa kieltä vaihdettaessa
+- Korjattu virheelliset asetusten kuvaukset kertolaskun/jakolaskun tilassa
 </fi-FI>
 
 <fr-CA>
-- Correction du problème où les étiquettes des boutons ne se mettaient pas à jour en temps réel lors du changement de langue
+- Correction des descriptions de paramètres incorrectes en mode multiplication/division
 </fr-CA>
 
 <fr-FR>
-- Correction du problème où les étiquettes des boutons ne se mettaient pas à jour en temps réel lors du changement de langue
+- Correction des descriptions de paramètres incorrectes en mode multiplication/division
 </fr-FR>
 
 <hi-IN>
-- भाषा बदलते समय बटन लेबल रीयल-टाइम में अपडेट नहीं होने की समस्या को ठीक किया गया
+- गुणा/भाग मोड में गलत सेटिंग विवरण ठीक किया गया
 </hi-IN>
 
 <hr>
-- Ispravljeno neažuriranje oznaka gumba u stvarnom vremenu prilikom promjene jezika
+- Ispravljeni netočni opisi postavki u načinu množenja/dijeljenja
 </hr>
 
 <hu-HU>
-- Kijavítva a gombfeliratok valós idejű frissítésének hiánya nyelvváltáskor
+- Kijavítva a helytelen beállítási leírások szorzás/osztás módban
 </hu-HU>
 
 <id>
-- Perbaikan label tombol yang tidak diperbarui secara real-time saat mengganti bahasa
+- Perbaikan deskripsi pengaturan yang salah dalam mode perkalian/pembagian
 </id>
 
 <it-IT>
-- Risolto il problema delle etichette dei pulsanti che non si aggiornano in tempo reale quando si cambia lingua
+- Corrette le descrizioni delle impostazioni errate nella modalità moltiplicazione/divisione
 </it-IT>
 
 <iw-IL>
-- תוקנה בעיה שבה תוויות הכפתורים לא התעדכנו בזמן אמת בעת שינוי השפה
+- תוקנו תיאורי הגדרות שגויים במצב כפל/חילוק
 </iw-IL>
 
 <ja-JP>
-- 言語変更時にボタンラベルがリアルタイムで更新されない問題を修正
+- 掛け算/割り算モードの誤った設定説明を修正
 </ja-JP>
 
 <ko-KR>
-- 언어 변경 시 버튼 라벨이 실시간으로 업데이트되지 않던 문제 수정
+- 곱셈/나눗셈 모드의 잘못된 설정 설명 수정
 </ko-KR>
 
 <lt>
-- Ištaisyta problema, kai mygtukų etiketės neatsinaujindavo realiuoju laiku keičiant kalbą
+- Ištaisyti neteisingi nustatymų aprašymai daugybos/dalybos režime
 </lt>
 
 <lv>
-- Novērsta problēma, kad pogu etiķetes neatjauninājas reāllaikā, mainot valodu
+- Laboti nepareizi iestatījumu apraksti reizināšanas/dalīšanas režīmā
 </lv>
 
 <ms>
-- Membetulkan label butang yang tidak dikemas kini secara masa nyata semasa menukar bahasa
+- Membetulkan penerangan tetapan yang salah dalam mod darab/bahagi
 </ms>
 
 <nl-NL>
-- Probleem opgelost waarbij knoplabels niet in realtime werden bijgewerkt bij het wijzigen van de taal
+- Onjuiste instellingsbeschrijvingen in vermenigvuldigings-/deelmodus gecorrigeerd
 </nl-NL>
 
 <no-NO>
-- Rettet knappetiketter som ikke oppdateres i sanntid ved språkendring
+- Rettet feilaktige innstillingsbeskrivelser i multiplikasjons-/divisjonsmodus
 </no-NO>
 
 <pl-PL>
-- Naprawiono nieaktualizowanie się etykiet przycisków w czasie rzeczywistym podczas zmiany języka
+- Naprawiono nieprawidłowe opisy ustawień w trybie mnożenia/dzielenia
 </pl-PL>
 
 <pt-BR>
-- Corrigido problema onde rótulos de botões não atualizavam em tempo real ao mudar idioma
+- Corrigidas descrições de configuração incorretas no modo multiplicação/divisão
 </pt-BR>
 
 <pt-PT>
-- Corrigido problema onde rótulos de botões não atualizavam em tempo real ao mudar idioma
+- Corrigidas descrições de configuração incorretas no modo multiplicação/divisão
 </pt-PT>
 
 <ro>
-- Rezolvată problema în care etichetele butoanelor nu se actualizau în timp real la schimbarea limbii
+- Corectat descrieri incorecte ale setărilor în modul înmulțire/împărțire
 </ro>
 
 <ru-RU>
-- Исправлена проблема с неактуализацией меток кнопок в реальном времени при смене языка
+- Исправлены неправильные описания настроек в режиме умножения/деления
 </ru-RU>
 
 <sk>
-- Opravené neaktualizovanie popisov tlačidiel v reálnom čase pri zmene jazyka
+- Opravené nesprávne popisy nastavení v režime násobenia/delenia
 </sk>
 
 <sl>
-- Odpravljena težava, ko se oznake gumbov niso posodabljale v realnem času ob spremembi jezika
+- Popravljeni napačni opisi nastavitev v načinu množenja/deljenja
 </sl>
 
 <sr>
-- Ispravljeno neažuriranje oznaka dugmadi u realnom vremenu prilikom promene jezika
+- Ispravljeni netačni opisi postavki u režimu množenja/deljenja
 </sr>
 
 <sv-SE>
-- Åtgärdat problem där knappetiketter inte uppdaterades i realtid vid språkbyte
+- Åtgärdat felaktiga inställningsbeskrivningar i multiplikations-/divisionsläge
 </sv-SE>
 
 <sw>
-- Imekamilisha lebo za kitufe ambazo hazikuwa zinasasishwa kwa wakati halisi wakati wa kubadili lugha
+- Imekamilisha maelezo sahihi ya mipangilio katika hali ya kuzidisha/kugawanya
 </sw>
 
 <th>
-- แก้ไขป้ายกำกับปุ่มที่ไม่อัปเดตแบบเรียลไทม์เมื่อเปลี่ยนภาษา
+- แก้ไขคำอธิบายการตั้งค่าที่ไม่ถูกต้องในโหมดคูณ/หาร
 </th>
 
 <tr-TR>
-- Dil değiştirildiğinde düğme etiketlerinin gerçek zamanlı olarak güncellenmemesi sorunu düzeltildi
+- Çarpma/bölme modunda yanlış ayar açıklamaları düzeltildi
 </tr-TR>
 
 <uk>
-- Виправлено проблему з неоновленням міток кнопок у реальному часі при зміні мови
+- Виправлено неправильні описи налаштувань у режимі множення/ділення
 </uk>
 
 <vi>
-- Đã khắc phục nhãn nút không cập nhật theo thời gian thực khi thay đổi ngôn ngữ
+- Đã sửa mô tả cài đặt không chính xác trong chế độ nhân/chia
 </vi>
 
 <zh-CN>
-- 修复切换语言时按钮标签未实时更新的问题
+- 修复乘法/除法模式中错误的设置说明
 </zh-CN>
 
 <zh-HK>
-- 修復切換語言時按鈕標籤未即時更新的問題
+- 修復乘法/除法模式中錯誤的設定說明
 </zh-HK>
 
 <zh-TW>
-- 修復切換語言時按鈕標籤未即時更新的問題
+- 修復乘法/除法模式中錯誤的設定說明
 </zh-TW>
 
 <zu>
-- Kulungiswe amalebula wezinkinobho angabuyekezwa ngesikhathi sangempela lapho ushintsha ulimi
+- Kulungiswe izincazelo zokumisa ezingalungile kwimodi yokuphindaphinda/ukwahlukanisa
 </zu>

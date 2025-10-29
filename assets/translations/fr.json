@@ -52,11 +52,11 @@
     "explanationTooltip": "Explication des paramètres",
     "explanationTitle": "Guide des paramètres",
     "explanationDesc": "Apprenez à propos de chaque option de paramètre ci-dessous",
-    "isMultiplyExplanation": "Lorsqu'activé, des problèmes de multiplication seront générés. Lorsque désactivé, des problèmes de division sont inclus à la place.",
-    "speedExplanation": "Contrôle la vitesse d'apparition de chaque nombre pendant le flux d'itération de multiplication. Les vitesses plus lentes donnent plus de temps pour traiter chaque nombre. Les vitesses inférieures à 150ms peuvent causer des problèmes de latence audio.",
-    "bigDigitExplanation": "Définit le nombre maximum de chiffres pour le plus grand nombre dans les problèmes de multiplication (par ex., 3 chiffres = nombres jusqu'à 999).",
-    "smallDigitExplanation": "Définit le nombre maximum de chiffres pour le plus petit nombre dans les problèmes de multiplication (par ex., 2 chiffres = nombres jusqu'à 99).",
-    "questionsExplanation": "Détermine combien de problèmes de multiplication apparaîtront dans chaque session de pratique."
+    "isMultiplyExplanation": "Lorsqu'activé, des problèmes de division seront générés. Lorsque désactivé, des problèmes de multiplication sont générés.",
+    "speedExplanation": "Contrôle la vitesse d'apparition de chaque nombre pendant le flux d'itération de calcul. Les vitesses plus lentes donnent plus de temps pour traiter chaque nombre. Les vitesses inférieures à 150ms peuvent causer des problèmes de latence audio.",
+    "bigDigitExplanation": "Définit le nombre maximum de chiffres pour le plus grand nombre dans les problèmes (par ex., 3 chiffres = nombres jusqu'à 999).",
+    "smallDigitExplanation": "Définit le nombre maximum de chiffres pour le plus petit nombre dans les problèmes (par ex., 2 chiffres = nombres jusqu'à 99).",
+    "questionsExplanation": "Détermine combien de problèmes apparaîtront dans chaque session de pratique."
   },
   "customOptions": {
     "setSpeedTitle": "Définir une vitesse personnalisée.",

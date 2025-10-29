@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Simple Anzan App - A Flutter-based mental math training application for practicing addition and multiplication calculations (abacus-style). The app supports multiple platforms: Android, iOS, Windows, macOS, Linux, and Web.
 
-Current version: 4.1.5+73
+Current version: 4.1.7+75
 
 ## Development Commands
 
@@ -236,7 +236,7 @@ Six shadcn-inspired themes with separate light/dark variants:
 
 ### Configuration
 
-- `pubspec.yaml` - Dependencies and app metadata (version 4.1.5+73)
+- `pubspec.yaml` - Dependencies and app metadata (version 4.1.7+75)
 - `analysis_options.yaml` - Flutter linting configuration using flutter_lints
 - `android/app/build.gradle` - Android build settings (API 35, 16KB page support, ProGuard config)
 
@@ -261,13 +261,14 @@ Six shadcn-inspired themes with separate light/dark variants:
 
 - `release_notes-ios.xml` - iOS App Store release notes (supports 5 languages)
 - `release_notes.xml` - Android Play Store release notes (supports 57 languages)
+- `keywords-ios.xml` - iOS App Store keywords/search terms (supports 5 languages: en-US, ko-KR, ja-JP, zh-CN, zh-TW)
 
 ### iOS App Store Languages (release_notes-ios.xml)
 
 When updating iOS release notes, translations must be provided for these 5 languages:
 1. 영어 (English)
 2. 한국어 (Korean)
-3. 읿본어 (Japanese)
+3. 일본어 (Japanese)
 4. 중국어(간체) (Chinese Simplified)
 5. 중국어(번체) (Chinese Traditional)
 
@@ -298,12 +299,13 @@ When updating Android release notes, translations must be provided for ALL 57 su
 **African Languages**:
 - af (Afrikaans), am (Amharic), sw (Swahili), zu (Zulu)
 
-**CRITICAL**: When modifying release notes for either platform:
-1. **iOS**: Update ALL 5 language tags in `release_notes-ios.xml`
-2. **Android**: Update ALL 57 language tags in `release_notes.xml`
-3. Never publish with missing or incomplete translations
-4. Maintain consistent messaging across all language variants
-5. Test XML validity before committing changes
+**CRITICAL**: When modifying release notes or keywords for either platform:
+1. **iOS Release Notes**: Update ALL 5 language tags in `release_notes-ios.xml`
+2. **iOS Keywords**: Update ALL 5 language tags in `keywords-ios.xml` (max 100 characters per language)
+3. **Android Release Notes**: Update ALL 57 language tags in `release_notes.xml`
+4. Never publish with missing or incomplete translations
+5. Maintain consistent messaging across all language variants
+6. Test XML validity before committing changes
 
 This requirement is emphasized in the Korean note at the end of this file: "문구 수정 시 반드시 모든 언어 번역에 대해 진행할 것" (When modifying text, translations must be updated for ALL languages).
 
