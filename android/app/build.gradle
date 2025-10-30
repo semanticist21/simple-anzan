@@ -103,8 +103,11 @@ flutter {
     source '../..'
 }
 
-// dependencies {
-//     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-//     implementation 'com.android.support:multidex:1.0.3'
-// }
+dependencies {
+    // AndroidX Core for edge-to-edge display support (Android 15+)
+    implementation 'androidx.core:core-ktx:1.15.0'
+
+    // Activity library for edge-to-edge helper
+    implementation 'androidx.activity:activity-ktx:1.9.3'
+}
 

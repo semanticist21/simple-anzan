@@ -19,6 +19,7 @@ import 'package:abacus_simple_anzan/src/settings/option/theme_selector.dart';
 import 'package:abacus_simple_anzan/src/settings/option/color_palette_pref.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -39,6 +40,20 @@ import 'src/dialog/app_info_dialog.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  // Enable edge-to-edge mode for Android 15+ (SDK 35+)
+  if (Platform.isAndroid) {
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.edgeToEdge,
+    );
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.transparent,
+        statusBarColor: Colors.transparent,
+      ),
+    );
+  }
 
   if (Platform.isWindows) {
     await windowManager.ensureInitialized();
