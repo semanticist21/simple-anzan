@@ -33,6 +33,66 @@ Current version: 4.1.7+75
 
 - `flutter pub run flutter_launcher_icons:main` - Generate app icons from assets/icon.png
 
+### macOS App Store Build & Upload
+
+Complete process for building and uploading macOS app to App Store Connect:
+
+**1. Build Release App**
+```bash
+flutter build macos --release
+```
+
+**2. Create Archive with Xcode**
+```bash
+xcodebuild -workspace macos/Runner.xcworkspace \
+  -scheme Runner \
+  -configuration Release \
+  -archivePath build/macos/Runner.xcarchive \
+  archive
+```
+
+**3. Export & Upload to App Store Connect**
+
+Create `build/macos/ExportOptions.plist`:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>method</key>
+	<string>app-store-connect</string>
+	<key>destination</key>
+	<string>upload</string>
+	<key>signingStyle</key>
+	<string>automatic</string>
+	<key>teamID</key>
+	<string>X6M5USK89L</string>
+</dict>
+</plist>
+```
+
+**Upload directly to App Store Connect:**
+```bash
+xcodebuild -exportArchive \
+  -archivePath build/macos/Runner.xcarchive \
+  -exportPath build/macos/export \
+  -exportOptionsPlist build/macos/ExportOptions.plist \
+  -allowProvisioningUpdates
+```
+
+**Or export signed PKG locally** (change `destination` to `export` in plist):
+```bash
+# Same command as above, but with destination=export in ExportOptions.plist
+# Output: build/macos/export/abacus_simple_anzan.pkg
+```
+
+**Notes:**
+- `-allowProvisioningUpdates` automatically creates/updates provisioning profiles and signs the app
+- `destination: upload` uploads directly to App Store Connect (no local file)
+- `destination: export` saves signed PKG locally for manual upload via Transporter
+- Bundle ID: `com.kobbokkom.abacussimpleanzan`
+- Team ID: `X6M5USK89L`
+
 ## Architecture
 
 ### Dual-Mode Parallel Structure
